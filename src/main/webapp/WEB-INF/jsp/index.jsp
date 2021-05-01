@@ -1,70 +1,36 @@
-<%@ include file="IncludeTop.jsp" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!doctype html>
+<html lang="en">
+<head>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<!-- Optional JavaScript -->
+<!-- JS, Popper.js, and jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<!-- for Icon -->
+<script src="https://kit.fontawesome.com/cfb4151af4.js"></script>
+<!-- 구글폰트링크 -->
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300&family=Roboto&display=swap" rel="stylesheet">
+<title>Alone & Along</title>
+<style type="text/css">
+</style>
+</head>
+<body>
+   <!-- header -->
+   <%@include file="header.jsp" %>
+	
+	<!-- Page Content -->
+	<div class="container mt-4">
+	</div>
+	<!-- /.container -->
 
-<table style="border:none;border-collapse:collapse;width:100%">
-  <tr>
-    <td style="text-align:left;vertical-align:top;width:100%">
-      <table style="border:none;border-collapse:collapse;width:80%">
-        <tr>
-          <td valign="top">                    
-            <!-- SIDEBAR -->
-            <table id="index">
-              <tr>
-                <td>
-                <c:if test="${!empty userSession.account}">
-			       <b><i><font size="4" color="RED">Welcome ${userSession.account.firstName}!</font></i></b>
-                </c:if>&nbsp;
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <a href="<c:url value="/shop/viewCategory.do?categoryId=FISH"/>">
-                     <img border="0" src="../images/fish_icon.gif" /></a>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <a href="<c:url value="/shop/viewCategory.do?categoryId=DOGS"/>">
-                    <img border="0" src="../images/dogs_icon.gif" /></a>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <a href="<c:url value="/shop/viewCategory.do?categoryId=CATS"/>">
-                    <img border="0" src="../images/cats_icon.gif" /></a>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <a href="<c:url value="/shop/viewCategory.do?categoryId=REPTILES"/>">
-                    <img border="0" src="../images/reptiles_icon.gif" /></a>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <a href="<c:url value="/shop/viewCategory.do?categoryId=BIRDS"/>">
-                    <img border="0" src="../images/birds_icon.gif" /></a>
-                </td>
-              </tr>
-            </table>
-          </td>
-          <td style="text-align:center;background-color:white;height:300;width:100%">
-            <!-- MAIN IMAGE -->
-            <map name="estoremap">
-              <area alt="Birds" coords="72,2,280,250" href="viewCategory.do?categoryId=BIRDS" shape="RECT" />
-              <area alt="Fish" coords="2,180,72,250" href="viewCategory.do?categoryId=FISH" shape="RECT" />
-              <area alt="Dogs" coords="60,250,130,320" href="viewCategory.do?categoryId=DOGS" shape="RECT" />
-              <area alt="Reptiles" coords="140,270,210,340" href="viewCategory.do?categoryId=REPTILES" shape="RECT" />
-              <area alt="Cats" coords="225,240,295,310" href="viewCategory.do?categoryId=CATS" shape="RECT" />
-              <area alt="Birds" coords="280,180,350,250" href="viewCategory.do?categoryId=BIRDS" shape="RECT" />
-            </map>
-            <img src="../images/splash.gif" usemap="#estoremap" style="float:center;width:350;height:355;border:0;" />
-          </td>
-        </tr>
-      </table>
-    </td>
-  </tr>
-</table>
-
-<%@ include file="IncludeBanner.jsp" %>
-
-<%@ include file="IncludeBottom.jsp" %>
+   <!-- Footer -->
+   <%@include file="footer.jsp" %>
+</body>
+</html>

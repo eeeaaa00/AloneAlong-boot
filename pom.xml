@@ -10,12 +10,12 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	
-	<groupId>com.example</groupId>
-	<artifactId>jpetstore-boot</artifactId>
+	<groupId>com.dwu</groupId>
+	<artifactId>alonealong-boot</artifactId>
 	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>jpetstore.boot</name>
-	<description>JPetStore based on Spring Boot</description>
+	<name>alonealong.boot</name>
+	<description>AloneAlong based on Spring Boot</description>
 
 	<properties>
 		<java.version>1.8</java.version>
@@ -45,12 +45,13 @@
 			<version>2.1.3</version>
 		</dependency>
 		
-		<dependency>
+  		<dependency>
 			<groupId>com.oracle</groupId>
 			<artifactId>ojdbc6</artifactId>
 			<version>11.2.0.4</version>
 			<scope>runtime</scope>
 		</dependency> 
+		
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
