@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/")
 public class ViewIndexController {
 	public String now() {
-		return "index";
+		return "index"; 
 	}
 
 }
