@@ -1,3 +1,16 @@
+# pull이 안될 경우, detail 확인시 Nothing to fetch  문제라고 뜬다면 remote를 해결해 줘야 함!
+참고 : https://d-e-v.tistory.com/5
+Git Repositories 탭에서 git 프로젝트 오른쪽 클릭 - Properties
+fetch 추가.
+fork되어있던 프로젝트를 복사해서 수정한거라 remote에 origin과 originA가 있을 것.(나만 그럴 수도 있음)
+우리는 originA!
+origin을 지우면 더 편함. 이 remote는 jpetstore로 연결되므로 pull도 그쪽으로 갈 수 있음
+pull할 때 깃주소 확인 잘하기.
+
+# 지금은 master 브랜치에 모두 merge하고있지만 대략적인 구현(프로젝트 마무리)이 끝나고나면 이후 짜잘한 수정부터는 develop브랜치에 pull하도록 합시다!
+
+
+
 # JPetStore (boot)
 JPetStore project based on Spring Boot 2
 
