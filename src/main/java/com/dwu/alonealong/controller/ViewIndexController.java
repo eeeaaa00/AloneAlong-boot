@@ -1,4 +1,4 @@
-package com.dwu.alonealong.Controller;
+package com.dwu.alonealong.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
