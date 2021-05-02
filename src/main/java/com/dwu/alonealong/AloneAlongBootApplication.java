@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = {"com.dwu.alonealong"})
 public class AloneAlongBootApplication extends SpringBootServletInitializer {
     @Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
