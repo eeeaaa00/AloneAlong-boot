@@ -5,8 +5,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 
 @Controller
-@RequestMapping("/")
 public class ViewIndexController {
+	
+	@RequestMapping("/")
 	public String now() {
 		return "index"; 
 	}
