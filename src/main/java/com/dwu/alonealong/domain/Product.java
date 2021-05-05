@@ -65,14 +65,15 @@ public class Product implements Serializable {
 	  return false;
   }
 
-  public int getTotalPrice() {
-	  int totalPrice = 0;
-	  totalPrice += this.quantity * price;
-	  if (totalPrice <= 30000) {
-		  totalPrice += shippingFee;
+  public int getUnitPrice() {
+	  int unitPrice = 0;
+	  unitPrice += quantity * price;
+	  if (unitPrice <= 30000) {
+		  unitPrice += shippingFee;
 	  }
-	  return totalPrice;
+	  return unitPrice;
   }
+  
   /* Public Methods*/
 	public String toString() {
     return getName();

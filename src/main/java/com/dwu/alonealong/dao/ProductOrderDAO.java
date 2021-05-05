@@ -14,14 +14,14 @@ public interface ProductOrderDAO {
   	//get ProductOrder Method
   	ProductOrder getProductOrder(int orderId) throws DataAccessException;
   	
-  	//ÁÖ¹® Ãß°¡
-	void insertProductOrder(ProductOrder order) throws DataAccessException;
+  	//ï¿½Ö¹ï¿½ ï¿½ß°ï¿½
+	int insertProductOrder(ProductOrder order) throws DataAccessException;
 	
-	//³Ê¹« ÀÚÀß±¸¸®ÇÏ¸é »¬...
-	//»óÇ° Id¸¦ ÅëÇÑ ÁÖ¹® È½¼ö ¹ÝÈ¯
+	//ï¿½Ê¹ï¿½ ï¿½ï¿½ï¿½ß±ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½ï¿½...
+	//ï¿½ï¿½Ç° Idï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¹ï¿½ È½ï¿½ï¿½ ï¿½ï¿½È¯
 //	int getCountOrdersByProductId(String productId) throws DataAccessException; 
 
-	//ÇØ´ç »óÇ°À» ÁÖ¹®ÇÑ »ç¿ëÀÚÀÎÁö È®ÀÎ
+	//ï¿½Ø´ï¿½ ï¿½ï¿½Ç°ï¿½ï¿½ ï¿½Ö¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½
 //	ProductOrder isOrderUser(String userId, String productId) throws DataAccessException;
 }
 

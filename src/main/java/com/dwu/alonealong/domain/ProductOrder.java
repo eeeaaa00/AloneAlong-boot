@@ -2,7 +2,7 @@ package com.dwu.alonealong.domain;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.Date;
 import java.util.List;
 
 @SuppressWarnings("serial")
@@ -17,6 +17,8 @@ public class ProductOrder implements Serializable {
   private String userId;
   private String cardNum;
   private String cardDate;
+  private String billName;
+  private String billPhone;
   private String shipName;
   private String shipZip;
   private String shipAddress;
@@ -53,6 +55,12 @@ public class ProductOrder implements Serializable {
   public void addLineItem(CartItem cartItem) {  LineItem lineItem = new LineItem(lineItems.size() + 1, cartItem);  addLineItem(lineItem); }
   public void addLineItem(LineItem lineItem) {  lineItems.add(lineItem); }
 
+  public String getBillName() { return billName; }
+  public void setBillName(String billName) { this.billName = billName; }
+  
+  public String getBillPhone() { return billPhone; }
+  public void setBillPhone(String billPhone) { this.billPhone = billPhone; }
+  
   public String getShipName() { return shipName; }
   public void setShipName(String shipName) { this.shipName = shipName; }
   
@@ -66,8 +74,32 @@ public class ProductOrder implements Serializable {
   public void setShipPhone(String shipPhone) { this.shipPhone = shipPhone; }
   
   /* Public Methods */
+  public void initProductOrder(User user, Payment paymentMethod, List<ProductLineItem> orderList) {
+	  totalPrice = 0;
+	  //status = ?;
+	  
+	  userId = user.getUserId();
+	  date = (new Date()).toString();
 
-  //Àå¹Ù±¸´Ï¿¡¼­ ÁÖ¹®À¸·Î ³Ñ¾î°£ °æ¿ì
+	  shipName = user.getName();
+	  shipPhone = user.getPhone();
+	  shipZip = user.getZip();
+	  shipAddress = user.getAddress();
+
+	  billName = user.getName();
+	  billPhone = user.getPhone();
+	  
+	  if(paymentMethod != null) {
+		  cardNum = paymentMethod.getCardNumber();
+		  cardDate = paymentMethod.getCardDate();
+	  }
+	  
+	  for(ProductLineItem orderItem : orderList) {
+		  totalPrice += orderItem.getUnitPrice();
+	  }
+	}
+
+  //ï¿½ï¿½Ù±ï¿½ï¿½Ï¿ï¿½ï¿½ï¿½ ï¿½Ö¹ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ¾î°£ ï¿½ï¿½ï¿½
 //  public void initOrderByCart(Account account, Cart cart) { 
 //	  setTotalPrice(cart.getTotalPrice());
 //	  for(CartItem cartItem : cart.getCartItemList()) {
@@ -76,13 +108,13 @@ public class ProductOrder implements Serializable {
 //	  }
 //  }
   /*
-  //±âµî·Ï °áÁ¦¹æ½Ä »ç¿ë
+  //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
   public void setOrderByPaymentmethod(Paymentmethod method) {
 	  setCardNum(method.getCardNum);
 	  setCardDate(method.getCardDate);
   }
   
-  //¹è¼ÛÁ¤º¸°¡ ÁÖ¹®Á¤º¸¿Í µ¿ÀÏ
+  //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
   public void setShipInfoByUserInfo(Account account) {
 	  setShipName(account.getUsername());
 	  setShipZip(account.getZip());

@@ -11,12 +11,11 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.dwu.alonealong.domain.Product;
-import com.dwu.alonealong.domain.ProductReview;
 import com.dwu.alonealong.service.AloneAlongFacade;
 
 @Controller
 @SessionAttributes({"product", "userSession"})
-public class InsertProductReviewController {
+public class RecommendProductReviewController {
 	private AloneAlongFacade aloneAlong;
 
 	@Autowired
@@ -24,18 +23,15 @@ public class InsertProductReviewController {
 		this.aloneAlong = aloneAlong;
 	}
 	
-	@RequestMapping("/shop/{productId}/review/write")
+	@RequestMapping("/shop/{productId}/review/recommend")
 	public RedirectView handleRequest(
 			@ModelAttribute("userSession") UserSession userSession,
 			@PathVariable("productId") String productId,
 			@RequestParam(value="product") Product product,
-			@RequestParam(value="rating") int rating,
-			@RequestParam(value="contents") String contents, 
+			@PathVariable("reviewId") String reviewId,
 			ModelMap model) throws Exception {
-		//product를 구매한 user인지 검사하는 과정 추가 필요
-		ProductReview productReview = new ProductReview(productId, userSession.getUser().getUserId(), contents, rating);
 		//결과값 검사 추가 필요
-		this.aloneAlong.insertProductReview(productReview);
+		this.aloneAlong.recommendProductReview(reviewId);
 		return new RedirectView("/shop/{productId}/review");
 	}
 
