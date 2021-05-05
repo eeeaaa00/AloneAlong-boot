@@ -14,9 +14,15 @@ public class ProductReview implements Serializable {
   private int rating;
   private int recommend;
   
-
   /* JavaBeans Properties */
-
+  public ProductReview(String productId, String userId, String contents, int rating) {
+	super();
+	this.productId = productId;
+	this.userId = userId;
+	this.contents = contents;
+	this.rating = rating;
+  }
+  
   public String getReviewId() { return reviewId; }
   public void setReviewId(String reviewId) { this.reviewId = reviewId; }
 

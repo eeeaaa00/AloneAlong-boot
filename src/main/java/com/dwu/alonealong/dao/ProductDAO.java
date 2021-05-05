@@ -1,25 +1,22 @@
 package com.dwu.alonealong.dao;
 
 import java.util.List;
-
 import org.springframework.dao.DataAccessException;
-
 import com.dwu.alonealong.domain.Product;
 
 public interface ProductDAO {
 
 	//get Product List Method
-	//Ä«Å×°í¸®º° ¹ÝÈ¯
-	List<Product> getProductListByCategory(String pcId) throws DataAccessException;
-	//Á¤·Ä
-	List<Product> SortBySales(String pcId) throws DataAccessException;
-	List<Product> SortByPast(String pcId) throws DataAccessException;
-	//List<Product> SortByNew(String pcId) throws DataAccessException; > ±âº»
+	//ì¹´í…Œê³ ë¦¬ë³„ ë°˜í™˜
+	List<Product> getProductList(String pcId, String sortType) throws DataAccessException;
+	//ì •ë ¬
+//	List<Product> SortBySales(String pcId) throws DataAccessException;
+//	List<Product> SortByPast(String pcId) throws DataAccessException;
+	//List<Product> SortByNew(String pcId) throws DataAccessException; > ê¸°ë³¸
 	List<Product> SortByLowPrice(String pcId) throws DataAccessException;
-	//°Ë»ö
+	//ê²€ìƒ‰
 	List<Product> searchProductList(String keywords) throws DataAccessException;
 
 	//get Product Method
 	Product getProduct(String productId) throws DataAccessException;
 }
-
