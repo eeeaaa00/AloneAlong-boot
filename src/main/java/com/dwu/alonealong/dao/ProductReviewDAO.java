@@ -20,7 +20,8 @@ public interface ProductReviewDAO {
 //	double AverageOfReviews(String productId) throws DataAccessException;
 //	int MostRatingOfReviews(String productId) throws DataAccessException;
 	
-	void insertProductReview(ProductReview productReview);
-	void deleteProductReview(String reviewId);
+	int insertProductReview(ProductReview productReview);
+	int deleteProductReview(String reviewId);
+	int recommendProductReview(String reviewId);
 
 }

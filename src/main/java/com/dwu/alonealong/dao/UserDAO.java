@@ -6,7 +6,7 @@ import java.util.List;
 import com.dwu.alonealong.domain.User;
 
 
-public interface UserDao {
+public interface UserDAO {
 
   User getUser(String Id); //throws DataAccessException;
 

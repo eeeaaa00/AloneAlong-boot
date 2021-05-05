@@ -12,7 +12,7 @@ public class UserSession implements Serializable {
 		this.user = user;
 	}
 
-	public User getAccount() {
+	public User getUser() {
 		return user;
 	}
 }

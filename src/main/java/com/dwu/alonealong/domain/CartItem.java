@@ -2,8 +2,6 @@ package com.dwu.alonealong.domain;
 
 import java.io.Serializable;
 
-import com.dwu.alonealong.dao.ProductDAO;
-
 @SuppressWarnings("serial")
 public class CartItem implements Serializable {
 

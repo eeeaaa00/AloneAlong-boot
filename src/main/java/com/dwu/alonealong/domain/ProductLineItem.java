@@ -8,6 +8,12 @@ public class ProductLineItem {
 	private int unitPrice;
 	private List<ProductLineItem> orderList;
 	
+	public ProductLineItem(String productId, int quantity, int unitPrice){
+		this.productId = productId;
+		this.quantity = quantity;
+		this.unitPrice = unitPrice;
+	}
+	
 	public List<ProductLineItem> getOrderList() {
 		return orderList;
 	}
