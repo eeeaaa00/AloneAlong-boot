@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+	<definition name="base_layout"
+		template="/WEB-INF/jsp/tiles/template/layout.jsp">
+		<put-attribute name="title" value="AloneAlong" type="string"/>
+		<put-attribute name="header"
+			value="/WEB-INF/jsp/tiles/header.jsp" />
+		<put-attribute name="footer"
+			value="/WEB-INF/jsp/tiles/footer.jsp" />
+	</definition>
+	
+	<definition name="index" extends="base_layout">
+		<put-attribute name="body" value="" />
+	</definition>	
+	
+	<definition name="productCart" extends="base_layout">
+		<put-attribute name="title" value="Shopping Cart" type="string"/>
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/product/productCart.jsp" />
+	</definition>	
+	
+	<!-- product -->
+	<definition name="product_layout"
+		template="/WEB-INF/jsp/tiles/template/product.jsp">
+		<put-attribute name="title" value="Shopping" type="string"/>
+		<put-attribute name="main-top" value="" />
+		<put-attribute name="main-body" value="" />
+		<put-attribute name="menu"
+			value="/WEB-INF/jsp/product/menu.jsp" />
+		<put-attribute name="cart"
+			value="/WEB-INF/jsp/product/cartModal.jsp" />
+		<put-attribute name="header"
+			value="/WEB-INF/jsp/tiles/header.jsp" />
+		<put-attribute name="footer"
+			value="/WEB-INF/jsp/tiles/footer.jsp" />
+	</definition>
+	
+	<definition name="productList" extends="product_layout">
+		<put-attribute name="main-top"
+			value="/WEB-INF/jsp/product/productList-top.jsp" />
+		<put-attribute name="main-body"
+			value="/WEB-INF/jsp/product/productList.jsp" />
+	</definition>
+	
+	<definition name="product" extends="product_layout">
+		<put-attribute name="main-top"
+			value="/WEB-INF/jsp/product/productInfo.jsp" />
+		<put-attribute name="main-body"
+			value="/WEB-INF/jsp/product/productInfoImage.jsp" />
+	</definition>
+	
+	<definition name="productReview" extends="product">
+		<put-attribute name="main-body"
+			value="/WEB-INF/jsp/product/productReview.jsp" />
+	</definition>
+	
+	<!-- 
+	<definition name="tiles/*" extends="base_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/tiles/{1}.jsp" />
+	</definition> 
+ 
+ 	<definition name="tiles/Category" extends="base_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/tiles/Category.jsp" />
+	</definition>
+
+	<definition name="tiles/SignonForm" extends="base_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/tiles/SignonForm.jsp" />			
+	</definition>
+	
+	<definition name="tiles/EditAccountForm" extends="base_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/tiles/EditAccountForm.jsp" />			
+	</definition>
+  -->
+</tiles-definitions>

@@ -1,7 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!doctype html>
-<html lang="en">
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
+<html>
 <head>
 <!-- Required meta tags -->
 <meta charset="utf-8">
@@ -17,20 +20,11 @@
 <!-- 구글폰트링크 -->
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300&family=Roboto&display=swap" rel="stylesheet">
-<title>Alone & Along</title>
-<style type="text/css">
-</style>
+<title><tiles:getAsString name="title" /></title>
 </head>
 <body>
-   <!-- header -->
-   <%@include file="header.jsp" %>
-	
-	<!-- Page Content -->
-	<div class="container mt-4">
-	</div>
-	<!-- /.container -->
-
-   <!-- Footer -->
-   <%@include file="footer.jsp" %>
+	<tiles:insertAttribute name="header" />
+	<tiles:insertAttribute name="body" />
+	<tiles:insertAttribute name="footer" />
 </body>
 </html>
