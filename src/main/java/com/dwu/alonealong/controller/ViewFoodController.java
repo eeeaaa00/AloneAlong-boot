@@ -36,15 +36,26 @@ public class ViewFoodController {
 	}
 	
 	//리뷰탭
-	@RequestMapping("/eating/viewFood2.do")
+	@RequestMapping("/eating/{redId}/RestaurantReview")
 	public String handleRequest2(
-			@RequestParam("resId") String resId,
+//			@RequestParam("resId") String resId,
 			ModelMap model) throws Exception {
-		List<FoodReview> reviewList = this.alonealong.getFoodReviewList(resId);
-		FoodCart foodCart = this.alonealong.getFoodCart(resId);
-		model.put("foodList", reviewList);
-		model.put("foodCart", foodCart);
-		return "Restaurant";
+//		List<FoodReview> reviewList = this.alonealong.getFoodReviewList(resId);
+//		FoodCart foodCart = this.alonealong.getFoodCart(resId);
+//		model.put("foodList", reviewList);
+//		model.put("foodCart", foodCart);
+		return "/eating/RestaurantReview";
 	}
+	//메뉴수정버튼
+		@RequestMapping("/eating/viewFood/{foodId}/adminFood")
+		public String handleRequest3(
+//				@RequestParam("resId") String resId,
+				ModelMap model) throws Exception {
+//			List<FoodReview> reviewList = this.alonealong.getFoodReviewList(resId);
+//			FoodCart foodCart = this.alonealong.getFoodCart(resId);
+//			model.put("foodList", reviewList);
+//			model.put("foodCart", foodCart);
+			return "/eating/FoodForm";
+		}
 		
 }

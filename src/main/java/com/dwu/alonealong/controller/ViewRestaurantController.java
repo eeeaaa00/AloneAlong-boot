@@ -36,6 +36,18 @@ public class ViewRestaurantController {
 //		model.put("restaurantList", restaurantList);
 		return "/eating/Restaurant";
 	}
+	@RequestMapping("/eating/adminRes")
+	public String handleRequest2(
+//			@RequestParam("categoryId") String categoryId,
+//			ModelMap model
+			) throws Exception {
+		//Category category = this.petStore.getCategory(categoryId);
+//		PagedListHolder<Restaurant> restaurantList = new PagedListHolder<Restaurant>(this.alonealong.getRestaurantList());
+//		restaurantList.setPageSize(4);
+		//model.put("category", category);
+//		model.put("restaurantList", restaurantList);
+		return "/eating/RestaurantForm";
+	}
 	
 //	@RequestMapping("/shop/viewRestaurant2.do")
 //	public String handleRequest2(

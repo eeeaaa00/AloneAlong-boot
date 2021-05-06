@@ -51,22 +51,23 @@ p>b { font-family: 'Roboto', serif; font-size:30px; }
 					<!-- 가격 정보 -->
 					<div class="col-md-6 my-3" style="height:400px">
 						<div class="mx-2" style="height:150px">
-							<h1 class="text-right mb-3">유기농 사과 3개입</h1>
-							<h3 class="price text-right"><b>1,500</b> 원</h3>
+							<h1 class="text-right mb-3">누들아한타이</h1>
+							<h4 class="price text-right"><b>성북구 화랑로13길 10</b></h3>
 						</div>
 						<div class="mx-2 my-2 priceInfo" style="height:110px;">
 							<form class="form-inline">
-							<p class="mb-3"><span class=" border-right pr-4 mr-4">수량　</span>
-								<input class="form-control text-center w-25" type="number" value="1" min="1"></p>
-							</form>
-							<p class="mb-2"><span class="border-right pr-4 mr-4">배송비</span> 3,000원</p>
-							<small class="text-muted">30,000원 이상 구매시 무료 / 제주 · 도서 지역 추가 5,000원</small>
+							<p class="mb-2"><span class="border-right pr-4 mr-4">번호 </span> 0507-1415-7178 </p><nbsp>
+							<p class="mb-2"><span class="border-right pr-4 mr-4">별점 </span> 4.5 점</p><nbsp>
+							<p class="mb-2">태국식 캐쥬얼 레스토랑 누들아한타이입니다. 태국현지식 자재를 사용하여 태국음식의 풍미를 자랑합니다.</p>
+							<small class="text-muted"></small>
 						</div>
 						<div class="totalPriceInfo bg-light">
+							<p class="text-left">구매할 것</p>
+							<div>
+							미니카트
+							</div>
 							<p class="text-right">총 금액  <b class="pl-2">4,500</b>원</p>
 							<div class="row justify-content-around">
-								<a type="button" class="btn btn-green rounded-pill" data-toggle="modal" data-target="#cartModal">
-									<small><i class="fas fa-shopping-cart pr-1"></i></small> 장바구니</a>
 								<a type="button" class="btn btn-orange rounded-pill" href="<c:url value='/order' />"><small>
 									<i class="far fa-credit-card pr-1"></i></small> 결제하기</a>
 							</div>
@@ -80,16 +81,40 @@ p>b { font-family: 'Roboto', serif; font-size:30px; }
 				      <div class="shadow-sm rounded-lg">
 				        <!-- Tabs-->
 				        <ul class="nav nav-tabs nav-fill" role="tablist">
-				          <li class="nav-item"><a class="nav-link py-4 px-sm-4 active" >상세 정보</a></li>
-				          <li class="nav-item"><a class="nav-link py-4 px-sm-4" href="<c:url value='/shopping/apple/review' />">상품 리뷰</a></li>
+				          <li class="nav-item"><a class="nav-link py-4 px-sm-4 active" href="<c:url value='/eating/viewFood' />">메뉴</a></li>
+				          <li class="nav-item"><a class="nav-link py-4 px-sm-4" href="<c:url value='/eating/res01/RestaurantReview' />">한줄평</a></li> <!-- mav.setViewName("/eating/RestaurantReview");로 연결 -->
+				          <li class="nav-item"><a class="nav-link py-4 px-sm-4" >같밥 모집ing</a></li>
 				        </ul>
+				        <!-- General info tab-->
+				        <div class="tab-content px-lg-3 py-5">
 				        <div class="info-content px-4 pt-lg-3 pb-3 mb-5 border">
-				          <div class="tab-content px-lg-3 py-5">
-				            <!-- General info tab-->
-				            <img style="width:100%;" alt="productInfo" src="http://chungjuc.com/web/upload/NNEditor/20201105/121_shop1_143841.jpg">
+				          <div class="card shadow-sm m-2">
+				            <div class="row no-gutters">
+				              <div class="col-4">
+				                <img src="https://img-cf.kurly.com/shop/data/goods/1575003713758y0.jpg" width="100%" height="150px" />
+				              </div>
+				                <div class="card-body">
+					                <div class="d-flex justify-content-between align-items-start py-2" >
+									<h6 class="card-text text-left">카우팟 꿍</h6>
+									</div>
+									<p>고소한 새우볶음밥</p>
+									<p>7500원 </p>  
+				              </div>
+				              <div class="card-footer">
+					              <button>담기</button></br>
+					              <button type="button" onClick="location.href='<c:url value='/eating/viewFood/food01/adminFood' />'">수정</button>
+					              <button>삭제</button>
+				              </div>
+				              
+				            </div>
 				          </div>
-				        </div>
-				      </div>
+						</div>
+					</div>
+				          
+				            
+				       </div>
+				   </div>
+				</div>
 				    </div>
 				</div>
 			</div>

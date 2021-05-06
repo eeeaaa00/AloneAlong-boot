@@ -36,6 +36,37 @@ b {color:#29A65F;}
 	<!-- Page Content -->
 	<div class="container mt-4">
 		<div class="row">	
+		<!-- 좌측 카테고리 -->
+			<div class="col-md-2">
+				<a href="<c:url value='/shopping' />" class="btn btn-outline-success rounded-pill my-1 btn-block active">지역</a>
+					<a href="#" class="dropdown-menu active" aria-labelledby="dropdownMenuButton">
+								<a class="dropdown-item" href="#"><small>서울특별시</small></a>
+								<a class="dropdown-item" href="#"><small>인천광역시</small></a>
+								<a class="dropdown-item" href="#"><small>대구광역시</small></a>
+								<a class="dropdown-item" href="#"><small>대전광역시</small></a>
+								<a class="dropdown-item" href="#"><small>부산광역시</small></a>
+								<a class="dropdown-item" href="#"><small>울산광역시</small></a>
+								<a class="dropdown-item" href="#"><small>광주광역시</small></a>
+					</a>
+				<div class="dropdown btn-outline-success">
+						<button class="btn btn-sm dropdown-toggle" data-toggle="dropdown"
+							aria-haspopup="true">최신순</button>
+						<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+							<a class="dropdown-item" href="#"><small>서울특별시</small></a>
+								<a class="dropdown-item" href="#"><small>인천광역시</small></a>
+								<a class="dropdown-item" href="#"><small>대구광역시</small></a>
+								<a class="dropdown-item" href="#"><small>대전광역시</small></a>
+								<a class="dropdown-item" href="#"><small>부산광역시</small></a>
+								<a class="dropdown-item" href="#"><small>울산광역시</small></a>
+								<a class="dropdown-item" href="#"><small>광주광역시</small></a>
+						</div>
+					</div>	
+				<a href="#" class="btn btn-outline-success rounded-pill my-1 btn-block">분류</a>
+					<a href="#" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+								<a class="dropdown-item" href="#"><small>분식</small></a>
+								<a class="dropdown-item" href="#"><small>한식</small></a>
+								<a class="dropdown-item" href="#"><small>양식</small></a>
+			</div>
 			<div class="col-md-10 my-1">
 				<!-- 상단 설명 -->
 				<div class="row mx-3">
@@ -57,6 +88,7 @@ b {color:#29A65F;}
 						</div>
 					</div>
 				</div>
+				<button onClick="location.href='<c:url value='/eating/adminRes' />'">임시 식당등록버튼(마이페이지)</button>
 				
 				<!-- 물품 목록 -->
 				<div class="row px-5 mb-lg-5 justify-content-between">
@@ -65,10 +97,11 @@ b {color:#29A65F;}
 							background-size: cover; background-position: center" width="100%" height="150px"></svg>
 						<div class="card-body">
 							<div class="d-flex justify-content-between align-items-start">
-								<h6 class="card-text text-left">식당이라 치자</h6>
+								<h6 class="card-text text-left">누들아한타이</h6>
 								<a href="/" class="btn btn-outline-success btn-sm rounded-circle"><i
 									class="fas fa-shopping-cart"></i></a></div>
-							<p>1,500원</p>
+							<p>별점 : 4.5</p>
+							<p>주소 : 성북구 화랑로13길 10 </p>
 						</div>
 					</div>
 					<div class="card shadow-sm" type="button">
