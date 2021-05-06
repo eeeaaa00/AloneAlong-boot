@@ -24,7 +24,7 @@ public class InsertProductReviewController {
 		this.aloneAlong = aloneAlong;
 	}
 	
-	@RequestMapping("/shop/{productId}/review/write")
+	@RequestMapping("/shop/{productId}/review/insert")
 	public RedirectView handleRequest(
 			@ModelAttribute("userSession") UserSession userSession,
 			@PathVariable("productId") String productId,

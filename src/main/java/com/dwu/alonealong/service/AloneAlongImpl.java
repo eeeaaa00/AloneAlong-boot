@@ -27,17 +27,24 @@ import com.dwu.alonealong.domain.User;
 @Transactional
 public class AloneAlongImpl implements AloneAlongFacade{
 
-	@Autowired
-	private RestaurantDAO restaurantDao;
-	@Autowired
+	//Autowired 오류 수정 전까지 주석처리
+//	@Autowired
+//	private RestaurantDAO restaurantDao;
+//	@Autowired
+//	private UserDAO userDao;
+//	@Autowired
+//	private ProductDAO productDao;
+//	@Autowired
+//	private ProductReviewDAO productReviewDao;
+//	@Autowired
+//	private ProductOrderDAO productOrderDao;
+//	@Autowired
+//	private PaymentDAO paymentDao;
+	
 	private UserDAO userDao;
-	@Autowired
 	private ProductDAO productDao;
-	@Autowired
 	private ProductReviewDAO productReviewDao;
-	@Autowired
 	private ProductOrderDAO productOrderDao;
-	@Autowired
 	private PaymentDAO paymentDao;
 
 	//User

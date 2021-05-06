@@ -24,7 +24,7 @@ public class DeleteProductReviewController {
 		this.aloneAlong = aloneAlong;
 	}
 	
-	@RequestMapping("/shop/{productId}/review/write")
+	@RequestMapping("/shop/{productId}/review/delete")
 	public RedirectView handleRequest(
 			@ModelAttribute("userSession") UserSession userSession,
 			@PathVariable("productId") String productId,
