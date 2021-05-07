@@ -7,9 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-${resId} 번 식당.
+식당 정보창
 <ul>
-	<li>ID: ${resId}</li>
 	<li>이름: ${restaurant.resName}</li>
 	<li>분류: ${restaurant.categoryId}</li>
 	<li>위치 :${restaurant.resAddress}</li>

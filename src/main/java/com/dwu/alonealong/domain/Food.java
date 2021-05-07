@@ -6,11 +6,20 @@ public class Food {
 	private String foodId;
 	private String resId;
 	private String ownerId;
-	private Double price;
+	private int price;
 	private String name;
 	private String description;
 	private URL img;
 	private int maxPeopleNum;
+	
+	public Food(String id, String name, int price){//임시
+		this.foodId = id;
+//		this.resId = resId;
+		this.price = price;
+		this.name = name;
+	}
+	
+
 	@Override
 	public String toString() {
 		return "Food [foodId=" + foodId + ", resId=" + resId + ", ownerId=" + ownerId + ", price=" + price + ", name="
@@ -34,10 +43,10 @@ public class Food {
 	public void setOwnerId(String ownerId) {
 		this.ownerId = ownerId;
 	}
-	public Double getPrice() {
+	public int getPrice() {
 		return price;
 	}
-	public void setPrice(Double price) {
+	public void setPrice(int price) {
 		this.price = price;
 	}
 	public String getName() {
@@ -64,7 +73,7 @@ public class Food {
 	public void setMaxPeopleNum(int maxPeopleNum) {
 		this.maxPeopleNum = maxPeopleNum;
 	}
-	public Food(String foodId, String resId, String ownerId, Double price, String name, String description, URL img,
+	public Food(String foodId, String resId, String ownerId, int price, String name, String description, URL img,
 			int maxPeopleNum) {
 		super();
 		this.foodId = foodId;

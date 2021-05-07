@@ -1,5 +1,7 @@
 package com.dwu.alonealong.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.support.PagedListHolder;
 import org.springframework.stereotype.Controller;
@@ -12,10 +14,11 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.dwu.alonealong.domain.Restaurant;
 import com.dwu.alonealong.service.AloneAlongFacade;
+import com.dwu.alonealong.service.RestaurantService;
 
 
 @Controller
-//@SessionAttributes({"restaurantList"})
+@SessionAttributes({"restaurantList"})
 public class ViewRestaurantController {
 	private AloneAlongFacade alonealong;
 	
@@ -23,31 +26,58 @@ public class ViewRestaurantController {
 	public void setAlonealong(AloneAlongFacade alonealong) {
 		this.alonealong = alonealong;
 	}
+	
+	//db전까지 사용
+	@Autowired
+	private RestaurantService resService;
+	
+	public void setRestaurantService(RestaurantService resService) {
+		this.resService = resService;
+	}
 
 	@RequestMapping("/eating")
 	public String handleRequest(
 //			@RequestParam("categoryId") String categoryId,
-//			ModelMap model
+			ModelMap model
 			) throws Exception {
 		//Category category = this.petStore.getCategory(categoryId);
 //		PagedListHolder<Restaurant> restaurantList = new PagedListHolder<Restaurant>(this.alonealong.getRestaurantList());
+//		PagedListHolder<Restaurant> restaurantList = new PagedListHolder<Restaurant>(this.resService.getRestaurantList());
+		
+		List<Restaurant> restaurantList = resService.getRestaurantList();
 //		restaurantList.setPageSize(4);
 		//model.put("category", category);
-//		model.put("restaurantList", restaurantList);
+		model.put("restaurantList", restaurantList);
 		return "/eating/Restaurant";
+//		return "listTest";
 	}
-	@RequestMapping("/eating/adminRes")
-	public String handleRequest2(
-//			@RequestParam("categoryId") String categoryId,
-//			ModelMap model
-			) throws Exception {
-		//Category category = this.petStore.getCategory(categoryId);
-//		PagedListHolder<Restaurant> restaurantList = new PagedListHolder<Restaurant>(this.alonealong.getRestaurantList());
-//		restaurantList.setPageSize(4);
-		//model.put("category", category);
-//		model.put("restaurantList", restaurantList);
-		return "/eating/RestaurantForm";
-	}
+	
+	//음식 검색분류별로 선별해서 나열
+//	@RequestMapping("/eating")
+//	public String handleRequest(
+////			@RequestParam("categoryId") String categoryId,
+////			ModelMap model
+//			) throws Exception {
+//		//Category category = this.petStore.getCategory(categoryId);
+////		PagedListHolder<Restaurant> restaurantList = new PagedListHolder<Restaurant>(this.alonealong.getRestaurantList());
+////		restaurantList.setPageSize(4);
+//		//model.put("category", category);
+////		model.put("restaurantList", restaurantList);
+//		return "/eating/Restaurant";
+	
+	
+//	@RequestMapping("/eating/adminRes")
+//	public String handleRequest2(
+////			@RequestParam("categoryId") String categoryId,
+////			ModelMap model
+//			) throws Exception {
+//		//Category category = this.petStore.getCategory(categoryId);
+////		PagedListHolder<Restaurant> restaurantList = new PagedListHolder<Restaurant>(this.alonealong.getRestaurantList());
+////		restaurantList.setPageSize(4);
+//		//model.put("category", category);
+////		model.put("restaurantList", restaurantList);
+//		return "/eating/RestaurantForm";
+//	}
 	
 //	@RequestMapping("/shop/viewRestaurant2.do")
 //	public String handleRequest2(

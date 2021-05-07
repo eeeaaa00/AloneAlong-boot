@@ -14,7 +14,7 @@ import com.dwu.alonealong.domain.ProductReview;
 import com.dwu.alonealong.service.AloneAlongFacade;
 
 @Controller
-@SessionAttributes({"product", "reviewList"})
+@SessionAttributes({"restaurant", "reviewList"})
 public class ViewProductReviewController {
 	private AloneAlongFacade aloneAlong;
 

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -28,9 +30,25 @@
    <!-- header -->
    <%@include file="../header.jsp" %>
 	
+	<div>
+   <form:form modelAttribute="food" >
+		<p>
+			<form:label path="name">음식 이름</form:label>
+			<form:input path="name" />
+		</p>
+		<p>
+			<form:label path="price">가격</form:label>
+			<form:input path="price" />
+		</p>
+		<p>
+			<input type="submit" value="식당 등록">
+		</p>
+	</form:form>
+	</div>
+ 
 	<!-- Page Content -->
 	<div class="container my-5 pb-5">
-		<div class=" mb-3 pb-3 text-center">
+	<!-- 		<div class=" mb-3 pb-3 text-center">
 			<h1>메뉴 음식 관리</h1></div>
 		
 		<div class="row mb-5">
@@ -188,7 +206,7 @@
 		      </form>
 		    </div>
 		  </div>
-	</div>
+	</div>-->
 	<!-- /.container -->
 
    <!-- Footer -->

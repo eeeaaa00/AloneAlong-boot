@@ -51,8 +51,8 @@ p>b { font-family: 'Roboto', serif; font-size:30px; }
 					<!-- 가격 정보 -->
 					<div class="col-md-6 my-3" style="height:400px">
 						<div class="mx-2" style="height:150px">
-							<h1 class="text-right mb-3">누들아한타이</h1>
-							<h4 class="price text-right"><b>성북구 화랑로13길 10</b></h3>
+							<h1 class="text-right mb-3">${restaurant.resName}</h1>
+							<h4 class="price text-right"><b>${restaurant.resAddress}</b></h3>
 						</div>
 						<div class="mx-2 my-2 priceInfo" style="height:110px;">
 							<form class="form-inline">
@@ -81,24 +81,26 @@ p>b { font-family: 'Roboto', serif; font-size:30px; }
 				      <div class="shadow-sm rounded-lg">
 				        <!-- Tabs-->
 				        <ul class="nav nav-tabs nav-fill" role="tablist">
-				          <li class="nav-item"><a class="nav-link py-4 px-sm-4 active" href="<c:url value='/eating/viewFood' />">메뉴</a></li>
+				          <li class="nav-item"><a class="nav-link py-4 px-sm-4 active" href="<c:url value='/eating/'/> ${res.resId}">메뉴</a></li>
 				          <li class="nav-item"><a class="nav-link py-4 px-sm-4" href="<c:url value='/eating/res01/RestaurantReview' />">한줄평</a></li> <!-- mav.setViewName("/eating/RestaurantReview");로 연결 -->
 				          <li class="nav-item"><a class="nav-link py-4 px-sm-4" >같밥 모집ing</a></li>
 				        </ul>
 				        <!-- General info tab-->
 				        <div class="tab-content px-lg-3 py-5">
 				        <div class="info-content px-4 pt-lg-3 pb-3 mb-5 border">
-				          <div class="card shadow-sm m-2">
+				        <button onClick="location.href='<c:url value='/eating/r2/adminFood/'/> />'">메뉴 추가</button> <!-- 여기 r2라고 해놨으니 바꿔야해 -->
+				        <c:forEach var="food" items="${foodList}">
+							<div class="card shadow-sm m-2">
 				            <div class="row no-gutters">
 				              <div class="col-4">
 				                <img src="https://img-cf.kurly.com/shop/data/goods/1575003713758y0.jpg" width="100%" height="150px" />
 				              </div>
 				                <div class="card-body">
 					                <div class="d-flex justify-content-between align-items-start py-2" >
-									<h6 class="card-text text-left">카우팟 꿍</h6>
+									<h6 class="card-text text-left">${food.name}</h6>
 									</div>
-									<p>고소한 새우볶음밥</p>
-									<p>7500원 </p>  
+									<p>설명</p>
+									<p>${food.price}원 </p>  
 				              </div>
 				              <div class="card-footer">
 					              <button>담기</button></br>
@@ -108,6 +110,9 @@ p>b { font-family: 'Roboto', serif; font-size:30px; }
 				              
 				            </div>
 				          </div>
+						<!-- <li><a href="<c:url value='/eating/' />${res.resId}">${res.resName}</a></li> -->
+					</c:forEach>
+				          
 						</div>
 					</div>
 				          
