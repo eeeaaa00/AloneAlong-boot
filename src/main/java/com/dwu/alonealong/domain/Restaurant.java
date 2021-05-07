@@ -6,7 +6,7 @@ import java.util.Arrays;
 public class Restaurant {
 	private String resId;
 	private String resName;
-	private String categoryId;
+	private String categoryId; //음식분류
 	private String resAddress;
 	private User owner;
 	private String resPhone;
@@ -20,6 +20,12 @@ public class Restaurant {
 	
 	public Restaurant(){
 		
+	}
+	public Restaurant(String resId, String resName, String category, String resAddress){ //임시
+		this.resId = resId;
+		this.resName = resName;
+		this.categoryId = category;
+		this.resAddress = resAddress;
 	}
 	public String getResId() {
 		return resId;
