@@ -84,7 +84,7 @@ p>b { font-family: 'Roboto', serif; font-size:30px; }
 				      <div class="shadow-sm rounded-lg">
 				        <!-- Tabs-->
 				        <ul class="nav nav-tabs nav-fill" role="tablist">
-				          <li class="nav-item"><a class="nav-link py-4 px-sm-4" href="<c:url value='/eating/viewFood' />">메뉴</a></li>
+				          <li class="nav-item"><a class="nav-link py-4 px-sm-4 active" href="<c:url value='/eating/'/> ${res.resId}">메뉴</a></li>
 				          <li class="nav-item"><a class="nav-link py-4 px-sm-4 active" href="<c:url value='/eating/res01/RestaurantReview' />">한줄평</a></li> <!-- mav.setViewName("/eating/RestaurantReview");로 연결 -->
 				          <li class="nav-item"><a class="nav-link py-4 px-sm-4" >같밥 모집ing</a></li>
 				        </ul>

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -27,9 +29,35 @@
 <body>
    <!-- header -->
    <%@include file="../header.jsp" %>
-	
+   
+   <div>
+   <form:form modelAttribute="restaurant" >
+		<p>
+			<form:label path="resName">식당 이름</form:label>
+			<form:input path="resName" />
+		</p>
+		<p>
+			<form:label path="resAddress">주소</form:label>
+			<form:input path="resAddress" />
+		</p>
+		<p>
+			<form:label path="categoryId">분류</form:label>
+			<form:select path="categoryId" >
+				<option value="">--- 선택하세요 ---</option>
+				<option value="한식">한식</option>
+				<option value="일식">일식</option>
+				<option value="중식">중식</option>
+				<option value="양식">양식</option>
+				<option value="기타">기타</option>
+			</form:select>
+		</p>
+		<p>
+			<input type="submit" value="식당 등록">
+		</p>
+	</form:form>
+	</div>
 	<!-- Page Content -->
-	<div class="container my-5 pb-5">
+<!-- 	<div class="container my-5 pb-5">
 		<div class=" mb-3 pb-3 text-center">
 			<h1>식당 등록</h1></div>
 		
@@ -38,28 +66,28 @@
 		    <div class="col-md-10 mb-3">
 			  <form class="needs-validation" novalidate="">
 		    	<div class="mb-5 pb-5 border-bottom">
-			      <h4 class="mb-4">주문 정보</h4>
+			      <h4 class="mb-4">식당 정보</h4>
 			        <div class="row w-25 mx-2 mb-3">
 			            <label >이름</label>
 			            <input type="text" class="form-control">
 			        </div>
 			            
-			        <label class="mx-2">전화번호</label>
+			        <label class="mx-2">분류</label>
 			        <div class="row w-50 mx-2 mb-3 input-group">
 						<div class="input-group-prepend">
 							<select class="custom-select">
-							    <option selected>010</option>
-							    <option value="1">011</option>
-							    <option value="2">016</option>
-							    <option value="3">017</option>
+							    <option selected>한식</option>
+							    <option value="일식">일식</option>
+							    <option value="중식">중식</option>
+							    <option value="분식">분식</option>
+							    <option value="양식">양식</option>
+							    <option value="기타">기타</option>
 							  </select>
 						</div>
-						<input type="text" class="form-control">
-						<input type="text" class="form-control">
 					</div>
 			
 			        <div class="row w-50 mx-2 mb-3">
-			          <label for="email">이메일</label>
+			          <label for="email">주소</label>
 			          <input type="email" class="form-control" id="email" placeholder="you@example.com">
 			        </div>
 			
@@ -188,7 +216,7 @@
 		      </form>
 		    </div>
 		  </div>
-	</div>
+	</div>-->
 	<!-- /.container -->
 
    <!-- Footer -->
