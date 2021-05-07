@@ -5,6 +5,8 @@ b {color:#29A65F;}
 .card:hover, .card:focus {  filter: brightness(90%); }
 .card-body>p {color:#29A65F; margin-top:-5px;}
 .card { width:270px; height: 270px;}
+.overlay{ position: absolute; bottom: 0; left: 0; right: 0; top:0;}
+.card-body>div>a{ z-index:1;}
 .sold-out { background-color:gray; color:#FFFFFF; width:50px; padding: 2px 15px 2px 15px;}
 .paginate>button { color:gray; }
 .paginate>div>button:hover, .paginate>button:hover { color:#29A65F; font-weight:bold; text-decoration: none;}
@@ -12,21 +14,28 @@ b {color:#29A65F;}
 </style>
 
 <!-- 물품 목록 -->
+<c:forEach items="${productList}" var="product">
+<c:out value="${product}"/>
+</c:forEach>
 <div class="row px-5 mb-lg-5 justify-content-between">
-	<div class="card shadow-sm" type="button"
-		onClick="location.href='<c:url value='/shopping/apple' />'">
-		<svg class="img"
-			style="background-image: url('https://img-cf.kurly.com/shop/data/goods/1575003713758y0.jpg'); background-size: cover; background-position: center"
-			width="100%" height="150px"></svg>
-		<div class="card-body">
-			<div class="d-flex justify-content-between align-items-start">
-				<h6 class="card-text text-left">유기농 사과 3개입</h6>
-				<a href="/" class="btn btn-outline-success btn-sm rounded-circle"><i
-					class="fas fa-shopping-cart"></i></a>
+	<div class="card shadow-sm">
+		<div class="contents">
+			<svg class="img"
+				style="background-image: url('https://img-cf.kurly.com/shop/data/goods/1575003713758y0.jpg'); background-size: cover; background-position: center"
+				width="100%" height="150px"></svg>
+			<div class="card-body">
+				<div class="d-flex justify-content-between align-items-start">
+					<h6 class="card-text text-left">유기농 사과 3개입</h6>
+					<a class="btn btn-outline-success btn-sm rounded-circle"
+						data-toggle="modal" data-target="#cartModal">
+						<i class="fas fa-shopping-cart"></i></a>
+				</div>
+				<p>1,500원</p>
 			</div>
-			<p>1,500원</p>
 		</div>
+		<div class="overlay" type="button" onClick="location.href='<c:url value='/shopping/apple' />'"></div>
 	</div>
+	
 	<div class="card shadow-sm" type="button">
 		<svg class="img"
 			style="background-image: url('https://img-cf.kurly.com/shop/data/goods/161544350511y0.jpg'); background-size: cover; background-position: center"

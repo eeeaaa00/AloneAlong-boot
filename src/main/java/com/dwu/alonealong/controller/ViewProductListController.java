@@ -1,5 +1,7 @@
 package com.dwu.alonealong.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.support.PagedListHolder;
 import org.springframework.stereotype.Controller;
@@ -22,13 +24,14 @@ public class ViewProductListController {
 	}
 	
 	@RequestMapping("/shop")
-	public String handleRequest(@RequestParam(value="page", defaultValue="1") String page, 
-			@RequestParam(value="pcId",  defaultValue="fruit") String pcId, 
+	public String handleRequest(@RequestParam(value="page", defaultValue="1") int page, 
+			@RequestParam(value="pcId",  defaultValue="1") String pcId, 
 			@RequestParam(value="sortType",  defaultValue="latest") String sortType,
 			ModelMap model) throws Exception {
-		PagedListHolder<Product> productList = new PagedListHolder<Product>(this.aloneAlong.getProductList(pcId, sortType));
-		productList.setPageSize(15);
-		productList.setPage(Integer.parseInt(page));
+		List<Product> productList = this.aloneAlong.getProductList(pcId, sortType);
+//		PagedListHolder<Product> productList = new PagedListHolder<Product>(this.aloneAlong.getProductList(pcId, sortType));
+//		productList.setPageSize(15);
+//		productList.setPage(page);
 		model.put("productList", productList);
 		return "productList";
 	}
