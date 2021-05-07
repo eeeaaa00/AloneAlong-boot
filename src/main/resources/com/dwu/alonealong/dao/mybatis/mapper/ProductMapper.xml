@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dwu.alonealong.dao.mybatis.mapper.ProductMapper">
+
+  <cache />
+
+  <select id="getProduct" resultType="Product">
+    SELECT 
+    	PRODUCT_ID as productId, 
+    	PC_ID as pcId,
+    	PRODUCT_NAME,
+    	PRODUCT_PRICE as PRICE,
+    	PRODUCT_INFO as info,
+    	PRODUCT_IMG as img,
+    	PRODUCT_SALES as sales,
+    	PRODUCT_STOCK as stock,
+    	PRODUCT_DATE,
+    	PRODUCT_CONTENTS,
+    	SHIPPINGFEE as shippingFee
+    FROM PRODUCT
+    WHERE PRODUCT_ID = #{productId}
+  </select>
+
+  <select id="getProductList" resultType="Product">
+    SELECT
+    	PRODUCT_ID as productId, 
+    	PC_ID as pcId,
+    	PRODUCT_NAME,
+    	PRODUCT_PRICE as PRICE,
+    	PRODUCT_INFO as info,
+    	PRODUCT_IMG as img,
+    	PRODUCT_SALES as sales,
+    	PRODUCT_STOCK as stock,
+    	PRODUCT_DATE,
+    	PRODUCT_CONTENTS,
+    	SHIPPINGFEE as shippingFee
+    FROM PRODUCT
+    WHERE PC_ID = #{pcId}
+  </select>
+
+  <select id="searchProductList" resultType="Product">
+    select
+    	PRODUCT_ID as productId, 
+    	PC_ID as pcId,
+    	PRODUCT_NAME,
+    	PRODUCT_PRICE as PRICE,
+    	PRODUCT_INFO as info,
+    	PRODUCT_IMG as img,
+    	PRODUCT_SALES as sales,
+    	PRODUCT_STOCK as stock,
+    	PRODUCT_DATE,
+    	PRODUCT_CONTENTS,
+    	SHIPPINGFEE as shippingFee
+    from PRODUCT
+    WHERE lower(name) like %#{keyword}%
+  </select>
+
+</mapper>
