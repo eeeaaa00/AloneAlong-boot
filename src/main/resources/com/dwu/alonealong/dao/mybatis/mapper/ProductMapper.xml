@@ -26,14 +26,14 @@
     SELECT
     	PRODUCT_ID as productId, 
     	PC_ID as pcId,
-    	PRODUCT_NAME,
-    	PRODUCT_PRICE as PRICE,
-    	PRODUCT_INFO as info,
-    	PRODUCT_IMG as img,
-    	PRODUCT_SALES as sales,
-    	PRODUCT_STOCK as stock,
-    	PRODUCT_DATE,
-    	PRODUCT_CONTENTS,
+    	PRODUCT_NAME as productName,
+    	PRODUCT_PRICE as productPrice,
+    	PRODUCT_INFO as productInfo,
+    	PRODUCT_IMG as productImg,
+    	PRODUCT_SALES as productSales,
+    	PRODUCT_STOCK as productStock,
+    	PRODUCT_DATE as productDate,
+    	PRODUCT_CONTENTS as productContents,
     	SHIPPINGFEE as shippingFee
     FROM PRODUCT
     WHERE PC_ID = #{pcId}
