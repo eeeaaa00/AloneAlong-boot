@@ -32,8 +32,8 @@ public class AloneAlongImpl implements AloneAlongFacade{
 //	private RestaurantDAO restaurantDao;
 //	@Autowired
 //	private UserDAO userDao;
-//	@Autowired
-//	private ProductDAO productDao;
+	@Autowired
+	private ProductDAO productDao;
 //	@Autowired
 //	private ProductReviewDAO productReviewDao;
 //	@Autowired
@@ -42,7 +42,7 @@ public class AloneAlongImpl implements AloneAlongFacade{
 //	private PaymentDAO paymentDao;
 	
 	private UserDAO userDao;
-	private ProductDAO productDao;
+//	private ProductDAO productDao;
 	private ProductReviewDAO productReviewDao;
 	private ProductOrderDAO productOrderDao;
 	private PaymentDAO paymentDao;

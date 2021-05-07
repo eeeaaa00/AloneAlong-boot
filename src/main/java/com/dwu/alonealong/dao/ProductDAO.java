@@ -13,9 +13,9 @@ public interface ProductDAO {
 //	List<Product> SortBySales(String pcId) throws DataAccessException;
 //	List<Product> SortByPast(String pcId) throws DataAccessException;
 	//List<Product> SortByNew(String pcId) throws DataAccessException; > 기본
-	List<Product> SortByLowPrice(String pcId) throws DataAccessException;
+//	List<Product> SortByLowPrice(String pcId) throws DataAccessException;
 	//검색
-	List<Product> searchProductList(String keywords) throws DataAccessException;
+	List<Product> searchProductList(String keyword) throws DataAccessException;
 
 	//get Product Method
 	Product getProduct(String productId) throws DataAccessException;
