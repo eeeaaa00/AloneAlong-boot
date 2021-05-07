@@ -14,10 +14,12 @@ b {color:#29A65F;}
 </style>
 
 <!-- 물품 목록 -->
-<c:forEach items="${productList}" var="product">
-<c:out value="${product}"/>
-</c:forEach>
 <div class="row px-5 mb-lg-5 justify-content-between">
+<c:forEach items="${productList}" var="product" varStatus="idx">
+<c:if test="${idx.index % 3 == 0}">
+</div>
+<div class="row px-5 mb-lg-5 justify-content-between">
+</c:if>
 	<div class="card shadow-sm">
 		<div class="contents">
 			<svg class="img"
@@ -25,66 +27,78 @@ b {color:#29A65F;}
 				width="100%" height="150px"></svg>
 			<div class="card-body">
 				<div class="d-flex justify-content-between align-items-start">
-					<h6 class="card-text text-left">유기농 사과 3개입</h6>
+					<h6 class="card-text text-left"><c:out value="${product.productName}"/></h6>
 					<a class="btn btn-outline-success btn-sm rounded-circle"
-						data-toggle="modal" data-target="#cartModal">
-						<i class="fas fa-shopping-cart"></i></a>
+						data-toggle="modal" data-target="#cartModal"> <i
+						class="fas fa-shopping-cart"></i></a>
 				</div>
-				<p>1,500원</p>
+				<p><c:out value="${product.productPrice}"/>원</p>
+				<c:if test="${product.productStock == 0}">					
+					<small class="sold-out text-center rounded-pill">품절</small>
+				</c:if>
 			</div>
 		</div>
-		<div class="overlay" type="button" onClick="location.href='<c:url value='/shopping/apple' />'"></div>
+		<div class="overlay" type="button"
+			onClick="location.href='<c:url value='/shopping/${product.productName}' />'"></div>
 	</div>
+</c:forEach>
+</div>
+<div class="row px-5 mb-lg-5 justify-content-between">
 	
-	<div class="card shadow-sm" type="button">
-		<svg class="img"
-			style="background-image: url('https://img-cf.kurly.com/shop/data/goods/161544350511y0.jpg'); background-size: cover; background-position: center"
-			width="100%" height="150px"></svg>
-		<div class="card-body">
-			<div class="d-flex justify-content-between align-items-start">
-				<h6 class="card-text text-left">유기농 귤 5개입</h6>
-				<a href="/" class="btn btn-outline-success btn-sm rounded-circle"><i
-					class="fas fa-shopping-cart"></i></a>
-			</div>
-			<p>3,000원</p>
-			<small class="sold-out text-center rounded-pill">품절</small>
-		</div>
-	</div>
-	<div class="card shadow-sm" type="button">
-		<svg class="img"
-			style="background-image: url('https://img-cf.kurly.com/shop/data/goods/1617175056507y0.jpg'); background-size: cover; background-position: center"
-			width="100%" height="150px"></svg>
-		<div class="card-body">
-			<div
-				class="d-flex justify-content-between align-items-start rounded-circle">
-				<h6 class="card-text text-left">컷팅 수박 500g</h6>
-				<a href="/" class="btn btn-outline-success btn-sm rounded-circle"><i
-					class="fas fa-shopping-cart"></i></a>
-			</div>
-			<p>1,500원</p>
-		</div>
-	</div>
+	
+	
 </div>
 <!-- (임시) view 구성용 반복  -->
 <c:forEach begin="2" end="5">
 	<div class="row px-5 my-5 justify-content-between">
 		<!-- (임시) view 구성용 반복 -->
-		<c:forEach begin="1" end="3">
-			<div class="card shadow-sm" type="button"
-				onClick="location.href='<c:url value='/shopping/apple' />'">
-				<svg class="img"
-					style="background-image: url('https://img-cf.kurly.com/shop/data/goods/1575003713758y0.jpg'); background-size: cover; background-position: center"
-					width="100%" height="150px"></svg>
-				<div class="card-body">
-					<div class="d-flex justify-content-between align-items-start">
-						<h6 class="card-text text-left">유기농 사과 3개입</h6>
-						<a href="/" class="btn btn-outline-success btn-sm rounded-circle"><i
-							class="fas fa-shopping-cart"></i></a>
-					</div>
-					<p>1,500원</p>
+		<div class="card shadow-sm">
+			<svg class="img"
+				style="background-image: url('https://img-cf.kurly.com/shop/data/goods/1575003713758y0.jpg'); background-size: cover; background-position: center"
+				width="100%" height="150px"></svg>
+			<div class="card-body">
+				<div class="d-flex justify-content-between align-items-start">
+					<h6 class="card-text text-left">유기농 사과 3개입</h6>
+					<a href="/" class="btn btn-outline-success btn-sm rounded-circle"><i
+						class="fas fa-shopping-cart"></i></a>
 				</div>
+				<p>1,500원</p>
 			</div>
-		</c:forEach>
+			<div class="overlay" type="button"
+				onClick="location.href='<c:url value='/shopping/apple' />'"></div>
+		</div>
+		<div class="card shadow-sm">
+			<svg class="img"
+				style="background-image: url('https://img-cf.kurly.com/shop/data/goods/161544350511y0.jpg'); background-size: cover; background-position: center"
+				width="100%" height="150px"></svg>
+			<div class="card-body">
+				<div class="d-flex justify-content-between align-items-start">
+					<h6 class="card-text text-left">유기농 귤 5개입</h6>
+					<a href="/" class="btn btn-outline-success btn-sm rounded-circle"><i
+						class="fas fa-shopping-cart"></i></a>
+				</div>
+				<p>3,000원</p>
+				<small class="sold-out text-center rounded-pill">품절</small>
+			</div>
+			<div class="overlay" type="button"
+				onClick="location.href='<c:url value='/shopping/apple' />'"></div>
+		</div>
+		<div class="card shadow-sm">
+			<svg class="img"
+				style="background-image: url('https://img-cf.kurly.com/shop/data/goods/1617175056507y0.jpg'); background-size: cover; background-position: center"
+				width="100%" height="150px"></svg>
+			<div class="card-body">
+				<div
+					class="d-flex justify-content-between align-items-start rounded-circle">
+					<h6 class="card-text text-left">컷팅 수박 500g</h6>
+					<a href="/" class="btn btn-outline-success btn-sm rounded-circle"><i
+						class="fas fa-shopping-cart"></i></a>
+				</div>
+				<p>1,500원</p>
+			</div>
+			<div class="overlay" type="button"
+				onClick="location.href='<c:url value='/shopping/apple' />'"></div>
+		</div>
 	</div>
 </c:forEach>
 <!-- /.물품목록 -->
