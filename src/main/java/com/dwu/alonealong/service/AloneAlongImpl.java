@@ -3,15 +3,18 @@ package com.dwu.alonealong.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.dwu.alonealong.dao.UserDAO;
+import com.dwu.alonealong.dao.CartItemDAO;
 import com.dwu.alonealong.dao.PaymentDAO;
 import com.dwu.alonealong.dao.ProductDAO;
 import com.dwu.alonealong.dao.ProductOrderDAO;
 import com.dwu.alonealong.dao.ProductReviewDAO;
 import com.dwu.alonealong.dao.RestaurantDAO;
+import com.dwu.alonealong.domain.CartItem;
 import com.dwu.alonealong.domain.Food;
 import com.dwu.alonealong.domain.FoodCart;
 import com.dwu.alonealong.domain.FoodOrder;
@@ -40,6 +43,8 @@ public class AloneAlongImpl implements AloneAlongFacade{
 //	private ProductOrderDAO productOrderDao;
 //	@Autowired
 //	private PaymentDAO paymentDao;
+	@Autowired
+	private CartItemDAO cartItemDao;
 	
 	private UserDAO userDao;
 //	private ProductDAO productDao;
@@ -104,6 +109,24 @@ public class AloneAlongImpl implements AloneAlongFacade{
 	}
 	public int insertProductOrder(ProductOrder order){
 		return productOrderDao.insertProductOrder(order);
+	}
+	
+	//cart
+	public List<CartItem> getAllCartItem(String userId) throws DataAccessException{
+		return null;
+	}
+	public CartItem getCartItem(String cartItemID) throws DataAccessException{
+		return null;
+	}
+	public void insertCartItem(String productId, int quantity, String userId)  throws DataAccessException{
+		cartItemDao.insertCartItem(productId, quantity, userId);
+		return;
+	}
+	public void deleteCartItem(String cartItemID) throws DataAccessException{
+		return;
+	}
+	public void updateQuantity(String cartItemID, int quantity) throws DataAccessException{
+		return;
 	}
 	
 	//Payment
