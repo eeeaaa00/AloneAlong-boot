@@ -46,7 +46,7 @@
 			<div class="row no-gutters topnav py-2 col-md-4">
 				<a class="pt-2 px-4" href="<c:url value='/shopping' />"><h6>쇼핑</h6></a>
 				<a class="pt-2 px-4" href="<c:url value='/eating' />"><h6>식당</h6></a>
-				<a class="pt-2 px-4" href="#"><h6>함께 먹기</h6></a>
+				<a class="pt-2 px-4" href="<c:url value='/together' />"><h6>함께 먹기</h6></a>
 			</div>
 			<div class="row no-gutters topnav py-2 col-md-4 text-right justify-content-end">
 				<form class="searchform form-inline">
