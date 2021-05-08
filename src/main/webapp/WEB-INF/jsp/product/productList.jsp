@@ -39,7 +39,7 @@ b {color:#29A65F;}
 			</div>
 		</div>
 		<div class="overlay" type="button"
-			onClick="location.href='<c:url value='/shopping/${product.productName}' />'"></div>
+			onClick="location.href='<c:url value='/shop/${product.productId}' />'"></div>
 	</div>
 </c:forEach>
 </div>

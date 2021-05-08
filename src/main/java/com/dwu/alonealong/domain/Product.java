@@ -66,7 +66,7 @@ public class Product implements Serializable {
 public int getUnitPrice() {
 	  int unitPrice = 0;
 	  unitPrice += quantity * productPrice;
-	  if (unitPrice <= 30000) {
+	  if (unitPrice < 30000) {
 		  unitPrice += shippingFee;
 	  }
 	  return unitPrice;
