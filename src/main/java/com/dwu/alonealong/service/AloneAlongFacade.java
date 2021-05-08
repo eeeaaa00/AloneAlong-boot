@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.dao.DataAccessException;
 
+import com.dwu.alonealong.domain.CartItem;
 import com.dwu.alonealong.domain.Food;
 import com.dwu.alonealong.domain.FoodCart;
 import com.dwu.alonealong.domain.FoodOrder;
@@ -42,6 +43,13 @@ public interface AloneAlongFacade {
 	List<ProductOrder> getProductOrdersByProductId(String productId);
   	ProductOrder getProductOrder(int orderId);
 	int insertProductOrder(ProductOrder order);
+	
+	//CART
+	List<CartItem> getAllCartItem(String userId) throws DataAccessException;
+	CartItem getCartItem(String cartItemID) throws DataAccessException;
+	void insertCartItem(String productId, int quantity, String userId)  throws DataAccessException;
+	void deleteCartItem(String cartItemID) throws DataAccessException;
+	void updateQuantity(String cartItemID, int quantity) throws DataAccessException;
 	
 	//PAYMENT
 	Payment getCard(String Id);
