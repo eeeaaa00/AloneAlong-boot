@@ -44,4 +44,9 @@ public class CartItem implements Serializable {
   public void decrementQuantity() {
 	if(quantity > 0) quantity--;
   }
+@Override
+public String toString() {
+	return "CartItem [cartItemId=" + cartItemId + ", userId=" + userId + ", productId=" + productId + ", quantity="
+			+ quantity + ", price=" + price + ", shippingFee=" + shippingFee + "]";
+}
 }
