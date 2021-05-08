@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.jpetstore.dao.mybatis.mapper.PaymentMapper">
+
+  <cache />
+  
+  <select id="getCard" resultType="Payment">
+    SELECT CARD_NUM, CARD_NAME, CARD_DATE
+    FROM CATEGORY
+    WHERE USER_ID = #{user_id}
+  </select>
+
+   <update id="updateCard" parameterType="Payment">
+    UPDATE PAYMENTMETHOD SET
+      CARD_NUM = #{cardNumber},
+      CARD_NAME = #{cardName},
+      CARD_DATE = #{cardDate},
+    WHERE USERID = #{user_id}
+  </update>
+
+  <insert id="createCard" parameterType="Payment">
+    INSERT INTO PAYMENTMETHOD
+      (USER_ID, CARD_NUM, CARD_NAME, CARD_DATE)
+    VALUES
+      (#{user_id}, #{cardNumber}, #{cardName}, #{cardDate})
+  </insert>
+</mapper>

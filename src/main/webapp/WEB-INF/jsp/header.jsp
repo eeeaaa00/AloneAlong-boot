@@ -32,7 +32,7 @@
 		<div class="row pb-3 text-right">
 			<div class="col-md-8"></div>
 			<div class="col-md-2">
-				<a class="text-muted px-3" href="#"><i class="far fa-user"
+				<a class="text-muted px-3" href="<c:url value='/mypage' />"><i class="far fa-user"
 					style="color: #29A65F;"></i> <b style="color: #29A65F;">공지수</b> 님</a> <a
 					class="text-muted" href="#"><i class="fas fa-sign-out-alt"
 					style="color: #29A65F;"></i> 로그아웃</a>
