@@ -8,9 +8,6 @@ b {color:#29A65F;}
 .overlay{ position: absolute; bottom: 0; left: 0; right: 0; top:0;}
 .card-body>div>a{ z-index:1;}
 .sold-out { background-color:gray; color:#FFFFFF; width:50px; padding: 2px 15px 2px 15px;}
-.paginate>button { color:gray; }
-.paginate>div>button:hover, .paginate>button:hover { color:#29A65F; font-weight:bold; text-decoration: none;}
-.paginate>div>button:focus, .paginate>div>button.active { color:#FFFFFF; background-color:#29A65F; }
 </style>
 
 <!-- 물품 목록 -->

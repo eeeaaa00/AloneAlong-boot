@@ -12,7 +12,7 @@
 	<div class="col-md-6 my-3" style="height: 400px">
 		<div class="mx-2" style="height: 150px">
 			<h1 class="text-right mb-3">${product.productName}</h1>
-			<h3 class="price text-right"><b>${product.productPrice}</b> 원</h3>
+			<h3 class="text-right"><b class="text-orange-roboto">${product.productPrice}</b> 원</h3>
 		</div>
 		<div class="mx-2 my-2 priceInfo" style="height: 110px;">
 			<form class="form-inline" action='<c:url value="/shop/${productId}"/>'>
@@ -31,7 +31,7 @@
 		<a type="button" href='<c:url value="/cart/insert/${productId}/${product.quantity}"/>'>장바구니 담기</a>
 			
 		<div class="totalPriceInfo bg-light">
-			<p class="text-right">총 금액 <b class="pl-2">${product.getUnitPrice()}</b>원</p>
+			<p class="text-right">총 금액 <b class="pl-2 text-roboto">${product.getUnitPrice()}</b>원</p>
 			<div class="row justify-content-around">
 				<a type="button" href='<c:url value="/cart/insert"/>'
 					class="btn btn-green rounded-pill" data-toggle="modal" data-target="#cartModal">

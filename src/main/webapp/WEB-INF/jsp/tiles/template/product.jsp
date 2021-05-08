@@ -21,18 +21,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300&family=Roboto&display=swap" rel="stylesheet">
 <title><tiles:getAsString name="title" /></title>
 <style type="text/css">
-.price>b { font-family: 'Roboto', serif; color:#F27024;}
-p>b { font-family: 'Roboto', serif; font-size:30px; }
 .totalPriceInfo {width:100%; height:130px;  border-radius: 20px; padding:10px 20px 10px 20px;}
 .praceInfo>form { width:50px;}
 .totalPriceInfo>div>.btn { width:160px; height:45px;  }
-.btn-green { background-color:#FFFFFF; color:#29A65F; border-color :#29A65F; }
-.btn-orange { background-color:#FFFFFF; color:#F27024; border-color :#F27024; }
-.btn-green:hover, .btn-green:focus {  color:#FFFFFF; background-color:#29A65F; }
-.btn-orange:hover, .btn-orange:focus {  color:#FFFFFF; background-color:#F27024; }
-.nav { border-color:#29A65F; }
-.nav-link { border-color:#29A65F; color:#29A65F; }
-.nav-item>.nav-link.active, .nav-link:hover, .nav-link:focus { border-color:#29A65F; background-color:#29A65F; color:#FFFFFF;}
 </style>
 </head>
 <body>

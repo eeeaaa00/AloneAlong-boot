@@ -1,0 +1,38 @@
+@charset "UTF-8";
+
+/*text 설정 : 기본 - serif, roboto - 고딕체*/
+.text-roboto { font-family: 'Roboto', serif; font-size:30px; }
+.text-green { color:#29A65F; }
+.text-green-roboto {  color:#29A65F; }
+.text-orange { color:#29A65F; }
+.text-orange-roboto { font-family: 'Roboto', serif; color:#F27024; }
+
+/* class "textbtn" : 기본 검은색, hover / focus시 초록색이 되는 */ 
+.textbtn {
+	color: #000000;
+	text-decoration: none;
+}
+
+.textbtn:hover, .textbtn:focus {
+	font-weight: bold;
+	color: #29A65F;
+	text-decoration: none;
+}
+
+/* class "btn-green" : 기본 흰색, hover/focus시 초록색이 되는 */
+.btn-green { background-color:#FFFFFF; color:#29A65F; border-color :#29A65F; }
+.btn-green:hover, .btn-green:focus, .btn-green.active {  color:#FFFFFF; background-color:#29A65F; border-color:#29A65F; }
+
+/* class "btn-orange" : 기본 흰색, hover/focus시 주황색이 되는 */
+.btn-orange { background-color:#FFFFFF; color:#F27024; border-color :#F27024; }
+.btn-orange:hover, .btn-orange:focus, .btn-orange.active {  color:#FFFFFF; background-color:#F27024; border-color:#F27024; }
+
+/* class "nav" */
+.nav { border-color:#29A65F; }
+.nav-link { border-color:#29A65F; color:#29A65F; }
+.nav-item>.nav-link.active, .nav-link:hover, .nav-link:focus { border-color:#29A65F; background-color:#29A65F; color:#FFFFFF;} 
+
+/* pagination */
+.paginate>button { color:gray; }
+.paginate>div>button:hover, .paginate>button:hover { color:#29A65F; font-weight:bold; text-decoration: none;}
+.paginate>div>button:focus, .paginate>div>button.active { color:#FFFFFF; background-color:#29A65F; }

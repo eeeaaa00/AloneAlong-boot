@@ -14,7 +14,7 @@ import com.dwu.alonealong.domain.ProductReview;
 import com.dwu.alonealong.service.AloneAlongFacade;
 
 @Controller
-@SessionAttributes({"restaurant", "reviewList"})
+@SessionAttributes({"product"})
 public class ViewProductReviewController {
 	private AloneAlongFacade aloneAlong;
 
@@ -25,17 +25,16 @@ public class ViewProductReviewController {
 	
 	@RequestMapping("/shop/{productId}/review")
 	public String handleRequest(@PathVariable("productId") String productId,
-			@RequestParam(value="product") Product product,
 			@RequestParam(value="page", defaultValue="1") int page,
 			@RequestParam(value="sortType", defaultValue="latest") String sortType, 
 			ModelMap model) throws Exception {
-		PagedListHolder<ProductReview> reviewList = new PagedListHolder<ProductReview>(this.aloneAlong.getReviewsByProductId(productId, sortType));
-		reviewList.setPageSize(3);
-		reviewList.setPage(page);
-		
-		//model.put("product", product);
-		model.put("product", aloneAlong.getProduct(productId));
-		model.put("reviewList", reviewList);
+		Product product = this.aloneAlong.getProduct(productId);
+		model.put("product", product);
+//		PagedListHolder<ProductReview> reviewList = new PagedListHolder<ProductReview>(this.aloneAlong.getReviewsByProductId(productId, sortType));
+//		reviewList.setPageSize(3);
+//		reviewList.setPage(page);
+//		model.put("product", aloneAlong.getProduct(productId));
+//		model.put("reviewList", reviewList);
 		return "productReview";
 	}
 

@@ -1,20 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<style type="text/css">
-.green-roboto {font-family: 'Roboto', serif; color:#29A65F;}
-.green { color:#29A65F;}
-.orange { font-family: 'Roboto', serif; color:#F27024;}
-.paginate>button { color:gray; }
-.paginate>div>button:hover, .paginate>button:hover { color:#29A65F; font-weight:bold; text-decoration: none;}
-.paginate>div>button:focus, .paginate>div>button.active { color:#FFFFFF; background-color:#29A65F; }
-</style>
 
 <div class="row my-5 mx-5">
 	<div class="col-md-12" style="width:100%;">
       <div class="shadow-sm rounded-lg">
         <!-- Tabs-->
         <ul class="nav nav-tabs nav-fill" role="tablist">
-          <li class="nav-item"><a class="nav-link py-4 px-sm-4" href="<c:url value='/shopping/apple' />" >상세 정보</a></li>
+          <li class="nav-item"><a class="nav-link py-4 px-sm-4" href="<c:url value='/shop/${productId}' />" >상세 정보</a></li>
           <li class="nav-item"><a class="nav-link py-4 px-sm-4 active">상품 리뷰</a></li>
         </ul>
         
@@ -25,19 +17,19 @@
           	<div class="row align-items-center">
           		<div class="col-md-1"></div>
           		<div class="col-md-3 text-center">
-          			<h4><i class="green fas fa-comment-dots"></i></h4>
-          			<h4 class="green pb-1">리뷰 수</h4>
-          			<h4><b class="orange">56</b><small> 개</small></h4>
+          			<h4><i class="text-green fas fa-comment-dots"></i></h4>
+          			<h4 class="text-green pb-1">리뷰 수</h4>
+          			<h4><b class="text-orange-roboto">56</b><small> 개</small></h4>
           		</div>
           		<div class="col-md-4 text-center align-items-center">
-          			<h4><i class="far green fa-star"></i></h4>
-          			<h4 class="green pb-1">평균 평점</h4>
-          			<h4><b class="orange">3.6</b><small> 점</small></h4>
+          			<h4><i class="far text-green fa-star"></i></h4>
+          			<h4 class="text-green pb-1">평균 평점</h4>
+          			<h4><b class="text-orange-roboto">3.6</b><small> 점</small></h4>
           		</div>
           		<div class="col-md-3 text-center align-items-center">
-          			<h4><i class="green fas fa-signal"></i></h4>
-          			<h4 class="green pb-1">최다 평점</h4>
-          			<h4><b class="orange">4</b><small> 점</small></h4>
+          			<h4><i class="text-green fas fa-signal"></i></h4>
+          			<h4 class="text-green pb-1">최다 평점</h4>
+          			<h4><b class="text-orange-roboto">4</b><small> 점</small></h4>
           		</div>
           		<div class="col-md-1"></div>
           	</div>
@@ -66,8 +58,8 @@
 			<!-- 리뷰 1 -->
 			<div class="product-review mx-4 pb-4 mb-4 border-bottom">
 				<div class="d-flex align-middle me-4 pe-2">
-					<h6 class="green-roboto px-2">5</h6>
-					<div class="star-rating green">
+					<h6 class="text-green-roboto px-2">5</h6>
+					<div class="star-rating text-green">
 						<i class="fas fa-star"></i>
 						<i class="fas fa-star"></i>
 						<i class="fas fa-star"></i>
@@ -82,16 +74,16 @@
 					빨랐어요 새벽에 받자마자 열어보았는데 사과냄새향수가있나할정도였어요😚
 				</div>
 				<div class="bg-light rounded-pill mt-3 py-1 w-25 text-center" type="button">
-					<i class="green far fa-thumbs-up"></i>
-					<span class="green-roboto">25</span><small class="text-muted"> 명이 추천</small></div>
+					<i class="text-green far fa-thumbs-up"></i>
+					<span class="text-green-roboto">25</span><small class="text-muted"> 명이 추천</small></div>
 				</div>
 			</div>
 			
 			<!-- 리뷰 2 -->
 			<div class="product-review mx-4 pb-4 mb-4 border-bottom">
 				<div class="d-flex align-middle me-4 pe-2">
-					<h6 class="green-roboto px-2">2</h6>
-					<div class="star-rating green">
+					<h6 class="text-green-roboto px-2">2</h6>
+					<div class="star-rating text-green">
 						<i class="fas fa-star"></i>
 						<i class="fas fa-star"></i>
 						<i class="far fa-star"></i>
@@ -105,16 +97,16 @@
 					걍 그래요...
 				</div>
 				<div class="bg-light rounded-pill mt-3 py-1 w-25 text-center" type="button">
-					<i class="green fas fa-thumbs-up"></i> <!-- 추천한 상태 -->
-					<span class="green-roboto">3</span><small class="text-muted"> 명이 추천</small></div>
+					<i class="text-green fas fa-thumbs-up"></i> <!-- 추천한 상태 -->
+					<span class="text-green-roboto">3</span><small class="text-muted"> 명이 추천</small></div>
 				</div>
 			</div>
 			
 			<!-- 리뷰 3 -->
 			<div class="product-review mx-4 pb-4 mb-4 border-bottom">
 				<div class="d-flex align-middle me-4 pe-2">
-					<h6 class="green-roboto px-2">4</h6>
-					<div class="star-rating green">
+					<h6 class="text-green-roboto px-2">4</h6>
+					<div class="star-rating text-green">
 						<i class="fas fa-star"></i>
 						<i class="fas fa-star"></i>
 						<i class="fas fa-star"></i>
@@ -128,8 +120,8 @@
 					싸고 필요한 만큼만 있어서 좋아요 맛있어요
 				</div>
 				<div class="bg-light rounded-pill mt-3 py-1 w-25 text-center" type="button">
-					<i class="green far fa-thumbs-up"></i> <!-- 추천한 상태 -->
-					<span class="green-roboto">0</span><small class="text-muted"> 명이 추천</small></div>
+					<i class="text-green far fa-thumbs-up"></i> <!-- 추천한 상태 -->
+					<span class="text-green-roboto">0</span><small class="text-muted"> 명이 추천</small></div>
 				</div>
 			</div>
 		  </div>
@@ -149,3 +141,41 @@
       </div>
 	</div>
 </div>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content pb-4">
+				<div class="modal-header">
+					<h5 class="modal-title">리뷰 작성</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form class="form">
+						<div class="row">
+							<div class="col-sm-6">
+								<div class="form-group">
+									<select name="rating" id="rating"
+										class="custom-select focus-shadow-0">
+										<option value="5">★★★★★ (5/5)</option>
+										<option value="4">★★★★☆ (4/5)</option>
+										<option value="3">★★★☆☆ (3/5)</option>
+										<option value="2">★★☆☆☆ (2/5)</option>
+										<option value="1">★☆☆☆☆ (1/5)</option>
+									</select>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<textarea rows="4" name="review" id="review"
+								placeholder="리뷰를 작성하세요" required="" class="form-control"></textarea>
+						</div>
+					</form>
+				</div>
+				<div class="text-center">
+					<button type="button" class="btn btn-orange rounded-pill w-25 pb-2">작성하기</button>
+				</div>
+			</div>
+		</div>
+	</div>

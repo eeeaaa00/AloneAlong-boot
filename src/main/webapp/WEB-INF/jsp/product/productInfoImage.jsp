@@ -8,7 +8,7 @@
 			<ul class="nav nav-tabs nav-fill" role="tablist">
 				<li class="nav-item"><a class="nav-link py-4 px-sm-4 active">상세 정보</a></li>
 				<li class="nav-item"><a class="nav-link py-4 px-sm-4"
-					href="<c:url value='/shopping/apple/review' />">상품 리뷰</a></li>
+					href="<c:url value='/shop/${productId}/review' />">상품 리뷰</a></li>
 			</ul>
 			<div class="info-content px-4 pt-lg-3 pb-3 mb-5 border">
 				<div class="tab-content px-lg-3 py-5">
