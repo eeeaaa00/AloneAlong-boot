@@ -17,8 +17,8 @@ $(document).ready(function() {
 				<h6>장바구니로 이동하시겠습니까?</h6>
 			</div>
 			<div class="row mx-5 mb-2 justify-content-center">
-				<a type="button" class="btn btn-green rounded-pill mx-2 py-2 px-3" href="<c:url value='/shop/${productId}' />">쇼핑 계속하기</a>
-				<a type="button" class="btn btn-orange rounded-pill mx-2 py-2 px-3" href="<c:url value='/shopping/cart' />" >장바구니 보기</a>
+				<a type="button" class="btn btn-green rounded-pill mx-2 py-2 px-3" href="<c:url value='${referer}' />">쇼핑 계속하기</a>
+				<a type="button" class="btn btn-orange rounded-pill mx-2 py-2 px-3" href="<c:url value='/cart' />" >장바구니 보기</a>
 			</div>
 		</div>
 	</div>

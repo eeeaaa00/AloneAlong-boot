@@ -34,4 +34,15 @@
     WHERE PRODUCT_ID = #{productId}
     	AND USER_ID = #{userId}
   </select>
+  
+  <select id="getAllCartItem" resultType="cartItem">
+    SELECT
+    	CARTITEM_ID as cartItemId,
+    	PRODUCT_ID as productId,
+    	USER_ID as userId,
+    	QUANTITY
+    FROM CARTITEM
+    WHERE USER_ID = #{userId}
+  </select>
+  
 </mapper>

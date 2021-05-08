@@ -27,7 +27,7 @@ import com.dwu.alonealong.domain.CartItem;
 @Mapper
 public interface CartItemMapper {
 
-//	List<CartItem> getAllCartItem(String userId) throws DataAccessException;
+	List<CartItem> getAllCartItem(String userId) throws DataAccessException;
 //	CartItem getCartItem(String cartItemID) throws DataAccessException;
 
 //	int getUnitPrice(String cartItemID) throws DataAccessException;
