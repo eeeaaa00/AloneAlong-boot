@@ -10,11 +10,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.dwu.alonealong.domain.CartItem;
 import com.dwu.alonealong.domain.Product;
 import com.dwu.alonealong.service.AloneAlongFacade;
 
 @Controller
-@SessionAttributes({"productList"})
+@SessionAttributes({"userSession"})
 public class ViewCartController {
 	private AloneAlongFacade aloneAlong;
 
@@ -22,18 +23,34 @@ public class ViewCartController {
 	public void setAloneAlong(AloneAlongFacade aloneAlong) {
 		this.aloneAlong = aloneAlong;
 	}
-//	
-////	@RequestMapping("/cart")
-//	public String handleRequest(@RequestParam(value="page", defaultValue="1") int page, 
-//			@RequestParam(value="pcId",  defaultValue="1") String pcId, 
-//			@RequestParam(value="sortType",  defaultValue="latest") String sortType,
-//			ModelMap model) throws Exception {
-//		List<Product> productList = this.aloneAlong.getProductList(pcId, sortType);
-////		PagedListHolder<Product> productList = new PagedListHolder<Product>(this.aloneAlong.getProductList(pcId, sortType));
-////		productList.setPageSize(15);
-////		productList.setPage(page);
-//		model.put("productList", productList);
-//		return "productList";
-//	}
+	
+	@RequestMapping("/cart")
+	public String handleRequest(
+			ModelMap model) throws Exception {
+		//로그인 구현 전까지 임시
+		String userId = "1";
+		
+		int totalPrice = 0;
+		int shippingFee = 0;
+		List<CartItem> cart = this.aloneAlong.getAllCartItem(userId);
+		for(CartItem cartItem : cart) {
+			Product product = this.aloneAlong.getProduct(cartItem.getProductId());
+			cartItem.setProductName(product.getProductName());
+			cartItem.setPrice(product.getProductPrice());
+			cartItem.setShippingFee(product.getShippingFee());
+			totalPrice += cartItem.getUnitPrice();
+//			cartItem.setImg(product.getProductImg());
+		}
+
+		model.put("productsPrice", totalPrice);
+		if (totalPrice <= 30000) {
+			shippingFee = 3000;
+			totalPrice += shippingFee;
+		}
+		model.put("shippingFee", shippingFee);
+		model.put("totalPrice", totalPrice);
+		model.put("cart", cart);
+		return "productCart";
+	}
 
 }

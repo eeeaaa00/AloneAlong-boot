@@ -16,7 +16,7 @@ public class MybatisCartItemDAO implements CartItemDAO{
 	private CartItemMapper cartItemMapper;
 	
 	public List<CartItem> getAllCartItem(String userId) throws DataAccessException{
-	    return null;
+		return cartItemMapper.getAllCartItem(userId);
 	}
 	public CartItem getCartItem(String cartItemID) throws DataAccessException{
 	    return null;
@@ -24,9 +24,17 @@ public class MybatisCartItemDAO implements CartItemDAO{
 
 	public void insertCartItem(String productId, int quantity, String userId)  throws DataAccessException{
 		//cartItem이 이미 있으면 더하기
-		
+		CartItem cartItem = cartItemMapper.isInCart(productId, userId);
+		if(cartItem != null) {
+			System.out.println(cartItem);
+			int newQuantity = cartItem.getQuantity() + quantity;
+			cartItem.setQuantity(newQuantity);
+			cartItemMapper.increaseQuantity(cartItem);
+		}
 		//없으면 새로추가
-	    cartItemMapper.insertCartItem(productId, quantity, userId);
+		else{
+			cartItemMapper.insertCartItem(productId, quantity, userId);
+		}
 	    return;
 	}
 	public void deleteCartItem(String cartItemID) throws DataAccessException{
@@ -37,9 +45,6 @@ public class MybatisCartItemDAO implements CartItemDAO{
 	    return;
 	}
 	
-//	public List<CartItem> getAllCartItem(String userId) throws DataAccessException{
-//	    return cartItemMapper.getAllCartItem(userId);
-//	}
 //	public CartItem getCartItem(String cartItemID) throws DataAccessException{
 //	    return cartItemMapper.getCartItem(cartItemID);
 //	}

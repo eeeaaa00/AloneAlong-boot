@@ -113,7 +113,7 @@ public class AloneAlongImpl implements AloneAlongFacade{
 	
 	//cart
 	public List<CartItem> getAllCartItem(String userId) throws DataAccessException{
-		return null;
+		return cartItemDao.getAllCartItem(userId);
 	}
 	public CartItem getCartItem(String cartItemID) throws DataAccessException{
 		return null;
