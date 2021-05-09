@@ -9,9 +9,12 @@ public class CartItem implements Serializable {
   private String cartItemId;
   private String userId;
   private String productId;
+  private String productName;
   private int quantity;
   private int price;
+  private int unitPrice;
   private int shippingFee;
+//  private byte[] img;
 
   /* JavaBeans Properties */
 
@@ -23,17 +26,27 @@ public class CartItem implements Serializable {
 
   public String getProductId() { return productId; }
   public void setProductId(String productId) { this.productId = productId; }
+
+  public String getProductName() { return productName; }
+  public void setProductName(String productName) { this.productName = productName; }
   
   public int getQuantity() { return quantity; }
   public void setQuantity(int quantity) { this.quantity = quantity; }
 
+  public int getPrice() { return price; }
+  public void setPrice(int price) { this.price = price; }
+
+  public int getShippingFee() { return shippingFee; }
+  public void setShippingFee(int shippingFee) { this.shippingFee = shippingFee; }
+  
   /* Public methods */
   public int getUnitPrice() {
-	  int unitPrice = 0;
-	  unitPrice += quantity * price;
-	  if (unitPrice <= 30000) {
-		  unitPrice += shippingFee;
-	  }
+	  int totalPrice = 0;
+	  totalPrice += quantity * price;
+//	  if (totalPrice <= 30000) {
+//		  totalPrice += shippingFee;
+//	  }
+	  this.unitPrice = totalPrice;
 	  return unitPrice;
   }
 
@@ -44,4 +57,9 @@ public class CartItem implements Serializable {
   public void decrementQuantity() {
 	if(quantity > 0) quantity--;
   }
+@Override
+public String toString() {
+	return "CartItem [cartItemId=" + cartItemId + ", userId=" + userId + ", productId=" + productId + ", quantity="
+			+ quantity + ", price=" + price + ", shippingFee=" + shippingFee + "]";
+}
 }

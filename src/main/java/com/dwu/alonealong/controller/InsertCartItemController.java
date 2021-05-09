@@ -20,13 +20,15 @@ public class InsertCartItemController {
 	}
 	
 	@RequestMapping("/cart/insert/{productId}/{quantity}")
-	public void handleRequest(@PathVariable(value="productId") String productId,
+	public String handleRequest(@PathVariable(value="productId") String productId,
 			@PathVariable(value="quantity") int quantity, 
 			ModelMap model) throws Exception {
 		//로그인 구현 전까지 임시
 		String userId = "1";
+		model.put("insertCart", true);
 		
 		aloneAlong.insertCartItem(productId, quantity, userId);
+		return "forward:/shop/" + productId;
 	}
 
 }
