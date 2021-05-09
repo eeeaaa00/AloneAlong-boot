@@ -28,13 +28,12 @@
 		</div>
 		
 		<!-- 임시 -->
-		<a type="button" href='<c:url value="/cart/insert/${productId}/${product.quantity}"/>'>장바구니 담기</a>
-			
+		<a data-toggle="modal" data-target="#cartModal"></a>
 		<div class="totalPriceInfo bg-light">
 			<p class="text-right">총 금액 <b class="pl-2 text-roboto">${product.getUnitPrice()}</b>원</p>
 			<div class="row justify-content-around">
-				<a type="button" href='<c:url value="/cart/insert"/>'
-					class="btn btn-green rounded-pill" data-toggle="modal" data-target="#cartModal">
+				<a type="button"  href='<c:url value="/cart/insert/${productId}/${product.quantity}"/>'
+					class="btn btn-green rounded-pill"> <!--  data-toggle="modal" data-target="#cartModal" -->
 					<small><i class="fas fa-shopping-cart pr-1"></i></small> 장바구니</a>
 				<a type="button" class="btn btn-orange rounded-pill" href="<c:url value='/order' />">
 					<small> <i class="far fa-credit-card pr-1"></i></small> 결제하기</a>

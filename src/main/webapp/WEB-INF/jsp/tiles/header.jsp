@@ -41,7 +41,7 @@
 						placeholder="검색" aria-label="Search" size=12 >
 					<a class="btn text-right" type="submit"><i class="fas fa-search textbtn"></i></a>
 				</form>
-				<a class="pt-2 pl-3 textbtn" href="<c:url value='/shopping/cart' />"><h6><i class="fas fa-shopping-cart"></i></h6></a>
+				<a class="pt-2 pl-3 textbtn" href="<c:url value='/cart' />"><h6><i class="fas fa-shopping-cart"></i></h6></a>
 			</div>
 			<div class="col-md-2"></div>
 		</div>

@@ -25,9 +25,9 @@ b {color:#29A65F;}
 			<div class="card-body">
 				<div class="d-flex justify-content-between align-items-start">
 					<h6 class="card-text text-left"><c:out value="${product.productName}"/></h6>
-					<a class="btn btn-outline-success btn-sm rounded-circle"
-						data-toggle="modal" data-target="#cartModal"> <i
-						class="fas fa-shopping-cart"></i></a>
+					<a class="btn btn-green btn-sm rounded-circle"
+						href="<c:url value='/cart/insert/${product.productId}/1'/>">
+						<i class="fas fa-shopping-cart"></i></a>
 				</div>
 				<p><c:out value="${product.productPrice}"/>원</p>
 				<c:if test="${product.productStock == 0}">					
