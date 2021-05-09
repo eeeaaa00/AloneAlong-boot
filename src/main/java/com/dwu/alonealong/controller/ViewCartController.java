@@ -50,7 +50,8 @@ public class ViewCartController {
 		model.put("shippingFee", shippingFee);
 		model.put("totalPrice", totalPrice);
 		model.put("cart", cart);
-		return "productCart";
+		return "thyme/Cart";
+//		return "productCart";
 	}
 
 }
