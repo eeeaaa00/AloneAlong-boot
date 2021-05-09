@@ -28,6 +28,7 @@ public class RestaurantController {
 	@RequestMapping(method = RequestMethod.GET)
 	public String form(@ModelAttribute("restaurant") RestaurantForm resForm) {
 		return RES_INSERT_FORM;
+//		return "thyme/restaurant/restaurantForm";
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
@@ -43,7 +44,7 @@ public class RestaurantController {
 		model.addAttribute("restaurantList", restaurantList);
 //		return "eating/Food";
 //		return "test";
-		return "/eating/Restaurant";
+		return "restaurantList";
 //		String form = "/eating/" + resId;
 //		if(resId == null)
 //			System.out.println("null 떴다");

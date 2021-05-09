@@ -58,6 +58,35 @@
 			value="/WEB-INF/jsp/product/productReview.jsp" />
 	</definition>
 	
+	<!-- restaurant -->
+	<definition name="restaurant_layout" template="/WEB-INF/jsp/tiles/template/restaurant.jsp">
+		<put-attribute name="title" value="Eating" type="string"/>
+		<put-attribute name="body-tab" value="" />	
+		<put-attribute name="menu" 
+		value="/WEB-INF/jsp/restaurant/menu.jsp"/>
+		<put-attribute name="header"
+			value="/WEB-INF/jsp/tiles/header.jsp" />
+		<put-attribute name="footer"
+			value="/WEB-INF/jsp/tiles/footer.jsp" />
+	</definition>
+	
+	<definition name="restaurantList" extends="restaurant_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/restaurant/restaurantList.jsp" />
+		
+	</definition>
+	<definition name="restaurant" extends="restaurant_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/restaurant/restaurantInfo.jsp" />
+		<put-attribute name="body-tab"
+			value="/WEB-INF/jsp/restaurant/restaurantFood.jsp" />
+	</definition>
+	
+	<definition name="restaurantReview" extends="restaurant">
+		<put-attribute name="body-tab"
+			value="/WEB-INF/jsp/restaurant/restaurantReview.jsp" />
+	</definition>
+	
 	<!-- 
 	<definition name="tiles/*" extends="base_layout">
 		<put-attribute name="body"
