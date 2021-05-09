@@ -42,7 +42,7 @@ p>b { font-family: 'Roboto', serif; font-size:30px; }
 		<div class="row">
 		
 			<div class="col-md-10 my-1">
-				<div class="row mx-5 mb-5">
+				<div class="row mx-5 mb-5" name = "FoodInfoWithCart">
 					<!-- 사진 -->
 					<div class="col-md-6 my-3">
 						<svg class="img" style="background-image: url('https://img-cf.kurly.com/shop/data/goods/1575003713758y0.jpg'); 
@@ -104,7 +104,7 @@ p>b { font-family: 'Roboto', serif; font-size:30px; }
 				              </div>
 				              <div class="card-footer">
 					              <button>담기</button></br>
-					              <button type="button" onClick="location.href='<c:url value='/eating/viewFood/food01/adminFood' />'">수정</button>
+					              <button type="button" onClick="location.href='<c:url value='/eating/viewFood/r2/adminFood' />'">수정</button>
 					              <button>삭제</button>
 				              </div>
 				              

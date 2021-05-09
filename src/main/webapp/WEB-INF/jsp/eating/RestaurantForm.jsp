@@ -30,7 +30,7 @@
    <!-- header -->
    <%@include file="../header.jsp" %>
    
-   <div>
+   <div align="center">
    <form:form modelAttribute="restaurant" >
 		<p>
 			<form:label path="resName">식당 이름</form:label>

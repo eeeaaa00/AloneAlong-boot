@@ -48,8 +48,8 @@ public class ViewRestaurantController {
 //		restaurantList.setPageSize(4);
 		//model.put("category", category);
 		model.put("restaurantList", restaurantList);
-		return "/eating/Restaurant";
-//		return "listTest";
+//		return "/eating/Restaurant";
+		return "restaurantList";
 	}
 	
 	//음식 검색분류별로 선별해서 나열
