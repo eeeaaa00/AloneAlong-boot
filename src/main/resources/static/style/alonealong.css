@@ -1,6 +1,17 @@
 @charset "UTF-8";
 
-/*text 설정 : 기본 - serif, roboto - 고딕체*/
+/*기본 설정 : 폰트 및  html 설정*/
+html {
+	position: relative;
+    min-height: 100%;
+}
+body {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 14px; 
+    margin-bottom:200px;
+}
+
+/* class "text-*" : text 설정 (기본 - serif, roboto - 고딕체)*/
 .text-roboto { font-family: 'Roboto', serif; font-size:30px; }
 .text-green { color:#29A65F; }
 .text-green-roboto {  color:#29A65F; }

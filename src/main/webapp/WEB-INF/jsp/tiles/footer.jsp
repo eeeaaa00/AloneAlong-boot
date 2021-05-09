@@ -5,15 +5,6 @@
 <!DOCTYPE html>
 <head>
 <style type="text/css">
-html {
-	position: relative;
-    min-height: 100%;
-}
-body {
-    font-family: 'Noto Serif KR', serif;
-    font-size: 14px; 
-    margin-bottom:200px;
-}
 .container{  
 	position:relative;
     min-height:100%;
