@@ -5,6 +5,13 @@
 <!DOCTYPE html>
 <head>
 <style type="text/css">
+html {
+	position: relative;
+    min-height: 100%;
+}
+body {
+    margin-bottom:200px;
+}
 .container{  
 	position:relative;
     min-height:100%;

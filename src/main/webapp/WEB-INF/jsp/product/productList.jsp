@@ -6,7 +6,7 @@ b {color:#29A65F;}
 .card-body>p {color:#29A65F; margin-top:-5px;}
 .card { width:270px; height: 270px;}
 .overlay{ position: absolute; bottom: 0; left: 0; right: 0; top:0;}
-.card-body>div>a{ z-index:1;}
+.card-body>div>button{ z-index:1;}
 .sold-out { background-color:gray; color:#FFFFFF; width:50px; padding: 2px 15px 2px 15px;}
 </style>
 
@@ -17,6 +17,8 @@ b {color:#29A65F;}
 </div>
 <div class="row px-5 mb-lg-5 justify-content-between">
 </c:if>
+	<form action='<c:url value="/shop"/>' method="post">
+	<input name="productId" type="hidden" value="${product.productId}"/>
 	<div class="card shadow-sm">
 		<div class="contents">
 			<svg class="img"
@@ -25,9 +27,8 @@ b {color:#29A65F;}
 			<div class="card-body">
 				<div class="d-flex justify-content-between align-items-start">
 					<h6 class="card-text text-left"><c:out value="${product.productName}"/></h6>
-					<a class="btn btn-green btn-sm rounded-circle"
-						href="<c:url value='/cart/insert/${product.productId}/1'/>">
-						<i class="fas fa-shopping-cart"></i></a>
+					<button type="submit" class="btn btn-green btn-sm rounded-circle">
+						<i class="fas fa-shopping-cart"></i></button>
 				</div>
 				<p><c:out value="${product.productPrice}"/>원</p>
 				<c:if test="${product.productStock == 0}">					
@@ -38,6 +39,7 @@ b {color:#29A65F;}
 		<div class="overlay" type="button"
 			onClick="location.href='<c:url value='/shop/${product.productId}' />'"></div>
 	</div>
+	</form>
 </c:forEach>
 </div>
 <div class="row px-5 mb-lg-5 justify-content-between">
