@@ -14,8 +14,8 @@ body {
 /* class "text-*" : text 설정 (기본 - serif, roboto - 고딕체)*/
 .text-roboto { font-family: 'Roboto', serif; font-size:30px; }
 .text-green { color:#29A65F; }
-.text-green-roboto {  font-family: 'Roboto', serif; color:#29A65F; }
-.text-orange { color:#F27024; }
+.text-green-roboto {  color:#29A65F; }
+.text-orange { color:#29A65F; }
 .text-orange-roboto { font-family: 'Roboto', serif; color:#F27024; }
 
 /* class "textbtn" : 기본 검은색, hover / focus시 초록색이 되는 */ 
