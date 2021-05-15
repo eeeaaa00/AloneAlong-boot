@@ -15,10 +15,11 @@
      )
   </insert>
   
-  <update id="increaseQuantity" parameterType="cartItem">
+  <update id="updateCartItem" parameterType="cartItem">
         UPDATE CARTITEM
         SET
-        	QUANTITY = #{quantity}
+        	QUANTITY = #{quantity},
+        	PRODUCT_ID = #{productId}
         WHERE
         	CARTITEM_ID = #{cartItemId}
    </update>
@@ -44,5 +45,22 @@
     FROM CARTITEM
     WHERE USER_ID = #{userId}
   </select>
+  
+  <select id="getCartItem" resultType="cartItem">
+    SELECT
+    	CARTITEM_ID as cartItemId,
+    	PRODUCT_ID as productId,
+    	USER_ID as userId,
+    	QUANTITY
+    FROM CARTITEM
+    WHERE CARTITEM_ID = #{cartItemId}
+  </select>
+  
+  <delete id="deleteCartItem">
+  	DELETE
+    FROM CARTITEM
+    WHERE CARTITEM_ID = #{cartItemId}
+  </delete>
+
   
 </mapper>
