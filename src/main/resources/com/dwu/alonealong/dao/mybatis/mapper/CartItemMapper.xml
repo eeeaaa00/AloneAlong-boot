@@ -33,6 +33,8 @@
     FROM CARTITEM
     WHERE PRODUCT_ID = #{productId}
     	AND USER_ID = #{userId}
+      AND ROWNUM = 1
+     ORDER BY CARTITEMID
   </select>
   
   <select id="getAllCartItem" resultType="cartItem">
