@@ -87,6 +87,24 @@
 			value="/WEB-INF/jsp/restaurant/restaurantReview.jsp" />
 	</definition>
 	
+	<!-- together -->
+	<definition name="together_layout" template="/WEB-INF/jsp/tiles/template/together.jsp">
+		<put-attribute name="title" value="together" type="string"/>
+		<put-attribute name="main-top" value="" />
+		<put-attribute name="main-body" value="" />
+		<put-attribute name="category" value="/WEB-INF/jsp/together/togetherCategory.jsp" />
+		<put-attribute name="header" value="/WEB-INF/jsp/tiles/header.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/jsp/tiles/footer.jsp" />
+	</definition>
+	
+	<definition name="togetherList" extends="together_layout">
+		<put-attribute name="main-body" value="/WEB-INF/jsp/together/togetherList.jsp" />
+	</definition>
+	
+	<definition name="togetherInfo" extends="together_layout">
+		<put-attribute name="main-body" value="/WEB-INF/jsp/together/togetherInfo.jsp" />
+	</definition>
+	
 	<!-- 
 	<definition name="tiles/*" extends="base_layout">
 		<put-attribute name="body"

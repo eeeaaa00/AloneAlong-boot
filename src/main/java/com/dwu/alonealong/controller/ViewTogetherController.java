@@ -19,11 +19,11 @@ public class ViewTogetherController {
 		this.aloneAlong = aloneAlong;
 	}
 
-	@RequestMapping("/together/{id}")
+	@RequestMapping("/togetherInfo/{id}")
 	public String viewTogether(/*@RequestParam("togId") String togId,
 			ModelMap model*/) throws Exception {
 //		Together together = this.aloneAlong.getTogetehr(togId);
 //		model.put("together", together);
-		return "/together/together";
+		return "togetherInfo";
 	}
 }
