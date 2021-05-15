@@ -45,24 +45,24 @@
 											<div class="text-right text-md-center col-6 col-md-12" th:text="${#numbers.formatInteger(cartItem.price,3,'COMMA')}"></div>
 										</div>
 									</div>
-									<div class="col-md-4 text-center">
-										<form class="form" th:action="@{/cart/update/{cartItemId}(cartItemId=${cartItem.cartItemId})}">
-										<div class="input-group">
-									      <input class="form-control text-center rounded" name="quantity"
+									<div class="col-md-3 text-center">
+										<input class="form-control text-center" name="quantity"
 											type="number" th:value="${cartItem.quantity}" min="1">
-									      <span class="input-group-btn">
-									        <button class="btn" type="submit"><i class="text-orange fas fa-check"></i></button>
-									      </span>
-									    </div>
-									    </form>
+								<!-- 		<div class="row text-center my-auto">
+														<div class="input-group">
+															<div class="input-group-prepend"><button class="btn btn-light" type="button">-</button></div>
+															<input type="text" class="form-control text-center" value="${cartItem.quantity}">
+															<div class="input-group-append"><button class="btn btn-light" type="button">+</button></div>
+														</div>
+													</div> -->
 									</div>
-									<div class="col-md-2">
+									<div class="col-md-3">
 										<div class="row">
 											<div class="text-right text-md-center col-6 col-md-12"  th:text="${#numbers.formatInteger(cartItem.getUnitPrice(),3,'COMMA')}"></div>
 										</div>
 									</div>
 									<div class="d-none d-md-block text-center col-2">
-										<a class="cart-remove text-green" th:href="@{/cart/delete/{cartItemId}(cartItemId=${cartItem.cartItemId})}"><i
+										<a class="cart-remove text-success" href="#"><i
 											class="delete fa fa-times"></i></a>
 									</div>
 								</div>

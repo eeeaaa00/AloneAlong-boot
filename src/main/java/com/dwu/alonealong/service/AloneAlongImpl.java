@@ -115,19 +115,17 @@ public class AloneAlongImpl implements AloneAlongFacade{
 	public List<CartItem> getAllCartItem(String userId) throws DataAccessException{
 		return cartItemDao.getAllCartItem(userId);
 	}
-	public CartItem getCartItem(String cartItemId) throws DataAccessException{
-		return cartItemDao.getCartItem(cartItemId);
+	public CartItem getCartItem(String cartItemID) throws DataAccessException{
+		return null;
 	}
 	public void insertCartItem(String productId, int quantity, String userId)  throws DataAccessException{
 		cartItemDao.insertCartItem(productId, quantity, userId);
 		return;
 	}
-	public void deleteCartItem(String cartItemId) throws DataAccessException{
-		cartItemDao.deleteCartItem(cartItemId);
+	public void deleteCartItem(String cartItemID) throws DataAccessException{
 		return;
 	}
-	public void updateCartItem(CartItem cartItem) throws DataAccessException{
-		cartItemDao.updateCartItem(cartItem);
+	public void updateQuantity(String cartItemID, int quantity) throws DataAccessException{
 		return;
 	}
 	
