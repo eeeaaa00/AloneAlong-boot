@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dwu.alonealong.dao.mybatis.mapper.CartItemMapper">
+
+  <cache />
+
+  <insert id="insertCartItem">
+     INSERT INTO CARTITEM
+     VALUES (
+     	CARTITEM_SEQ.NEXTVAL,
+     	#{userId},
+     	#{productId}, 
+     	#{quantity}
+     )
+  </insert>
+  
+  <update id="updateCartItem" parameterType="cartItem">
+        UPDATE CARTITEM
+        SET
+        	QUANTITY = #{quantity},
+        	PRODUCT_ID = #{productId}
+        WHERE
+        	CARTITEM_ID = #{cartItemId}
+   </update>
+   
+   
+  <select id="isInCart" resultType="cartItem">
+    SELECT
+    	CARTITEM_ID as cartItemId,
+    	PRODUCT_ID as productId,
+    	USER_ID as userId,
+    	QUANTITY
+    FROM CARTITEM
+    WHERE PRODUCT_ID = #{productId}
+    	AND USER_ID = #{userId}
+  </select>
+  
+  <select id="getAllCartItem" resultType="cartItem">
+    SELECT
+    	CARTITEM_ID as cartItemId,
+    	PRODUCT_ID as productId,
+    	USER_ID as userId,
+    	QUANTITY
+    FROM CARTITEM
+    WHERE USER_ID = #{userId}
+  </select>
+  
+  <select id="getCartItem" resultType="cartItem">
+    SELECT
+    	CARTITEM_ID as cartItemId,
+    	PRODUCT_ID as productId,
+    	USER_ID as userId,
+    	QUANTITY
+    FROM CARTITEM
+    WHERE CARTITEM_ID = #{cartItemId}
+  </select>
+  
+  <delete id="deleteCartItem">
+  	DELETE
+    FROM CARTITEM
+    WHERE CARTITEM_ID = #{cartItemId}
+  </delete>
+
+  
+</mapper>
