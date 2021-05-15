@@ -1,5 +1,7 @@
 package com.dwu.alonealong.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.support.PagedListHolder;
 import org.springframework.stereotype.Controller;
@@ -14,7 +16,7 @@ import com.dwu.alonealong.domain.Together;
 import com.dwu.alonealong.service.AloneAlongFacade;
 
 @Controller
-//@SessionAttributes({"togetherList"})
+@SessionAttributes({"togetherList"})
 public class ViewTogetherListController {
 	
 	private AloneAlongFacade alonealong;
@@ -29,10 +31,11 @@ public class ViewTogetherListController {
 	public String listTogether(
 //			ModelMap model
 			) throws Exception {
+//		List<Together> togetherList = this.alonealong.getTogetherList();
 //		PagedListHolder<Together> togetherList = new PagedListHolder<Together>(this.alonealong.getTogetherList());
 //		togetherList.setPageSize(4);
 //		model.put("togetherList", togetherList);
-		return "/together/togetherList";
+		return "togetherList";
 	}
 	
 	//같이먹기 리스트 카테고리
