@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="thyme/Top :: head(~{::title})">
-<meta charset="utf-8"><style>
-p>a>i { color:gray; text-decoration: none;}
-p>a>i:hover, p>a>i:focus { color:#29A65F; }</style>
+<meta charset="utf-8">
     <title>Cart</title>
 </head>
 <body>
@@ -64,8 +62,23 @@ p>a>i:hover, p>a>i:focus { color:#29A65F; }</style>
 										</div>
 									</div>
 									<div class="d-none d-md-block text-center col-2">
-										<a class="cart-remove text-green" th:href="@{/cart/delete/{cartItemId}(cartItemId=${cartItem.cartItemId})}"><i
+									<span th:with="cId=${cartItem.cartItemId}">									
+										<a class="btn cart-remove text-green" data-toggle="modal" data-target="#deleteModal"><i
 											class="delete fa fa-times"></i></a>
+											</span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-hidden="true">
+							<div class="modal-dialog modal-dialog-centered" role="document">
+								<div class="modal-content py-5">
+									<div class="modal-body text-center pb-4">
+										<h6>정말 장바구니에서 삭제하시겠습니까?</h6>
+									</div>
+									<div class="row mx-5 mb-2 justify-content-center">
+										<a type="button" class="btn btn-green rounded-pill mx-2 py-2 px-3" data-dismiss="modal">취소</a>
+										<a type="button" class="btn btn-orange rounded-pill mx-2 py-2 px-3" th:href="@{/cart/delete/{cartItemId}(cartItemId=${cartItem.cartItemId})}">삭제</a>
 									</div>
 								</div>
 							</div>
@@ -102,5 +115,4 @@ p>a>i:hover, p>a>i:focus { color:#29A65F; }</style>
 		</div>
 	</div>
 </div>
-
 <div th:replace="thyme/Bottom :: footer"></div>
