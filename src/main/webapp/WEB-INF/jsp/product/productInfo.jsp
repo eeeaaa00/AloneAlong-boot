@@ -28,16 +28,18 @@
 		</div>
 		
 		<!-- 임시 -->
+		<form action='<c:url value="/shop/${productId}"/>' method="post">
+		<input name="quantity" type="hidden" value="${param.quantity}"/>
 		<a data-toggle="modal" data-target="#cartModal"></a>
 		<div class="totalPriceInfo bg-light">
 			<p class="text-right">총 금액 <b class="pl-2 text-roboto">${product.getUnitPrice()}</b>원</p>
 			<div class="row justify-content-around">
-				<a type="button"  href='<c:url value="/cart/insert/${productId}/${product.quantity}"/>'
-					class="btn btn-green rounded-pill"> <!--  data-toggle="modal" data-target="#cartModal" -->
-					<small><i class="fas fa-shopping-cart pr-1"></i></small> 장바구니</a>
+				<button type="submit" class="btn btn-green rounded-pill">
+					<small><i class="fas fa-shopping-cart pr-1"></i></small> 장바구니</button>
 				<a type="button" class="btn btn-orange rounded-pill" href="<c:url value='/order' />">
 					<small> <i class="far fa-credit-card pr-1"></i></small> 결제하기</a>
 			</div>
 		</div>
+		</form>
 	</div>
 </div>

@@ -8,7 +8,6 @@ html {
 body {
     font-family: 'Noto Serif KR', serif;
     font-size: 14px; 
-    margin-bottom:200px;
 }
 
 /* class "text-*" : text 설정 (기본 - serif, roboto - 고딕체)*/
@@ -23,8 +22,11 @@ body {
 	color: #000000;
 	text-decoration: none;
 }
-
-.textbtn:hover, .textbtn:focus {
+.textbtn-gray{
+	color: gray;
+	text-decoration: none;
+}
+.textbtn:hover, .textbtn:focus, .textbtn-gray:hover, .textbtn-gray:focus {
 	font-weight: bold;
 	color: #29A65F;
 	text-decoration: none;
