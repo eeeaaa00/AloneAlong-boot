@@ -19,7 +19,7 @@ import com.dwu.alonealong.service.FoodService;
 import com.dwu.alonealong.service.RestaurantService;
 
 @Controller
-@SessionAttributes({"sessionFoodCart","foodList"})
+@SessionAttributes({"sessionFoodCart","foodList", "restaurant"})
 public class ViewFoodController {
 	private AloneAlongFacade alonealong;
 		
@@ -57,25 +57,26 @@ public class ViewFoodController {
 			ModelMap model) throws Exception {
 //		List<Food> foodList = this.alonealong.getFoodListByRestaurant(resId);
 		List<Food> foodList = this.foodService.getFoodList(); //지금만 다 불러오지 나중엔 resId 걸리는 것만 불러와야해
-//		FoodCart foodCart = this.alonealong.getFoodCart(resId);
+		FoodCart foodCart = this.alonealong.getFoodCart(resId);
 		model.put("foodList", foodList);
-//		model.put("foodCart", foodCart);
+		model.put("foodCart", foodCart);
 		Restaurant res = resService.getRestaurantByResId(resId);
 		model.put("restaurant", res);
-//		return "foodTest";
-		return "/eating/Food";
+		return "restaurant";
+//		return "/eating/Food";
 	}
 	
 	//리뷰탭
 	@RequestMapping("/eating/{redId}/RestaurantReview")
 	public String handleRequest2(
-//			@RequestParam("resId") String resId,
+			@RequestParam("resId") String resId,
 			ModelMap model) throws Exception {
 //		List<FoodReview> reviewList = this.alonealong.getFoodReviewList(resId);
-//		FoodCart foodCart = this.alonealong.getFoodCart(resId);
+		FoodCart foodCart = this.alonealong.getFoodCart(resId);
 //		model.put("foodList", reviewList);
-//		model.put("foodCart", foodCart);
-		return "/eating/RestaurantReview";
+		model.put("foodCart", foodCart);
+//		return "/eating/RestaurantReview";
+		return "restaurantReview";
 	}
 	//메뉴수정버튼
 		@RequestMapping("/eating/viewFood/{foodId}/adminFood")

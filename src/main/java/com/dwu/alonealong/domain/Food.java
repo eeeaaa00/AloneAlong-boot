@@ -12,6 +12,7 @@ public class Food {
 	private URL img;
 	private int maxPeopleNum;
 	
+
 	public Food(String id, String name, int price){//임시
 		this.foodId = id;
 //		this.resId = resId;
@@ -73,6 +74,7 @@ public class Food {
 	public void setMaxPeopleNum(int maxPeopleNum) {
 		this.maxPeopleNum = maxPeopleNum;
 	}
+
 	public Food(String foodId, String resId, String ownerId, int price, String name, String description, URL img,
 			int maxPeopleNum) {
 		super();

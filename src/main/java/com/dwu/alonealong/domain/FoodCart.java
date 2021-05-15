@@ -62,4 +62,8 @@ public class FoodCart{
 		return subTotal;
 		
 	}
+	public void setQuantityByFoodId(String itemId, int quantity) {
+		FoodCartItem cartItem = foodMap.get(itemId);
+	    cartItem.setQuantity(quantity);
+	  }
 }

@@ -72,7 +72,7 @@ b {color:#29A65F;}
 				<div class="row mx-3">
 					<div class="col-md-5">
 						<h2 style="text-color: #29A65F;">식당</h2>
-						총 <b>30</b>개의 식당이 있습니다.
+						총 <b>${restaurantList.size()}</b>개의 식당이 있습니다.
 					</div>
 					<div class="col-md-5"></div>
 					<div class="col-md-2"></div>
