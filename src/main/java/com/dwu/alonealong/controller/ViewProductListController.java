@@ -43,12 +43,19 @@ public class ViewProductListController {
 	@GetMapping("/shop")
 	public String handleRequest(@RequestParam(value="page", defaultValue="1") int page, 
 			@RequestParam(value="pcId",  defaultValue="1") String pcId, 
-			@RequestParam(value="sortType",  defaultValue="latest") String sortType,
+			@RequestParam(value="sortType",  defaultValue="new") String sortType, //new, past, sales, lowPrice
 			ModelMap model) throws Exception {
 		List<Product> productList = this.aloneAlong.getProductList(pcId, sortType);
 //		PagedListHolder<Product> productList = new PagedListHolder<Product>(this.aloneAlong.getProductList(pcId, sortType));
 //		productList.setPageSize(15);
 //		productList.setPage(page);
+		String sortTypeName = "최신순";
+		switch(sortType) {
+			case "past" : sortTypeName = "과거순"; break;
+			case "sales" : sortTypeName = "인기순"; break;
+			case "lowPrice" : sortTypeName = "낮은 가격순"; break;
+		}
+		model.put("sortTypeName", sortTypeName);
 		model.put("productList", productList);
 		return "productList";
 	}
