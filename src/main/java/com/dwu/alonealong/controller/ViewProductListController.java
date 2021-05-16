@@ -29,14 +29,25 @@ public class ViewProductListController {
 	
 	@PostMapping("/shop")
 	public String insertCartItem(@RequestParam(value="page", defaultValue="1") int page, 
-			@RequestParam(value="pcId",  defaultValue="1") int pcId, 
-			@RequestParam(value="sortType",  defaultValue="latest") String sortType,
+			@RequestParam(value="pcId", required=false, defaultValue="1") int pcId, 
+			@RequestParam(value="sortType",  defaultValue="new") String sortType,
 			@RequestParam(value="productId") String productId,
 			ModelMap model) throws Exception {
 		String userId = "1";
 		List<Product> productList = this.aloneAlong.getProductList(pcId, sortType);
-		model.put("productList", productList);
 		aloneAlong.insertCartItem(productId, 1, userId);
+
+		String sortTypeName = "최신순";
+		switch(sortType) {
+			case "past" : sortTypeName = "과거순"; break;
+			case "sales" : sortTypeName = "인기순"; break;
+			case "lowPrice" : sortTypeName = "낮은 가격순"; break;
+		}
+
+		model.put("pcId", pcId);
+		model.put("pcList", productCategory);
+		model.put("productList", productList);
+		model.put("sortTypeName", sortTypeName);
 		model.put("insertCart", true);
 		return "productList";
 	}

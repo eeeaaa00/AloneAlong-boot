@@ -25,6 +25,9 @@
 				</div>
 			</div>
 			<div class="cart-body">
+					<div th:unless="${cart.size()}" class="text-center my-5">
+						장바구니에 상품이 없습니다.
+					</div>
 					<div class="cart-item mb-3 rounded-lg" th:each="cartItem : ${cart}">
 						<div
 							class=" d-flex align-items-center text-left text-md-center row">
@@ -92,16 +95,21 @@
 					<h3 class="mt-2 mb-5 text-uppercase">주문 합계</h3>
 					<div
 						class="py-1 pt-3 px-3 row justify-content-between border-bottom">
-						<span>상품 금액</span><span th:text="|${#numbers.formatInteger(productsPrice,3,'COMMA')}원|"></span>
+						<span>상품 금액</span>
+						<span th:if="${productsPrice <= 999}" th:text="|${productsPrice}원|"></span>
+						<span th:if="${productsPrice > 999}" th:text="|${#numbers.formatInteger(productsPrice,3,'COMMA')}원|"></span>
 					</div>
 					<div
 						class="py-1 pt-3 px-3 row justify-content-between border-bottom">
-						<span>배송비</span><span th:text="|${#numbers.formatInteger(shippingFee,3,'COMMA')}원|"></span>
+						<span>배송비</span>
+						<span th:if="${shippingFee <= 999}" th:text="|${shippingFee}원|"></span>
+						<span th:if="${shippingFee > 999}" th:text="|${#numbers.formatInteger(shippingFee,3,'COMMA')}원|"></span>
 					</div>
 					<div
 						class="py-1 pt-3 px-3 row align-items-end justify-content-between border-bottom">
 						<span>합계</span>
-						<h4 th:text="|${#numbers.formatInteger(totalPrice,3,'COMMA')}원|"></h4>
+						<h4 th:if="${totalPrice <= 999}" th:text="|${totalPrice}원|"></h4>
+						<h4 th:if="${totalPrice > 999}" th:text="|${#numbers.formatInteger(totalPrice,3,'COMMA')}원|"></h4>
 					</div>
 					<div class="row justify-content-center">
 						<a type="button"

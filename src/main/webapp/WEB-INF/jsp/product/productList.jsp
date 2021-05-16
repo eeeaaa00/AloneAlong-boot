@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <style>
 b {color:#29A65F;}
 .card:hover, .card:focus {  filter: brightness(90%); }
@@ -18,6 +19,8 @@ b {color:#29A65F;}
 <div class="row px-5 mb-lg-5 justify-content-between">
 </c:if>
 	<form action='<c:url value="/shop"/>' method="post">
+	<input type="hidden" name="pcId" value="${param.pcId}"/>
+	<input type="hidden" name="sortType" value="${param.sortType}"/>
 	<input name="productId" type="hidden" value="${product.productId}"/>
 	<div class="card shadow-sm">
 		<div class="contents">
@@ -30,7 +33,7 @@ b {color:#29A65F;}
 					<button type="submit" class="btn btn-green btn-sm rounded-circle">
 						<i class="fas fa-shopping-cart"></i></button>
 				</div>
-				<p><c:out value="${product.productPrice}"/>원</p>
+				<p><fmt:formatNumber value="${product.productPrice}" pattern="#,###,###"/>원</p>
 				<c:if test="${product.productStock == 0}">					
 					<small class="sold-out text-center rounded-pill">품절</small>
 				</c:if>

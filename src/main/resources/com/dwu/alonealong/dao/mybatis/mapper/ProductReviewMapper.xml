@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dwu.alonealong.dao.mybatis.mapper.ProductMapper">
+
+  <cache />
+
+  <select id="getProduct" resultType="Product">
+     SELECT
+    	PRODUCT_ID as productId, 
+    	PC_ID as pcId,
+    	PRODUCT_NAME as productName,
+    	PRODUCT_PRICE as productPrice,
+    	PRODUCT_INFO as productInfo,
+    	PRODUCT_IMG as productImg,
+    	PRODUCT_SALES as productSales,
+    	PRODUCT_STOCK as productStock,
+    	PRODUCT_DATE as productDate,
+    	PRODUCT_CONTENTS as productContents,
+    	SHIPPINGFEE as shippingFee
+    FROM PRODUCT
+    WHERE PRODUCT_ID = #{productId}
+  </select>
+
+<!-- 	List<Product> getProductList(String pcId) throws DataAccessException; //new
+	List<Product> getProductListByPast(String pcId) throws DataAccessException;
+	List<Product> getProductListBySales(String pcId) throws DataAccessException;
+	List<Product> getProductListByLowPrice(String pcId) throws DataAccessException; -->
+  <select id="getProductList" resultType="Product">
+    SELECT
+    	PRODUCT_ID as productId, 
+    	PC_ID as pcId,
+    	PRODUCT_NAME as productName,
+    	PRODUCT_PRICE as productPrice,
+    	PRODUCT_INFO as productInfo,
+    	PRODUCT_IMG as productImg,
+    	PRODUCT_SALES as productSales,
+    	PRODUCT_STOCK as productStock,
+    	PRODUCT_DATE as productDate,
+    	PRODUCT_CONTENTS as productContents,
+    	SHIPPINGFEE as shippingFee
+    FROM PRODUCT
+    WHERE PC_ID = #{pcId}
+    ORDER BY PRODUCT_DATE DESC
+  </select>
+  
+  <select id="getProductListByPast" resultType="Product">
+    SELECT
+    	PRODUCT_ID as productId, 
+    	PC_ID as pcId,
+    	PRODUCT_NAME as productName,
+    	PRODUCT_PRICE as productPrice,
+    	PRODUCT_INFO as productInfo,
+    	PRODUCT_IMG as productImg,
+    	PRODUCT_SALES as productSales,
+    	PRODUCT_STOCK as productStock,
+    	PRODUCT_DATE as productDate,
+    	PRODUCT_CONTENTS as productContents,
+    	SHIPPINGFEE as shippingFee
+    FROM PRODUCT
+    WHERE PC_ID = #{pcId}
+    ORDER BY PRODUCT_DATE ASC
+  </select>
+
+  <select id="getProductListBySales" resultType="Product">
+    SELECT
+    	PRODUCT_ID as productId, 
+    	PC_ID as pcId,
+    	PRODUCT_NAME as productName,
+    	PRODUCT_PRICE as productPrice,
+    	PRODUCT_INFO as productInfo,
+    	PRODUCT_IMG as productImg,
+    	PRODUCT_SALES as productSales,
+    	PRODUCT_STOCK as productStock,
+    	PRODUCT_DATE as productDate,
+    	PRODUCT_CONTENTS as productContents,
+    	SHIPPINGFEE as shippingFee
+    FROM PRODUCT
+    WHERE PC_ID = #{pcId}
+    ORDER BY PRODUCT_SALES DESC
+  </select>
+  
+  <select id="getProductListByLowPrice" resultType="Product">
+    SELECT
+    	PRODUCT_ID as productId, 
+    	PC_ID as pcId,
+    	PRODUCT_NAME as productName,
+    	PRODUCT_PRICE as productPrice,
+    	PRODUCT_INFO as productInfo,
+    	PRODUCT_IMG as productImg,
+    	PRODUCT_SALES as productSales,
+    	PRODUCT_STOCK as productStock,
+    	PRODUCT_DATE as productDate,
+    	PRODUCT_CONTENTS as productContents,
+    	SHIPPINGFEE as shippingFee
+    FROM PRODUCT
+    WHERE PC_ID = #{pcId}
+    ORDER BY PRODUCT_PRICE ASC
+  </select>
+  
+  <select id="searchProductList" resultType="Product">
+    select
+    	PRODUCT_ID as productId, 
+    	PC_ID as pcId,
+    	PRODUCT_NAME,
+    	PRODUCT_PRICE as PRICE,
+    	PRODUCT_INFO as info,
+    	PRODUCT_IMG as img,
+    	PRODUCT_SALES as sales,
+    	PRODUCT_STOCK as stock,
+    	PRODUCT_DATE,
+    	PRODUCT_CONTENTS,
+    	SHIPPINGFEE as shippingFee
+    from PRODUCT
+    WHERE lower(name) like %#{keyword}%
+  </select>
+
+</mapper>

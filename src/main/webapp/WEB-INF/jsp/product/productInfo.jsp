@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
     
 <div class="row mx-5 mb-5">
 	<!-- 사진 -->
@@ -12,7 +13,8 @@
 	<div class="col-md-6 my-3" style="height: 400px">
 		<div class="mx-2" style="height: 150px">
 			<h1 class="text-right mb-3">${product.productName}</h1>
-			<h3 class="text-right"><b class="text-orange-roboto">${product.productPrice}</b> 원</h3>
+			<h3 class="text-right"><b class="text-orange-roboto">
+				<fmt:formatNumber value="${product.productPrice}" pattern="#,###,###"/></b> 원</h3>
 		</div>
 		<div class="mx-2 my-2 priceInfo" style="height: 110px;">
 			<form class="form-inline" action='<c:url value="/shop/${productId}"/>'>
@@ -23,7 +25,8 @@
 					<button class="btn btn-light" type="submit">수량변경</button>
 				</p>
 			</form>
-			<p class="mb-2"><span class="border-right pr-4 mr-4">배송비</span> ${product.shippingFee}원</p>
+			<p class="mb-2"><span class="border-right pr-4 mr-4">배송비</span>
+				<fmt:formatNumber value="${product.shippingFee}" pattern="#,###,###"/>원</p>
 			<small class="text-muted">30,000원 이상 구매시 무료 / 제주 · 도서 지역 추가 5,000원</small>
 		</div>
 		
@@ -32,7 +35,8 @@
 		<input name="quantity" type="hidden" value="${param.quantity}"/>
 		<a data-toggle="modal" data-target="#cartModal"></a>
 		<div class="totalPriceInfo bg-light">
-			<p class="text-right">총 금액 <b class="pl-2 text-roboto">${product.getUnitPrice()}</b>원</p>
+			<p class="text-right">총 금액 <b class="pl-2 text-roboto">
+				<fmt:formatNumber value="${product.getUnitPrice()}" pattern="#,###,###"/></b>원</p>
 			<div class="row justify-content-around">
 				<button type="submit" class="btn btn-green rounded-pill">
 					<small><i class="fas fa-shopping-cart pr-1"></i></small> 장바구니</button>

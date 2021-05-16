@@ -26,9 +26,11 @@ public class ViewProductReviewController {
 	@RequestMapping("/shop/{productId}/review")
 	public String handleRequest(@PathVariable("productId") String productId,
 			@RequestParam(value="page", defaultValue="1") int page,
-			@RequestParam(value="sortType", defaultValue="latest") String sortType, 
+			@RequestParam(value="sortType", defaultValue="latest") String sortType,
+			@RequestParam(value="quantity", defaultValue="1") int quantity,  
 			ModelMap model) throws Exception {
 		Product product = this.aloneAlong.getProduct(productId);
+		product.setQuantity(quantity);
 		model.put("product", product);
 //		PagedListHolder<ProductReview> reviewList = new PagedListHolder<ProductReview>(this.aloneAlong.getReviewsByProductId(productId, sortType));
 //		reviewList.setPageSize(3);
