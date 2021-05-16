@@ -76,7 +76,7 @@ public class AloneAlongImpl implements AloneAlongFacade{
 	}
 	
 	//Product
-	public List<Product> getProductList(String pcId, String sortType){
+	public List<Product> getProductList(int pcId, String sortType){
 		return productDao.getProductList(pcId, sortType);
 	}
 	public List<Product> searchProductList(String keywords){

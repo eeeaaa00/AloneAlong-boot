@@ -20,6 +20,7 @@ import com.dwu.alonealong.service.AloneAlongFacade;
 @SessionAttributes({"productList"})
 public class ViewProductListController {
 	private AloneAlongFacade aloneAlong;
+	String[] productCategory = {"소량 과일", "소량 채소", "소량 육류", "소량 식재료", "밀키트"};
 
 	@Autowired
 	public void setAloneAlong(AloneAlongFacade aloneAlong) {
@@ -28,7 +29,7 @@ public class ViewProductListController {
 	
 	@PostMapping("/shop")
 	public String insertCartItem(@RequestParam(value="page", defaultValue="1") int page, 
-			@RequestParam(value="pcId",  defaultValue="1") String pcId, 
+			@RequestParam(value="pcId",  defaultValue="1") int pcId, 
 			@RequestParam(value="sortType",  defaultValue="latest") String sortType,
 			@RequestParam(value="productId") String productId,
 			ModelMap model) throws Exception {
@@ -42,7 +43,7 @@ public class ViewProductListController {
 	
 	@GetMapping("/shop")
 	public String handleRequest(@RequestParam(value="page", defaultValue="1") int page, 
-			@RequestParam(value="pcId",  defaultValue="1") String pcId, 
+			@RequestParam(value="pcId",  defaultValue="1") int pcId, 
 			@RequestParam(value="sortType",  defaultValue="new") String sortType, //new, past, sales, lowPrice
 			ModelMap model) throws Exception {
 		List<Product> productList = this.aloneAlong.getProductList(pcId, sortType);
@@ -55,6 +56,9 @@ public class ViewProductListController {
 			case "sales" : sortTypeName = "인기순"; break;
 			case "lowPrice" : sortTypeName = "낮은 가격순"; break;
 		}
+
+		model.put("pcId", pcId);
+		model.put("pcList", productCategory);
 		model.put("sortTypeName", sortTypeName);
 		model.put("productList", productList);
 		return "productList";
