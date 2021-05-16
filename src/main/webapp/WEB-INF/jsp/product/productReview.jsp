@@ -6,7 +6,7 @@
       <div class="shadow-sm rounded-lg">
         <!-- Tabs-->
         <ul class="nav nav-tabs nav-fill" role="tablist">
-          <li class="nav-item"><a class="nav-link py-4 px-sm-4" href="<c:url value='/shop/${productId}' />" >상세 정보</a></li>
+          <li class="nav-item"><a class="nav-link py-4 px-sm-4" href="<c:url value='/shop/${productId}?quantity=${product.quantity}' />" >상세 정보</a></li>
           <li class="nav-item"><a class="nav-link py-4 px-sm-4 active">상품 리뷰</a></li>
         </ul>
         
