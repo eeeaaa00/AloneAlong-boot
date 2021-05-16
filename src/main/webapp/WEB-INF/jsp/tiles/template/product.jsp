@@ -32,8 +32,10 @@
 	<!-- Page Content -->
 	<div class="container mt-4">
 		<div class="row">
+			<div class="col-md-2">	
 			<!-- 좌측 카테고리 -->
    			<tiles:insertAttribute name="menu" />
+   			</div>
 			
 			<!-- 상품 정보 -->
 			<div class="col-md-10 my-1">

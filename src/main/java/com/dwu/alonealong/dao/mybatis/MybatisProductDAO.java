@@ -17,7 +17,7 @@ public class MybatisProductDAO implements ProductDAO{
 
 	//get Product List Method
 	//카테고리별 반환
-	public List<Product> getProductList(String pcId, String sortType) throws DataAccessException{
+	public List<Product> getProductList(int pcId, String sortType) throws DataAccessException{
 		switch(sortType) {
 			case "new" : return productMapper.getProductList(pcId);
 			case "past" : return productMapper.getProductListByPast(pcId);

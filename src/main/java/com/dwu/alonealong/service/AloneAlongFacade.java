@@ -28,7 +28,7 @@ public interface AloneAlongFacade {
 	List<String> getUserIdList();
 	  
 	//PRODUCT
-	List<Product> getProductList(String pcId, String sortType);	
+	List<Product> getProductList(int pcId, String sortType);	
 	List<Product> searchProductList(String keywords);
 	Product getProduct(String productId);
 	List<ProductReview> getReviewsByProductId(String productId, String sortType);
