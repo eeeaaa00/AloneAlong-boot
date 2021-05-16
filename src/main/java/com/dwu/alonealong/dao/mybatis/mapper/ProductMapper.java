@@ -28,7 +28,11 @@ import com.dwu.alonealong.domain.Product;
 public interface ProductMapper {
 	//get Product List Method
 	//카테고리별 반환
-	List<Product> getProductList(String pcId, String sortType) throws DataAccessException;
+	List<Product> getProductList(String pcId) throws DataAccessException; //new
+	List<Product> getProductListByPast(String pcId) throws DataAccessException;
+	List<Product> getProductListBySales(String pcId) throws DataAccessException;
+	List<Product> getProductListByLowPrice(String pcId) throws DataAccessException;
+	
 	//검색
 	List<Product> searchProductList(String keyword) throws DataAccessException;
 

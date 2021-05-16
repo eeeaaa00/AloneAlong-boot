@@ -43,7 +43,7 @@ public class ViewCartController {
 		}
 
 		model.put("productsPrice", totalPrice);
-		if (totalPrice <= 30000) {
+		if (totalPrice < 30000) {
 			shippingFee = 3000;
 			totalPrice += shippingFee;
 		}
