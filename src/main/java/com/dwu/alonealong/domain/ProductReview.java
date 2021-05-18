@@ -1,6 +1,7 @@
 package com.dwu.alonealong.domain;
 
 import java.io.Serializable;
+import java.util.Date;
 
 @SuppressWarnings("serial")
 public class ProductReview implements Serializable {
@@ -9,19 +10,10 @@ public class ProductReview implements Serializable {
   private String reviewId;
   private String productId;
   private String userId;
-  private String date;
-  private String contents;
+  private Date reviewDate;
+  private String reviewContents;
   private int rating;
   private int recommend;
-  
-  /* JavaBeans Properties */
-  public ProductReview(String productId, String userId, String contents, int rating) {
-	super();
-	this.productId = productId;
-	this.userId = userId;
-	this.contents = contents;
-	this.rating = rating;
-  }
   
   public String getReviewId() { return reviewId; }
   public void setReviewId(String reviewId) { this.reviewId = reviewId; }
@@ -32,18 +24,24 @@ public class ProductReview implements Serializable {
   public String getUserId() { return userId; }
   public void setUserId(String userId) { this.userId = userId; }
   
-  public String getDate() { return date; }
-  public void setDate(String date) { this.date = date; }
+  public Date getReviewDate() { return reviewDate; }
+  public void setReviewDate(Date reviewDate) { this.reviewDate = reviewDate; }
   
-  public String getContents() { return contents; }
-  public void setContents(String contents) { this.contents = contents; }
+  public String getReviewContents() { return reviewContents; }
+  public void setReviewContents(String reviewContents) { this.reviewContents = reviewContents; }
   
   public int getRating() { return rating; }
   public void setRating(int rating) { this.rating = rating; }
   
-  public int getRecomment() { return recommend; }
-  public void setRecomment(int recommend) { this.recommend = recommend; }
+  public int getRecommend() { return recommend; }
+  public void setRecommend(int recommend) { this.recommend = recommend; }
   
   /* Public Methods */
+  public void increaseRecommend() {
+	  this.recommend++;
+  }
+  public void decreaseRecommend() {
+	  this.recommend--;
+  }
 
 }

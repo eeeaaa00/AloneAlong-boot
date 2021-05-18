@@ -26,14 +26,21 @@ public class InsertProductReviewController {
 	
 	@RequestMapping("/shop/{productId}/review/insert")
 	public RedirectView handleRequest(
-			@ModelAttribute("userSession") UserSession userSession,
+//			@ModelAttribute("userSession") UserSession userSession,
 			@PathVariable("productId") String productId,
-			@RequestParam(value="product") Product product,
 			@RequestParam(value="rating") int rating,
 			@RequestParam(value="contents") String contents, 
 			ModelMap model) throws Exception {
+		//임시
+		String userId = "1";
+		
 		//product를 구매한 user인지 검사하는 과정 추가 필요
-		ProductReview productReview = new ProductReview(productId, userSession.getUser().getUserId(), contents, rating);
+		ProductReview productReview = new ProductReview();
+		productReview.setUserId(userId);
+		productReview.setProductId(productId);
+		productReview.setRating(rating);
+		productReview.setReviewContents(contents);
+		
 		//결과값 검사 추가 필요
 		this.aloneAlong.insertProductReview(productReview);
 		return new RedirectView("/shop/{productId}/review");

@@ -37,8 +37,8 @@ public class AloneAlongImpl implements AloneAlongFacade{
 //	private UserDAO userDao;
 	@Autowired
 	private ProductDAO productDao;
-//	@Autowired
-//	private ProductReviewDAO productReviewDao;
+	@Autowired
+	private ProductReviewDAO productReviewDao;
 //	@Autowired
 //	private ProductOrderDAO productOrderDao;
 //	@Autowired
@@ -48,7 +48,7 @@ public class AloneAlongImpl implements AloneAlongFacade{
 	
 	private UserDAO userDao;
 //	private ProductDAO productDao;
-	private ProductReviewDAO productReviewDao;
+//	private ProductReviewDAO productReviewDao;
 	private ProductOrderDAO productOrderDao;
 	private PaymentDAO paymentDao;
 
@@ -85,18 +85,39 @@ public class AloneAlongImpl implements AloneAlongFacade{
 	public Product getProduct(String productId){
 		return productDao.getProduct(productId);
 	}
-	public List<ProductReview> getReviewsByProductId(String productId, String sortType){
-		return productReviewDao.getReviewsByProductId(productId, sortType);
+	
+	//Product Review
+	public ProductReview getProductReview(String reviewId){
+		return productReviewDao.getProductReview(reviewId);
 	}
-	public int insertProductReview(ProductReview productReview) {
-		return productReviewDao.insertProductReview(productReview);
+	public List<ProductReview> getProductReviewList(String productId, String sortType){
+		return productReviewDao.getProductReviewList(productId, sortType);
 	}
-	public int deleteProductReview(String reviewId) {
-		return productReviewDao.deleteProductReview(reviewId);
+	public List<ProductReview> getProductReviewListByUserId(String userId){
+		return productReviewDao.getProductReviewListByUserId(userId);
 	}
-	public int recommendProductReview(String reviewId) {
-		return productReviewDao.recommendProductReview(reviewId);
+	public void insertProductReview(ProductReview productReview) {
+		productReviewDao.insertProductReview(productReview);
+		return;
 	}
+	public void updateProductReview(ProductReview productReview) {
+		productReviewDao.updateProductReview(productReview);
+		return;
+	}
+	public void deleteProductReview(String reviewId) {
+		productReviewDao.deleteProductReview(reviewId);
+		return;
+	}
+	public int numOfReviews(String productId) {
+		return productReviewDao.numOfReviews(productId);
+	}
+	public double averageOfReviews(String productId){
+		return productReviewDao.averageOfReviews(productId);
+	}
+	public int mostRatingOfReviews(String productId){
+		return productReviewDao.mostRatingOfReviews(productId);
+	}
+	
 	//PRODUCT Order
 	public List<ProductOrder> getProductOrdersByUserId(String userId){
 		return productOrderDao.getOrdersByUserId(userId);

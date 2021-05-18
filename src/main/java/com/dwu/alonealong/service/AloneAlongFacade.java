@@ -31,12 +31,17 @@ public interface AloneAlongFacade {
 	List<Product> getProductList(int pcId, String sortType);	
 	List<Product> searchProductList(String keywords);
 	Product getProduct(String productId);
-	List<ProductReview> getReviewsByProductId(String productId, String sortType);
 	
 	//PRODUCT Review
-	int insertProductReview(ProductReview productReview);
-	int deleteProductReview(String reviewId);
-	int recommendProductReview(String reviewId);
+	ProductReview getProductReview(String reviewId);
+	List<ProductReview> getProductReviewList(String productId, String sortType);
+	List<ProductReview> getProductReviewListByUserId(String userId);
+	void insertProductReview(ProductReview productReview);
+	void updateProductReview(ProductReview productReview);
+	void deleteProductReview(String reviewId);
+	int numOfReviews(String productId);
+	double averageOfReviews(String productId);
+	int mostRatingOfReviews(String productId);
 	
 	//PRODUCT Order
 	List<ProductOrder> getProductOrdersByUserId(String userId);

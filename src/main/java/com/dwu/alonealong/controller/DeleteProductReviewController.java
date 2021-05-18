@@ -24,11 +24,10 @@ public class DeleteProductReviewController {
 		this.aloneAlong = aloneAlong;
 	}
 	
-	@RequestMapping("/shop/{productId}/review/delete")
+	@RequestMapping("/shop/{productId}/review/delete/{reviewId}")
 	public RedirectView handleRequest(
-			@ModelAttribute("userSession") UserSession userSession,
+//			@ModelAttribute("userSession") UserSession userSession,
 			@PathVariable("productId") String productId,
-			@RequestParam(value="product") Product product,
 			@PathVariable("reviewId") String reviewId,
 			ModelMap model) throws Exception {
 		//동일한 user인지 검사하는 과정 필요

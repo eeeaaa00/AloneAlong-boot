@@ -6,22 +6,19 @@ import org.springframework.dao.DataAccessException;
 import com.dwu.alonealong.domain.ProductReview;
 
 public interface ProductReviewDAO {
-	//get ProductReview List Method
-	List<ProductReview> getReviewsByProductId(String productId, String sortType) throws DataAccessException;
-	List<ProductReview> getReviewsByUserId(String userId) throws DataAccessException;
-//	//정렬
-//	// List<ProductReview> SortByNew(String productId) throws DataAccessException; > 기본
-//	List<ProductReview> SortByRecommend(String productId) throws DataAccessException;
-//	List<ProductReview> SortByHighestRating(String productId) throws DataAccessException;
-//	List<ProductReview> SortByLowestRating(String productId) throws DataAccessException;
-//
-//	//너무 자질구레하면 뺄...(평균)
-//	int NumOfReviews(String productId) throws DataAccessException;
-//	double AverageOfReviews(String productId) throws DataAccessException;
-//	int MostRatingOfReviews(String productId) throws DataAccessException;
+	//get ProductReview Method
+	ProductReview getProductReview(String reviewId) throws DataAccessException;
 	
-	int insertProductReview(ProductReview productReview);
-	int deleteProductReview(String reviewId);
-	int recommendProductReview(String reviewId);
+	//get ProductReview List Method
+	List<ProductReview> getProductReviewList(String productId, String sortType) throws DataAccessException;
+	List<ProductReview> getProductReviewListByUserId(String userId) throws DataAccessException;
+		
+	void insertProductReview(ProductReview productReview)throws DataAccessException;
+	void updateProductReview(ProductReview productReview)throws DataAccessException;
+	void deleteProductReview(String reviewId)throws DataAccessException;
 
+	//계산
+	int numOfReviews(String productId) throws DataAccessException;
+	double averageOfReviews(String productId) throws DataAccessException;
+	int mostRatingOfReviews(String productId) throws DataAccessException;
 }
