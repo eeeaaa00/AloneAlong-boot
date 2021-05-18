@@ -1,118 +1,143 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.dwu.alonealong.dao.mybatis.mapper.ProductMapper">
+<mapper namespace="com.dwu.alonealong.dao.mybatis.mapper.ProductReviewMapper">
 
   <cache />
-
-  <select id="getProduct" resultType="Product">
+  
+  <select id="getProductReview" resultType="ProductReview">
      SELECT
+    	REVIEW_ID as reviewId, 
     	PRODUCT_ID as productId, 
-    	PC_ID as pcId,
-    	PRODUCT_NAME as productName,
-    	PRODUCT_PRICE as productPrice,
-    	PRODUCT_INFO as productInfo,
-    	PRODUCT_IMG as productImg,
-    	PRODUCT_SALES as productSales,
-    	PRODUCT_STOCK as productStock,
-    	PRODUCT_DATE as productDate,
-    	PRODUCT_CONTENTS as productContents,
-    	SHIPPINGFEE as shippingFee
-    FROM PRODUCT
+    	USER_ID as userId, 
+    	REVIEW_DATE as reviewDate,
+    	REVIEW_RATING as rating,
+    	REVIEW_CONTENTS as reviewContents,
+    	REVIEW_RECOMMEND as recommend
+    FROM PRODUCT_REVIEW
+    WHERE REVIEW_ID = #{reviewId}
+  </select>
+  
+  <select id="getProductReviewList" resultType="ProductReview">
+     SELECT
+    	REVIEW_ID as reviewId, 
+    	PRODUCT_ID as productId, 
+    	USER_ID as userId, 
+    	REVIEW_DATE as reviewDate,
+    	REVIEW_RATING as rating,
+    	REVIEW_CONTENTS as reviewContents,
+    	REVIEW_RECOMMEND as recommend
+    FROM PRODUCT_REVIEW
+    WHERE PRODUCT_ID = #{productId}
+    ORDER BY REVIEW_DATE DESC
+  </select>
+  
+  <select id="getProductReviewListByRecommend" resultType="ProductReview">
+     SELECT
+    	REVIEW_ID as reviewId, 
+    	PRODUCT_ID as productId, 
+    	USER_ID as userId, 
+    	REVIEW_DATE as reviewDate,
+    	REVIEW_RATING as rating,
+    	REVIEW_CONTENTS as reviewContents,
+    	REVIEW_RECOMMEND as recommend
+    FROM PRODUCT_REVIEW
+    WHERE PRODUCT_ID = #{productId}
+    ORDER BY REVIEW_RECOMMEND DESC
+  </select>
+  
+  <select id="getProductReviewListByLowRating" resultType="ProductReview">
+     SELECT
+    	REVIEW_ID as reviewId, 
+    	PRODUCT_ID as productId, 
+    	USER_ID as userId, 
+    	REVIEW_DATE as reviewDate,
+    	REVIEW_RATING as rating,
+    	REVIEW_CONTENTS as reviewContents,
+    	REVIEW_RECOMMEND as recommend
+    FROM PRODUCT_REVIEW
+    WHERE PRODUCT_ID = #{productId}
+    ORDER BY REVIEW_RATING
+  </select>
+  
+  <select id="getProductReviewListByHighRating" resultType="ProductReview">
+     SELECT
+    	REVIEW_ID as reviewId, 
+    	PRODUCT_ID as productId, 
+    	USER_ID as userId, 
+    	REVIEW_DATE as reviewDate,
+    	REVIEW_RATING as rating,
+    	REVIEW_CONTENTS as reviewContents,
+    	REVIEW_RECOMMEND as recommend
+    FROM PRODUCT_REVIEW
+    WHERE PRODUCT_ID = #{productId}
+    ORDER BY REVIEW_RATING DESC
+  </select>
+  
+  <select id="getProductReviewListByUserId" resultType="ProductReview">
+     SELECT
+    	REVIEW_ID as reviewId, 
+    	PRODUCT_ID as productId, 
+    	USER_ID as userId, 
+    	REVIEW_DATE as reviewDate,
+    	REVIEW_RATING as rating,
+    	REVIEW_CONTENTS as reviewContents,
+    	REVIEW_RECOMMEND as recommend
+    FROM PRODUCT_REVIEW
+    WHERE USER_ID = #{userId}
+  </select>
+  
+  <insert id="insertProductReview" parameterType="productReview">
+     INSERT INTO PRODUCT_REVIEW
+     VALUES (
+     	PRODUCTREVIEW_SEQ.NEXTVAL,
+     	#{productId}, 
+     	#{userId},
+     	SYSDATE,
+     	#{rating},
+     	#{reviewContents},
+     	'0'
+     )
+  </insert>
+  
+  <update id="updateProductReview" parameterType="productReview">
+        UPDATE PRODUCT_REVIEW
+        SET
+        	REVIEW_RATING = #{rating},
+        	REVIEW_CONTENTS = #{reviewContents},
+        	REVIEW_RECOMMEND = #{recommend}
+        WHERE
+        	REVIEW_ID = #{reviewId}
+   </update>
+   
+  <delete id="deleteProductReview">
+  	DELETE
+    FROM PRODUCT_REVIEW
+    WHERE REVIEW_ID = #{reviewId}
+  </delete>
+  
+  
+  <select id="numOfReviews" resultType="int">
+    SELECT COUNT(REVIEW_ID)
+    FROM PRODUCT_REVIEW
     WHERE PRODUCT_ID = #{productId}
   </select>
-
-<!-- 	List<Product> getProductList(String pcId) throws DataAccessException; //new
-	List<Product> getProductListByPast(String pcId) throws DataAccessException;
-	List<Product> getProductListBySales(String pcId) throws DataAccessException;
-	List<Product> getProductListByLowPrice(String pcId) throws DataAccessException; -->
-  <select id="getProductList" resultType="Product">
-    SELECT
-    	PRODUCT_ID as productId, 
-    	PC_ID as pcId,
-    	PRODUCT_NAME as productName,
-    	PRODUCT_PRICE as productPrice,
-    	PRODUCT_INFO as productInfo,
-    	PRODUCT_IMG as productImg,
-    	PRODUCT_SALES as productSales,
-    	PRODUCT_STOCK as productStock,
-    	PRODUCT_DATE as productDate,
-    	PRODUCT_CONTENTS as productContents,
-    	SHIPPINGFEE as shippingFee
-    FROM PRODUCT
-    WHERE PC_ID = #{pcId}
-    ORDER BY PRODUCT_DATE DESC
+  
+  
+  <select id="averageOfReviews" resultType="double">
+    SELECT AVG(REVIEW_RATING)
+    FROM PRODUCT_REVIEW
+    WHERE PRODUCT_ID = #{productId}
   </select>
   
-  <select id="getProductListByPast" resultType="Product">
-    SELECT
-    	PRODUCT_ID as productId, 
-    	PC_ID as pcId,
-    	PRODUCT_NAME as productName,
-    	PRODUCT_PRICE as productPrice,
-    	PRODUCT_INFO as productInfo,
-    	PRODUCT_IMG as productImg,
-    	PRODUCT_SALES as productSales,
-    	PRODUCT_STOCK as productStock,
-    	PRODUCT_DATE as productDate,
-    	PRODUCT_CONTENTS as productContents,
-    	SHIPPINGFEE as shippingFee
-    FROM PRODUCT
-    WHERE PC_ID = #{pcId}
-    ORDER BY PRODUCT_DATE ASC
-  </select>
-
-  <select id="getProductListBySales" resultType="Product">
-    SELECT
-    	PRODUCT_ID as productId, 
-    	PC_ID as pcId,
-    	PRODUCT_NAME as productName,
-    	PRODUCT_PRICE as productPrice,
-    	PRODUCT_INFO as productInfo,
-    	PRODUCT_IMG as productImg,
-    	PRODUCT_SALES as productSales,
-    	PRODUCT_STOCK as productStock,
-    	PRODUCT_DATE as productDate,
-    	PRODUCT_CONTENTS as productContents,
-    	SHIPPINGFEE as shippingFee
-    FROM PRODUCT
-    WHERE PC_ID = #{pcId}
-    ORDER BY PRODUCT_SALES DESC
-  </select>
   
-  <select id="getProductListByLowPrice" resultType="Product">
-    SELECT
-    	PRODUCT_ID as productId, 
-    	PC_ID as pcId,
-    	PRODUCT_NAME as productName,
-    	PRODUCT_PRICE as productPrice,
-    	PRODUCT_INFO as productInfo,
-    	PRODUCT_IMG as productImg,
-    	PRODUCT_SALES as productSales,
-    	PRODUCT_STOCK as productStock,
-    	PRODUCT_DATE as productDate,
-    	PRODUCT_CONTENTS as productContents,
-    	SHIPPINGFEE as shippingFee
-    FROM PRODUCT
-    WHERE PC_ID = #{pcId}
-    ORDER BY PRODUCT_PRICE ASC
+  <select id="mostRatingOfReviews" resultType="int">
+    SELECT REVIEW_RATING
+	FROM (SELECT REVIEW_RATING, COUNT(*) AS CNT 
+	    FROM PRODUCT_REVIEW 
+	    WHERE PRODUCT_ID = #{productId}
+	    GROUP BY REVIEW_RATING
+	    ORDER BY CNT DESC)
+	WHERE ROWNUM = '1'
   </select>
-  
-  <select id="searchProductList" resultType="Product">
-    select
-    	PRODUCT_ID as productId, 
-    	PC_ID as pcId,
-    	PRODUCT_NAME,
-    	PRODUCT_PRICE as PRICE,
-    	PRODUCT_INFO as info,
-    	PRODUCT_IMG as img,
-    	PRODUCT_SALES as sales,
-    	PRODUCT_STOCK as stock,
-    	PRODUCT_DATE,
-    	PRODUCT_CONTENTS,
-    	SHIPPINGFEE as shippingFee
-    from PRODUCT
-    WHERE lower(name) like %#{keyword}%
-  </select>
-
 </mapper>

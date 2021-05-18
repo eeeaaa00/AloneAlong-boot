@@ -16,7 +16,7 @@ import com.dwu.alonealong.service.AloneAlongFacade;
 
 @Controller
 @SessionAttributes({"product", "userSession"})
-public class RecommendProductReviewController {
+public class UpdateProductReviewController {
 	private AloneAlongFacade aloneAlong;
 
 	@Autowired
@@ -24,16 +24,23 @@ public class RecommendProductReviewController {
 		this.aloneAlong = aloneAlong;
 	}
 	
-	@RequestMapping("/shop/{productId}/review/recommend")
+	@RequestMapping("/shop/{productId}/review/update/{reviewId}")
 	public RedirectView handleRequest(
-			@ModelAttribute("userSession") UserSession userSession,
+//			@ModelAttribute("userSession") UserSession userSession,
 			@PathVariable("productId") String productId,
-			@RequestParam(value="product") Product product,
 			@PathVariable("reviewId") String reviewId,
+			@RequestParam(value="rating") int rating,
+			@RequestParam(value="contents") String contents, 
 			ModelMap model) throws Exception {
-		//결과값 검사 추가 필요
+		//임시
+		String userId = "1";
+		
+		//product를 구매한 user인지 검사하는 과정 추가 필요
 		ProductReview productReview = this.aloneAlong.getProductReview(reviewId);
-		productReview.increaseRecommend();
+		productReview.setRating(rating);
+		productReview.setReviewContents(contents);
+		
+		//결과값 검사 추가 필요
 		this.aloneAlong.updateProductReview(productReview);
 		return new RedirectView("/shop/{productId}/review");
 	}
