@@ -42,10 +42,16 @@ public class ViewProductReviewController {
 		Product product = this.aloneAlong.getProduct(productId);
 		List<ProductReview> reviewList = this.aloneAlong.getProductReviewList(productId, sortType);
 		
-
-		model.put("numOfReviews", this.aloneAlong.numOfReviews(productId));
-		model.put("averageOfReviews", this.aloneAlong.averageOfReviews(productId));
-		model.put("mostRatingOfReviews", this.aloneAlong.mostRatingOfReviews(productId));
+		if(reviewList.size() > 0) {
+			model.put("numOfReviews", this.aloneAlong.numOfReviews(productId));
+			model.put("averageOfReviews", this.aloneAlong.averageOfReviews(productId));
+			model.put("mostRatingOfReviews", this.aloneAlong.mostRatingOfReviews(productId));
+		}
+		else {
+			model.put("numOfReviews", "0");
+			model.put("averageOfReviews", "0");
+			model.put("mostRatingOfReviews", "0");
+		}
 //		PagedListHolder<ProductReview> reviewList = new PagedListHolder<ProductReview>(this.aloneAlong.getReviewsByProductId(productId, sortType));
 //		reviewList.setPageSize(3);
 //		reviewList.setPage(page);

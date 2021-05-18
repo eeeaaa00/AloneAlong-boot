@@ -61,6 +61,9 @@
           	</div>
 
 			<!-- 리뷰 목록 -->
+			<c:if test="${numOfReviews == 0}">
+				<div class="text-center my-5 py-5">등록된 리뷰가 없습니다.</div>
+			</c:if>
 			<c:forEach items="${reviewList}" var="review" varStatus="idx">
 			<div class="product-review pb-4 mb-4 border-bottom">
 				<div class="d-flex align-middle col-md-6">
