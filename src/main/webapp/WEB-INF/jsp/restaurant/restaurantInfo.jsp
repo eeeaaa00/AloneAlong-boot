@@ -20,13 +20,12 @@ b {color:#29A65F;}
 	<div class="col-md-6 my-3" style="height:400px">
 		<div class="mx-2" style="height:150px">
 			<h1 class="text-right mb-3">${restaurant.resName}</h1>
-			<h4 class="price text-right"><b>${restaurant.resAddress}</b></h3>
+			<h4 class="price text-right"><b>${restaurant.resAddress}</b></h4>
 		</div>
 		<div class="mx-2 my-2 priceInfo" style="height:110px;">
-			<form class="form-inline">
-			<p class="mb-2"><span class="border-right pr-4 mr-4">번호 </span> 0507-1415-7178 </p><nbsp>
-			<p class="mb-2"><span class="border-right pr-4 mr-4">별점 </span> 4.5 점</p><nbsp>
-			<p class="mb-2">태국식 캐쥬얼 레스토랑 누들아한타이입니다. 태국현지식 자재를 사용하여 태국음식의 풍미를 자랑합니다.</p>
+			<p class="mb-2"><span class="border-right pr-4 mr-4">번호 </span> ${restaurant.resPhone} </p><nbsp>
+			<p class="mb-2"><span class="border-right pr-4 mr-4">별점 </span> ${restaurant.avgRating} 점</p><nbsp>
+			<p class="mb-2">${restaurant.resDescription}</p>
 			<small class="text-muted"></small>
 		</div>
 		<div class="totalPriceInfo bg-light">

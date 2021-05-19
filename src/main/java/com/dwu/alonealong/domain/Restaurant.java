@@ -1,14 +1,16 @@
 package com.dwu.alonealong.domain;
 
+import java.io.Serializable;
 import java.net.URL;
 import java.util.Arrays;
 
-public class Restaurant {
+public class Restaurant implements Serializable{
 	private String resId;
 	private String resName;
 	private String categoryId; //음식분류
 	private String resAddress;
 	private User owner;
+	private String ownerId;
 	private String resPhone;
 	private String resDescription;
 	private Double avgRating;

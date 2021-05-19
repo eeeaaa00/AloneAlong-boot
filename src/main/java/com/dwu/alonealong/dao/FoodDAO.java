@@ -11,9 +11,7 @@ public interface FoodDAO {
 	Food getFood(String foodId);
 	
 	void insertFood(Food food);
-	
 	void updateFood(Food food);
-	
 	void deleteFood(Food food);
 	
 }

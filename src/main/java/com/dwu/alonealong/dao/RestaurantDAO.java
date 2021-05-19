@@ -8,7 +8,8 @@ import com.dwu.alonealong.domain.Restaurant;
 
 public interface RestaurantDAO {
 	
-	List<Restaurant> getRestaurantListByCategory(String categoryId) throws DataAccessException;;
+	List<Restaurant> getRestaurantListByCategory(String categoryId) throws DataAccessException;
+	List<Restaurant> getRestaurantList() throws DataAccessException;
 	
 	List<Restaurant> searchRestaurantList(String keywords) throws DataAccessException;;
 	

@@ -1,8 +1,9 @@
 package com.dwu.alonealong.domain;
 
+import java.io.Serializable;
 import java.net.URL;
 
-public class Food {
+public class Food implements Serializable{
 	private String foodId;
 	private String resId;
 	private String ownerId;
@@ -18,6 +19,19 @@ public class Food {
 //		this.resId = resId;
 		this.price = price;
 		this.name = name;
+	}
+	
+	public Food() {
+	}
+
+	public Food(String resId, String id, String name, int price, String des, URL img, int maxPeopleNum){
+		this.resId = resId;
+		this.foodId = id;
+		this.name = name;
+		this.price = price;
+		this.description = des;
+		this.img = img;
+		this.maxPeopleNum = maxPeopleNum;
 	}
 	
 

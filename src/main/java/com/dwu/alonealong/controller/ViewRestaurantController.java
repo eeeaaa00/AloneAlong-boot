@@ -44,7 +44,7 @@ public class ViewRestaurantController {
 //		PagedListHolder<Restaurant> restaurantList = new PagedListHolder<Restaurant>(this.alonealong.getRestaurantList());
 //		PagedListHolder<Restaurant> restaurantList = new PagedListHolder<Restaurant>(this.resService.getRestaurantList());
 		
-		List<Restaurant> restaurantList = resService.getRestaurantList();
+		List<Restaurant> restaurantList = alonealong.getRestaurantList();
 //		restaurantList.setPageSize(4);
 		//model.put("category", category);
 		model.put("restaurantList", restaurantList);
