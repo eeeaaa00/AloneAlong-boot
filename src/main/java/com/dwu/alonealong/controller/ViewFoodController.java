@@ -56,11 +56,11 @@ public class ViewFoodController {
 			@PathVariable("resId") String resId,
 			ModelMap model) throws Exception {
 //		List<Food> foodList = this.alonealong.getFoodListByRestaurant(resId);
-		List<Food> foodList = this.foodService.getFoodList(); //지금만 다 불러오지 나중엔 resId 걸리는 것만 불러와야해
+		List<Food> foodList = this.alonealong.getFoodListByRestaurant(resId); //지금만 다 불러오지 나중엔 resId 걸리는 것만 불러와야해
 		FoodCart foodCart = this.alonealong.getFoodCart(resId);
 		model.put("foodList", foodList);
 		model.put("foodCart", foodCart);
-		Restaurant res = resService.getRestaurantByResId(resId);
+		Restaurant res = alonealong.getRestaurantByResId(resId);
 		model.put("restaurant", res);
 		return "restaurant";
 //		return "/eating/Food";

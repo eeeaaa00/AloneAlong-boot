@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.dwu.alonealong.dao.UserDAO;
 import com.dwu.alonealong.dao.CartItemDAO;
+import com.dwu.alonealong.dao.FoodDAO;
 import com.dwu.alonealong.dao.PaymentDAO;
 import com.dwu.alonealong.dao.ProductDAO;
 import com.dwu.alonealong.dao.ProductOrderDAO;
@@ -31,8 +32,11 @@ import com.dwu.alonealong.domain.User;
 public class AloneAlongImpl implements AloneAlongFacade{
 
 	//Autowired 오류 수정 전까지 주석처리
-//	@Autowired
-//	private RestaurantDAO restaurantDao;
+	@Autowired
+	private RestaurantDAO restaurantDao;
+	
+	@Autowired
+	private FoodDAO foodDao;
 //	@Autowired
 //	private UserDAO userDao;
 	@Autowired
@@ -165,14 +169,12 @@ public class AloneAlongImpl implements AloneAlongFacade{
 	
 	@Override
 	public List<Restaurant> getRestaurantList() {
-		// TODO Auto-generated method stub
-		return null;
+		return restaurantDao.getRestaurantList();
 	}
 
 	@Override
 	public List<Restaurant> searchRestaurantList(String keywords) {
-		// TODO Auto-generated method stub
-		return null;
+		return restaurantDao.searchRestaurantList(keywords);
 	}
 
 	@Override
@@ -184,19 +186,17 @@ public class AloneAlongImpl implements AloneAlongFacade{
 	@Override
 	public Restaurant getRestaurantByResId(String resId) {
 		// TODO Auto-generated method stub
-		return null;
+		return restaurantDao.getRestaurant(resId);
 	}
 
 	@Override
 	public List<Food> getFoodListByRestaurant(String resId) {
-		// TODO Auto-generated method stub
-		return null;
+		return foodDao.getFoodListByResId(resId);
 	}
 
 	@Override
 	public Food getFood(String foodId) {
-		// TODO Auto-generated method stub
-		return null;
+		return foodDao.getFood(foodId);
 	}
 
 	@Override
