@@ -15,6 +15,9 @@ import com.dwu.alonealong.dao.ProductDAO;
 import com.dwu.alonealong.dao.ProductOrderDAO;
 import com.dwu.alonealong.dao.ProductReviewDAO;
 import com.dwu.alonealong.dao.RestaurantDAO;
+import com.dwu.alonealong.dao.TogetherDAO;
+import com.dwu.alonealong.dao.TogetherFoodDAO;
+import com.dwu.alonealong.dao.TogetherMemberDAO;
 import com.dwu.alonealong.domain.CartItem;
 import com.dwu.alonealong.domain.Food;
 import com.dwu.alonealong.domain.FoodCart;
@@ -25,6 +28,9 @@ import com.dwu.alonealong.domain.Product;
 import com.dwu.alonealong.domain.ProductOrder;
 import com.dwu.alonealong.domain.ProductReview;
 import com.dwu.alonealong.domain.Restaurant;
+import com.dwu.alonealong.domain.Together;
+import com.dwu.alonealong.domain.TogetherFood;
+import com.dwu.alonealong.domain.TogetherMember;
 import com.dwu.alonealong.domain.User;
 
 @Service
@@ -55,6 +61,10 @@ public class AloneAlongImpl implements AloneAlongFacade{
 //	private ProductReviewDAO productReviewDao;
 	private ProductOrderDAO productOrderDao;
 	private PaymentDAO paymentDao;
+	
+	private TogetherDAO togetherDao;
+	private TogetherFoodDAO togetherFoodDao;
+	private TogetherMemberDAO togetherMemberDao;
 
 	//User
 	public User getUser(String Id) {
@@ -228,5 +238,44 @@ public class AloneAlongImpl implements AloneAlongFacade{
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	//together
+	@Override
+	public Together getTogetherByTogId(String togId) {
+		return togetherDao.getTogetherByTodId(togId);
+	}
+	
+	@Override
+	public List<Together> getTogetherList() {
+		return togetherDao.getTogetherList();
+	}
+	
+	@Override
+	public void insertTogether(Together together) {
+		togetherDao.insertTogether(together);
+	}
+	
+	//TogetherFood
+	@Override
+	public List<TogetherFood> getTogetherFoodListByTogId(String togId) {
+		return togetherFoodDao.getTogetherFoodListByTogId(togId);
+	}
+	
+	@Override
+	public void insertTogetherFood(TogetherFood togetherFood) {
+		togetherFoodDao.insertTogetherFood(togetherFood);
+	}
+	
+	//TogetherMember
+	@Override
+	public List<TogetherMember> getTogetherMemberListByTogId(String togId) {
+		return togetherMemberDao.getTogetherMemberListByTogId(togId);
+	}
+	
+	@Override
+	public void insertTogetherMember(TogetherMember togetherMember) {
+		togetherMemberDao.insertTogetherMember(togetherMember);
+	}
+	
 
 }

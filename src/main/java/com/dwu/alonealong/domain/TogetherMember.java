@@ -1,32 +1,49 @@
 package com.dwu.alonealong.domain;
 
-public class TogetherMember {
+import java.io.Serializable;
+
+@SuppressWarnings("serial")
+public class TogetherMember implements Serializable {
 
 	private String togetherMemberId;
-	private User[] userLisrt;
+	private String togetherId;
+	private String userId;
+	private User user;
 	
 	public TogetherMember() {
 		
 	}
+	
 	public String getTogetherMemberId() {
 		return togetherMemberId;
 	}
 	public void setTogetherMemberId(String togetherMemberId) {
 		this.togetherMemberId = togetherMemberId;
 	}
-	public User[] getUserLisrt() {
-		return userLisrt;
+	public String getTogetherId() {
+		return togetherId;
 	}
-	public void setUserLisrt(User[] userLisrt) {
-		this.userLisrt = userLisrt;
+	public void setTogetherId(String togetherId) {
+		this.togetherId = togetherId;
+	}
+	public String getUserId() {
+		return userId;
+	}
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
 	}
 	
-	public void addUser(String userId) { //멤버 추가 메소드
-		
+	@Override
+	public String toString() {
+		return "TogetherMember [togetherMemberId=" + togetherMemberId + ", togetherId=" + togetherId + ", userId="
+				+ userId + ", user=" + user + "]";
 	}
 	
-	public void removeUser(String userId) { //멤버 삭제 메소드
-		
-	}
 	
 }
