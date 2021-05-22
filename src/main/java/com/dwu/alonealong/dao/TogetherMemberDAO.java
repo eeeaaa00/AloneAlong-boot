@@ -14,6 +14,6 @@ public interface TogetherMemberDAO {
 	
 	void removeTogetherMember(TogetherMember togetherMember) throws DataAccessException;
 	
-	List<TogetherMember> getTogetherMemberListByTogId(String togId) throws DataAccessException;
+	TogetherMember getTogetherMember(String togId) throws DataAccessException;
 	
 }

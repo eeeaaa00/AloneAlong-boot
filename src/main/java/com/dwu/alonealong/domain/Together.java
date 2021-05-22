@@ -1,23 +1,20 @@
 package com.dwu.alonealong.domain;
 
-import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
-@SuppressWarnings("serial")
-public class Together implements Serializable {
+public class Together {
 	
 	private String togetherId;
 	private String togetherName;
 	private int headCount;
 	private Date togetherDate;
 	private Date togetherTime;
-	private String sex;
-	private String age;
 	private String togetherDes;
-	private Restaurant restaurant;
-	private List<TogetherFood> togetherFoodList;
-	private List<TogetherMember> togetherMemberList;
+	private String sex; //Ä«Å×°í¸® ¾ø¾Ö°í Ãß°¡
+	private String age; //Ä«Å×°í¸® ¾ø¾Ö°í Ãß°¡
+	private String resId; //
+	private Food[] foodList; ///////////
+	private String togetherMemberId; //º¯°æ
 	private boolean status;
 	
 	public Together() {
@@ -77,28 +74,25 @@ public class Together implements Serializable {
 		this.age = age;
 	}
 
-	public Restaurant getRestaurant() {
-		return restaurant;
+	public String getResId() {
+		return resId;
+	}
+	public void setResId(String resId) {
+		this.resId = resId;
+	}
+	public Food[] getFoodList() {
+		return foodList;
+	}
+	public void setFoodList(Food[] foodList) {
+		this.foodList = foodList;
+	}
+	
+	public String getTogetherMemberId() {
+		return togetherMemberId;
 	}
 
-	public void setRestaurant(Restaurant restaurant) {
-		this.restaurant = restaurant;
-	}
-
-	public List<TogetherFood> getTogetherFoodList() {
-		return togetherFoodList;
-	}
-
-	public void setTogetherFoodList(List<TogetherFood> togetherFoodList) {
-		this.togetherFoodList = togetherFoodList;
-	}
-
-	public List<TogetherMember> getTogetherMemberList() {
-		return togetherMemberList;
-	}
-
-	public void setTogetherMemberList(List<TogetherMember> togetherMemberList) {
-		this.togetherMemberList = togetherMemberList;
+	public void setTogetherMemberId(String togetherMemberId) {
+		this.togetherMemberId = togetherMemberId;
 	}
 
 	public boolean isStatus() {
@@ -107,19 +101,5 @@ public class Together implements Serializable {
 	public void setStatus(boolean status) {
 		this.status = status;
 	}
-	
-	//ì°¸ì—¬ì¤‘ì¸ ë©¤ë²„ìˆ˜ êµ¬í•˜ê¸°
-	public int getNumOfMem() {
-		return togetherMemberList.size();
-	}
-
-	@Override
-	public String toString() {
-		return "Together [togetherId=" + togetherId + ", togetherName=" + togetherName + ", headCount=" + headCount
-				+ ", togetherDate=" + togetherDate + ", togetherTime=" + togetherTime + ", sex=" + sex + ", age=" + age
-				+ ", togetherDes=" + togetherDes + ", restaurant=" + restaurant + ", togetherFoodList="
-				+ togetherFoodList + ", togetherMemberList=" + togetherMemberList + ", status=" + status + "]";
-	}
-	
 	
 }

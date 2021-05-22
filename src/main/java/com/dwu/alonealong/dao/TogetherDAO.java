@@ -9,7 +9,7 @@ import com.dwu.alonealong.domain.Together;
 
 public interface TogetherDAO {
 	
-	Together getTogetherByTodId(String togId) throws DataAccessException;
+	Together getTogether(String togId) throws DataAccessException;
 	
 	void insertTogether(Together together) throws DataAccessException;
 	

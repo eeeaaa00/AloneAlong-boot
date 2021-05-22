@@ -14,9 +14,6 @@ import com.dwu.alonealong.domain.Product;
 import com.dwu.alonealong.domain.ProductOrder;
 import com.dwu.alonealong.domain.ProductReview;
 import com.dwu.alonealong.domain.Restaurant;
-import com.dwu.alonealong.domain.Together;
-import com.dwu.alonealong.domain.TogetherFood;
-import com.dwu.alonealong.domain.TogetherMember;
 import com.dwu.alonealong.domain.User;
 
 
@@ -86,17 +83,5 @@ public interface AloneAlongFacade {
 //
 //	List<Order> getOrdersByUsername(String username);
 	List<FoodOrder> getOrdersByUserId(String userId);
-	
-	//Together
-	Together getTogetherByTogId(String togId);
-	List<Together> getTogetherList();
-	void insertTogether(Together together);
-	
-	//TogetherFood
-	List<TogetherFood> getTogetherFoodListByTogId(String togId);
-	void insertTogetherFood(TogetherFood togetherFood);
-	
-	//TogetherMember
-	List<TogetherMember> getTogetherMemberListByTogId(String togId);
-	void insertTogetherMember(TogetherMember togetherMember);
+
 }
