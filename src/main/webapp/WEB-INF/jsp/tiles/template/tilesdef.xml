@@ -23,6 +23,19 @@
 			value="/WEB-INF/jsp/product/productCart.jsp" />
 	</definition>	
 	
+	<definition name="order_layout"
+		template="/WEB-INF/jsp/tiles/template/order.jsp">
+		<put-attribute name="title" value="Order" type="string"/>
+		<put-attribute name="main-top" value="" />
+		<put-attribute name="main-body" value="/WEB-INF/jsp/tiles/orderPaymentInfo.jsp" />
+		<put-attribute name="cart"
+			value="/WEB-INF/jsp/product/cartModal.jsp" />
+		<put-attribute name="header"
+			value="/WEB-INF/jsp/tiles/header.jsp" />
+		<put-attribute name="footer"
+			value="/WEB-INF/jsp/tiles/footer.jsp" />
+	</definition>
+	
 	<!-- product -->
 	<definition name="product_layout"
 		template="/WEB-INF/jsp/tiles/template/product.jsp">
@@ -88,7 +101,10 @@
 			value="/WEB-INF/jsp/restaurant/restaurantForm.jsp" />
 		<put-attribute name="menu" 
 		value=""/>
-		
+	</definition>
+	
+	<definition name="foodOrderForm" extends="order_layout">
+		<put-attribute name="main-top" value="/WEB-INF/jsp/restaurant/orderFoodInfo.jsp" />
 	</definition>
 	
 	<definition name="restaurantReview" extends="restaurant">
