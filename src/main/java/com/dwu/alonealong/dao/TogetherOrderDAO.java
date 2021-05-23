@@ -10,9 +10,9 @@ public interface TogetherOrderDAO {
 	
 	TogetherOrder getTogetherOrder(String userId) throws DataAccessException;
 	
-	List<TogetherOrder> getTogetheOrderrListByUser(String userId) throws DataAccessException;
+	List<TogetherOrder> getTogetheOrderrListByUserId(String userId) throws DataAccessException;
 	
-	List<TogetherOrder> getTogetheOrderrListByRes(String resId) throws DataAccessException;
+	List<TogetherOrder> getTogetheOrderrListByResId(String resId) throws DataAccessException;
 	
 	void insertTogetherOrder(TogetherOrder togetherOrder) throws DataAccessException;
 	
