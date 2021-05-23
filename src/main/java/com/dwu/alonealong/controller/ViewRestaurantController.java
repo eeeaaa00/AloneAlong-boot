@@ -12,13 +12,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.dwu.alonealong.domain.FoodCart;
 import com.dwu.alonealong.domain.Restaurant;
 import com.dwu.alonealong.service.AloneAlongFacade;
-import com.dwu.alonealong.service.RestaurantService;
 
 
 @Controller
-@SessionAttributes({"restaurantList"})
+@SessionAttributes({"restaurantList", "sessionFoodCart"})
 public class ViewRestaurantController {
 	private AloneAlongFacade alonealong;
 	
@@ -27,12 +27,10 @@ public class ViewRestaurantController {
 		this.alonealong = alonealong;
 	}
 	
-	//db전까지 사용
-	@Autowired
-	private RestaurantService resService;
 	
-	public void setRestaurantService(RestaurantService resService) {
-		this.resService = resService;
+	@ModelAttribute("sessionFoodCart")
+	public FoodCart createCart() {
+		return new FoodCart();
 	}
 
 	@RequestMapping("/eating")
@@ -40,6 +38,9 @@ public class ViewRestaurantController {
 //			@RequestParam("categoryId") String categoryId,
 			ModelMap model
 			) throws Exception {
+		
+		model.addAttribute("sessionFoodCart", new FoodCart()); //식당에서 나올 때마다 카트 초기화.
+//		createCart();
 		//Category category = this.petStore.getCategory(categoryId);
 //		PagedListHolder<Restaurant> restaurantList = new PagedListHolder<Restaurant>(this.alonealong.getRestaurantList());
 //		PagedListHolder<Restaurant> restaurantList = new PagedListHolder<Restaurant>(this.resService.getRestaurantList());
