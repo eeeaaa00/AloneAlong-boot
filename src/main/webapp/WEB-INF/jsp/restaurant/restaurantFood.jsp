@@ -38,7 +38,8 @@ b {color:#29A65F;}
 									<p>${food.price}원 </p>  
 				              </div>
 				              <div class="card-footer">
-					       <!--     <button type = "button" onClick="location.href='<c:url value='/eating/${restaurant.resId}/addFoodToCart'><c:param name="foodId" value="${food.foodId}"/></c:url>'">담기</button></br> -->   
+					            <button type = "button" onClick="location.href='<c:url value='/eating/${restaurant.resId}/addFoodToCart'><c:param name="foodId" value="${food.foodId}"/></c:url>'">담기</button></br> 
+					       		  <!--<button type="submit">담기</button></br>	 -->  
 					              <button type="button" >수정</button>
 					              <button>삭제</button>
 				              </div>

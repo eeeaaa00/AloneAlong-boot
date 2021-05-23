@@ -75,6 +75,7 @@
 			value="/WEB-INF/jsp/restaurant/restaurantList.jsp" />
 		
 	</definition>
+	
 	<definition name="restaurant" extends="restaurant_layout">
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/restaurant/restaurantInfo.jsp" />
@@ -82,10 +83,20 @@
 			value="/WEB-INF/jsp/restaurant/restaurantFood.jsp" />
 	</definition>
 	
+	<definition name="restaurantForm" extends="restaurant_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/restaurant/restaurantForm.jsp" />
+		<put-attribute name="menu" 
+		value=""/>
+		
+	</definition>
+	
 	<definition name="restaurantReview" extends="restaurant">
 		<put-attribute name="body-tab"
 			value="/WEB-INF/jsp/restaurant/restaurantReview.jsp" />
 	</definition>
+	
+	
 	
 	<!-- together -->
 	<definition name="together_layout" template="/WEB-INF/jsp/tiles/template/together.jsp">

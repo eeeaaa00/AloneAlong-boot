@@ -10,7 +10,7 @@ b {color:#29A65F;}
 .sold-out { background-color:gray; color:#FFFFFF; width:50px; padding: 2px 15px 2px 15px;}
 </style>
 
-<div class="row mx-5 mb-5" name="FoodInfoWithCart">
+<div class="row mx-5 mb-5" name="FoodInfoWithCart" overflow=hidden>
 	<!-- 사진 -->
 	<div class="col-md-6 my-3">
 		<svg class="img" style="background-image: url('https://img-cf.kurly.com/shop/data/goods/1575003713758y0.jpg'); 
@@ -31,13 +31,13 @@ b {color:#29A65F;}
 		<div class="totalPriceInfo bg-light">
 			<p class="text-left">구매할 것</p>
 			<div name="foodCart">
-				<c:forEach var="food" items="${foodCart}">
+ 				<c:forEach var="foodCartItem" items="${foodCart}">
 			       <p class="mb-3">
-					<span class=" border-right pr-4 mr-4">${food.name}</span>
-					<input class="form-control text-center w-25" name="quantity" type="number" value="${food.quantity}" min="1">
+					<span class=" border-right pr-4 mr-4">${foodCartItem.food.name}</span>
+					<input class="form-control text-center w-25" name="quantity" type="number" value="${foodCartItem.quantity}" min="1">
 				</p>
-				</c:forEach>
-				<button class="btn btn-light" type="submit" onClick="location.href='<c:url value='/eating/${restaurant.resId}/updateFoodCartQuantities' />'">수량변경</button>
+				</c:forEach> 
+				<!--  <button class="btn btn-light" type="submit" onClick="location.href='<c:url value='/eating/${restaurant.resId}/updateFoodCartQuantities' />'">수량변경</button>-->
 			</div>
 			<p class="text-right">총 금액  <b class="pl-2">4,500</b>원</p>
 			<div class="row justify-content-around">

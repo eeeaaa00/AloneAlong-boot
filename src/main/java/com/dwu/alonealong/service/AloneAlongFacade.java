@@ -71,11 +71,12 @@ public interface AloneAlongFacade {
 //
 	Restaurant getRestaurantByUserId(String userId);
 	Restaurant getRestaurantByResId(String resId);
+	void insertRestaurant(Restaurant res);
 //
 	List<Food> getFoodListByRestaurant(String resId);
-//
+// 
 	Food getFood(String foodId);
-	FoodCart getFoodCart(String resId);
+//	FoodCart getFoodCart(String resId);
 	List<FoodReview> getFoodReviewList(String resId);
 //
 //	void insertOrder(Order order);

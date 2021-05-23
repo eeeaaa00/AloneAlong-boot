@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +21,7 @@ import com.dwu.alonealong.domain.Food;
 import com.dwu.alonealong.domain.FoodCart;
 import com.dwu.alonealong.domain.FoodCartItem;
 import com.dwu.alonealong.domain.Restaurant;
+import com.dwu.alonealong.service.AloneAlongFacade;
 import com.dwu.alonealong.service.FoodService;
 import com.dwu.alonealong.service.RestaurantService;
 
@@ -29,6 +31,11 @@ import com.dwu.alonealong.service.RestaurantService;
 public class FoodCartController {
 	
 	private static final String FOOD_INSERT_FORM = "eating/FoodForm";
+	private AloneAlongFacade alonealong;
+	@Autowired
+	public void setAlonealong(AloneAlongFacade alonealong) {
+		this.alonealong = alonealong;
+	}
 	
 	@Autowired
 	private RestaurantService resService;	
@@ -42,24 +49,32 @@ public class FoodCartController {
 		this.foodService = foodService;
 	}
 	
-	@ModelAttribute("sessionFoodCart")
-	public FoodCart createCart() {
-		return new FoodCart();
-	}
+	
 	
 	@RequestMapping("/eating/{resId}/addFoodToCart")
-	public ModelAndView handleRequest(
+	public String handleRequest(
 			@RequestParam("foodId") String foodId,
-			@ModelAttribute("sessionFoodCart") FoodCart cart 
+			@ModelAttribute("sessionFoodCart") FoodCart cart,
+			@PathVariable("resId") String resId,
+			ModelMap model
 			) throws Exception {
+		
+		System.out.println(cart.getFoodItemList().size());
 		if (cart.containsFoodId(foodId)) {
 			cart.incrementQuantityByFoodId(foodId);
 		}
 		else {
-			Food item = this.foodService.getFood(foodId);
+			Food item = this.alonealong.getFood(foodId);
+			if(item == null)
+				System.out.println("null들어왔다");
 			cart.addFood(item);
-		}
-		return new ModelAndView("restaurant", "foodCart", cart);
+		}		
+		List<Food> foodList = this.alonealong.getFoodListByRestaurant(resId); 
+		model.put("foodList", foodList);
+		model.put("foodCart", cart.getAllFoodCartItems());
+		Restaurant res = alonealong.getRestaurantByResId(resId);
+		model.put("restaurant", res);
+		return "redirect:/eating/{resId}";
 	}
 	
 	@RequestMapping("/eating/{resId}/updateFoodCartQuantities")

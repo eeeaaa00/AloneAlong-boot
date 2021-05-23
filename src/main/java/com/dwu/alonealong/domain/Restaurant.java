@@ -7,15 +7,30 @@ import java.util.Arrays;
 public class Restaurant implements Serializable{
 	private String resId;
 	private String resName;
-	private String categoryId; //음식분류
 	private String resAddress;
-	private User owner;
-	private String ownerId;
 	private String resPhone;
+	private String ownerId;
 	private String resDescription;
 	private Double avgRating;
+	private String categoryId; //음식분류
 	private URL resImage;
 	private boolean isTogetherOk;
+	
+	public Restaurant(String resId, String resName, String resAddress, String resPhone, String ownerId,
+			String resDescription, Double avgRating, String categoryId, URL resImage, boolean isTogetherOk) {
+		super();
+		this.resId = resId;
+		this.resName = resName;
+		this.resAddress = resAddress;
+		this.resPhone = resPhone;
+		this.ownerId = ownerId;
+		this.resDescription = resDescription;
+		this.avgRating = avgRating;
+		this.categoryId = categoryId;
+		this.resImage = resImage;
+		this.isTogetherOk = isTogetherOk;
+	}
+	private User owner;
 	private FoodReview[] reviewList;
 	private Food[] menuList;
 	private Together[] togetherList;
@@ -23,6 +38,7 @@ public class Restaurant implements Serializable{
 	public Restaurant(){
 		
 	}
+	
 	public Restaurant(String resId, String resName, String category, String resAddress){ //임시
 		this.resId = resId;
 		this.resName = resName;

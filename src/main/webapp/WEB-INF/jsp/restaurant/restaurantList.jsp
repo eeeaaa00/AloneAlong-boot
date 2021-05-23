@@ -36,14 +36,13 @@ b {color:#29A65F;}
 	<!-- 물품 목록 -->
 	<div class="row px-5 mb-lg-5 justify-content-between">
 		<c:forEach var="res" items="${restaurantList}">
-			<div class="card shadow-sm" type="button" onClick="location.href='<c:url value='/eating/' />${res.resId}'"> 
+			<div class="card shadow-sm mb-4" type="button" onClick="location.href='<c:url value='/eating/' />${res.resId}'"> 
 				<svg class="img" style="background-image: url('https://img-cf.kurly.com/shop/data/goods/1575003713758y0.jpg'); 
 					background-size: cover; background-position: center" width="100%" height="150px"></svg>
 				<div class="card-body">
 					<div class="d-flex justify-content-between align-items-start">
-						<h6 class="card-text text-left">${res.resName}</h6>
-						<a href="/" class="btn btn-outline-success btn-sm rounded-circle"><i
-							class="fas fa-shopping-cart"></i></a></div>
+						<h6 class="card-text text-left mb-3">${res.resName}</h6>
+						</div>
 					<p>별점 : 4.5</p>
 					<p>주소 : ${res.resAddress} </p>
 				</div>
@@ -51,8 +50,9 @@ b {color:#29A65F;}
 			<!-- <li><a href="<c:url value='/eating/' />${res.resId}">${res.resName}</a></li> -->
 		</c:forEach>
 	<!-- /.물품목록 -->
-				
-		<div class="row my-xl-5 justify-content-center">
+					
+	</div>
+	<div class="row my-xl-5 justify-content-center">
 			<div class="paginate mb-xl-5 btn-toolbar" role="toolbar">
 			  <button type="button" class="btn"><i class="fas fa-chevron-left"></i></button>
 			  <div class="btn-group"><button type="button" class="btn active rounded-circle" >1</button></div>
@@ -63,4 +63,3 @@ b {color:#29A65F;}
 			  <button type="button" class="btn"><i class="fas fa-chevron-right"></i></button>
 			</div>
 		</div>
-	</div>

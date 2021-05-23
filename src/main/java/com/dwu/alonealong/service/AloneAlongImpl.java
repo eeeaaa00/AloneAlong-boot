@@ -209,11 +209,11 @@ public class AloneAlongImpl implements AloneAlongFacade{
 		return foodDao.getFood(foodId);
 	}
 
-	@Override
-	public FoodCart getFoodCart(String resId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+//	@Override
+//	public FoodCart getFoodCart(String resId) {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
 
 	@Override
 	public List<FoodReview> getFoodReviewList(String resId) {
@@ -238,8 +238,13 @@ public class AloneAlongImpl implements AloneAlongFacade{
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
-	//together
+  @Override
+	public void insertRestaurant(Restaurant res) {
+		restaurantDao.insertRestaurant(res);
+		
+	}
+  
+  //together
 	@Override
 	public Together getTogetherByTogId(String togId) {
 		return togetherDao.getTogetherByTodId(togId);
@@ -276,6 +281,6 @@ public class AloneAlongImpl implements AloneAlongFacade{
 	public void insertTogetherMember(TogetherMember togetherMember) {
 		togetherMemberDao.insertTogetherMember(togetherMember);
 	}
-	
+
 
 }

@@ -52,5 +52,10 @@
     FROM RESTAURANT
     WHERE lower(resName) like %#{keywords}%
   </select>
+  
+  <insert id="insertRestaurant">
+    INSERT INTO RESTAURANT (RES_ID, RES_NAME, RES_ADDRESS, RES_PHONE, OWNER_ID, RES_DES, AVG_RATING, RES_CATEGORY, RES_IMG, IS_TOGETHER_OK)
+    VALUES (#{resId}, #{resName}, #{resAddress}, #{resPhone}, #{ownerId}, #{resDescription}, #{avgRating}, #{categoryId}, empty_blob(), #{isTogetherOk})
+  </insert>
 
 </mapper>
