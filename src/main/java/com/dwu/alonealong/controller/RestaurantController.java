@@ -48,7 +48,7 @@ public class RestaurantController {
 //		Restaurant res = new Restaurant("r" + nextResId, resForm.getResName(),
 //				resForm.getCategoryId(), resForm.getResAddress());
 		
-		Restaurant res = new Restaurant("r" + nextResId, resForm.getResName(), resForm.getResAddress(), resForm.getResPhone(), "user1",
+		Restaurant res = new Restaurant("RES_ID.NEXTVAL", resForm.getResName(), resForm.getResAddress(), resForm.getResPhone(), "user1",
 				resForm.getResDescription(), 0.0, resForm.getCategoryId(), new URL("http://naver.com"), resForm.getIsTogetherOk());
 		nextResId++;	
 		alonealong.insertRestaurant(res);
