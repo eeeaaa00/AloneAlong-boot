@@ -62,8 +62,11 @@ public class AloneAlongImpl implements AloneAlongFacade{
 	private ProductOrderDAO productOrderDao;
 	private PaymentDAO paymentDao;
 	
+	@Autowired
 	private TogetherDAO togetherDao;
+	@Autowired
 	private TogetherFoodDAO togetherFoodDao;
+	@Autowired
 	private TogetherMemberDAO togetherMemberDao;
 
 	//User
@@ -247,7 +250,7 @@ public class AloneAlongImpl implements AloneAlongFacade{
 	
 	@Override
 	public List<Together> getTogetherList() {
-		return togetherDao.getTogetherList();
+		return togetherDao.getTogetherList(); //여기서 NullPointException 발생///////////////////////////////////////////
 	}
 	
 	@Override

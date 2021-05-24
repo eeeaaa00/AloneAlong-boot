@@ -3,8 +3,8 @@ package com.dwu.alonealong.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.dwu.alonealong.domain.Together;
 import com.dwu.alonealong.service.AloneAlongFacade;
@@ -19,11 +19,12 @@ public class ViewTogetherController {
 		this.aloneAlong = aloneAlong;
 	}
 
-	@RequestMapping("/togetherInfo/{id}")
-	public String viewTogether(/*@RequestParam("togId") String togId,
-			ModelMap model*/) throws Exception {
-//		Together together = this.aloneAlong.getTogetehr(togId);
-//		model.put("together", together);
+	@RequestMapping("/togetherInfo/{togetherId}")
+	public String viewTogether(
+			@PathVariable("togetherId") String togId, 
+			ModelMap model) throws Exception {
+		Together together = this.aloneAlong.getTogetherByTogId(togId);
+		model.put("together", together);
 		return "togetherInfo";
 	}
 }

@@ -47,4 +47,9 @@ public class TogetherFood implements Serializable {
 				+ ", quantity=" + quantity + ", food=" + food + "]";
 	}
 	
+	//음식가격 * 수량 구하기
+	public int getUnitTotalPrice() {
+		return food.getPrice() * quantity;
+	}
+	
 }

@@ -1,5 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dwu.alonealong.dao.mybatis.mapper.TogetherFoodMapper">
-	
+	<cache />
+
+	<select id="getTogetherFoodListByTogId" resultType="TogetherFood">
+		SELECT
+    		TF.TOGFOOD_ID AS togetherFoodId,
+    		TF.TOG_ID AS togetherId,
+    		TF.FOOD_ID AS foodId,
+    		TF.QUANTITY AS quantity,
+    		F.FOOD_NAME AS "food.name",
+    		F.FOOD_PRICE AS "food.price"
+		FROM TOGETHER_FOOD TF, FOOD F
+		WHERE TF.FOOD_ID = F.FOOD_ID
+			AND TOG_ID = #{togId}
+	</select>
+
+	<insert id="insertTogetherFood">
+    	INSERT INTO TOGETHER_FOOD (TOGFOOD_ID, TOG_ID, QUANTITY)
+    	VALUES(#{togetherFoodId}, #{togetherId}, #{quantity})
+	</insert>
+
 </mapper>

@@ -2,15 +2,20 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
    
 <div class="py-5 text-center">
-	<h4>삽겹살 같이 먹어요<strong class="d-inline-block mb-2 text-primary">(1/2)</strong></h4>
-    <!-- 테그 -->
+	<h4><c:out value="${together.togetherName}"/><strong class="d-inline-block mb-2 text-primary">(1/<c:out value="${together.headCount}"/>)</strong></h4>
+    <!-- 태그 -->
     <div class="row-md-6">
-    	<span class="badge rounded-pill bg-primary">#서울</span>
-        <span class="badge rounded-pill bg-primary">#한식</span>
-        <span class="badge rounded-pill bg-primary">#여성</span>
-        <span class="badge rounded-pill bg-primary">#20대</span>
-	</div>
-    <p>말없이 고기만 먹어도 괜찮아요~</p>
+    	<!-- 수정해야함 -->
+        <span class="badge rounded-pill bg-primary">#서울</span> <!-- 지역 태그 ////////////////////////// 수정 필요 -->
+        <span class="badge rounded-pill bg-primary">#한식</span> <!-- 카테고리 태그 //////////////////////// 수정 필요 -->
+        <c:if test="${together.sex != '상관없음'}">
+        <span class="badge rounded-pill bg-primary">#<c:out value="${together.sex}"/></span>
+        </c:if>
+        <c:if test="${together.age != '상관없음'}">
+        <span class="badge rounded-pill bg-primary">#<c:out value="${together.age}"/></span>
+        </c:if>
+    </div >
+    <p><c:out value="${together.togetherDes}"/></p>
 
     <!-- 사진 -->
     <div class="row-md-6">
@@ -23,55 +28,46 @@
 	<!-- 같이밥 상세정보 -->
 	<div class="col-md-7">
     	<h5 class="mb-3"><span class="text-primary">날짜 및 시간</span></h5>
-        <p>2021년 4월 5일 / 오후 7시</p>
-		<h5 class="mb-3"><span class="text-primary">주최자</span></h5>
-		<p>고기좋아 님</p>
+        <p><c:out value="${together.togetherDate}"/> / <c:out value="${together.togetherTime}"/></p>
 		<h5 class="mb-3"><span class="text-primary">멤버</span></h5>
-		<p>아직없음</p>
+		<c:forEach var="togetherMember" items="${together.togetherMemberList}"> 
+		<p><c:out value="${togetherMember.user.name}"/></p>
+		</c:forEach>
 		<h5 class="mb-3"><span class="text-primary">조건</span></h5>
-		<p>여성 / 20대</p>
+		<p><c:out value="${together.sex}"/> / <c:out value="${together.age}"/></p>
 	</div>
 
 	<!-- 식당 및 메뉴 정보 -->
 	<div class="col-md-7 col-lg-5 order-md-last">
 		<!-- 식당 정보 -->
 		<h5 class="d-flex justify-content-between align-items-center mb-3"><span class="text-primary">식당</span></h5>
-		<p>ㅇㅇ고기</p>
-		<p>서울특별시 ㅇㅇ구 ㅇㅇ동 ㅇㅇ로</p>
+		<p><c:out value="${together.restaurant.resName}"/></p>
+		<p><c:out value="${together.restaurant.resAddress}"/></p>
 
 		<!-- 메뉴 정보 -->
 		<h5 class="d-flex justify-content-between align-items-center mb-3"><span class="text-primary">메뉴</span></h5>
 		<ul class="list-group mb-3">
+			<!-- 각 메뉴 수량 및 가격 -->
+			<c:forEach var="togetherFood" items="${together.togetherFoodList}">
 			<li class="list-group-item d-flex justify-content-between lh-sm">
 				<div>
-					<h6 class="my-0">삽겹살 2인분</h6>
-					<small class="text-muted">13000원 * 2인분</small>
+					<h6 class="my-0"><c:out value="${togetherFood.food.name}"/> <c:out value="${togetherFood.quantity}"/>개</h6>
+					<small class="text-muted"><c:out value="${togetherFood.food.price}"/>원 * <c:out value="${togetherFood.quantity}"/>개</small>
                 </div>
-                <span class="text-muted">26000원</span>
+                <span class="text-muted"><c:out value="${togetherFood.getUnitTotalPrice()}"/>원</span> <!-- 합계 계산 어떻게????????????????? -->
 			</li>
-			<li class="list-group-item d-flex justify-content-between lh-sm">
-                <div>
-                  	<h6 class="my-0">물냉면 1개</h6>
-                  	<small class="text-muted">5000원 * 1개</small>
-                </div>
-                <span class="text-muted">5000원</span>
-			</li>
-            <li class="list-group-item d-flex justify-content-between lh-sm">
-				<div>
-                <h6 class="my-0">공기밥 2개</h6>
-					<small class="text-muted">1000원 * 2개</small>
-                </div>
-                <span class="text-muted">2000원</span>
-			</li>
+			</c:forEach>
+			
+			<!-- 합계 및 1인 가격 -->
             <li class="list-group-item d-flex justify-content-between bg-light">
 				<strong><span>합계</span></strong>
-                <strong>33000원</strong>
+                <strong><c:out value="${together.getTotalPrice()}"/>원</strong> <!-- 계산 틀림/////////////////////////// -->
             </li>
 			<li class="list-group-item d-flex justify-content-between bg-light">
             	<div class="text-success">
                 	<h6 class="my-0">1인</h6>
                 </div>
-                <span class="text-success"><strong>16500원</strong></span>
+                <span class="text-success"><strong><c:out value="${together.getPricePerPerson()}"/>원</strong></span> <!-- 계산 틀림/////////////////////////// -->
             </li>
 		</ul>
 	</div>
