@@ -2,15 +2,16 @@ package com.dwu.alonealong.dao;
 
 import java.util.List;
 
+import org.springframework.dao.DataAccessException;
 
 import com.dwu.alonealong.domain.User;
 
 
 public interface UserDAO {
 
-  User getUser(String Id); //throws DataAccessException;
+  User getUserByUserId(String Id); //throws DataAccessException;
 
-  User getUser(String Id, String password);
+  User getUserByUserIdAndPassword(String Id, String pw) throws DataAccessException;
 
   void createUser(User user);
 
@@ -19,6 +20,8 @@ public interface UserDAO {
   void removeUser(String Id);
 
   List<String> getUserIdList();
+
+
   
   //void createBuissnessNum(User user);
 

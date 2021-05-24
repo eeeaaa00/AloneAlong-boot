@@ -2,7 +2,7 @@ package com.dwu.alonealong.domain;
 import java.io.Serializable;
 	@SuppressWarnings("serial")
 	public class User implements Serializable {
-		private String password;
+		private String pw;
 		private String name;
 		private String email;
 		private String sex;
@@ -21,10 +21,10 @@ import java.io.Serializable;
 			this.userId = userId;
 		}
 		public String getPassword() {
-			return password;
+			return pw;
 		}
 		public void setPassword(String password) {
-			this.password = password;
+			this.pw = password;
 		}
 		public String getName() {
 			return name;

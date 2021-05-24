@@ -43,8 +43,8 @@ public class AloneAlongImpl implements AloneAlongFacade{
 	
 	@Autowired
 	private FoodDAO foodDao;
-//	@Autowired
-//	private UserDAO userDao;
+	@Autowired
+	private UserDAO userDao;
 	@Autowired
 	private ProductDAO productDao;
 	@Autowired
@@ -56,7 +56,6 @@ public class AloneAlongImpl implements AloneAlongFacade{
 	@Autowired
 	private CartItemDAO cartItemDao;
 	
-	private UserDAO userDao;
 //	private ProductDAO productDao;
 //	private ProductReviewDAO productReviewDao;
 	private ProductOrderDAO productOrderDao;
@@ -67,11 +66,11 @@ public class AloneAlongImpl implements AloneAlongFacade{
 	private TogetherMemberDAO togetherMemberDao;
 
 	//User
-	public User getUser(String Id) {
-		return userDao.getUser(Id);
+	public User getUserByUserId(String Id) throws DataAccessException{
+		return userDao.getUserByUserId(Id);
 	}
-	public User getUser(String Id, String password) {
-		return userDao.getUser(Id, password);
+	public User getUserByUserIdAndPassword(String Id, String password) throws DataAccessException{
+		return userDao.getUserByUserIdAndPassword(Id, password);
 	}
 	public void createUser(User user) {
 		userDao.createUser(user);
