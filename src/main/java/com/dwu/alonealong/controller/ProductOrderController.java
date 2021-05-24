@@ -42,7 +42,7 @@ public class ProductOrderController {
 		
 		//유저 정보 및 결제 정보 받아오기
 		UserSession userSession = (UserSession)request.getSession().getAttribute("userSession");
-		User user = aloneAlong.getUser(userSession.getUser().getUserId());
+		User user = aloneAlong.getUserByUserId(userSession.getUser().getUserId());
 		Payment paymentMethod = aloneAlong.getCard(userSession.getUser().getUserId());
 
 		//LineItem 설정 

@@ -16,35 +16,42 @@ import com.dwu.alonealong.service.AloneAlongFacade;
 
 @Controller
 @SessionAttributes("userSession")
-public class LoginController { 
+public class LoginController {
 
 	private AloneAlongFacade alonealong;
+
 	@Autowired
 	public void setPetStore(AloneAlongFacade alonealong) {
 		this.alonealong = alonealong;
 	}
 
 	@RequestMapping(value = "/login")
-	public ModelAndView handleRequest(HttpServletRequest request,
-			@RequestParam("username") String username,
-			@RequestParam("password") String password,
-			@RequestParam(value="forwardAction", required=false) String forwardAction,
-			Model model) throws Exception {
-		User user = alonealong.getUser(username, password);
+	public ModelAndView signIn() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("/login");
+
+		return mav;
+	}
+
+	@RequestMapping(value = "/loginTest")
+	public ModelAndView handleRequest(HttpServletRequest request, @RequestParam("id") String userId,
+			@RequestParam("pw") String password,
+			@RequestParam(value = "forwardAction", required = false) String forwardAction, Model model)
+			throws Exception {
+		User user = alonealong.getUserByUserIdAndPassword(userId, password);
+
 		if (user == null) {
-			return new ModelAndView("Error", "message", 
-					"Invalid username or password.  Signon failed.");
-		}
-		else {
+			return new ModelAndView("Error", "message", "Invalid username or password.  Signon failed.");
+		} else {
+
 			UserSession userSession = new UserSession(user);
-			//PagedListHolder<Product> myList = new PagedListHolder<Product>(this.petStore.getProductListByCategory(account.getFavouriteCategoryId()));
-			//myList.setPageSize(4);
-			//userSession.setMyList(myList);
 			model.addAttribute("userSession", userSession);
-			if (forwardAction != null) 
+
+			if (forwardAction != null)
 				return new ModelAndView("redirect:" + forwardAction);
-			else 
-				return new ModelAndView("index");
+			else
+				return new ModelAndView("loginTest");
+
 		}
 	}
 }
