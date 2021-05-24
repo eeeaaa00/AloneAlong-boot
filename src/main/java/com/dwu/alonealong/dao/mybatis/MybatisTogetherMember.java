@@ -34,7 +34,7 @@ public class MybatisTogetherMember implements TogetherMemberDAO {
 	@Override
 	public List<TogetherMember> getTogetherMemberListByTogId(String togId) throws DataAccessException {
 		// TODO Auto-generated method stub
-		return togetherMemberMapper.getTogetherMemberListByTogId();
+		return togetherMemberMapper.getTogetherMemberListByTogId(togId);
 	}
 	
 }

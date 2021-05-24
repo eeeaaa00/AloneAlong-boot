@@ -29,12 +29,12 @@ public class ViewTogetherListController {
 	//같이먹기 리스트
 	@RequestMapping("/together")
 	public String listTogether(
-//			ModelMap model
+			ModelMap model
 			) throws Exception {
-//		List<Together> togetherList = this.alonealong.getTogetherList();
+		List<Together> togetherList = this.alonealong.getTogetherList();
 //		PagedListHolder<Together> togetherList = new PagedListHolder<Together>(this.alonealong.getTogetherList());
 //		togetherList.setPageSize(4);
-//		model.put("togetherList", togetherList);
+		model.put("togetherList", togetherList);
 		return "togetherList";
 	}
 	
