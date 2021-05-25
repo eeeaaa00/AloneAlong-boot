@@ -8,17 +8,29 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
 import com.dwu.alonealong.dao.TogetherDAO;
+import com.dwu.alonealong.dao.mybatis.mapper.TogetherFoodMapper;
 import com.dwu.alonealong.dao.mybatis.mapper.TogetherMapper;
+import com.dwu.alonealong.dao.mybatis.mapper.TogetherMemberMapper;
 import com.dwu.alonealong.domain.Together;
 
 @Repository
 public class MybatisTogetherDAO implements TogetherDAO {
 	@Autowired
-	private TogetherMapper togetherMapper; 
+	private TogetherMapper togetherMapper;
+	//추가함
+	@Autowired
+	private TogetherFoodMapper togetherFoodMapper;
+	@Autowired
+	private TogetherMemberMapper togetherMemberMapper;
 	
 	@Override
 	public Together getTogetherByTodId(String togId) throws DataAccessException {
-		return togetherMapper.getTogetherByTogId(togId);
+		Together together = togetherMapper.getTogetherByTogId(togId);
+		String togetherId = together.getTogetherId();
+		together.setTogetherFoodList(togetherFoodMapper.getTogetherFoodListByTogId(togetherId));
+		together.setTogetherMemberList(togetherMemberMapper.getTogetherMemberListByTogId(togetherId));
+		
+		return together;
 	}
 
 	@Override
@@ -40,7 +52,14 @@ public class MybatisTogetherDAO implements TogetherDAO {
 
 	@Override
 	public List<Together> getTogetherList() throws DataAccessException {
-		return togetherMapper.getTogetherList();
+		List<Together> togetherList = togetherMapper.getTogetherList();
+		for(int i = 0; i < togetherList.size(); i++) {
+			String togId = togetherList.get(i).getTogetherId();
+			togetherList.get(i).setTogetherFoodList(togetherFoodMapper.getTogetherFoodListByTogId(togId));
+			togetherList.get(i).setTogetherMemberList(togetherMemberMapper.getTogetherMemberListByTogId(togId));
+		}
+		
+		return togetherList;
 	}
 
 	@Override

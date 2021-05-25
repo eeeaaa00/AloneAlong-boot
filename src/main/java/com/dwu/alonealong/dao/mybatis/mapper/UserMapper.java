@@ -30,8 +30,6 @@ public interface UserMapper {
 
 	User getUserByUserIdAndPassword(String Id, String password);
 
-	List<String> getUsernameList();
-
 	void createUser(User user);
 
 	void updateUser(User user);

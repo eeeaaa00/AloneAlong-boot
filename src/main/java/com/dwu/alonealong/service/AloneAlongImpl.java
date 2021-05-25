@@ -42,9 +42,8 @@ public class AloneAlongImpl implements AloneAlongFacade{
 	private RestaurantDAO restaurantDao;	
 	@Autowired
 	private FoodDAO foodDao;
-	
-//	@Autowired
-//	private UserDAO userDao;
+  @Autowired
+	private UserDAO userDao;
 	@Autowired
 	private ProductDAO productDao;
 	@Autowired
@@ -56,22 +55,24 @@ public class AloneAlongImpl implements AloneAlongFacade{
 	@Autowired
 	private CartItemDAO cartItemDao;
 	
-	private UserDAO userDao;
 //	private ProductDAO productDao;
 //	private ProductReviewDAO productReviewDao;
 	private ProductOrderDAO productOrderDao;
 	private PaymentDAO paymentDao;
 	
+	@Autowired
 	private TogetherDAO togetherDao;
+	@Autowired
 	private TogetherFoodDAO togetherFoodDao;
+	@Autowired
 	private TogetherMemberDAO togetherMemberDao;
 
 	//User
-	public User getUser(String Id) {
-		return userDao.getUser(Id);
+	public User getUserByUserId(String Id) throws DataAccessException{
+		return userDao.getUserByUserId(Id);
 	}
-	public User getUser(String Id, String password) {
-		return userDao.getUser(Id, password);
+	public User getUserByUserIdAndPassword(String Id, String password) throws DataAccessException{
+		return userDao.getUserByUserIdAndPassword(Id, password);
 	}
 	public void createUser(User user) {
 		userDao.createUser(user);
@@ -248,7 +249,7 @@ public class AloneAlongImpl implements AloneAlongFacade{
 	
 	@Override
 	public List<Together> getTogetherList() {
-		return togetherDao.getTogetherList();
+		return togetherDao.getTogetherList(); //여기서 NullPointException 발생///////////////////////////////////////////
 	}
 	
 	@Override

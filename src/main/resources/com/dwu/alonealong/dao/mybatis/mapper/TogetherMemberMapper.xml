@@ -1,7 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dwu.alonealong.dao.mybatis.mapper.TogetherMemberMapper">
-	
+	<cache />
 
+	<select id="getTogetherMemberListByTogId" resultType="TogetherMember">
+		SELECT
+    		TM.TOGMEM_ID AS togetherMemberId,
+    		TM.TOG_ID AS togetherId,
+    		TM.USER_ID AS userId,
+    		U.NAME AS "user.name",
+    		U.SEX AS "user.sex"
+		FROM TOGETHER_MEMBER TM, USERINFO U
+		WHERE TM.USER_ID = U.USER_ID
+			AND TOG_ID = #{togId}
+	</select>
+
+	<insert id="insertTogetherMember">
+    	INSERT INTO TOGETHER_MEMBER (TOGMEM_ID, TOG_ID, USER_ID)
+    	VALUES(#{togetherMemberId}, #{togetherId}, #{userId})
+	</insert>
 
 </mapper>

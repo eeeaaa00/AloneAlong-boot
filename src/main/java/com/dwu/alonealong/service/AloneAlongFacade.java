@@ -23,8 +23,8 @@ import com.dwu.alonealong.domain.User;
 public interface AloneAlongFacade {
 
 	//USER
-	User getUser(String Id); //throws DataAccessException;
-	User getUser(String Id, String password);
+	User getUserByUserId(String Id); //throws DataAccessException;
+	User getUserByUserIdAndPassword(String Id, String password);
 	void createUser(User user);
 	void updateUser(User user);
 	void removeUser(String Id);

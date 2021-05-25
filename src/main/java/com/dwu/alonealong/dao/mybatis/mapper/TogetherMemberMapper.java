@@ -9,6 +9,6 @@ import com.dwu.alonealong.domain.TogetherMember;
 
 @Mapper
 public interface TogetherMemberMapper {
-	List<TogetherMember> getTogetherMemberListByTogId() throws DataAccessException;
 	void insertTogetherMember(TogetherMember togetherMember) throws DataAccessException;
+	List<TogetherMember> getTogetherMemberListByTogId(String togId) throws DataAccessException;
 }

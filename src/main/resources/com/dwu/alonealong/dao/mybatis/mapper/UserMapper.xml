@@ -15,28 +15,18 @@
          BIRTHDAY, 
          ADDRESS, 
          ZIP, 
-         REGISTERDATE,
-         BUISNESS_NUM
-    FROM USER
-    WHERE USER_ID = #{user_id}
+         REGISTERDATE
+    FROM USERINFO
+    WHERE USER_ID = #{Id}
   </select>
 
   <select id="getUserByUserIdAndPassword" resultType="User">
   SELECT USER_ID, 
-         PW, 
-         NAME, 
-         NICKNAME, 
-         EMAIL, 
-         PHONE, 
-         SEX, 
-         BIRTHDAY, 
-         ADDRESS, 
-         ZIP, 
-         REGISTERDATE,
-         BUISNESS_NUM
-    FROM USER
-    WHERE USER_ID = #{user_id}
-      AND PW = #{param2}
+         PW,
+         NAME
+    FROM USERINFO
+    WHERE USER_ID = #{Id}
+      AND PW = #{password}
   </select>
 
   <select id="getUserIdList" resultType="java.lang.String">
