@@ -31,6 +31,11 @@
     WHERE RES_ID = #{resId}
   </select>
   
+  <insert id="insertFood">
+    INSERT INTO FOOD (FOOD_ID, RES_ID, FOOD_NAME, FOOD_PRICE, FOOD_DES, FOOD_IMG, MAX_PEOPLE_NUM)
+    VALUES ('f' || FOODID_SEQ.NEXTVAL, #{resId}, #{name}, #{price}, #{description}, empty_blob(), #{maxPeopleNum})
+  </insert>
+  
   
 
 </mapper>

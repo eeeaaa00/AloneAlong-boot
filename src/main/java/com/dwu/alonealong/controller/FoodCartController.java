@@ -37,19 +37,6 @@ public class FoodCartController {
 		this.alonealong = alonealong;
 	}
 	
-	@Autowired
-	private RestaurantService resService;	
-	public void setRestaurantService(RestaurantService resService) {
-		this.resService = resService;
-	}
-	
-	@Autowired
-	private FoodService foodService;	
-	public void setFoodService(FoodService foodService) {
-		this.foodService = foodService;
-	}
-	
-	
 	
 	@RequestMapping("/eating/{resId}/addFoodToCart")
 	public String handleRequest(
@@ -72,31 +59,32 @@ public class FoodCartController {
 		List<Food> foodList = this.alonealong.getFoodListByRestaurant(resId); 
 		model.put("foodList", foodList);
 		model.put("foodCart", cart.getAllFoodCartItems());
+		model.put("totalPrice", cart.getSubTotal());
 		Restaurant res = alonealong.getRestaurantByResId(resId);
 		model.put("restaurant", res);
 		return "redirect:/eating/{resId}";
 	}
 	
-	@RequestMapping("/eating/{resId}/updateFoodCartQuantities")
-	public ModelAndView handleRequest(
-			HttpServletRequest request,	
-			@ModelAttribute("sessionCart") FoodCart cart) throws Exception {
-		Iterator<FoodCartItem> cartItems = cart.getAllFoodCartItems();
-		while (cartItems.hasNext()) {
-			FoodCartItem cartItem = (FoodCartItem) cartItems.next();
-			String itemId = cartItem.getFood().getFoodId();
-			try {
-				int quantity = Integer.parseInt(request.getParameter(itemId));
-				cart.setQuantityByFoodId(itemId, quantity);
-				if (quantity < 1) {
-					cartItems.remove();
-				}
-			}
-			catch (NumberFormatException ex) {
-				// ignore on purpose
-			}
-		}
-		return new ModelAndView("restaurant", "foodCart", cart);
-	}
+//	@RequestMapping("/eating/{resId}/updateFoodCartQuantities")
+//	public ModelAndView handleRequest(
+//			HttpServletRequest request,	
+//			@ModelAttribute("sessionCart") FoodCart cart) throws Exception {
+//		Iterator<FoodCartItem> cartItems = cart.getAllFoodCartItems();
+//		while (cartItems.hasNext()) {
+//			FoodCartItem cartItem = (FoodCartItem) cartItems.next();
+//			String itemId = cartItem.getFood().getFoodId();
+//			try {
+//				int quantity = Integer.parseInt(request.getParameter(itemId));
+//				cart.setQuantityByFoodId(itemId, quantity);
+//				if (quantity < 1) {
+//					cartItems.remove();
+//				}
+//			}
+//			catch (NumberFormatException ex) {
+//				// ignore on purpose
+//			}
+//		}
+//		return new ModelAndView("restaurant", "foodCart", cart);
+//	}
 
 }

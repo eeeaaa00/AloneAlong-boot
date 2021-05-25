@@ -39,11 +39,10 @@ public class AloneAlongImpl implements AloneAlongFacade{
 
 	//Autowired 오류 수정 전까지 주석처리
 	@Autowired
-	private RestaurantDAO restaurantDao;
-	
+	private RestaurantDAO restaurantDao;	
 	@Autowired
 	private FoodDAO foodDao;
-	@Autowired
+  @Autowired
 	private UserDAO userDao;
 	@Autowired
 	private ProductDAO productDao;
@@ -179,72 +178,68 @@ public class AloneAlongImpl implements AloneAlongFacade{
 		paymentDao.updateCard(payment);
 	}
 	
+	//Restaurant
+	@Override
+	public void insertRestaurant(Restaurant res) {
+		restaurantDao.insertRestaurant(res);
+		
+	}
 	@Override
 	public List<Restaurant> getRestaurantList() {
 		return restaurantDao.getRestaurantList();
 	}
-
 	@Override
 	public List<Restaurant> searchRestaurantList(String keywords) {
 		return restaurantDao.searchRestaurantList(keywords);
 	}
-
 	@Override
 	public Restaurant getRestaurantByUserId(String userId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
 	@Override
 	public Restaurant getRestaurantByResId(String resId) {
 		// TODO Auto-generated method stub
 		return restaurantDao.getRestaurant(resId);
 	}
-
 	@Override
 	public List<Food> getFoodListByRestaurant(String resId) {
 		return foodDao.getFoodListByResId(resId);
 	}
-
+	
+	//Food
+	@Override
+	public void insertFood(Food food) {
+		foodDao.insertFood(food);
+		
+	}
 	@Override
 	public Food getFood(String foodId) {
 		return foodDao.getFood(foodId);
 	}
-
-//	@Override
-//	public FoodCart getFoodCart(String resId) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-
 	@Override
 	public List<FoodReview> getFoodReviewList(String resId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	
+	//Food Order
 	@Override
 	public void insertFoodOrder(FoodOrder order) {
 		// TODO Auto-generated method stub
 		
 	}
-
 	@Override
 	public FoodOrder getFoodOrder(int orderId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
 	@Override
 	public List<FoodOrder> getOrdersByUserId(String userId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
-  @Override
-	public void insertRestaurant(Restaurant res) {
-		restaurantDao.insertRestaurant(res);
-		
-	}
+  
   
   //together
 	@Override

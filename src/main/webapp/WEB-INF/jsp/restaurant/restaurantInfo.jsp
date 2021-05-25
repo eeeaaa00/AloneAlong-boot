@@ -34,12 +34,14 @@ b {color:#29A65F;}
  				<c:forEach var="foodCartItem" items="${foodCart}">
 			       <p class="mb-3">
 					<span class=" border-right pr-4 mr-4">${foodCartItem.food.name}</span>
-					<input class="form-control text-center w-25" name="quantity" type="number" value="${foodCartItem.quantity}" min="1">
+					<input class="form-control-md text-center w-25" name="quantity" type="number" value="${foodCartItem.quantity}" min="1">
+					<a class="cart-remove text-success" href="#"><i
+											class="delete fa fa-times"></i></a>
 				</p>
 				</c:forEach> 
 				<!--  <button class="btn btn-light" type="submit" onClick="location.href='<c:url value='/eating/${restaurant.resId}/updateFoodCartQuantities' />'">수량변경</button>-->
 			</div>
-			<p class="text-right">총 금액  <b class="pl-2">4,500</b>원</p>
+			<p class="text-right">총 금액  <b class="pl-2">${totalPrice}</b>원</p>
 			<div class="row justify-content-around">
 				<a type="button" class="btn btn-orange rounded-pill" href="<c:url value='/eating/order' />"><small>
 					<i class="far fa-credit-card pr-1"></i></small> 결제하기</a>
