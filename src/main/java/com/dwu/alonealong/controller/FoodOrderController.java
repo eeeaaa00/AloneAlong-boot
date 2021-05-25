@@ -1,7 +1,5 @@
 package com.dwu.alonealong.controller;
 
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -12,15 +10,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.bind.support.SessionStatus;
-import org.springframework.web.servlet.ModelAndView;
 
-import com.dwu.alonealong.domain.User;
-import com.dwu.alonealong.domain.Payment;
-import com.dwu.alonealong.domain.Cart;
-import com.dwu.alonealong.domain.CartItem;
-import com.dwu.alonealong.domain.Product;
-import com.dwu.alonealong.domain.ProductLineItem;
+import com.dwu.alonealong.domain.FoodCart;
 import com.dwu.alonealong.service.AloneAlongFacade;
 
 @Controller
@@ -36,7 +27,7 @@ public class FoodOrderController {
 	@RequestMapping("/eating/order")
 	public String initNewOrder(HttpServletRequest request,
 //		@RequestParam(value="product", required=false) Product product, 
-//		@RequestParam(value="cart", required=false) Cart cart, 
+		@ModelAttribute("sessionFoodCart") FoodCart cart,
 //		@ModelAttribute("productOrderForm") ProductOrderForm productOrderForm,
 		ModelMap model) throws Exception {
 		
@@ -48,21 +39,9 @@ public class FoodOrderController {
 		//LineItem 설정 
 //		List<ProductLineItem> orderList = new ArrayList<ProductLineItem>();
 		
-		//1. Cart가 null이 아니면 LineItem에 Cart에 담긴 cart Item 전부 저장
-//		if(cart != null){
-//			for(CartItem item : cart.getCartItemList()){
-//				ProductLineItem orderItem = new ProductLineItem(item.getProductId(), item.getQuantity(), item.getUnitPrice());
-//				orderList.add(orderItem);
-//			}
-//		}
-//		//2. product가 null이 아니면 LineItem에 product 저장
-//		else if (product != null){
-//			ProductLineItem orderItem = new ProductLineItem(product.getProductId(), product.getQuantity(), product.getUnitPrice());
-//			orderList.add(orderItem);
-//		}
-//		else {
-//			return "error";
-//		}
+		//만약 sessionFoodCart.size가 0이면 order창으로 넘어가지 못하도록.
+		model.put("foodCart", cart.getAllFoodCartItems());
+		model.put("totalPrice", cart.getSubTotal());
 //		
 //		//받아온 유저정보 & 결제정보 & LineItem으로 orderForm 세팅 
 //		productOrderForm.getProductOrder().initProductOrder(user, paymentMethod, orderList);

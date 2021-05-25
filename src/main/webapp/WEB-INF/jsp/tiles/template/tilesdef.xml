@@ -95,10 +95,21 @@
 		<put-attribute name="body-tab"
 			value="/WEB-INF/jsp/restaurant/restaurantFood.jsp" />
 	</definition>
+	<definition name="restaurantReview" extends="restaurant">
+		<put-attribute name="body-tab"
+			value="/WEB-INF/jsp/restaurant/restaurantReview.jsp" />
+	</definition>
 	
 	<definition name="restaurantForm" extends="restaurant_layout">
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/restaurant/restaurantForm.jsp" />
+		<put-attribute name="menu" 
+		value=""/>
+	</definition>
+	
+	<definition name="foodForm" extends="restaurant_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/restaurant/foodForm.jsp" />
 		<put-attribute name="menu" 
 		value=""/>
 	</definition>

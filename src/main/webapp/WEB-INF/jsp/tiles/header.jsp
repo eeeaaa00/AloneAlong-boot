@@ -4,6 +4,7 @@
 
 <!DOCTYPE html>
 <head>
+
 <link rel="stylesheet" href="${pageContext.request.contextPath}/style/alonealong.css" type="text/css" />
 <style type="text/css">
 .title, .title:hover, .title:focus {

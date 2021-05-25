@@ -1,15 +1,17 @@
 package com.dwu.alonealong.domain;
 
+import java.io.File;
 import java.io.Serializable;
 import java.net.URL;
 
 public class Food implements Serializable{
 	private String foodId;
 	private String resId;
-	private String ownerId;
+	private String ownerId; //일단 필요없음.
 	private int price;
 	private String name;
 	private String description;
+	private File imgFile;
 	private URL img;
 	private int maxPeopleNum;
 	
@@ -100,6 +102,14 @@ public class Food implements Serializable{
 		this.description = description;
 		this.img = img;
 		this.maxPeopleNum = maxPeopleNum;
+	}
+
+	public File getImgFile() {
+		return imgFile;
+	}
+
+	public void setImgFile(File imgFile) {
+		this.imgFile = imgFile;
 	}
 	
 	

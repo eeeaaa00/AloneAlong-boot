@@ -61,13 +61,13 @@ public class FoodCart implements Serializable{
 		FoodCartItem foodCartItem = foodMap.get(id);
 		foodCartItem.decrementQuantity();
 	}
-	public double getSubTotal() {
-		double subTotal = 0;
+	public int getSubTotal() {
+		int subTotal = 0;
 		Iterator<FoodCartItem> items = getAllFoodCartItems();
 		while(items.hasNext()) {
 			FoodCartItem cartItem = items.next();
 			Food food = cartItem.getFood();
-			double price = food.getPrice();
+			int price = food.getPrice();
 			int quantity = cartItem.getQuantity();
 			subTotal += price * quantity;
 		}

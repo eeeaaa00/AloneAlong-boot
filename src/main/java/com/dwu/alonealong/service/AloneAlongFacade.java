@@ -65,18 +65,17 @@ public interface AloneAlongFacade {
 	void updateCard(Payment payment);
 	
 	//Restaurant
-	List<Restaurant> getRestaurantList();
-	
+	void insertRestaurant(Restaurant res);
+	List<Restaurant> getRestaurantList();	
 	List<Restaurant> searchRestaurantList(String keywords);
 //
 	Restaurant getRestaurantByUserId(String userId);
 	Restaurant getRestaurantByResId(String resId);
-	void insertRestaurant(Restaurant res);
-//
-	List<Food> getFoodListByRestaurant(String resId);
-// 
+	
+	//Food
+	void insertFood(Food food);
+	List<Food> getFoodListByRestaurant(String resId); 
 	Food getFood(String foodId);
-//	FoodCart getFoodCart(String resId);
 	List<FoodReview> getFoodReviewList(String resId);
 //
 //	void insertOrder(Order order);
