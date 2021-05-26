@@ -28,11 +28,11 @@ import com.dwu.alonealong.domain.ProductReview;
 @Mapper
 public interface ProductReviewMapper {
 	//get Method
-	ProductReview getProductReview(String reviewId) throws DataAccessException;
-	List<ProductReview> getProductReviewList(String productId) throws DataAccessException;
-	List<ProductReview> getProductReviewListByRecommend(String productId) throws DataAccessException;
-	List<ProductReview> getProductReviewListByLowRating(String productId) throws DataAccessException;
-	List<ProductReview> getProductReviewListByHighRating(String productId) throws DataAccessException;
+	ProductReview getProductReview(String reviewId, String userId) throws DataAccessException;
+	List<ProductReview> getProductReviewList(String productId, String userId) throws DataAccessException;
+	List<ProductReview> getProductReviewListByRecommend(String productId, String userId) throws DataAccessException;
+	List<ProductReview> getProductReviewListByLowRating(String productId, String userId) throws DataAccessException;
+	List<ProductReview> getProductReviewListByHighRating(String productId, String userId) throws DataAccessException;
 	List<ProductReview> getProductReviewListByUserId(String userId) throws DataAccessException;
 	
 	void insertProductReview(ProductReview productReview)throws DataAccessException;
@@ -42,4 +42,7 @@ public interface ProductReviewMapper {
 	int numOfReviews(String productId) throws DataAccessException;
 	double averageOfReviews(String productId) throws DataAccessException;
 	int mostRatingOfReviews(String productId) throws DataAccessException;
+	
+	void insertProductReviewRecommend(String reviewId, String userId) throws DataAccessException;
+	void deleteProductReviewRecommend(String reviewId, String userId) throws DataAccessException;
 }

@@ -17,20 +17,20 @@ public class MybatisProductReviewDAO implements ProductReviewDAO{
 	private ProductReviewMapper productReviewMapper;
 
 	//get Product List Method
-	public ProductReview getProductReview(String reviewId) throws DataAccessException{
-		return productReviewMapper.getProductReview(reviewId);
+	public ProductReview getProductReview(String reviewId, String userId) throws DataAccessException{
+		return productReviewMapper.getProductReview(reviewId, userId);
 	}
 	
 	//get ProductReview List Method
-	public List<ProductReview> getProductReviewList(String productId, String sortType) throws DataAccessException{
+	public List<ProductReview> getProductReviewList(String productId, String sortType, String userId) throws DataAccessException{
 		switch(sortType) {
-			case "new" : return productReviewMapper.getProductReviewList(productId);
-			case "recommend" : return productReviewMapper.getProductReviewListByRecommend(productId);
-			case "lowRating" : return productReviewMapper.getProductReviewListByLowRating(productId);
-			case "highRating" : return productReviewMapper.getProductReviewListByHighRating(productId);
+			case "new" : return productReviewMapper.getProductReviewList(productId, userId);
+			case "recommend" : return productReviewMapper.getProductReviewListByRecommend(productId, userId);
+			case "lowRating" : return productReviewMapper.getProductReviewListByLowRating(productId, userId);
+			case "highRating" : return productReviewMapper.getProductReviewListByHighRating(productId, userId);
 			
 		}
-	    return productReviewMapper.getProductReviewList(productId);
+	    return productReviewMapper.getProductReviewList(productId, userId);
 	}
 	public List<ProductReview> getProductReviewListByUserId(String userId) throws DataAccessException{
 		return productReviewMapper.getProductReviewListByUserId(userId);
@@ -57,5 +57,14 @@ public class MybatisProductReviewDAO implements ProductReviewDAO{
 	}
 	public int mostRatingOfReviews(String productId) throws DataAccessException{
 		return productReviewMapper.mostRatingOfReviews(productId);
+	}
+
+	public void insertProductReviewRecommend(String reviewId, String userId){
+		productReviewMapper.insertProductReviewRecommend(reviewId, userId);
+		return;
+	}
+	public void deleteProductReviewRecommend(String reviewId, String userId){
+		productReviewMapper.deleteProductReviewRecommend(reviewId, userId);
+		return;
 	}
 }

@@ -7,84 +7,117 @@
   
   <select id="getProductReview" resultType="ProductReview">
      SELECT
-    	REVIEW_ID as reviewId, 
-    	PRODUCT_ID as productId, 
-    	USER_ID as userId, 
-    	REVIEW_DATE as reviewDate,
-    	REVIEW_RATING as rating,
-    	REVIEW_CONTENTS as reviewContents,
-    	REVIEW_RECOMMEND as recommend
-    FROM PRODUCT_REVIEW
-    WHERE REVIEW_ID = #{reviewId}
+    	PR.REVIEW_ID as reviewId, 
+    	PR.PRODUCT_ID as productId, 
+    	PR.USER_ID as userId, 
+    	PR.REVIEW_DATE as reviewDate,
+    	PR.REVIEW_RATING as rating,
+    	PR.REVIEW_CONTENTS as reviewContents,
+    	PR.REVIEW_RECOMMEND as recommend,
+    	USERINFO.NICKNAME as nickname,
+		COUNT(CASE WHEN REC.RECOMMEND_USER = #{userId} THEN 1 END) as checkRecommend
+    FROM PRODUCT_REVIEW PR
+	LEFT OUTER JOIN USERINFO ON PR.USER_ID = USERINFO.USER_ID
+	LEFT OUTER JOIN PRODUCT_REVIEW_RECOMMEND REC ON PR.REVIEW_ID = REC.REVIEW_ID
+    WHERE PR.REVIEW_ID = #{reviewId}
+	GROUP BY PR.REVIEW_ID, PR.PRODUCT_ID, PR.USER_ID, PR.REVIEW_DATE, PR.REVIEW_RATING, 
+	PR.REVIEW_CONTENTS, PR.REVIEW_RECOMMEND, USERINFO.NICKNAME
   </select>
   
   <select id="getProductReviewList" resultType="ProductReview">
      SELECT
-    	REVIEW_ID as reviewId, 
-    	PRODUCT_ID as productId, 
-    	USER_ID as userId, 
-    	REVIEW_DATE as reviewDate,
-    	REVIEW_RATING as rating,
-    	REVIEW_CONTENTS as reviewContents,
-    	REVIEW_RECOMMEND as recommend
-    FROM PRODUCT_REVIEW
-    WHERE PRODUCT_ID = #{productId}
-    ORDER BY REVIEW_DATE DESC
+    	PR.REVIEW_ID as reviewId, 
+    	PR.PRODUCT_ID as productId, 
+    	PR.USER_ID as userId, 
+    	PR.REVIEW_DATE as reviewDate,
+    	PR.REVIEW_RATING as rating,
+    	PR.REVIEW_CONTENTS as reviewContents,
+    	PR.REVIEW_RECOMMEND as recommend,
+    	USERINFO.NICKNAME as nickname,
+		COUNT(CASE WHEN REC.RECOMMEND_USER = #{userId} THEN 1 END) as checkRecommend
+    FROM PRODUCT_REVIEW PR
+	LEFT OUTER JOIN USERINFO ON PR.USER_ID = USERINFO.USER_ID
+	LEFT OUTER JOIN PRODUCT_REVIEW_RECOMMEND REC ON PR.REVIEW_ID = REC.REVIEW_ID
+    WHERE PR.PRODUCT_ID = #{productId}
+	GROUP BY PR.REVIEW_ID, PR.PRODUCT_ID, PR.USER_ID, PR.REVIEW_DATE, PR.REVIEW_RATING, 
+	PR.REVIEW_CONTENTS, PR.REVIEW_RECOMMEND, USERINFO.NICKNAME
+    ORDER BY PR.REVIEW_DATE DESC
   </select>
   
   <select id="getProductReviewListByRecommend" resultType="ProductReview">
      SELECT
-    	REVIEW_ID as reviewId, 
-    	PRODUCT_ID as productId, 
-    	USER_ID as userId, 
-    	REVIEW_DATE as reviewDate,
-    	REVIEW_RATING as rating,
-    	REVIEW_CONTENTS as reviewContents,
-    	REVIEW_RECOMMEND as recommend
-    FROM PRODUCT_REVIEW
-    WHERE PRODUCT_ID = #{productId}
-    ORDER BY REVIEW_RECOMMEND DESC
+    	PR.REVIEW_ID as reviewId, 
+    	PR.PRODUCT_ID as productId, 
+    	PR.USER_ID as userId, 
+    	PR.REVIEW_DATE as reviewDate,
+    	PR.REVIEW_RATING as rating,
+    	PR.REVIEW_CONTENTS as reviewContents,
+    	PR.REVIEW_RECOMMEND as recommend,
+    	USERINFO.NICKNAME as nickname,
+		COUNT(CASE WHEN REC.RECOMMEND_USER = #{userId} THEN 1 END) as checkRecommend
+    FROM PRODUCT_REVIEW PR
+	LEFT OUTER JOIN USERINFO ON PR.USER_ID = USERINFO.USER_ID
+	LEFT OUTER JOIN PRODUCT_REVIEW_RECOMMEND REC ON PR.REVIEW_ID = REC.REVIEW_ID
+    WHERE PR.PRODUCT_ID = #{productId}
+	GROUP BY PR.REVIEW_ID, PR.PRODUCT_ID, PR.USER_ID, PR.REVIEW_DATE, PR.REVIEW_RATING, 
+	PR.REVIEW_CONTENTS, PR.REVIEW_RECOMMEND, USERINFO.NICKNAME
+    ORDER BY PR.REVIEW_RECOMMEND DESC
   </select>
   
   <select id="getProductReviewListByLowRating" resultType="ProductReview">
      SELECT
-    	REVIEW_ID as reviewId, 
-    	PRODUCT_ID as productId, 
-    	USER_ID as userId, 
-    	REVIEW_DATE as reviewDate,
-    	REVIEW_RATING as rating,
-    	REVIEW_CONTENTS as reviewContents,
-    	REVIEW_RECOMMEND as recommend
-    FROM PRODUCT_REVIEW
-    WHERE PRODUCT_ID = #{productId}
-    ORDER BY REVIEW_RATING
+    	PR.REVIEW_ID as reviewId, 
+    	PR.PRODUCT_ID as productId, 
+    	PR.USER_ID as userId, 
+    	PR.REVIEW_DATE as reviewDate,
+    	PR.REVIEW_RATING as rating,
+    	PR.REVIEW_CONTENTS as reviewContents,
+    	PR.REVIEW_RECOMMEND as recommend,
+    	USERINFO.NICKNAME as nickname,
+		COUNT(CASE WHEN REC.RECOMMEND_USER = #{userId} THEN 1 END) as checkRecommend
+    FROM PRODUCT_REVIEW PR
+	LEFT OUTER JOIN USERINFO ON PR.USER_ID = USERINFO.USER_ID
+	LEFT OUTER JOIN PRODUCT_REVIEW_RECOMMEND REC ON PR.REVIEW_ID = REC.REVIEW_ID
+    WHERE PR.PRODUCT_ID = #{productId}
+	GROUP BY PR.REVIEW_ID, PR.PRODUCT_ID, PR.USER_ID, PR.REVIEW_DATE, PR.REVIEW_RATING, 
+	PR.REVIEW_CONTENTS, PR.REVIEW_RECOMMEND, USERINFO.NICKNAME
+    ORDER BY PR.REVIEW_RATING
   </select>
   
   <select id="getProductReviewListByHighRating" resultType="ProductReview">
      SELECT
-    	REVIEW_ID as reviewId, 
-    	PRODUCT_ID as productId, 
-    	USER_ID as userId, 
-    	REVIEW_DATE as reviewDate,
-    	REVIEW_RATING as rating,
-    	REVIEW_CONTENTS as reviewContents,
-    	REVIEW_RECOMMEND as recommend
-    FROM PRODUCT_REVIEW
-    WHERE PRODUCT_ID = #{productId}
-    ORDER BY REVIEW_RATING DESC
+    	PR.REVIEW_ID as reviewId, 
+    	PR.PRODUCT_ID as productId, 
+    	PR.USER_ID as userId, 
+    	PR.REVIEW_DATE as reviewDate,
+    	PR.REVIEW_RATING as rating,
+    	PR.REVIEW_CONTENTS as reviewContents,
+    	PR.REVIEW_RECOMMEND as recommend,
+    	USERINFO.NICKNAME as nickname,
+		COUNT(CASE WHEN REC.RECOMMEND_USER = #{userId} THEN 1 END) as checkRecommend
+    FROM PRODUCT_REVIEW PR
+	LEFT OUTER JOIN USERINFO ON PR.USER_ID = USERINFO.USER_ID
+	LEFT OUTER JOIN PRODUCT_REVIEW_RECOMMEND REC ON PR.REVIEW_ID = REC.REVIEW_ID
+    WHERE PR.PRODUCT_ID = #{productId}
+	GROUP BY PR.REVIEW_ID, PR.PRODUCT_ID, PR.USER_ID, PR.REVIEW_DATE, PR.REVIEW_RATING, 
+	PR.REVIEW_CONTENTS, PR.REVIEW_RECOMMEND, USERINFO.NICKNAME
+    ORDER BY PR.REVIEW_RATING DESC
   </select>
   
   <select id="getProductReviewListByUserId" resultType="ProductReview">
      SELECT
-    	REVIEW_ID as reviewId, 
-    	PRODUCT_ID as productId, 
-    	USER_ID as userId, 
-    	REVIEW_DATE as reviewDate,
-    	REVIEW_RATING as rating,
-    	REVIEW_CONTENTS as reviewContents,
-    	REVIEW_RECOMMEND as recommend
-    FROM PRODUCT_REVIEW
-    WHERE USER_ID = #{userId}
+    	PR.REVIEW_ID as reviewId, 
+    	PR.PRODUCT_ID as productId, 
+    	PR.USER_ID as userId, 
+    	PR.REVIEW_DATE as reviewDate,
+    	PR.REVIEW_RATING as rating,
+    	PR.REVIEW_CONTENTS as reviewContents,
+    	PR.REVIEW_RECOMMEND as recommend,
+    	USERINFO.NICKNAME as nickname
+    FROM PRODUCT_REVIEW PR
+	LEFT OUTER JOIN USERINFO ON PR.USER_ID = USERINFO.USER_ID
+    WHERE PR.PRODUCT_ID = #{productId}
+    ORDER BY PR.USER_ID = #{userId}
   </select>
   
   <insert id="insertProductReview" parameterType="productReview">
@@ -140,4 +173,19 @@
 	    ORDER BY CNT DESC)
 	WHERE ROWNUM = '1'
   </select>
+  
+  <delete id="deleteProductReviewRecommend">
+  	DELETE
+    FROM PRODUCT_REVIEW_RECOMMEND
+    WHERE REVIEW_ID = #{reviewId} AND RECOMMEND_USER = #{userId}
+  </delete>
+  
+  <insert id="insertProductReviewRecommend">
+     INSERT INTO PRODUCT_REVIEW_RECOMMEND
+     VALUES (
+     	#{reviewId}, 
+     	#{userId}
+     )
+  </insert>
+  
 </mapper>

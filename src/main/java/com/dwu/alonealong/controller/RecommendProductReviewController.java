@@ -24,17 +24,30 @@ public class RecommendProductReviewController {
 		this.aloneAlong = aloneAlong;
 	}
 	
-	@RequestMapping("/shop/{productId}/review/recommend")
+	@RequestMapping("/shop/{productId}/review/recommend/{reviewId}")
 	public RedirectView handleRequest(
-			@ModelAttribute("userSession") UserSession userSession,
+//			@ModelAttribute("userSession") UserSession userSession,
 			@PathVariable("productId") String productId,
-			@RequestParam(value="product") Product product,
 			@PathVariable("reviewId") String reviewId,
 			ModelMap model) throws Exception {
+		//임시
+		String userId = "1";
+		
+		ProductReview productReview = this.aloneAlong.getProductReview(reviewId, userId);
+		
 		//결과값 검사 추가 필요
-		ProductReview productReview = this.aloneAlong.getProductReview(reviewId);
-		productReview.increaseRecommend();
-		this.aloneAlong.updateProductReview(productReview);
+		if (!productReview.getUserId().equals(userId)) {
+			if(productReview.getCheckRecommend() == false) {
+				productReview.increaseRecommend();
+				this.aloneAlong.updateProductReview(productReview);
+				this.aloneAlong.insertProductReviewRecommend(productReview.getReviewId(), userId);
+			}
+			else {
+				productReview.decreaseRecommend();
+				this.aloneAlong.updateProductReview(productReview);
+				this.aloneAlong.deleteProductReviewRecommend(productReview.getReviewId(), userId);
+			}
+		}
 		return new RedirectView("/shop/{productId}/review");
 	}
 

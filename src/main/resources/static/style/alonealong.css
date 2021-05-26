@@ -16,6 +16,7 @@ body {
 .text-green-roboto {  font-family: 'Roboto', serif; color:#29A65F; }
 .text-orange { color:#F27024; }
 .text-orange-roboto { font-family: 'Roboto', serif; color:#F27024; }
+.text-gray {  font-family: 'Noto Serif KR', serif; color:#6C757D; }
 
 /* class "textbtn" : 기본 검은색, hover / focus시 초록색이 되는 */ 
 .textbtn {
