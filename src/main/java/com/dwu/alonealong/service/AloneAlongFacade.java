@@ -36,8 +36,8 @@ public interface AloneAlongFacade {
 	Product getProduct(String productId);
 	
 	//PRODUCT Review
-	ProductReview getProductReview(String reviewId);
-	List<ProductReview> getProductReviewList(String productId, String sortType);
+	ProductReview getProductReview(String reviewId, String userId);
+	List<ProductReview> getProductReviewList(String productId, String sortType, String userId);
 	List<ProductReview> getProductReviewListByUserId(String userId);
 	void insertProductReview(ProductReview productReview);
 	void updateProductReview(ProductReview productReview);
@@ -45,6 +45,8 @@ public interface AloneAlongFacade {
 	int numOfReviews(String productId);
 	double averageOfReviews(String productId);
 	int mostRatingOfReviews(String productId);
+	void insertProductReviewRecommend(String reviewId, String userId);
+	void deleteProductReviewRecommend(String reviewId, String userId);
 	
 	//PRODUCT Order
 	List<ProductOrder> getProductOrdersByUserId(String userId);

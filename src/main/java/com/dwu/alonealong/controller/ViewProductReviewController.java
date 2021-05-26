@@ -31,6 +31,8 @@ public class ViewProductReviewController {
 			@RequestParam(value="sortType", defaultValue="new") String sortType,
 			@RequestParam(value="quantity", defaultValue="1") int quantity,  
 			ModelMap model) throws Exception {
+		//임시
+		String userId = "1";
 
 		String sortTypeName = "최신순";
 		switch(sortType) {
@@ -40,7 +42,7 @@ public class ViewProductReviewController {
 		}
 
 		Product product = this.aloneAlong.getProduct(productId);
-		List<ProductReview> reviewList = this.aloneAlong.getProductReviewList(productId, sortType);
+		List<ProductReview> reviewList = this.aloneAlong.getProductReviewList(productId, sortType, userId);
 		
 		if(reviewList.size() > 0) {
 			model.put("numOfReviews", this.aloneAlong.numOfReviews(productId));
@@ -61,6 +63,9 @@ public class ViewProductReviewController {
 		model.put("pcId", product.getPcId());
 		model.put("reviewList", reviewList);
 		model.put("sortTypeName", sortTypeName);
+		
+		//로그인 완성 후 수정 필요
+		model.put("userId", "1");
 		return "productReview";
 	}
 

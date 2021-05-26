@@ -30,9 +30,14 @@ public class DeleteProductReviewController {
 			@PathVariable("productId") String productId,
 			@PathVariable("reviewId") String reviewId,
 			ModelMap model) throws Exception {
-		//동일한 user인지 검사하는 과정 필요
+		//임시
+		String userId = "1";
+		
+		ProductReview productReview = this.aloneAlong.getProductReview(reviewId, userId);
 		//결과값 검사 추가 필요
-		this.aloneAlong.deleteProductReview(reviewId);
+		if(productReview.getUserId() == userId) {
+			this.aloneAlong.deleteProductReview(reviewId);
+		}
 		return new RedirectView("/shop/{productId}/review");
 	}
 

@@ -102,11 +102,11 @@ public class AloneAlongImpl implements AloneAlongFacade{
 	}
 	
 	//Product Review
-	public ProductReview getProductReview(String reviewId){
-		return productReviewDao.getProductReview(reviewId);
+	public ProductReview getProductReview(String reviewId, String userId){
+		return productReviewDao.getProductReview(reviewId, userId);
 	}
-	public List<ProductReview> getProductReviewList(String productId, String sortType){
-		return productReviewDao.getProductReviewList(productId, sortType);
+	public List<ProductReview> getProductReviewList(String productId, String sortType, String userId){
+		return productReviewDao.getProductReviewList(productId, sortType, userId);
 	}
 	public List<ProductReview> getProductReviewListByUserId(String userId){
 		return productReviewDao.getProductReviewListByUserId(userId);
@@ -131,6 +131,14 @@ public class AloneAlongImpl implements AloneAlongFacade{
 	}
 	public int mostRatingOfReviews(String productId){
 		return productReviewDao.mostRatingOfReviews(productId);
+	}
+	public void insertProductReviewRecommend(String reviewId, String userId){
+		productReviewDao.insertProductReviewRecommend(reviewId, userId);
+		return;
+	}
+	public void deleteProductReviewRecommend(String reviewId, String userId){
+		productReviewDao.deleteProductReviewRecommend(reviewId, userId);
+		return;
 	}
 	
 	//PRODUCT Order

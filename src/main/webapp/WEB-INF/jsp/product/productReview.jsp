@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<style>
+.btn-recommend { background-color:#f8f9fa; }
+.btn-recommend:hover, .btn-recommend:focus, .btn-recommend.active
+	{  color:#F27024; border-color:#F27024; }
+</style>
 
 <div class="row my-5 mx-5">
 	<div class="col-md-12" style="width:100%;">
@@ -79,24 +84,31 @@
 				</div>
 				<div class="text-muted mx-2 row">
 					<div class="col-md-6">
-						<small>${review.userId} | <fmt:formatDate value="${review.reviewDate}" pattern="yyyy.MM.dd"/></small>
+						<small>${review.nickname} | <fmt:formatDate value="${review.reviewDate}" pattern="yyyy.MM.dd"/></small>
 					</div>
+					<c:if test="${review.userId eq userId}">
 					<div class="col-md-6 text-right">
-						<!-- 작성자 체크 필요 -->
 						<a class="textbtn-gray" data-toggle="modal" data-target="#updateModal" ><small><i class="fas fa-pen mx-2"></i></small></a>
 						<a class="textbtn-gray" data-toggle="modal" data-target="#deleteModal" ><small><i class="far fa-trash-alt"></i></small></a>
 					</div>
+					</c:if>
 				</div>
 				<div class="mx-4 my-2">
 					<div class="my-3 mx-2">
 						<c:out value="${review.reviewContents}"/>
 					</div>
-					<div class="bg-light rounded-pill mt-3 py-1 w-25 text-center" type="button">
-						<i class="text-green far fa-thumbs-up"></i>
-						<span class="text-green-roboto">${review.recommend}</span><small class="text-muted"> 명이 추천</small></div>
+					<a class="btn btn-sm btn-recommend rounded-pill mt-3 py-1 w-25 text-center text-green-roboto"
+						href='<c:url value="/shop/${productId}/review/recommend/${review.reviewId}"/>'>
+						<c:if test="${review.checkRecommend eq false}">
+						<i class="far fa-thumbs-up"></i>
+						</c:if>
+						<c:if test="${review.checkRecommend eq true}">
+						<i class="fas fa-thumbs-up"></i>
+						</c:if>
+						${review.recommend}<small class="text-gray"> 명이 추천</small>
+					</a>
 				</div>
-			</div>
-			<div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-hidden="true">
+				<div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-hidden="true">
 				<form action='<c:url value="/shop/${productId}/review/update/${review.reviewId}"/>'>
 					<div class="modal-dialog modal-dialog-centered" role="document">
 						<div class="modal-content pb-4">
@@ -146,6 +158,7 @@
 						</div>
 					</div>
 				</div>
+			</div>
 			</div>
 			</c:forEach>
 		  </div>
