@@ -21,19 +21,14 @@
 <script src="https://kit.fontawesome.com/cfb4151af4.js"></script>
 <!-- 구글폰트링크 -->
 <link rel="preconnect" href="https://fonts.gstatic.com">
-<link
-	href="https://fonts.googleapis.com/css2?family=Noto+Serilogin.jspf+KR:wght@300&family=Roboto&display=swap"
-	rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300&family=Roboto&display=swap" rel="stylesheet">
 <title>로그인</title>
 <style>
 body {
 	    width:100%;
 	    height:100%;
 	    margin: 0;
-  		padding-top: 80px;
   		padding-bottom: 40px;
-  		font-family: "Nanum Gothic", arial, helvetica, sans-serif;
   		background-repeat: no-repeat;
 	}
 </style>
