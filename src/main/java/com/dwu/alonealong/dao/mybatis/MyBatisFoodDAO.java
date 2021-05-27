@@ -29,8 +29,9 @@ public class MyBatisFoodDAO implements FoodDAO{
 	public void updateFood(Food food) {
 		foodMapper.updateFood(food);
 	}
-	public void deleteFood(Food food) {
-		foodMapper.deleteFood(food);
+	public void deleteFood(String foodId) {
+		foodMapper.deleteFood(foodId);
 	}
+
 	
 }

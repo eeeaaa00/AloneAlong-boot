@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.dwu.alonealong.domain.Restaurant;
 import com.dwu.alonealong.service.AloneAlongFacade;
-import com.dwu.alonealong.service.RestaurantService;
 
 @Controller
 @RequestMapping("/eating/adminRes")
@@ -27,12 +26,6 @@ public class RestaurantController {
 	public void setAlonealong(AloneAlongFacade alonealong) {
 		this.alonealong = alonealong;
 	}
-//	@Autowired
-//	private RestaurantService resService;
-//	
-//	public void setRestaurantService(RestaurantService resService) {
-//		this.resService = resService;
-//	}
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public String form(@ModelAttribute("restaurant") RestaurantForm resForm) {

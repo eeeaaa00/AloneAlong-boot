@@ -20,15 +20,19 @@ b {color:#29A65F;}
 		<div class="col-md-2"></div>
 	</div>
 	<div class="mx-5 my-3 text-right">
+	<form action='<c:url value="/eating"/>'>
 		<div class="dropdown">
 			<button class="btn btn-sm dropdown-toggle" data-toggle="dropdown"
-				aria-haspopup="true">최신순</button>
+			aria-haspopup="true"><c:out value="${sortTypeName}"/></button>
 			<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-				<a class="dropdown-item" href="#"><small>과거순</small></a>
-				<a class="dropdown-item" href="#"><small>인기순</small></a>
-				<a class="dropdown-item" href="#"><small>낮은 가격순</small></a>
+				<button class="dropdown-item" name="sortType" value="new" type="submit"><small>최신 등록순</small></button>
+				<button class="dropdown-item" name="sortType" value="review" type="submit"><small>리뷰 많은순</small></button>
+				<button class="dropdown-item" name="sortType" value="rating" type="submit"><small>별점 높은순</small></button>
 			</div>
 		</div>
+		<input type="hidden" name="category1" value="${category1}">
+		<input type="hidden" name="category2" value="${category2}">
+	</form>
 		<button onClick="location.href='<c:url value='/eating/adminRes' />'">임시 식당등록버튼(마이페이지)</button>
 	</div>
 	
@@ -43,7 +47,7 @@ b {color:#29A65F;}
 					<div class="d-flex justify-content-between align-items-start">
 						<h6 class="card-text text-left mb-3">${res.resName}</h6>
 						</div>
-					<p>별점 : 4.5</p>
+					<p>별점 : ${res.avgRating}</p>
 					<p>주소 : ${res.resAddress} </p>
 				</div>
 			</div>

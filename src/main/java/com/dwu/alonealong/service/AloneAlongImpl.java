@@ -10,6 +10,9 @@ import org.springframework.transaction.annotation.Transactional;
 import com.dwu.alonealong.dao.UserDAO;
 import com.dwu.alonealong.dao.CartItemDAO;
 import com.dwu.alonealong.dao.FoodDAO;
+import com.dwu.alonealong.dao.FoodLineItemDAO;
+import com.dwu.alonealong.dao.FoodOrderDAO;
+import com.dwu.alonealong.dao.OrderInfoDAO;
 import com.dwu.alonealong.dao.PaymentDAO;
 import com.dwu.alonealong.dao.ProductDAO;
 import com.dwu.alonealong.dao.ProductOrderDAO;
@@ -21,6 +24,8 @@ import com.dwu.alonealong.dao.TogetherMemberDAO;
 import com.dwu.alonealong.domain.CartItem;
 import com.dwu.alonealong.domain.Food;
 import com.dwu.alonealong.domain.FoodCart;
+import com.dwu.alonealong.domain.FoodCartItem;
+import com.dwu.alonealong.domain.FoodLineItem;
 import com.dwu.alonealong.domain.FoodOrder;
 import com.dwu.alonealong.domain.FoodReview;
 import com.dwu.alonealong.domain.Payment;
@@ -37,12 +42,20 @@ import com.dwu.alonealong.domain.User;
 @Transactional
 public class AloneAlongImpl implements AloneAlongFacade{
 
-	//Autowired 오류 수정 전까지 주석처리
+	//restaurant
 	@Autowired
 	private RestaurantDAO restaurantDao;	
 	@Autowired
 	private FoodDAO foodDao;
-  @Autowired
+	@Autowired
+	private FoodLineItemDAO foodLineItemDao;
+	@Autowired
+	private FoodOrderDAO foodOrderDao;
+	@Autowired
+	private OrderInfoDAO orderInfoDao;
+	
+	
+    @Autowired
 	private UserDAO userDao;
 	@Autowired
 	private ProductDAO productDao;
@@ -197,6 +210,10 @@ public class AloneAlongImpl implements AloneAlongFacade{
 		return restaurantDao.getRestaurantList();
 	}
 	@Override
+	public List<Restaurant> getRestaurantListByCategory(String category1, String category2, String sortType){
+		return restaurantDao.getRestaurantListByCategory(category1, category2, sortType);
+	}
+	@Override
 	public List<Restaurant> searchRestaurantList(String keywords) {
 		return restaurantDao.searchRestaurantList(keywords);
 	}
@@ -210,17 +227,26 @@ public class AloneAlongImpl implements AloneAlongFacade{
 		// TODO Auto-generated method stub
 		return restaurantDao.getRestaurant(resId);
 	}
+	
+	
+	//Food
 	@Override
 	public List<Food> getFoodListByRestaurant(String resId) {
 		return foodDao.getFoodListByResId(resId);
 	}
-	
-	//Food
 	@Override
 	public void insertFood(Food food) {
 		foodDao.insertFood(food);
-		
 	}
+	@Override
+	public void updateFood(Food food) {
+		foodDao.updateFood(food);
+	}
+	@Override
+	public void deleteFood(String foodId) {
+		foodDao.deleteFood(foodId);
+	}
+	
 	@Override
 	public Food getFood(String foodId) {
 		return foodDao.getFood(foodId);
@@ -230,11 +256,24 @@ public class AloneAlongImpl implements AloneAlongFacade{
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
 	//Food Order
 	@Override
 	public void insertFoodOrder(FoodOrder order) {
-		// TODO Auto-generated method stub
+		String newOrderId;
+		//주문 하나의 주문자정보
+		orderInfoDao.insertFoodOrderInfo(order); //foodId는 그냥 맨 처음 대표적인 list[0]로 foodId 넣음.
+		//주문 하나의 예약정보
+		newOrderId = orderInfoDao.getRecentOrderId();
+		foodOrderDao.insertFoodOrder(order, newOrderId);
+		
+		
+		//카트 item들 모두 넣기
+		for(FoodCartItem val : order.getFoodList()) {
+			FoodLineItem item = new FoodLineItem(newOrderId, val.getFood().getFoodId(), val.getQuantity(), val.getTotalPrice());
+			foodLineItemDao.insertFoodLineItem(item);
+		}
+			
+		
 		
 	}
 	@Override

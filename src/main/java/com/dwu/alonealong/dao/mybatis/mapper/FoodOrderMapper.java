@@ -1,18 +1,18 @@
-package com.dwu.alonealong.dao;
+package com.dwu.alonealong.dao.mybatis.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Mapper;
+
+import com.dwu.alonealong.domain.Food;
 import com.dwu.alonealong.domain.FoodOrder;
 
-public interface FoodOrderDAO {
+@Mapper
+public interface FoodOrderMapper {
 	
 	List<FoodOrder> getFoodOrdersByUsername(String username);
-	
 	FoodOrder getFoodOrder(int orderId);
-	
+
 	void insertFoodOrder(FoodOrder foodOrder, String orderId);
 	
-	
-	//void insertOrderStatus(FoodOrder foodOrder);
-	//int mySqlServerInsertOrder(FoodOrder order);
 }

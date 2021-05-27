@@ -68,7 +68,8 @@ public interface AloneAlongFacade {
 	
 	//Restaurant
 	void insertRestaurant(Restaurant res);
-	List<Restaurant> getRestaurantList();	
+	List<Restaurant> getRestaurantList();
+	List<Restaurant> getRestaurantListByCategory(String category1, String category2, String sortType);
 	List<Restaurant> searchRestaurantList(String keywords);
 //
 	Restaurant getRestaurantByUserId(String userId);
@@ -76,6 +77,8 @@ public interface AloneAlongFacade {
 	
 	//Food
 	void insertFood(Food food);
+	void updateFood(Food food);
+	void deleteFood(String foodId );
 	List<Food> getFoodListByRestaurant(String resId); 
 	Food getFood(String foodId);
 	List<FoodReview> getFoodReviewList(String resId);

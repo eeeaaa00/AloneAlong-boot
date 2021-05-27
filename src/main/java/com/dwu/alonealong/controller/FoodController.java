@@ -10,13 +10,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.dwu.alonealong.domain.Food;
 import com.dwu.alonealong.domain.Restaurant;
 import com.dwu.alonealong.service.AloneAlongFacade;
-import com.dwu.alonealong.service.FoodService;
-import com.dwu.alonealong.service.RestaurantService;
 
 @Controller
 @RequestMapping("/eating/{resId}/adminFood")
@@ -32,8 +31,10 @@ public class FoodController {
 		this.alonealong = alonealong;
 	}
 	
-	@RequestMapping(method = RequestMethod.GET) // 아 왜 foodform으로 안넘어가는거야 r2?가 post라서 그런건가 했는데 아
-	public String form(@ModelAttribute("food") FoodForm foodForm, @PathVariable("resId") String resId) {
+	@RequestMapping(method = RequestMethod.GET)
+	public String form(
+			@ModelAttribute("food") FoodForm foodForm, 
+			@PathVariable("resId") String resId) {
 		return "foodForm";
 //		return "thyme/restaurant/foodForm";
 //		return FOOD_INSERT_FORM;
@@ -54,6 +55,46 @@ public class FoodController {
 //		return "eating/Food";
 		return "redirect:/eating/{resId}";
 //		return form;
+	}
+	
+	@RequestMapping(value = "/update", method = RequestMethod.GET) 
+	public String form2(
+			@RequestParam("foodId") String foodId,
+			@ModelAttribute("food") FoodForm foodForm, 
+			@PathVariable("resId") String resId,
+			Model model) {
+		System.out.println("update");
+		Food foodData = alonealong.getFood(foodId);
+		model.addAttribute("food", foodData);
+		return "foodForm";
+	}
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
+	public String update(
+			@RequestParam("foodId") String foodId,
+			@ModelAttribute("food") FoodForm foodForm,
+			@PathVariable("resId") String resId,
+//			BindingResult bindingResult,
+			Model model) {
+		
+		Food food = new Food(resId, foodId, foodForm.getName(), foodForm.getPrice(), foodForm.getDescription(), null, foodForm.getMaxPeopleNum());
+		alonealong.updateFood(food);
+		
+		List<Food> foodList = alonealong.getFoodListByRestaurant(resId);
+		model.addAttribute("foodList", foodList);
+		return "redirect:/eating/{resId}";
+	}
+	@RequestMapping(value = "/delete")
+	public String delete(
+			@RequestParam("foodId") String foodId,
+			@PathVariable("resId") String resId,
+//			BindingResult bindingResult,
+			Model model) {
+		
+		alonealong.deleteFood(foodId);
+		
+		List<Food> foodList = alonealong.getFoodListByRestaurant(resId);
+		model.addAttribute("foodList", foodList);
+		return "redirect:/eating/{resId}";
 	}
 	
 	
