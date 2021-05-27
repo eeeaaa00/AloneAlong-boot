@@ -63,7 +63,7 @@ public class MybatisTogetherDAO implements TogetherDAO {
 	}
 
 	@Override
-	public List<Together> getTogetherListByCategory(String area, Date date, String kind, int price, String sex, int age)
+	public List<Together> getTogetherListByCategory(String area, /*Date date,*/ String kind, int price, String sex, int age)
 			throws DataAccessException {
 		// TODO Auto-generated method stub
 		return null;
