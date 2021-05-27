@@ -43,6 +43,10 @@
 		<put-attribute name="lineItem" value="/WEB-INF/jsp/order/togetherLineItem.jsp"  />
 	</definition>
 		
+	<definition name="foodOrder" extends="order_layout">
+		<put-attribute name="lineItem" value="/WEB-INF/jsp/order/foodLineItem.jsp"  />
+	</definition>
+		
 	<!-- product -->
 	<definition name="productCart" extends="base_layout">
 		<put-attribute name="title" value="Shopping Cart" type="string"/>
