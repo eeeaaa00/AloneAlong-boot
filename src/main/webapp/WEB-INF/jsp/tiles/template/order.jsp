@@ -30,6 +30,7 @@
    <tiles:insertAttribute name="header" />
 	
 	<!-- Page Content -->
+	<!--<form action="<tiles:getAsString name="formUrl" />">-->
 	<div class="container my-5 pb-5">
 	    <div class="container col-md-10 mx-auto mb-3">
 		<div class=" mb-3 pb-3 text-center">
@@ -42,6 +43,7 @@
 			<tiles:insertAttribute name="paymentInfo" /> <!-- 결제 정보 -->	
 		</div>
 	</div>
+	<!-- </form> -->
 	<!-- /.container -->
 	<!-- Modal -->
     <tiles:insertAttribute name="footer" />
