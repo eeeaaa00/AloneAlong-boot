@@ -30,17 +30,22 @@
    <tiles:insertAttribute name="header" />
 	
 	<!-- Page Content -->
+	<form>
 	<div class="container my-5 pb-5">
+	    <div class="container col-md-10 mx-auto mb-3">
 		<div class=" mb-3 pb-3 text-center">
 			<h1>Order</h1></div>
 			<!-- 주문 정보 -->
-			<tiles:insertAttribute name="main-top" />
-			<tiles:insertAttribute name="main-body" />
+			<!-- 주문 목록 -->
+			<tiles:insertAttribute name="lineItem" /> <!-- 주문 목록 -->
+			<tiles:insertAttribute name="orderInfo" /> <!-- 주문 정보 -->
+			<tiles:insertAttribute name="shipInfo" /> <!-- 배송 정보 -->
+			<tiles:insertAttribute name="paymentInfo" /> <!-- 결제 정보 -->	
+		</div>
 	</div>
+	</form>
 	<!-- /.container -->
 	<!-- Modal -->
-	<!-- 장바구니 -->
-	<tiles:insertAttribute name="cart" />
     <tiles:insertAttribute name="footer" />
 </body>
 </html>

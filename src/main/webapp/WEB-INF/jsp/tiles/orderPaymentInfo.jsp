@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<form class="needs-validation" novalidate="">
-    <div class="container row mb-3">
-    	<div class="col-md-8">
+<form>
+    <div class="container col-md-10 mx-auto mb-3">
 	    	<div class="mb-5 pb-5 border-bottom pr-5">
 		      <h4 class="mb-5 mx-2">주문 정보</h4>
 		        <div class="row w-50 mx-2 mb-3">
@@ -117,32 +117,12 @@
 					</div>
 				</div>
 			</div>
+	        <div class="row mx-5 mb-5 pb-5 justify-content-end">
+	        	<div class="col-md-3 text-right align-self-end">
+	        		합계 <span class="text-orange-roboto text-roboto pl-1">
+	        			<fmt:formatNumber value="${totalPrice}" pattern="#,###,###"/></span>원</div>
+	        	<div class="col-md-6"><a type="button" class="btn btn-orange btn-block rounded-pill py-3 my-1 mt-3 mx-3" href="<c:url value='/order' />">
+					<small><i class="far fa-credit-card pr-1"></i></small> 결제하기 </a></div>
+			</div>		
 		</div>
-        
-    	<div class="col-md-4">
-    		<div class="bg-light py-4 rounded-lg px-4">
-					<h3 class="mt-2 mb-5 text-uppercase">주문 합계</h3>
-					<div
-						class="py-1 pt-3 px-3 row justify-content-between border-bottom">
-						<span>상품 금액</span><span>${productsPrice}원</span>
-					</div>
-					<div
-						class="py-1 pt-3 px-3 row justify-content-between border-bottom">
-						<span>배송비</span><span>${shippingFee}원</span>
-					</div>
-					<div
-						class="py-1 pt-3 px-3 row align-items-end justify-content-between border-bottom">
-						<span>합계</span>
-						<h4>${totalPrice}원</h4>
-					</div>
-					<div class="row justify-content-center">
-						<a type="button"
-							class="btn btn-orange btn-block rounded-pill py-3 my-1 mt-3 mx-3"
-							href="<c:url value='/order' />"> <small><i
-								class="far fa-credit-card pr-1"></i></small> 결제하기
-						</a>
-					</div>
-				</div>
-    	</div>
-	</div>
 </form>
