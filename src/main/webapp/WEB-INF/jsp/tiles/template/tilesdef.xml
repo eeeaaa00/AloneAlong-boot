@@ -4,6 +4,8 @@
        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 
 <tiles-definitions>
+
+	<!-- layout -->
 	<definition name="base_layout"
 		template="/WEB-INF/jsp/tiles/template/layout.jsp">
 		<put-attribute name="title" value="AloneAlong" type="string"/>
@@ -16,27 +18,38 @@
 	<definition name="index" extends="base_layout">
 		<put-attribute name="body" value="" />
 	</definition>	
+		
 	
-	<definition name="productCart" extends="base_layout">
-		<put-attribute name="title" value="Shopping Cart" type="string"/>
-		<put-attribute name="body"
-			value="/WEB-INF/jsp/product/productCart.jsp" />
-	</definition>	
-	
+	<!-- order -->
 	<definition name="order_layout"
 		template="/WEB-INF/jsp/tiles/template/order.jsp">
 		<put-attribute name="title" value="Order" type="string"/>
-		<put-attribute name="main-top" value="" />
-		<put-attribute name="main-body" value="/WEB-INF/jsp/tiles/orderPaymentInfo.jsp" />
-		<put-attribute name="cart"
-			value="/WEB-INF/jsp/product/cartModal.jsp" />
+		<put-attribute name="lineItem" value="" />
+		<put-attribute name="orderInfo" value="/WEB-INF/jsp/order/orderInfo.jsp" />
+		<put-attribute name="shipInfo" value="" />
+		<put-attribute name="paymentInfo" value="/WEB-INF/jsp/order/paymentInfo.jsp" />
 		<put-attribute name="header"
 			value="/WEB-INF/jsp/tiles/header.jsp" />
 		<put-attribute name="footer"
 			value="/WEB-INF/jsp/tiles/footer.jsp" />
 	</definition>
 	
+	<definition name="productOrder" extends="order_layout">
+		<put-attribute name="lineItem" value="/WEB-INF/jsp/order/productLineItem.jsp"  />
+		<put-attribute name="shipInfo" value="/WEB-INF/jsp/order/shipInfo.jsp"  />
+	</definition>
+	
+	<definition name="togetherOrder" extends="order_layout">
+		<put-attribute name="lineItem" value="/WEB-INF/jsp/order/togetherLineItem.jsp"  />
+	</definition>
+		
 	<!-- product -->
+	<definition name="productCart" extends="base_layout">
+		<put-attribute name="title" value="Shopping Cart" type="string"/>
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/product/productCart.jsp" />
+	</definition>
+	
 	<definition name="product_layout"
 		template="/WEB-INF/jsp/tiles/template/product.jsp">
 		<put-attribute name="title" value="Shopping" type="string"/>
