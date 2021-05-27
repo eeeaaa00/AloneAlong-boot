@@ -3,9 +3,6 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<div class="row mb-5">
-    <div class="col-md-1"></div>
-    <div class="col-md-10 mb-3">
     
 	  <form:form modelAttribute="foodOrderForm" action="/eating/order/confirm" class="needs-validation" novalidate="">
     	<div class="mb-5 pb-5 border-bottom">
@@ -41,59 +38,44 @@
 	
         <hr class="mb-4">
 
-        <h4 class="mb-3">Payment</h4>
-
-        <div class="d-block my-3">
-          <div class="custom-control custom-radio">
-            <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked="" required="">
-            <label class="custom-control-label" for="credit">Credit card</label>
-          </div>
-          <div class="custom-control custom-radio">
-            <input id="debit" name="paymentMethod" type="radio" class="custom-control-input" required="">
-            <label class="custom-control-label" for="debit">Debit card</label>
-          </div>
-          <div class="custom-control custom-radio">
-            <input id="paypal" name="paymentMethod" type="radio" class="custom-control-input" required="">
-            <label class="custom-control-label" for="paypal">PayPal</label>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-6 mb-3">
-            <label for="cc-name">Name on card</label>
-            <input type="text" class="form-control" name = "ccName" id="cc-name" placeholder="" required="">
-            <small class="text-muted">Full name as displayed on card</small>
-            <div class="invalid-feedback">
-              Name on card is required
-            </div>
-          </div>
-          <div class="col-md-6 mb-3">
-            <label for="cc-number">Credit card number</label>
-            <input type="text" class="form-control" name = "ccNum" id="cc-number" placeholder="" required="">
-            <div class="invalid-feedback">
-              Credit card number is required
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-3 mb-3">
-            <label for="cc-expiration">Expiration</label>
-            <input type="text" class="form-control" name = "ccDate" id="cc-expiration" placeholder="" required="">
-            <div class="invalid-feedback">
-              Expiration date required
-            </div>
-          </div>
-          <div class="col-md-3 mb-3">
-            <label for="cc-cvv">CVV</label>
-            <input type="text" class="form-control" id="cc-cvv" placeholder="" required="">
-            <div class="invalid-feedback">
-              Security code required
-            </div>
-          </div>
-        </div>
+        <h4 class="mx-2 mb-5">결제 정보</h4>
+			<div class="row w-100 mx-2 mb-3 no-gutters">
+				<label for="cardname" class="col-4 col-form-label">카드 이름</label>
+				<div class="col-8">
+					<select id="ccName" name="ccName" class="custom-select">
+						<option value="NH">농협</option>
+						<option value="KM">국민</option>
+						<option value="SH">신한</option>
+						<option value="WE">우리</option>
+						<option value="IBK">기업</option>
+						<option value="SC">SC제일</option>
+						<option value="KK">카카오뱅크</option>
+						<option value="NT">새마을금고</option>
+					</select>
+				</div>
+			</div>
+        <div class="row w-100 mx-2 mb-3 no-gutters">
+			<label for="cardNum" class="col-4 col-form-label">카드 번호</label>
+			<div class="col-8">
+				<input id="ccNum" name="ccNum" placeholder="카드 번호"
+					class="form-control here" required="required" type="text">
+			</div>
+		</div>
+		<div class="row w-100 mx-2 mb-3 justify-content-between no-gutters">
+			<label class="col-4 col-form-label">카드 정보</label>
+			<div class="row col-8 no-gutters">
+				<div class="col-6 input-group">
+					<input name="ccDate" placeholder="YY" class="form-control" maxlength="2" required type="text">
+					<input name="ccDate" placeholder="MM" class="form-control " maxlength="2" required type="text">
+				</div>
+				<div class="col-1"></div>
+				<div class="col-5">
+					<input name="ccCVC" placeholder="CVC" class="form-control" required type="text">
+				</div>
+			</div>
+		</div>
         <hr class="mb-4">
         <input type="hidden" name="resId" value="${resId}"/>
         <button class="btn btn-primary btn-lg btn-block" type="submit">Continue to checkout</button>
         </div>
       </form:form>
-    </div>
-  </div>

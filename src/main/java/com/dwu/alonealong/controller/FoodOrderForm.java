@@ -14,6 +14,7 @@ public class FoodOrderForm {
 	String ccName;
 	String ccNum;
 	String ccDate;
+	String ccCVC;
 	private Payment payment;
 	
 	FoodOrderForm(){
@@ -26,6 +27,14 @@ public class FoodOrderForm {
 		this.reserveType = reserveType;
 		this.visitDate = visitDate;
 		this.payment = payment;
+	}
+
+	public String getCcCVC() {
+		return ccCVC;
+	}
+
+	public void setCcCVC(String ccCVC) {
+		this.ccCVC = ccCVC;
 	}
 
 	public String getCcName() {
