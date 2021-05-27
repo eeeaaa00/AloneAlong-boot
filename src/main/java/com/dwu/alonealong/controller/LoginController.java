@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.support.PagedListHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -26,11 +27,10 @@ public class LoginController {
 	}
 
 	@RequestMapping(value = "/login")
-	public ModelAndView signIn() {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("/login");
+	public String handleRequest(
+			ModelMap model) throws Exception {
 
-		return mav;
+		return "login";
 	}
 
 	@RequestMapping(value = "/loginTest")

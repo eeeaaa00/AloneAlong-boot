@@ -18,7 +18,42 @@
 	<definition name="index" extends="base_layout">
 		<put-attribute name="body" value="" />
 	</definition>	
+	
+	<definition name="login" extends="base_layout">
+		<put-attribute name="body" value="/WEB-INF/jsp/tiles/login.jsp" />
+	</definition>	
+	
+	<definition name="logined_layout"
+		template="/WEB-INF/jsp/tiles/template/layout.jsp">
+		<put-attribute name="title" value="AloneAlong" type="string"/>
+		<put-attribute name="header"
+			value="/WEB-INF/jsp/tiles/header2.jsp" />
+		<put-attribute name="footer"
+			value="/WEB-INF/jsp/tiles/footer.jsp" />
+		</definition>
 		
+	<definition name="loginTest" extends="logined_layout">
+		<put-attribute name="body" value="/WEB-INF/jsp/loginTest.jsp" />
+	</definition>
+	
+		
+	<!-- mypage -->
+	<definition name="mypage_layout"
+		template="/WEB-INF/jsp/tiles/template/mypage.jsp">
+		<put-attribute name="title" value="MyPage" type="string"/>
+		<put-attribute name="menu"
+			value="/WEB-INF/jsp/mypage/menu.jsp" />
+		<put-attribute name="header"
+			value="/WEB-INF/jsp/tiles/header2.jsp" />
+		<put-attribute name="footer"
+			value="/WEB-INF/jsp/tiles/footer.jsp" />
+	</definition>
+	
+	<definition name="mypage" extends = "mypage_layout">
+			<put-attribute name="desc" value="정보 변경" type="string"/>
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/mypage/myEditForm.jsp" />
+	</definition>
 	
 	<!-- order -->
 	<definition name="order_layout"
@@ -29,7 +64,7 @@
 		<put-attribute name="shipInfo" value="" />
 		<put-attribute name="paymentInfo" value="/WEB-INF/jsp/order/paymentInfo.jsp" />
 		<put-attribute name="header"
-			value="/WEB-INF/jsp/tiles/header.jsp" />
+			value="/WEB-INF/jsp/tiles/header2.jsp" />
 		<put-attribute name="footer"
 			value="/WEB-INF/jsp/tiles/footer.jsp" />
 	</definition>
@@ -48,7 +83,7 @@
 	</definition>
 		
 	<!-- product -->
-	<definition name="productCart" extends="base_layout">
+	<definition name="productCart" extends="logined_layout">
 		<put-attribute name="title" value="Shopping Cart" type="string"/>
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/product/productCart.jsp" />
@@ -64,7 +99,7 @@
 		<put-attribute name="cart"
 			value="/WEB-INF/jsp/product/cartModal.jsp" />
 		<put-attribute name="header"
-			value="/WEB-INF/jsp/tiles/header.jsp" />
+			value="/WEB-INF/jsp/tiles/header2.jsp" />
 		<put-attribute name="footer"
 			value="/WEB-INF/jsp/tiles/footer.jsp" />
 	</definition>
@@ -95,7 +130,7 @@
 		<put-attribute name="menu" 
 		value="/WEB-INF/jsp/restaurant/menu.jsp"/>
 		<put-attribute name="header"
-			value="/WEB-INF/jsp/tiles/header.jsp" />
+			value="/WEB-INF/jsp/tiles/header2.jsp" />
 		<put-attribute name="footer"
 			value="/WEB-INF/jsp/tiles/footer.jsp" />
 	</definition>
@@ -149,7 +184,7 @@
 		<put-attribute name="main-top" value="" />
 		<put-attribute name="main-body" value="" />
 		<put-attribute name="category" value="/WEB-INF/jsp/together/togetherCategory.jsp" />
-		<put-attribute name="header" value="/WEB-INF/jsp/tiles/header.jsp" />
+		<put-attribute name="header" value="/WEB-INF/jsp/tiles/header2.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/jsp/tiles/footer.jsp" />
 	</definition>
 	
