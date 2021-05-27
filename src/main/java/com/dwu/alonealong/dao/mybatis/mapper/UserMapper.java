@@ -18,12 +18,15 @@ package com.dwu.alonealong.dao.mybatis.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Mapper;
+
 import com.dwu.alonealong.domain.User;
 
 /**
  * @author Eduardo Macarron
  *
  */
+@Mapper
 public interface UserMapper {
 
 	User getUserByUserId(String Id);

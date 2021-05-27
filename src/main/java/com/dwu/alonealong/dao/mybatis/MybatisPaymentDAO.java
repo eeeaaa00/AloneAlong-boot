@@ -1,11 +1,15 @@
 package com.dwu.alonealong.dao.mybatis;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
 import com.dwu.alonealong.dao.PaymentDAO;
 import com.dwu.alonealong.dao.mybatis.mapper.PaymentMapper;
 import com.dwu.alonealong.domain.Payment;
 
+@Repository
 public class MybatisPaymentDAO implements PaymentDAO {
-
+	@Autowired
 	private PaymentMapper paymentMapper;
 
 	@Override
