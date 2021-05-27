@@ -2,6 +2,8 @@ package com.dwu.alonealong.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.support.PagedListHolder;
 import org.springframework.stereotype.Controller;
@@ -10,6 +12,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.dwu.alonealong.domain.FoodCart;
@@ -18,7 +21,7 @@ import com.dwu.alonealong.service.AloneAlongFacade;
 
 
 @Controller
-@SessionAttributes({"sessionFoodCart"})
+@SessionAttributes({"sessionFoodCart", "category1", "category2"})
 public class ViewRestaurantController {
 	private AloneAlongFacade alonealong;
 	
@@ -26,16 +29,12 @@ public class ViewRestaurantController {
 	public void setAlonealong(AloneAlongFacade alonealong) {
 		this.alonealong = alonealong;
 	}
-	
-	
-	@ModelAttribute("sessionFoodCart")
-	public FoodCart createCart() {
-		return new FoodCart();
-	}
 
 	@RequestMapping("/eating")
 	public String handleRequest(
-//			@RequestParam("categoryId") String categoryId,
+			@RequestParam(value="category1",  defaultValue="") String category1,
+			@RequestParam(value="category2",  defaultValue="") String category2,
+			@RequestParam(value="sortType",  defaultValue="new") String sortType,
 			ModelMap model
 			) throws Exception {
 		
@@ -45,9 +44,27 @@ public class ViewRestaurantController {
 //		PagedListHolder<Restaurant> restaurantList = new PagedListHolder<Restaurant>(this.alonealong.getRestaurantList());
 //		PagedListHolder<Restaurant> restaurantList = new PagedListHolder<Restaurant>(this.resService.getRestaurantList());
 		
-		List<Restaurant> restaurantList = alonealong.getRestaurantList();
+		//List<Restaurant> restaurantList = alonealong.getRestaurantList();
+		String sortTypeQuery = "";	
+		String sortTypeName = "";
+		if(sortType.equals("new")) {
+			sortTypeName = "최신 등록순";
+			sortTypeQuery = "RES_ID";
+		}
+		if(sortType.equals("review")) {
+			sortTypeName = "리뷰 많은순"; 
+			sortTypeQuery = "REV_COUNT";
+		}
+		if(sortType.equals("rating")) {
+			sortTypeName = "별점 높은순";
+			sortTypeQuery = "AVG_RATING";
+		}
+		List<Restaurant> restaurantList = alonealong.getRestaurantListByCategory(category1, category2, sortTypeQuery);
 //		restaurantList.setPageSize(4);
 		//model.put("category", category);
+		model.put("sortTypeName", sortTypeName);
+		model.put("category1", category1);
+		model.put("category2", category2);
 		model.put("restaurantList", restaurantList);
 //		return "/eating/Restaurant";
 		return "restaurantList";

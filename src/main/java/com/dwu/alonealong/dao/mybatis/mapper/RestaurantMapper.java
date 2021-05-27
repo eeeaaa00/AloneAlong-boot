@@ -11,7 +11,7 @@ import com.dwu.alonealong.domain.Restaurant;
 public interface RestaurantMapper {
 	
 	List<Restaurant> getRestaurantList() throws DataAccessException;
-	List<Restaurant> getRestaurantListByCategory(String categoryId) throws DataAccessException;
+	List<Restaurant> getRestaurantListByCategory(String category1, String category2, String sortType) throws DataAccessException;
 	
 	List<Restaurant> searchRestaurantList(String keywords) throws DataAccessException;
 

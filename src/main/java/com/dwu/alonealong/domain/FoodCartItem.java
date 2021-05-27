@@ -15,7 +15,7 @@ public class FoodCartItem {
 	public void setQuantity(int quantity) { this.quantity = quantity; }	
 	
 	//
-	public double getTotalPrice() {
+	public int getTotalPrice() {
 		if (food != null) {
 			return food.getPrice() * quantity;
 		}

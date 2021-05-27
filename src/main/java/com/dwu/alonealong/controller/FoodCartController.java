@@ -22,8 +22,7 @@ import com.dwu.alonealong.domain.FoodCart;
 import com.dwu.alonealong.domain.FoodCartItem;
 import com.dwu.alonealong.domain.Restaurant;
 import com.dwu.alonealong.service.AloneAlongFacade;
-import com.dwu.alonealong.service.FoodService;
-import com.dwu.alonealong.service.RestaurantService;
+
 
 @Controller
 @SessionAttributes("sessionFoodCart")
@@ -56,6 +55,42 @@ public class FoodCartController {
 				System.out.println("null들어왔다");
 			cart.addFood(item);
 		}		
+		List<Food> foodList = this.alonealong.getFoodListByRestaurant(resId); 
+		model.put("foodList", foodList);
+		model.put("foodCart", cart.getAllFoodCartItems());
+		model.put("totalPrice", cart.getSubTotal());
+		Restaurant res = alonealong.getRestaurantByResId(resId);
+		model.put("restaurant", res);
+		return "redirect:/eating/{resId}";
+	}
+	@RequestMapping("/eating/{resId}/updateFoodCartItem")
+	public String handleRequest2(
+			HttpServletRequest request,	
+			@ModelAttribute("sessionFoodCart") FoodCart cart,
+			@PathVariable("resId") String resId,
+			ModelMap model
+			) throws Exception {
+		
+		cart.setQuantityByFoodId(request.getParameter("foodId"), Integer.parseInt(request.getParameter("quantity")));
+				
+		List<Food> foodList = this.alonealong.getFoodListByRestaurant(resId); 
+		model.put("foodList", foodList);
+		model.put("foodCart", cart.getAllFoodCartItems());
+		model.put("totalPrice", cart.getSubTotal());
+		Restaurant res = alonealong.getRestaurantByResId(resId);
+		model.put("restaurant", res);
+		return "redirect:/eating/{resId}";
+	}
+	@RequestMapping("/eating/{resId}/deleteFoodCartItem")
+	public String handleRequest3(
+			HttpServletRequest request,	
+			@ModelAttribute("sessionFoodCart") FoodCart cart,
+			@PathVariable("resId") String resId,
+			ModelMap model
+			) throws Exception {
+		
+		cart.removeFoodById((request.getParameter("foodId")));
+				
 		List<Food> foodList = this.alonealong.getFoodListByRestaurant(resId); 
 		model.put("foodList", foodList);
 		model.put("foodCart", cart.getAllFoodCartItems());

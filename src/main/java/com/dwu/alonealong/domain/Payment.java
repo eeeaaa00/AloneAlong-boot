@@ -5,9 +5,18 @@ import java.io.Serializable;
 @SuppressWarnings("serial")
 public class Payment implements Serializable{
 	
-	private String cardNumber;
 	private String cardName;
+	private String cardNumber;
 	private String cardDate;
+	
+	
+
+	public Payment(String cardName, String cardNumber, String cardDate) {
+		super();
+		this.cardNumber = cardNumber;
+		this.cardName = cardName;
+		this.cardDate = cardDate;
+	}
 
 	public String getCardNumber() {
 		return cardNumber;

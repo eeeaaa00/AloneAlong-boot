@@ -116,6 +116,7 @@
 	
 	<definition name="foodOrderForm" extends="order_layout">
 		<put-attribute name="main-top" value="/WEB-INF/jsp/restaurant/orderFoodInfo.jsp" />
+		<put-attribute name="main-body" value="/WEB-INF/jsp/restaurant/orderUserInfo.jsp" />
 	</definition>
 	
 	<definition name="restaurantReview" extends="restaurant">

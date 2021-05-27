@@ -42,6 +42,9 @@ public class FoodCart implements Serializable{
 	public boolean containsFoodId(String id) {
 		return foodMap.containsKey(id);
 	}
+	public FoodCartItem getFoodCartItem(String foodId) {
+		return foodMap.get(foodId);
+	}
 	
 	public Food removeFoodById(String id) {
 	    FoodCartItem foodCartItem = foodMap.remove(id);
@@ -77,5 +80,5 @@ public class FoodCart implements Serializable{
 	public void setQuantityByFoodId(String itemId, int quantity) {
 		FoodCartItem cartItem = foodMap.get(itemId);
 	    cartItem.setQuantity(quantity);
-	  }
+	}
 }

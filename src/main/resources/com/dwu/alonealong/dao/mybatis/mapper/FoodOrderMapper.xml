@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dwu.alonealong.dao.mybatis.mapper.FoodOrderMapper">
+
+  <cache />
+
+  <insert id="insertFoodOrder">
+    INSERT INTO FOOD_ORDER (ORDER_ID, RESERVE_TYPE, VISIT_DATE, FOOD_ID, RES_ID)
+    VALUES (#{orderId}, #{foodOrder.reserveType}, #{foodOrder.visitDate}, #{foodOrder.firstFoodId}, #{foodOrder.resId})
+  </insert>
+  
+
+</mapper>

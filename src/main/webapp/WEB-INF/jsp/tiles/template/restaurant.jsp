@@ -21,9 +21,10 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300&family=Roboto&display=swap" rel="stylesheet">
 <title>Eating</title>
 <style type="text/css">
-.totalPriceInfo {width:100%; height:130px;  border-radius: 20px; padding:10px 20px 10px 20px;}
+.totalPriceInfo {width:100%; border-radius: 20px; padding:10px 20px 10px 20px;}
 .praceInfo>form { width:50px;}
 .totalPriceInfo>div>.btn { width:160px; height:45px;  }
+.shipInfo{ display:none;}
 </style>
 </head>
 <body>
