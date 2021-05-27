@@ -263,7 +263,7 @@ public class AloneAlongImpl implements AloneAlongFacade{
 		//주문 하나의 주문자정보
 		orderInfoDao.insertFoodOrderInfo(order); //foodId는 그냥 맨 처음 대표적인 list[0]로 foodId 넣음.
 		//주문 하나의 예약정보
-		newOrderId = orderInfoDao.getRecentOrderId();
+		newOrderId = "fo" + orderInfoDao.getRecentOrderId();
 		foodOrderDao.insertFoodOrder(order, newOrderId);
 		
 		

@@ -11,11 +11,7 @@
   </insert>
   
   <select id="getRecentOrderId" resultType="String">
-  	SELECT ORDER_ID FROM 
-	  	(SELECT * 
-	  	FROM ORDERINFO
-	  	ORDER BY ORDER_ID DESC)
-	<![CDATA[WHERE ROWNUM <= 2]]>
+  	SELECT FOODORDERID_SEQ.CURRVAL FROM DUAL
   </select>
 
 </mapper>
