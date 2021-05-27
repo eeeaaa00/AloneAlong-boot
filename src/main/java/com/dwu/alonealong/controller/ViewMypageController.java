@@ -1,6 +1,7 @@
 package com.dwu.alonealong.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -8,10 +9,9 @@ import org.springframework.web.servlet.ModelAndView;
 public class ViewMypageController {
 
 	@RequestMapping(value = "/mypage")
-	public ModelAndView mypage() {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("/mypage/myInfo");
-		return mav;
+	public String handleRequest(ModelMap model) throws Exception {
+
+		return "mypage";
 	}
 	
 	@RequestMapping(value = "/myPayment")
