@@ -8,6 +8,7 @@
     		TM.TOGMEM_ID AS togetherMemberId,
     		TM.TOG_ID AS togetherId,
     		TM.USER_ID AS userId,
+    		TM.IS_HOST AS isHost,
     		U.NAME AS "user.name",
     		U.SEX AS "user.sex"
 		FROM TOGETHER_MEMBER TM, USERINFO U

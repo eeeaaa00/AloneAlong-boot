@@ -15,8 +15,10 @@
     		T.TOG_DES AS togetherDes,
     		T.RES_ID AS resId,
     		T.TOG_STATUS AS status,
+    		T.price AS price,
     		R.RES_NAME AS "restaurant.resName",
-    		R.RES_ADDRESS AS "restaurant.resAddress"
+    		R.RES_ADDRESS AS "restaurant.resAddress",
+    		R.RES_CATEGORY AS "restaurant.categoryId"
 		FROM TOGETHER T, RESTAURANT R
 		WHERE T.RES_ID = R.RES_ID
 	</select>
@@ -33,8 +35,10 @@
     		T.TOG_DES AS togetherDes,
     		T.RES_ID AS resId,
     		T.TOG_STATUS AS status,
+    		T.price AS price,
     		R.RES_NAME AS "restaurant.resName",
-    		R.RES_ADDRESS AS "restaurant.resAddress"
+    		R.RES_ADDRESS AS "restaurant.resAddress",
+    		R.RES_CATEGORY AS "restaurant.categoryId"
 		FROM TOGETHER T, RESTAURANT R
 		WHERE T.RES_ID = R.RES_ID
 			AND T.TOG_ID = #{togId}
@@ -46,5 +50,25 @@
     	VALUES(#{togetherId}, #{togetherName}, #{headCount}, #{togetherDate}, #{togetherTime}, #{sex},
       		#{age}, #{togetherDes}, #{status})
 	</insert>
+	
+	<!-- (구현중)카테고리에 맞는 togetherList 불러오기 ///////// 조건절 완성하기 -->
+	<select id="getTogetherListByCategory" resultType="Together">
+		SELECT
+    		T.TOG_ID AS togetherId,
+    		T.TOG_NAME AS togetherName,
+    		T.HEADCOUNT AS headCount,
+    		T.TOG_DATE AS togetherDate,
+    		T.TOG_TIME AS togetherTime,
+    		T.TOG_SEX AS sex,
+    		T.TOG_AGE AS age,
+    		T.TOG_DES AS togetherDes,
+    		T.RES_ID AS resId,
+    		T.TOG_STATUS AS status,
+    		R.RES_NAME AS "restaurant.resName",
+    		R.RES_ADDRESS AS "restaurant.resAddress",
+    		R.RES_CATEGORY AS "restaurant.categoryId"
+		FROM TOGETHER T, RESTAURANT R
+		WHERE T.RES_ID = R.RES_ID
+	</select>
 
 </mapper> 

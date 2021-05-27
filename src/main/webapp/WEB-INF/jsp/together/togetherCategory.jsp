@@ -6,58 +6,48 @@
 	<div class="row-md-2">
     	<select id="area" name="area" class="custom-select">
         	<option selected>모든 지역</option>
-            <option value="1">경기</option>
-            <option value="2">서울</option>
-            <option value="3">부산</option>
-            <option value="4">경남</option>
-            <option value="5">인천</option>
-           	<option value="6">경북</option>
-            <option value="7">대구</option>
-            <option value="8">충남</option>
-            <option value="9">전남</option>
-            <option value="10">전북</option>
-            <option value="11">충북</option>
-            <option value="12">강원</option>
-            <option value="13">대전</option>
-            <option value="14">광주</option>
-            <option value="15">울산</option>
-            <option value="16">제주</option>
-            <option value="17">세종</option>
+            <option value="seoul">서울특별시</option>
+            <option value="busan">부산광역시</option>
+            <option value="incheon">인천광역시</option>
+            <option value="deagu">대구광역시</option>
+            <option value="deageon">대전광역시</option>
+            <option value="guangju">광주광역시</option>
+            <option value="ulsan">울산광역시</option>
 		</select>
 
-		<input type="date" /> <!-- 크롬에서는 보임 -->
+		<input type="date" id="date" name="date" min="2021-05-01">
 
         <select id="kind" name="kind" class="custom-select">
             <option selected>모든 음식종류</option>
-            <option value="1">한식</option>
-            <option value="2">양식</option>
-            <option value="3">일식</option>
-            <option value="4">중식</option>
-            <option value="5">기타</option>
+            <option value="korean">한식</option>
+            <option value="western">양식</option>
+            <option value="japanese">일식</option>
+            <option value="chinese">중식</option>
+            <option value="etc">기타</option>
         </select>
 
         <select id="price" name="price" class="custom-select">
             <option selected>모든 가격대</option>
-            <option value="1">0~10000원</option>
-            <option value="2">10000~15000원</option>
-            <option value="3">15000~20000원</option>
-            <option value="4">20000~25000원</option>
-            <option value="5">25000원~</option>
+            <option value="10000">1~10000원</option>
+            <option value="15000">10001~15000원</option>
+            <option value="20000">15001~20000원</option>
+            <option value="25000">20001~25000원</option>
+            <option value="30000">25001원~</option>
         </select>
 
         <select id="sex" name="sex" class="custom-select">
             <option selected>모든 성별</option>
-            <option value="1">여성</option>
-            <option value="2">남성</option>
+            <option value="female">여성</option>
+            <option value="male">남성</option>
         </select>
 
         <select id="age" name="age" class="custom-select">
             <option selected>모든 나이</option>
-            <option value="1">10대</option>
-            <option value="2">20대</option>
-            <option value="3">30대</option>
-            <option value="4">40대</option>
-            <option value="5">50대이상</option>
+            <option value="10">10대</option>
+            <option value="20">20대</option>
+            <option value="30">30대</option>
+            <option value="40">40대</option>
+            <option value="50">50대이상</option>
         </select>
 	</div>
 </div>

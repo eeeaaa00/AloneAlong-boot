@@ -254,12 +254,17 @@ public class AloneAlongImpl implements AloneAlongFacade{
 	
 	@Override
 	public List<Together> getTogetherList() {
-		return togetherDao.getTogetherList(); //여기서 NullPointException 발생///////////////////////////////////////////
+		return togetherDao.getTogetherList();
 	}
 	
 	@Override
 	public void insertTogether(Together together) {
 		togetherDao.insertTogether(together);
+	}
+	
+	@Override
+	public List<Together> getTogetherListByCategory(String area, /*Date date,*/ String resCat, int price, String sex, int age) {
+		return togetherDao.getTogetherListByCategory(area, resCat, price, sex, age);
 	}
 	
 	//TogetherFood
@@ -283,6 +288,5 @@ public class AloneAlongImpl implements AloneAlongFacade{
 	public void insertTogetherMember(TogetherMember togetherMember) {
 		togetherMemberDao.insertTogetherMember(togetherMember);
 	}
-
 
 }
