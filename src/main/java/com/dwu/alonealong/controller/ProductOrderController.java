@@ -24,7 +24,6 @@ import com.dwu.alonealong.domain.ProductLineItem;
 import com.dwu.alonealong.service.AloneAlongFacade;
 
 @Controller
-@SessionAttributes({"sessionCart", "productOrderForm"})
 public class ProductOrderController {
 	private AloneAlongFacade aloneAlong;
 
@@ -35,38 +34,54 @@ public class ProductOrderController {
 	
 	@RequestMapping("/shop/order")
 	public String initNewOrder(HttpServletRequest request,
-		@RequestParam(value="product", required=false) Product product, 
-		@RequestParam(value="cart", required=false) Cart cart, 
+		@RequestParam(value="type") String type,
+		@RequestParam(value="productId", required=false) String productId,
+		@RequestParam(value="quantity", defaultValue="-1") int quantity,
 		@ModelAttribute("productOrderForm") ProductOrderForm productOrderForm,
 		ModelMap model) throws Exception {
 		
 		//유저 정보 및 결제 정보 받아오기
-		UserSession userSession = (UserSession)request.getSession().getAttribute("userSession");
-		User user = aloneAlong.getUserByUserId(userSession.getUser().getUserId());
-		Payment paymentMethod = aloneAlong.getCard(userSession.getUser().getUserId());
+		String userId = "1";
+		User user = this.aloneAlong.getUserByUserId(userId);
+		Payment paymentMethod = this.aloneAlong.getCard(userId);
+//		UserSession userSession = (UserSession)request.getSession().getAttribute("userSession");
+////		User user = aloneAlong.getUserByUserId(userSession.getUser().getUserId());
+//		Payment paymentMethod = aloneAlong.getCard(userSession.getUser().getUserId());
 
 		//LineItem 설정 
 		List<ProductLineItem> orderList = new ArrayList<ProductLineItem>();
+		int totalPrice = 0;
 		
-		//1. Cart가 null이 아니면 LineItem에 Cart에 담긴 cart Item 전부 저장
-		if(cart != null){
-			for(CartItem item : cart.getCartItemList()){
-				ProductLineItem orderItem = new ProductLineItem(item.getProductId(), item.getQuantity(), item.getUnitPrice());
+		//1. Cart
+		if(type.equals("cart")){
+			List<CartItem> cart = this.aloneAlong.getAllCartItem(userId);
+			for(CartItem cartItem : cart){
+				ProductLineItem orderItem = new ProductLineItem(cartItem);
+				totalPrice += orderItem.getUnitPrice();
 				orderList.add(orderItem);
 			}
 		}
-		//2. product가 null이 아니면 LineItem에 product 저장
-		else if (product != null){
-			ProductLineItem orderItem = new ProductLineItem(product.getProductId(), product.getQuantity(), product.getUnitPrice());
+		//2. Product
+		else if(type.equals("product")) {
+			if(productId == null || quantity == -1) {
+				return "error";
+			}
+			Product product = this.aloneAlong.getProduct(productId);
+			product.setQuantity(quantity);
+			totalPrice = product.getUnitPrice();
+			ProductLineItem orderItem = new ProductLineItem(product);
 			orderList.add(orderItem);
 		}
 		else {
 			return "error";
 		}
-		
-		//받아온 유저정보 & 결제정보 & LineItem으로 orderForm 세팅 
-		productOrderForm.getProductOrder().initProductOrder(user, paymentMethod, orderList);
-		return "order";
+
+//		//받아온 유저정보 & 결제정보 & LineItem으로 orderForm 세팅 
+		productOrderForm = new ProductOrderForm();
+		productOrderForm.initProductOrder(user, orderList, paymentMethod);
+		model.put("totalPrice", totalPrice);
+		model.put("orderForm", productOrderForm);
+		return "productOrder";
 	}
 	
 	@RequestMapping("/shop/order/confirm")

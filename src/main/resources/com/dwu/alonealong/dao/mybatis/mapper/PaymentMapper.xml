@@ -7,12 +7,12 @@
   
   <select id="getCard" resultType="Payment">
     SELECT CARD_NUM, CARD_NAME, CARD_DATE
-    FROM CATEGORY
-    WHERE USER_ID = #{user_id}
+    FROM PAYMENT
+    WHERE USER_ID = #{userId}
   </select>
 
    <update id="updateCard" parameterType="Payment">
-    UPDATE PAYMENTMETHOD SET
+    UPDATE PAYMENT SET
       CARD_NUM = #{cardNumber},
       CARD_NAME = #{cardName},
       CARD_DATE = #{cardDate},
@@ -20,7 +20,7 @@
   </update>
 
   <insert id="createCard" parameterType="Payment">
-    INSERT INTO PAYMENTMETHOD
+    INSERT INTO PAYMENT
       (USER_ID, CARD_NUM, CARD_NAME, CARD_DATE)
     VALUES
       (#{user_id}, #{cardNumber}, #{cardName}, #{cardDate})

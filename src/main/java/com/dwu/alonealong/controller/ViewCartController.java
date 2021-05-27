@@ -34,10 +34,9 @@ public class ViewCartController {
 		int shippingFee = 0;
 		List<CartItem> cart = this.aloneAlong.getAllCartItem(userId);
 		for(CartItem cartItem : cart) {
-			Product product = this.aloneAlong.getProduct(cartItem.getProductId());
-			cartItem.setProductName(product.getProductName());
-			cartItem.setPrice(product.getProductPrice());
-			cartItem.setShippingFee(product.getShippingFee());
+//			cartItem.setProductName(product.getProductName());
+//			cartItem.setPrice(product.getProductPrice());
+//			cartItem.setShippingFee(product.getShippingFee());
 			totalPrice += cartItem.getUnitPrice();
 //			cartItem.setImg(product.getProductImg());
 		}

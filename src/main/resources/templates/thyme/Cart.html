@@ -92,6 +92,7 @@
 		<div class="col-lg-4">
 			<div class="mb-5">
 				<div class="bg-light py-4 rounded-lg px-4">
+					<form th:action="@{/shop/order}" method="POST">
 					<h3 class="mt-2 mb-5 text-uppercase">주문 합계</h3>
 					<div
 						class="py-1 pt-3 px-3 row justify-content-between border-bottom">
@@ -112,12 +113,10 @@
 						<h4 th:if="${totalPrice > 999}" th:text="|${#numbers.formatInteger(totalPrice,3,'COMMA')}원|"></h4>
 					</div>
 					<div class="row justify-content-center">
-						<a type="button"
-							class="btn btn-orange btn-block rounded-pill py-3 my-1 mt-3 mx-3"
-							th:href="@{/order}"> <small><i
-								class="far fa-credit-card pr-1"></i></small> 주문하기
-						</a>
+						<button type="submit" class="btn btn-orange btn-block rounded-pill py-3 my-1 mt-3 mx-3"
+							name="type" value="cart"> <small><i class="far fa-credit-card pr-1"></i></small> 주문하기 </button>
 					</div>
+					</form>
 				</div>
 			</div>
 		</div>
