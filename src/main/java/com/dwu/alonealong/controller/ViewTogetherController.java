@@ -21,7 +21,7 @@ public class ViewTogetherController {
 		this.aloneAlong = aloneAlong;
 	}
 
-	@RequestMapping("/togetherInfo/{togetherId}")
+	@RequestMapping("/together/{togetherId}")
 	public String viewTogether(
 			@PathVariable("togetherId") String togId, 
 			ModelMap model) throws Exception {

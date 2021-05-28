@@ -51,7 +51,6 @@
       		#{age}, #{togetherDes}, #{status})
 	</insert>
 	
-	<!-- (구현중)카테고리에 맞는 togetherList 불러오기 ////////////////////////수정필요 -->
 	<select id="getTogetherListByCategory" resultType="Together">
 		SELECT
     		T.TOG_ID AS togetherId,
@@ -67,11 +66,11 @@
     		T.PRICE AS price,
     		R.RES_NAME AS "restaurant.resName",
     		R.RES_ADDRESS AS "restaurant.resAddress",
-    		R.RES_CATEGORY AS "restaurant.categoryId",
-    		R.AREA AS "restaurant.area"
+    		R.RES_CATEGORY AS "restaurant.categoryId"
 		FROM TOGETHER T, RESTAURANT R
 		WHERE T.RES_ID = R.RES_ID
-			AND R.AREA = #{area} AND R.RES_CATEGORY = #{resCat} AND T.PRICE <![CDATA[ < ]]> #{price} AND T.TOG_SEX = #{sex} AND T.TOG_AGE = #{age}
+			AND R.AREA LIKE '%${area}%' AND R.RES_CATEGORY LIKE '%${kind}%' AND T.PRICE <![CDATA[ < ]]> #{price}
+			AND T.TOG_SEX LIKE '%${sex}%' AND T.TOG_AGE LIKE '%${age}%'
 	</select>
 
 </mapper> 

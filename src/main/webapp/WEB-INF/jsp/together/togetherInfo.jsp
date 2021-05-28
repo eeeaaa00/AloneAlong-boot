@@ -78,5 +78,5 @@
 
 <!-- 신청하기 버튼 -->
 <div class="py-5 text-right">
-	<a type="button" class="w-40 btn btn-lg btn-success" href="<c:url value='/together/togetherOrder' />">신청하기</a>
+	<a type="button" class="w-40 btn btn-lg btn-success" href="<c:url value='/togetherOrder' />">신청하기</a>
 </div>
