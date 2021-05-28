@@ -96,7 +96,7 @@ public interface AloneAlongFacade {
 	Together getTogetherByTogId(String togId);
 	List<Together> getTogetherList();
 	void insertTogether(Together together);
-	List<Together> getTogetherListByCategory(String area, /*Date date,*/ String resCat, int price, String sex, int age);
+	List<Together> getTogetherListByCategory(String area, /*Date date,*/ String resCat, int price, String sex, String age);
 	
 	//TogetherFood
 	List<TogetherFood> getTogetherFoodListByTogId(String togId);

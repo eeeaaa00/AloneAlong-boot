@@ -19,6 +19,6 @@ public interface TogetherDAO {
 	
 	List<Together> getTogetherList() throws DataAccessException;
 	
-	List<Together> getTogetherListByCategory(String area, /*Date date,*/ String resCat, int price, String sex, int age) throws DataAccessException;
+	List<Together> getTogetherListByCategory(String area, /*Date date,*/ String resCat, int price, String sex, String age) throws DataAccessException;
 	
 }			
