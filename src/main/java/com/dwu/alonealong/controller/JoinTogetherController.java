@@ -20,12 +20,17 @@ public class JoinTogetherController {
 	}
 	
 	//신청하기
-	@RequestMapping("/together/togetherOrder")
+	@RequestMapping("/togetherOrder")
 	public String joinTogether(
 //			ModelMap model
 		) throws Exception {
 		
 		return "together/togetherOrder";
 	}
+	
+//	@RequestMapping(value = "/togetherOrder")
+//	public String togetherOrderTest() {
+//		return "togetherOrder";
+//	}
 
 }

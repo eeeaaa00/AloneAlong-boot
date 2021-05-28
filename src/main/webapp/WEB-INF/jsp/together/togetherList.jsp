@@ -15,7 +15,7 @@ b {color:#29A65F;}
 	
 	<c:forEach var="together" items="${togetherList}">
 		<div class="col-md-6">
-        	<div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative" type="button" onClick="location.href='<c:url value='/togetherInfo/${together.togetherId}' />'">
+        	<div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative" type="button" onClick="location.href='<c:url value='/together/${together.togetherId}' />'">
             	<div class="col p-4 d-flex flex-column position-static">
             		<!-- 태그 -->
                 	<div class="row-md-6">

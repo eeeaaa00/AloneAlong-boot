@@ -85,10 +85,10 @@ public class ViewTestController {
 		return "productOrder";
 	}
 	
-	@RequestMapping(value = "/togetherOrderTest")
-	public String togetherOrderTest() {
-		return "togetherOrder";
-	}
+//	@RequestMapping(value = "/togetherOrderTest")
+//	public String togetherOrderTest() {
+//		return "togetherOrder";
+//	}
 	
 	@RequestMapping(value = "/foodOrderTest")
 	public String foodOrderTest() {

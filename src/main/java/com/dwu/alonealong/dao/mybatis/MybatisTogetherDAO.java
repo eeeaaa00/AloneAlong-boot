@@ -66,7 +66,7 @@ public class MybatisTogetherDAO implements TogetherDAO {
 	public List<Together> getTogetherListByCategory(String area, /*Date date,*/ String kind, int price, String sex, String age)
 			throws DataAccessException {
 		switch(area) {
-			case "none" : area = ""; break; //변경해야함
+			case "all" : area = ""; break;
 			case "seoul" : area = "서울특별시"; break;
 			case "busan" : area = "부산광역시"; break;
 			case "incheon" : area = "인천광역시"; break;
@@ -77,7 +77,7 @@ public class MybatisTogetherDAO implements TogetherDAO {
 		}
 		
 		switch(kind) {
-			case "none" : kind = ""; break; //변경해야함
+			case "all" : kind = ""; break;
 			case "korean" : kind = "한식"; break;
 			case "western" : kind = "양식"; break;
 			case "japanese" : kind = "일식"; break;
@@ -86,13 +86,13 @@ public class MybatisTogetherDAO implements TogetherDAO {
 		}
 		
 		switch(sex) {
-			case "none" : sex = "상관없음"; break;
+			case "all" : sex = ""; break;
 			case "female" : sex = "여성"; break;
 			case "male" : sex = "남성"; break;
 		}
 		
 		switch(age) {
-			case "none" : age = "상관없음"; break;
+			case "all" : age = ""; break;
 			case "10" : age = "10대"; break;
 			case "20" : age = "20대"; break;
 			case "30" : age = "30대"; break;
