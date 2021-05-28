@@ -266,7 +266,7 @@ public class AloneAlongImpl implements AloneAlongFacade{
 	}
 	
 	@Override
-	public List<Together> getTogetherListByCategory(String area, /*Date date,*/ String resCat, int price, String sex, int age) {
+	public List<Together> getTogetherListByCategory(String area, /*Date date,*/ String resCat, int price, String sex, String age) {
 		return togetherDao.getTogetherListByCategory(area, resCat, price, sex, age);
 	}
 	

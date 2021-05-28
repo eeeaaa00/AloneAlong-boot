@@ -44,15 +44,15 @@
                 </div>
                 <div class="col-10">
                     <label for="headCount" class="form-label">인원</label>
-                    <input type="number" class="form-control" id="headCount" placeholder="2" required>
+                    <input type="number" class="form-control" id="headCount" min="2" placeholder="2" required>
                     <div class="invalid-feedback">인원수를 입력해주세요.</div>
                 </div>
                 <div class="col-md-5">
                     <label for="sex" class="form-label">성별</label>
                     <select id="age" name="age" class="custom-select">
                     	<option value="none">상관없음</option>
-                      	<option value="female">여성만</option>
-                      	<option value="male">남성만</option>
+                      	<option value="female">여성</option>
+                      	<option value="male">남성</option>
                     </select>
                     <div class="invalid-feedback">성별을 조건을 설정해주세요.</div>
                 </div>
