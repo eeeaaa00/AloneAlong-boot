@@ -81,11 +81,13 @@ public interface AloneAlongFacade {
 	void deleteFood(String foodId );
 	List<Food> getFoodListByRestaurant(String resId); 
 	Food getFood(String foodId);
-	List<FoodReview> getFoodReviewList(String resId);
 
 	void insertFoodOrder(FoodOrder order);
 	FoodOrder getFoodOrder(int orderId);
 	List<FoodOrder> getOrdersByUserId(String userId);
+	
+	public List<FoodReview> getFoodReviewListByResId(String resId);
+	public void insertFoodReview(FoodReview foodReview);
 	
 	//Together
 	Together getTogetherByTogId(String togId);

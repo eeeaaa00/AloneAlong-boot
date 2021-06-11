@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dwu.alonealong.dao.mybatis.mapper.FoodReviewMapper">
+
+  <cache />
+
+  <select id="getFoodReviewListByResId" resultType="FoodReview">
+     SELECT
+     	REVIEW_ID as reviewId,
+    	RES_ID as resId, 
+    	FOOD_ID as foodId,
+    	USER_ID as userId,
+    	REVIEW_DATE as reviewDate,
+    	REVIEW_RATING as rating,
+    	REVIEW_CONTENTS as contents,
+    	REVIEW_RECOMMEND as recommend
+    FROM FOOD_REVIEW
+    WHERE RES_ID = #{resId}
+  </select>
+
+  <insert id="insertFoodReview">
+    INSERT INTO FOOD_REVIEW (REVIEW_ID, FOOD_ID, RES_ID, USER_ID, REVIEW_DATE, REVIEW_RATING, REVIEW_CONTENTS, REVIEW_RECOMMEND)
+    VALUES ('rev' || REVIEWID_SEQ.NEXTVAL, #{foodId}, #{resId}, #{userId}, SYSDATE, #{rating}, #{contents}, #{recommend})
+  </insert>
+  
+
+
+  
+
+  
+  
+  
+
+</mapper>

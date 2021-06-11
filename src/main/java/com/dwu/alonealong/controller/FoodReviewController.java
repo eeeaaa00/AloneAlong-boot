@@ -1,25 +1,22 @@
 package com.dwu.alonealong.controller;
 
-import java.net.URL;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.dwu.alonealong.domain.Food;
-import com.dwu.alonealong.domain.Restaurant;
+import com.dwu.alonealong.domain.FoodReview;
 import com.dwu.alonealong.domain.Review;
 import com.dwu.alonealong.service.AloneAlongFacade;
 
 @Controller
-@RequestMapping("/eating/{resId}/adminReview")
 public class FoodReviewController {
 		
 	private AloneAlongFacade alonealong;
@@ -29,37 +26,41 @@ public class FoodReviewController {
 		this.alonealong = alonealong;
 	}
 		
-	@RequestMapping(method = RequestMethod.POST)
+	@RequestMapping("/eating/{resId}/writeReview")
 	public String insert(
 //			@ModelAttribute("food") FoodForm foodForm,
 			@PathVariable("resId") String resId,
+			HttpServletRequest request,
 //			BindingResult bindingResult,
 			Model model) {
+	
 		
-		Review review = new Review(); //여기에 정보 채워넣기
-//		Food food = new Food(resId, "FOOD_ID.NEXTVAL", foodForm.getName(), foodForm.getPrice(), foodForm.getDescription(), null, foodForm.getMaxPeopleNum());
-//		alonealong.insertFood(food);
-		
-		List<Food> foodList = alonealong.getFoodListByRestaurant(resId);
-		model.addAttribute("foodList", foodList);
-//		return "eating/Food";
-		return "redirect:/eating/{resId}";
-//		return form;
+		String foodOrderId = "f10"; //foodId로 넣는 것보단 orderId가 나아보임. 그러려면 foodreview의 무결성키 제약조건도 food말고 foodOrder로 바꿔야함. 아닌가 order에서 foodid 가져오는게 나을지도. 그럼 이름도 갖고오고..
+		String userId = "3"; //임시
+		int rating = Integer.parseInt(request.getParameter("rating"));
+		String contents = request.getParameter("review");
+		FoodReview foodReview = new FoodReview(foodOrderId, resId, userId, rating, contents, 0);
+
+		alonealong.insertFoodReview(foodReview);
+		//식당 평균별점 update 시키는 코드.
+		System.out.println("insertReview 진행");
+		return "redirect:/eating/{resId}/RestaurantReview";
+
 	}
 	
-	@RequestMapping(value = "/delete")
-	public String delete(
-			@RequestParam("foodId") String foodId,
-			@PathVariable("resId") String resId,
-//			BindingResult bindingResult,
-			Model model) {
-		
-		alonealong.deleteFood(foodId);
-		
-		List<Food> foodList = alonealong.getFoodListByRestaurant(resId);
-		model.addAttribute("foodList", foodList);
-		return "redirect:/eating/{resId}";
-	}
+//	@RequestMapping(value = "/delete")
+//	public String delete(
+//			@RequestParam("foodId") String foodId,
+//			@PathVariable("resId") String resId,
+////			BindingResult bindingResult,
+//			Model model) {
+//		
+//		alonealong.deleteFood(foodId);
+//		
+//		List<Food> foodList = alonealong.getFoodListByRestaurant(resId);
+//		model.addAttribute("foodList", foodList);
+//		return "redirect:/eating/{resId}";
+//	}
 	
 	
 }

@@ -74,15 +74,24 @@ public class ViewFoodController {
 			@PathVariable("resId") String resId,
 			@SessionAttribute("sessionFoodCart") FoodCart foodCart,
 			ModelMap model) throws Exception {
-//		List<FoodReview> reviewList = this.alonealong.getFoodReviewList(resId);
-//		FoodCart foodCart = this.alonealong.getFoodCart(resId);
-//		model.put("foodList", reviewList);
+		
+		List<FoodReview> reviewList = this.alonealong.getFoodReviewListByResId(resId);
+		model.put("foodReviewList", reviewList);
+				
 		model.put("foodCart", foodCart.getFoodItemList());
 		Restaurant res = alonealong.getRestaurantByResId(resId);
-		model.put("restaurant", res);
+		
 		model.put("totalPrice", foodCart.getSubTotal());
-//		return "/eating/RestaurantReview";
-		model.put("resId", resId);
+		System.out.println(foodCart.getFoodItemList().size());
+		
+		Encoder encoder = Base64.getEncoder();
+		byte[] imagefile;
+		String encodedString;
+        imagefile = res.getImgFile();
+        encodedString = encoder.encodeToString(imagefile);
+        res.setImg64(encodedString);
+        model.put("restaurant", res);
+        
 		return "restaurantReview";
 	}
 	
