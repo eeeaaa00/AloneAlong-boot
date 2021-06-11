@@ -15,7 +15,7 @@
     	RES_DES as resDescription,
     	AVG_RATING as avgRating,
     	RES_CATEGORY as categoryId,
-    	RES_IMG as resImage,
+    	RES_IMG as imgFile,
     	IS_TOGETHER_OK as isTogetherOk
     FROM RESTAURANT
     WHERE RES_ID = #{resId}
@@ -31,7 +31,7 @@
     	RES_DES as resDescription,
     	AVG_RATING as avgRating,
     	RES_CATEGORY as categoryId,
-    	RES_IMG as resImage,
+    	RES_IMG as imgFile,
     	IS_TOGETHER_OK as isTogetherOk
     FROM RESTAURANT
     ORDER BY resId DESC
@@ -47,7 +47,7 @@
     	RES_DES as resDescription,
     	AVG_RATING as avgRating,
     	RES_CATEGORY as categoryId,
-    	RES_IMG as resImage,
+    	RES_IMG as imgFile,
     	IS_TOGETHER_OK as isTogetherOk
     FROM RESTAURANT
     WHERE lower(resName) like %#{keywords}%
@@ -63,7 +63,7 @@
     	RES_DES as resDescription,
     	AVG_RATING as avgRating,
     	RES_CATEGORY as categoryId,
-    	RES_IMG as resImage,
+    	RES_IMG as imgFile,
     	IS_TOGETHER_OK as isTogetherOk
     FROM (SELECT * FROM RESTAURANT WHERE AREA LIKE '%${category1}%' AND RES_CATEGORY LIKE '%${category2}%') 
     ORDER BY ${sortType} DESC
@@ -71,7 +71,11 @@
   
   <insert id="insertRestaurant">
     INSERT INTO RESTAURANT (RES_ID, RES_NAME, RES_ADDRESS, RES_PHONE, OWNER_ID, RES_DES, AVG_RATING, RES_CATEGORY, RES_IMG, IS_TOGETHER_OK)
-    VALUES ('r' || RESID_SEQ.NEXTVAL, #{resName}, #{resAddress}, #{resPhone}, #{ownerId}, #{resDescription}, #{avgRating}, #{categoryId}, empty_blob(), #{isTogetherOk})
+    VALUES ('r' || RESID_SEQ.NEXTVAL, #{resName}, #{resAddress}, #{resPhone}, #{ownerId}, #{resDescription}, #{avgRating}, #{categoryId}, #{imgFile}, #{isTogetherOk})
+  </insert>
+  <insert id="insertRestaurantwithoutImg">
+    INSERT INTO RESTAURANT (RES_ID, RES_NAME, RES_ADDRESS, RES_PHONE, OWNER_ID, RES_DES, AVG_RATING, RES_CATEGORY, IS_TOGETHER_OK)
+    VALUES ('r' || RESID_SEQ.NEXTVAL, #{resName}, #{resAddress}, #{resPhone}, #{ownerId}, #{resDescription}, #{avgRating}, #{categoryId}, #{isTogetherOk})
   </insert>
 
 </mapper>

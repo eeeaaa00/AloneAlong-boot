@@ -13,11 +13,17 @@ public class Restaurant implements Serializable{
 	private String resDescription;
 	private Double avgRating;
 	private String categoryId; //음식분류
-	private URL resImage;
+	private byte[] imgFile;
+	private String img64;
 	private boolean isTogetherOk;
 	
+	private User owner;
+	private FoodReview[] reviewList;
+	private Food[] menuList;
+	private Together[] togetherList;
+	
 	public Restaurant(String resId, String resName, String resAddress, String resPhone, String ownerId,
-			String resDescription, Double avgRating, String categoryId, URL resImage, boolean isTogetherOk) {
+			String resDescription, Double avgRating, String categoryId, byte[] imgFile, boolean isTogetherOk) {
 		super();
 		this.resId = resId;
 		this.resName = resName;
@@ -27,24 +33,15 @@ public class Restaurant implements Serializable{
 		this.resDescription = resDescription;
 		this.avgRating = avgRating;
 		this.categoryId = categoryId;
-		this.resImage = resImage;
+		this.imgFile = imgFile;
 		this.isTogetherOk = isTogetherOk;
 	}
-	private User owner;
-	private FoodReview[] reviewList;
-	private Food[] menuList;
-	private Together[] togetherList;
+	
 	
 	public Restaurant(){
 		
 	}
 	
-	public Restaurant(String resId, String resName, String category, String resAddress){ //임시
-		this.resId = resId;
-		this.resName = resName;
-		this.categoryId = category;
-		this.resAddress = resAddress;
-	}
 	public String getResId() {
 		return resId;
 	}
@@ -93,11 +90,29 @@ public class Restaurant implements Serializable{
 	public void setAvgRating(Double avgRating) {
 		this.avgRating = avgRating;
 	}
-	public URL getResImage() {
-		return resImage;
+
+	public String getOwnerId() {
+		return ownerId;
 	}
-	public void setResImage(URL resImage) {
-		this.resImage = resImage;
+
+	public void setOwnerId(String ownerId) {
+		this.ownerId = ownerId;
+	}
+
+	public byte[] getImgFile() {
+		return imgFile;
+	}
+
+	public void setImgFile(byte[] imgFile) {
+		this.imgFile = imgFile;
+	}
+
+	public String getImg64() {
+		return img64;
+	}
+
+	public void setImg64(String img64) {
+		this.img64 = img64;
 	}
 	public boolean isTogetherOk() {
 		return isTogetherOk;
@@ -127,7 +142,7 @@ public class Restaurant implements Serializable{
 	public String toString() {
 		return "Restaurant [resId=" + resId + ", resName=" + resName + ", categoryId=" + categoryId + ", resAddress="
 				+ resAddress + ", owner=" + owner + ", resPhone=" + resPhone + ", resDescription=" + resDescription
-				+ ", avgRating=" + avgRating + ", resImage=" + resImage + ", isTogetherOk=" + isTogetherOk
+				+ ", avgRating=" + avgRating + ", imgFile=" + imgFile + ", isTogetherOk=" + isTogetherOk
 				+ ", reviewList=" + Arrays.toString(reviewList) + ", menuList=" + Arrays.toString(menuList)
 				+ ", togetherList=" + Arrays.toString(togetherList) + "]";
 	}

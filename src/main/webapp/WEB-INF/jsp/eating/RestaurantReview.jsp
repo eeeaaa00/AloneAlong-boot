@@ -79,52 +79,6 @@
 				</div>
 			</div>
 			
-			<!-- 리뷰 2 -->
-			<div class="product-review mx-4 pb-4 mb-4 border-bottom">
-				<div class="d-flex align-middle me-4 pe-2">
-					<h6 class="text-green-roboto px-2">2</h6>
-					<div class="star-rating text-green">
-						<i class="fas fa-star"></i>
-						<i class="fas fa-star"></i>
-						<i class="far fa-star"></i>
-						<i class="far fa-star"></i>
-						<i class="far fa-star"></i>
-					</div>
-				</div>
-			<div class="text-muted ml-2"><small>공지수 | 2021.04.06</small></div>
-			<div class="mx-4 my-2">
-				<div class="my-3">
-					걍 그래요...
-				</div>
-				<div class="bg-light rounded-pill mt-3 py-1 w-25 text-center" type="button">
-					<i class="text-green fas fa-thumbs-up"></i> <!-- 추천한 상태 -->
-					<span class="text-green-roboto">3</span><small class="text-muted"> 명이 추천</small></div>
-				</div>
-			</div>
-			
-			<!-- 리뷰 3 -->
-			<div class="product-review mx-4 pb-4 mb-4 border-bottom">
-				<div class="d-flex align-middle me-4 pe-2">
-					<h6 class="text-green-roboto px-2">4</h6>
-					<div class="star-rating text-green">
-						<i class="fas fa-star"></i>
-						<i class="fas fa-star"></i>
-						<i class="fas fa-star"></i>
-						<i class="fas fa-star"></i>
-						<i class="far fa-star"></i>
-					</div>
-				</div>
-			<div class="text-muted ml-2"><small>공지수 | 2021.04.06</small></div>
-			<div class="mx-4 my-2">
-				<div class="my-3">
-					싸고 필요한 만큼만 있어서 좋아요 맛있어요
-				</div>
-				<div class="bg-light rounded-pill mt-3 py-1 w-25 text-center" type="button">
-					<i class="text-green far fa-thumbs-up"></i> <!-- 추천한 상태 -->
-					<span class="text-green-roboto">0</span><small class="text-muted"> 명이 추천</small></div>
-				</div>
-			</div>
-		  </div>
 		  <!-- 페이지네이션 -->
 		  <div class="row my-xl-5 justify-content-center">
 			<div class="paginate mb-xl-2 btn-toolbar" role="toolbar">

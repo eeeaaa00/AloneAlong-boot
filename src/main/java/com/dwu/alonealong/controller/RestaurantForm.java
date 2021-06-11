@@ -2,10 +2,8 @@ package com.dwu.alonealong.controller;
 
 import java.net.URL;
 
-import com.dwu.alonealong.domain.Food;
-import com.dwu.alonealong.domain.FoodReview;
-import com.dwu.alonealong.domain.Together;
-import com.dwu.alonealong.domain.User;
+import org.springframework.web.multipart.MultipartFile;
+
 
 public class RestaurantForm {
 	
@@ -14,6 +12,8 @@ public class RestaurantForm {
 	private String resAddress;
 	private String resPhone;
 	private String resDescription;
+	private String resArea;
+	private MultipartFile imgFile;
 	private boolean isTogetherOk;
 	
 	
@@ -52,6 +52,18 @@ public class RestaurantForm {
 	}
 	public void setTogetherOk(boolean isTogetherOk) {
 		this.isTogetherOk = isTogetherOk;
+	}
+	public String getResArea() {
+		return resArea;
+	}
+	public void setResArea(String resArea) {
+		this.resArea = resArea;
+	}
+	public MultipartFile getImgFile() {
+		return imgFile;
+	}
+	public void setImgFile(MultipartFile imgFile) {
+		this.imgFile = imgFile;
 	}
 	
 	

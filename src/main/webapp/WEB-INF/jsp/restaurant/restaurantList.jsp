@@ -41,8 +41,8 @@ b {color:#29A65F;}
 	<div class="row px-5 mb-lg-5 justify-content-between">
 		<c:forEach var="res" items="${restaurantList}">
 			<div class="card shadow-sm mb-4" type="button" onClick="location.href='<c:url value='/eating/' />${res.resId}'"> 
-				<svg class="img" style="background-image: url('https://img-cf.kurly.com/shop/data/goods/1575003713758y0.jpg'); 
-					background-size: cover; background-position: center" width="100%" height="150px"></svg>
+				<img class="img ml-1 mt-1" src="data:image/jpeg;base64,${res.img64}"
+					style="width:260px; height:150px; object-fit:cover;"></svg>
 				<div class="card-body">
 					<div class="d-flex justify-content-between align-items-start">
 						<h6 class="card-text text-left mb-3">${res.resName}</h6>

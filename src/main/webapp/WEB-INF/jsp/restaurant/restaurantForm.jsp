@@ -7,7 +7,7 @@
 	<h1>Restaurant Info</h1><hr></div>   
    
    <div align="center">
-     <form:form modelAttribute="restaurant" >
+     <form:form modelAttribute="restaurant" ENCTYPE="multipart/form-data" method="post">
 		<p>
 			<form:label path="resName">식당 이름</form:label>
 			<form:input path="resName" />
@@ -17,13 +17,32 @@
 			<form:input path="resAddress" />
 		</p>
 		<p>
+			<form:label path="imgFile">이미지</form:label>
+			<form:input type="file" path="imgFile" />
+		</p>
+		<p>
 			<form:label path="resPhone">번호</form:label>
 			<form:input path="resPhone"/>
 		</p>
 		<p>
-			<form:label path="resDescription">번호</form:label>
+			<form:label path="resDescription">소개</form:label>
 			<form:textarea path="resDescription" />
 		</p>
+		
+		<p>	
+			<form:label path="resArea">지역</form:label>
+			<form:select path="resArea" >
+				<option value="">--- 선택하세요 ---</option>
+				<option value="서울특별시">서울특별시</option>
+				<option value="인천광역시">인천광역시</option>
+				<option value="대구광역시">대구광역시</option>
+				<option value="대전광역시">대전광역시</option>
+				<option value="부산광역시">부산광역시</option>
+				<option value="울산광역시">울산광역시</option>
+				<option value="광주광역시">광주광역시</option>
+			</form:select>
+		</p>
+		
 		<p>
 			<form:label path="categoryId">분류</form:label>
 			<form:select path="categoryId" >

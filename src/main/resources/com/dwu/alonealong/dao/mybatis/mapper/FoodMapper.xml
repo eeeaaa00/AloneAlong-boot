@@ -12,7 +12,7 @@
     	FOOD_NAME as name,
     	FOOD_PRICE as price,
     	FOOD_DES as description,
-    	FOOD_IMG as img,
+    	FOOD_IMG as imgFile,
     	MAX_PEOPLE_NUM as maxPeopleNum
     FROM FOOD
     WHERE FOOD_ID = #{foodId}
@@ -25,7 +25,7 @@
     	FOOD_NAME as name,
     	FOOD_PRICE as price,
     	FOOD_DES as description,
-    	FOOD_IMG as img,
+    	FOOD_IMG as imgFile,
     	MAX_PEOPLE_NUM as maxPeopleNum
     FROM FOOD
     WHERE RES_ID = #{resId}
@@ -33,7 +33,7 @@
   
   <insert id="insertFood">
     INSERT INTO FOOD (FOOD_ID, RES_ID, FOOD_NAME, FOOD_PRICE, FOOD_DES, FOOD_IMG, MAX_PEOPLE_NUM)
-    VALUES ('f' || FOODID_SEQ.NEXTVAL, #{resId}, #{name}, #{price}, #{description}, empty_blob(), #{maxPeopleNum})
+    VALUES ('f' || FOODID_SEQ.NEXTVAL, #{resId}, #{name}, #{price}, #{description}, #{imgFile}, #{maxPeopleNum})
   </insert>
   
   <update id="updateFood">
@@ -41,7 +41,15 @@
  	SET FOOD_NAME = #{name},
     	FOOD_PRICE = #{price},
     	FOOD_DES = #{description},
-    	FOOD_IMG = empty_blob(),
+    	FOOD_IMG = #{imgFile},
+    	MAX_PEOPLE_NUM = #{maxPeopleNum}
+ 	WHERE FOOD_ID = #{foodId}
+  </update>
+  <update id="updateFoodwithoutImg">
+ 	UPDATE FOOD 
+ 	SET FOOD_NAME = #{name},
+    	FOOD_PRICE = #{price},
+    	FOOD_DES = #{description},
     	MAX_PEOPLE_NUM = #{maxPeopleNum}
  	WHERE FOOD_ID = #{foodId}
   </update>

@@ -53,31 +53,7 @@
 				<button type="button" class="btn btn-sm btn-orange rounded-pill px-3"
 					data-toggle="modal" data-target="#exampleModal"><i class="far fa-edit"></i> 작성하기</button>
 			</div>
-
-			<!-- 리뷰 목록 -->
-			<div class="product-review mx-4 pb-4 mb-4 border-bottom">
-				<div class="d-flex align-middle me-4 pe-2">
-					<h6 class="green-roboto px-2">5</h6>
-					<div class="star-rating green">
-						<i class="fas fa-star"></i>
-						<i class="fas fa-star"></i>
-						<i class="fas fa-star"></i>
-						<i class="fas fa-star"></i>
-						<i class="fas fa-star"></i>
-					</div>
-				</div>
-				<div class="text-muted ml-2">
-					<small>공지수 | 2021.04.06</small>
-				</div>
-				<div class="mx-4 my-2">
-					<div class="my-3">
-						첫구매도 맛이 달콤달콤 새콤새콤해서 너무맛있게 먹어서 두번째로시키게되었는데요<br>배송은 역시나
-						빨랐어요 새벽에 받자마자 열어보았는데 사과냄새향수가있나할정도였어요😚
-					</div>
-					<div class="bg-light rounded-pill mt-3 py-1 w-25 text-center" type="button"> <i class="green far fa-thumbs-up"></i>
-						<span class="green-roboto">25</span><small class="text-muted"> 명이 추천</small></div>
-				</div>
-			</div>
+			
 			<!-- 리뷰 목록 -->
 			<div class="product-review mx-4 pb-4 mb-4 border-bottom">
 				<div class="d-flex align-middle me-4 pe-2">
@@ -101,29 +77,7 @@
 						<span class="green-roboto">3</span><small class="text-muted"> 명이 추천</small></div>
 				</div>
 			</div>
-			<!-- 리뷰 목록 -->
-			<div class="product-review mx-4 pb-4 mb-4 border-bottom">
-				<div class="d-flex align-middle me-4 pe-2">
-					<h6 class="green-roboto px-2">4</h6>
-					<div class="star-rating green">
-						<i class="fas fa-star"></i>
-						<i class="fas fa-star"></i>
-						<i class="fas fa-star"></i>
-						<i class="fas fa-star"></i>
-						<i class="far fa-star"></i>
-					</div>
-				</div>
-				<div class="text-muted ml-2">
-					<small>공지수 | 2021.04.06</small>
-				</div>
-				<div class="mx-4 my-2">
-					<div class="my-3">
-						싸고 필요한 만큼만 있어서 좋아요 맛있어요
-					</div>
-					<div class="bg-light rounded-pill mt-3 py-1 w-25 text-center" type="button"> <i class="green far fa-thumbs-up"></i>
-						<span class="green-roboto">0</span><small class="text-muted"> 명이 추천</small></div>
-				</div>
-			</div>
+			
 			<!-- 페이지네이션 -->
 			<div class="row my-xl-5 justify-content-center">
 				<div class="paginate mb-xl-2 btn-toolbar" role="toolbar">
@@ -164,11 +118,11 @@
 								<div class="form-group">
 									<select name="rating" id="rating"
 										class="custom-select focus-shadow-0">
-										<option value="5">★★★★★ (5/5)</option>
-										<option value="4">★★★★☆ (4/5)</option>
-										<option value="3">★★★☆☆ (3/5)</option>
-										<option value="2">★★☆☆☆ (2/5)</option>
-										<option value="1">★☆☆☆☆ (1/5)</option>
+										<option value="5">★★★★★</option>
+										<option value="4">★★★★☆</option>
+										<option value="3">★★★☆☆</option>
+										<option value="2">★★☆☆☆</option>
+										<option value="1">★☆☆☆☆</option>
 									</select>
 								</div>
 							</div>
@@ -180,7 +134,7 @@
 					</form>
 				</div>
 				<div class="text-center">
-					<button type="button" class="btn btn-orange rounded-pill w-25 pb-2">작성하기</button>
+					<button type="button" onclick="<c:url value='/eating/order'/>" class="btn btn-orange rounded-pill w-25 pb-2" >작성하기</button>
 				</div>
 			</div>
 		</div>
