@@ -94,7 +94,7 @@
 						<a type="button"
 							class="btn btn-orange btn-block rounded-pill py-3 my-1 mt-3 mx-3"
 							href="<c:url value='/order' />"> <small><i
-								class="far fa-credit-card pr-1"></i></small> 결제하기
+								class="far fa-credit-card pr-1"></i></small> 주문하기
 						</a>
 					</div>
 				</div>

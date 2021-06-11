@@ -37,7 +37,7 @@
     ORDER BY resId DESC
   </select>
   
-  <select id="searchRestaurantList" resultType="Product">
+  <select id="searchRestaurantList" resultType="Restaurant">
     SELECT
     	RES_ID as resId, 
     	RES_NAME as resName,
@@ -51,6 +51,22 @@
     	IS_TOGETHER_OK as isTogetherOk
     FROM RESTAURANT
     WHERE lower(resName) like %#{keywords}%
+  </select>
+  
+  <select id="getRestaurantListByCategory" resultType="Restaurant">
+    SELECT 
+    	RES_ID as resId, 
+    	RES_NAME as resName,
+    	RES_ADDRESS as resAddress,
+    	RES_PHONE as resPhone,
+    	OWNER_ID as ownerId,
+    	RES_DES as resDescription,
+    	AVG_RATING as avgRating,
+    	RES_CATEGORY as categoryId,
+    	RES_IMG as resImage,
+    	IS_TOGETHER_OK as isTogetherOk
+    FROM (SELECT * FROM RESTAURANT WHERE AREA LIKE '%${category1}%' AND RES_CATEGORY LIKE '%${category2}%') 
+    ORDER BY ${sortType} DESC
   </select>
   
   <insert id="insertRestaurant">

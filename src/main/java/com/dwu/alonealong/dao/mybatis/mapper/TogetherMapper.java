@@ -12,4 +12,5 @@ public interface TogetherMapper {
 	Together getTogetherByTogId(String togId) throws DataAccessException;
 	List<Together> getTogetherList() throws DataAccessException;
 	void insertTogether(Together together) throws DataAccessException;
+	List<Together> getTogetherListByCategory(String area, /*Date date,*/ String kind, int price, String sex, String age) throws DataAccessException;
 }

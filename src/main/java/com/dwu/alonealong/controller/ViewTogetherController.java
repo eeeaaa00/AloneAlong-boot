@@ -5,11 +5,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.dwu.alonealong.domain.Together;
 import com.dwu.alonealong.service.AloneAlongFacade;
 
 @Controller
+@SessionAttributes({"together"})
 public class ViewTogetherController {
 
 	private AloneAlongFacade aloneAlong;
@@ -19,7 +21,7 @@ public class ViewTogetherController {
 		this.aloneAlong = aloneAlong;
 	}
 
-	@RequestMapping("/togetherInfo/{togetherId}")
+	@RequestMapping("/together/{togetherId}")
 	public String viewTogether(
 			@PathVariable("togetherId") String togId, 
 			ModelMap model) throws Exception {

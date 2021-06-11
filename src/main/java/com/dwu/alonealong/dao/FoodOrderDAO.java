@@ -10,7 +10,8 @@ public interface FoodOrderDAO {
 	
 	FoodOrder getFoodOrder(int orderId);
 	
-	void insertFoodOrder(FoodOrder foodOrder);
+	void insertFoodOrder(FoodOrder foodOrder, String orderId);
+	
 	
 	//void insertOrderStatus(FoodOrder foodOrder);
 	//int mySqlServerInsertOrder(FoodOrder order);

@@ -42,6 +42,9 @@ public class FoodCart implements Serializable{
 	public boolean containsFoodId(String id) {
 		return foodMap.containsKey(id);
 	}
+	public FoodCartItem getFoodCartItem(String foodId) {
+		return foodMap.get(foodId);
+	}
 	
 	public Food removeFoodById(String id) {
 	    FoodCartItem foodCartItem = foodMap.remove(id);
@@ -61,13 +64,13 @@ public class FoodCart implements Serializable{
 		FoodCartItem foodCartItem = foodMap.get(id);
 		foodCartItem.decrementQuantity();
 	}
-	public double getSubTotal() {
-		double subTotal = 0;
+	public int getSubTotal() {
+		int subTotal = 0;
 		Iterator<FoodCartItem> items = getAllFoodCartItems();
 		while(items.hasNext()) {
 			FoodCartItem cartItem = items.next();
 			Food food = cartItem.getFood();
-			double price = food.getPrice();
+			int price = food.getPrice();
 			int quantity = cartItem.getQuantity();
 			subTotal += price * quantity;
 		}
@@ -77,5 +80,5 @@ public class FoodCart implements Serializable{
 	public void setQuantityByFoodId(String itemId, int quantity) {
 		FoodCartItem cartItem = foodMap.get(itemId);
 	    cartItem.setQuantity(quantity);
-	  }
+	}
 }

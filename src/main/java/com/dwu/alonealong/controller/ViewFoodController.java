@@ -17,11 +17,9 @@ import com.dwu.alonealong.domain.FoodCart;
 import com.dwu.alonealong.domain.FoodReview;
 import com.dwu.alonealong.domain.Restaurant;
 import com.dwu.alonealong.service.AloneAlongFacade;
-import com.dwu.alonealong.service.FoodService;
-import com.dwu.alonealong.service.RestaurantService;
 
 @Controller
-@SessionAttributes({"sessionFoodCart","foodList", "restaurant"})
+@SessionAttributes({"sessionFoodCart"})
 public class ViewFoodController {
 	private AloneAlongFacade alonealong;
 		
@@ -29,17 +27,6 @@ public class ViewFoodController {
 	public void setAlonealong(AloneAlongFacade alonealong) {
 		this.alonealong = alonealong;
 	}
-	//db전까지 사용
-//	@Autowired
-//	private RestaurantService resService;
-//	public void setRestaurantService(RestaurantService resService) {
-//		this.resService = resService;
-//	}	
-//	@Autowired
-//	private FoodService foodService;	
-//	public void setFoodService(FoodService foodService) {
-//		this.foodService = foodService;
-//	}
 	
 	//메뉴탭
 	@RequestMapping("/eating/viewFood")
@@ -57,7 +44,7 @@ public class ViewFoodController {
 	@RequestMapping("/eating/{resId}")
 	public String resFood(
 			@PathVariable("resId") String resId,
-			@SessionAttribute("sessionFoodCart") FoodCart cart,
+			@SessionAttribute("sessionFoodCart") FoodCart foodCart,
 //			@RequestParam(value = "foodId", defaultValue="") String foodId,
 			ModelMap model) throws Exception {
 		
@@ -74,12 +61,12 @@ public class ViewFoodController {
 //		}
 //		List<Food> foodList = this.alonealong.getFoodListByRestaurant(resId);
 		List<Food> foodList = this.alonealong.getFoodListByRestaurant(resId); //지금만 다 불러오지 나중엔 resId 걸리는 것만 불러와야해
-		FoodCart foodCart = cart;
 //		FoodCart foodCart = this.alonealong.getFoodCart(resId);
 		model.put("foodList", foodList);
 		model.put("foodCart", foodCart.getFoodItemList());
 		Restaurant res = alonealong.getRestaurantByResId(resId);
 		model.put("restaurant", res);
+		model.put("totalPrice", foodCart.getSubTotal());
 		System.out.println(foodCart.getFoodItemList().size());
 		return "restaurant";
 		
@@ -87,27 +74,33 @@ public class ViewFoodController {
 	}
 	
 	//리뷰탭
-	@RequestMapping("/eating/{redId}/RestaurantReview")
+	@RequestMapping("/eating/{resId}/RestaurantReview")
 	public String handleRequest2(
-			@RequestParam("resId") String resId,
+			@PathVariable("resId") String resId,
+			@SessionAttribute("sessionFoodCart") FoodCart foodCart,
 			ModelMap model) throws Exception {
 //		List<FoodReview> reviewList = this.alonealong.getFoodReviewList(resId);
 //		FoodCart foodCart = this.alonealong.getFoodCart(resId);
 //		model.put("foodList", reviewList);
-//		model.put("foodCart", foodCart);
+		model.put("foodCart", foodCart.getFoodItemList());
+		Restaurant res = alonealong.getRestaurantByResId(resId);
+		model.put("restaurant", res);
+		model.put("totalPrice", foodCart.getSubTotal());
 //		return "/eating/RestaurantReview";
+		model.put("resId", resId);
 		return "restaurantReview";
 	}
+	
 	//메뉴수정버튼
-		@RequestMapping("/eating/viewFood/{foodId}/adminFood")
-		public String handleRequest3(
+	@RequestMapping("/eating/viewFood/{foodId}/adminFood")
+	public String handleRequest3(
 //				@RequestParam("resId") String resId,
-				ModelMap model) throws Exception {
+			ModelMap model) throws Exception {
 //			List<FoodReview> reviewList = this.alonealong.getFoodReviewList(resId);
 //			FoodCart foodCart = this.alonealong.getFoodCart(resId);
 //			model.put("foodList", reviewList);
 //			model.put("foodCart", foodCart);
-			return "/eating/FoodForm";
-		}
+		return "/eating/FoodForm";
+	}
 		
 }

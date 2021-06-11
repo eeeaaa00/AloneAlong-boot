@@ -13,26 +13,19 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.dwu.alonealong.domain.Restaurant;
 import com.dwu.alonealong.service.AloneAlongFacade;
-import com.dwu.alonealong.service.RestaurantService;
 
 @Controller
 @RequestMapping("/eating/adminRes")
 public class RestaurantController {
 	
 	private static final String RES_INSERT_FORM = "restaurantForm";
-	private int nextResId = 1; //resId 자동으로 맞춰서 들어가게 해야함.
+
 	private AloneAlongFacade alonealong;
 	
 	@Autowired
 	public void setAlonealong(AloneAlongFacade alonealong) {
 		this.alonealong = alonealong;
 	}
-//	@Autowired
-//	private RestaurantService resService;
-//	
-//	public void setRestaurantService(RestaurantService resService) {
-//		this.resService = resService;
-//	}
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public String form(@ModelAttribute("restaurant") RestaurantForm resForm) {
@@ -50,14 +43,14 @@ public class RestaurantController {
 		
 		Restaurant res = new Restaurant("RES_ID.NEXTVAL", resForm.getResName(), resForm.getResAddress(), resForm.getResPhone(), "user1",
 				resForm.getResDescription(), 0.0, resForm.getCategoryId(), new URL("http://naver.com"), resForm.getIsTogetherOk());
-		nextResId++;	
+
 		alonealong.insertRestaurant(res);
 		
 		List<Restaurant> restaurantList = alonealong.getRestaurantList();
 		model.addAttribute("restaurantList", restaurantList);
 //		return "eating/Food";
 //		return "test";
-		return "restaurantList";
+		return "redirect:/eating";
 //		String form = "/eating/" + resId;
 //		if(resId == null)
 //			System.out.println("null 떴다");

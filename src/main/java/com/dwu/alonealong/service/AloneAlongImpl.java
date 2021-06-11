@@ -10,6 +10,9 @@ import org.springframework.transaction.annotation.Transactional;
 import com.dwu.alonealong.dao.UserDAO;
 import com.dwu.alonealong.dao.CartItemDAO;
 import com.dwu.alonealong.dao.FoodDAO;
+import com.dwu.alonealong.dao.FoodLineItemDAO;
+import com.dwu.alonealong.dao.FoodOrderDAO;
+import com.dwu.alonealong.dao.OrderInfoDAO;
 import com.dwu.alonealong.dao.PaymentDAO;
 import com.dwu.alonealong.dao.ProductDAO;
 import com.dwu.alonealong.dao.ProductOrderDAO;
@@ -21,6 +24,8 @@ import com.dwu.alonealong.dao.TogetherMemberDAO;
 import com.dwu.alonealong.domain.CartItem;
 import com.dwu.alonealong.domain.Food;
 import com.dwu.alonealong.domain.FoodCart;
+import com.dwu.alonealong.domain.FoodCartItem;
+import com.dwu.alonealong.domain.FoodLineItem;
 import com.dwu.alonealong.domain.FoodOrder;
 import com.dwu.alonealong.domain.FoodReview;
 import com.dwu.alonealong.domain.Payment;
@@ -37,13 +42,20 @@ import com.dwu.alonealong.domain.User;
 @Transactional
 public class AloneAlongImpl implements AloneAlongFacade{
 
-	//Autowired 오류 수정 전까지 주석처리
+	//restaurant
 	@Autowired
-	private RestaurantDAO restaurantDao;
-	
+	private RestaurantDAO restaurantDao;	
 	@Autowired
 	private FoodDAO foodDao;
 	@Autowired
+	private FoodLineItemDAO foodLineItemDao;
+	@Autowired
+	private FoodOrderDAO foodOrderDao;
+	@Autowired
+	private OrderInfoDAO orderInfoDao;
+	
+	
+    @Autowired
 	private UserDAO userDao;
 	@Autowired
 	private ProductDAO productDao;
@@ -51,15 +63,15 @@ public class AloneAlongImpl implements AloneAlongFacade{
 	private ProductReviewDAO productReviewDao;
 //	@Autowired
 //	private ProductOrderDAO productOrderDao;
-//	@Autowired
-//	private PaymentDAO paymentDao;
+	@Autowired
+	private PaymentDAO paymentDao;
 	@Autowired
 	private CartItemDAO cartItemDao;
 	
 //	private ProductDAO productDao;
 //	private ProductReviewDAO productReviewDao;
 	private ProductOrderDAO productOrderDao;
-	private PaymentDAO paymentDao;
+//	private PaymentDAO paymentDao;
 	
 	@Autowired
 	private TogetherDAO togetherDao;
@@ -103,11 +115,11 @@ public class AloneAlongImpl implements AloneAlongFacade{
 	}
 	
 	//Product Review
-	public ProductReview getProductReview(String reviewId){
-		return productReviewDao.getProductReview(reviewId);
+	public ProductReview getProductReview(String reviewId, String userId){
+		return productReviewDao.getProductReview(reviewId, userId);
 	}
-	public List<ProductReview> getProductReviewList(String productId, String sortType){
-		return productReviewDao.getProductReviewList(productId, sortType);
+	public List<ProductReview> getProductReviewList(String productId, String sortType, String userId){
+		return productReviewDao.getProductReviewList(productId, sortType, userId);
 	}
 	public List<ProductReview> getProductReviewListByUserId(String userId){
 		return productReviewDao.getProductReviewListByUserId(userId);
@@ -132,6 +144,14 @@ public class AloneAlongImpl implements AloneAlongFacade{
 	}
 	public int mostRatingOfReviews(String productId){
 		return productReviewDao.mostRatingOfReviews(productId);
+	}
+	public void insertProductReviewRecommend(String reviewId, String userId){
+		productReviewDao.insertProductReviewRecommend(reviewId, userId);
+		return;
+	}
+	public void deleteProductReviewRecommend(String reviewId, String userId){
+		productReviewDao.deleteProductReviewRecommend(reviewId, userId);
+		return;
 	}
 	
 	//PRODUCT Order
@@ -179,72 +199,94 @@ public class AloneAlongImpl implements AloneAlongFacade{
 		paymentDao.updateCard(payment);
 	}
 	
+	//Restaurant
+	@Override
+	public void insertRestaurant(Restaurant res) {
+		restaurantDao.insertRestaurant(res);
+		
+	}
 	@Override
 	public List<Restaurant> getRestaurantList() {
 		return restaurantDao.getRestaurantList();
 	}
-
+	@Override
+	public List<Restaurant> getRestaurantListByCategory(String category1, String category2, String sortType){
+		return restaurantDao.getRestaurantListByCategory(category1, category2, sortType);
+	}
 	@Override
 	public List<Restaurant> searchRestaurantList(String keywords) {
 		return restaurantDao.searchRestaurantList(keywords);
 	}
-
 	@Override
 	public Restaurant getRestaurantByUserId(String userId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
 	@Override
 	public Restaurant getRestaurantByResId(String resId) {
 		// TODO Auto-generated method stub
 		return restaurantDao.getRestaurant(resId);
 	}
-
+	
+	
+	//Food
 	@Override
 	public List<Food> getFoodListByRestaurant(String resId) {
 		return foodDao.getFoodListByResId(resId);
 	}
-
+	@Override
+	public void insertFood(Food food) {
+		foodDao.insertFood(food);
+	}
+	@Override
+	public void updateFood(Food food) {
+		foodDao.updateFood(food);
+	}
+	@Override
+	public void deleteFood(String foodId) {
+		foodDao.deleteFood(foodId);
+	}
+	
 	@Override
 	public Food getFood(String foodId) {
 		return foodDao.getFood(foodId);
 	}
-
-//	@Override
-//	public FoodCart getFoodCart(String resId) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-
 	@Override
 	public List<FoodReview> getFoodReviewList(String resId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	//Food Order
 	@Override
 	public void insertFoodOrder(FoodOrder order) {
-		// TODO Auto-generated method stub
+		String newOrderId;
+		//주문 하나의 주문자정보
+		orderInfoDao.insertFoodOrderInfo(order); //foodId는 그냥 맨 처음 대표적인 list[0]로 foodId 넣음.
+		//주문 하나의 예약정보
+		newOrderId = "fo" + orderInfoDao.getRecentOrderId();
+		foodOrderDao.insertFoodOrder(order, newOrderId);
+		
+		
+		//카트 item들 모두 넣기
+		for(FoodCartItem val : order.getFoodList()) {
+			FoodLineItem item = new FoodLineItem(newOrderId, val.getFood().getFoodId(), val.getQuantity(), val.getTotalPrice());
+			foodLineItemDao.insertFoodLineItem(item);
+		}
+			
+		
 		
 	}
-
 	@Override
 	public FoodOrder getFoodOrder(int orderId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
 	@Override
 	public List<FoodOrder> getOrdersByUserId(String userId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
-  @Override
-	public void insertRestaurant(Restaurant res) {
-		restaurantDao.insertRestaurant(res);
-		
-	}
+  
   
   //together
 	@Override
@@ -254,12 +296,17 @@ public class AloneAlongImpl implements AloneAlongFacade{
 	
 	@Override
 	public List<Together> getTogetherList() {
-		return togetherDao.getTogetherList(); //여기서 NullPointException 발생///////////////////////////////////////////
+		return togetherDao.getTogetherList();
 	}
 	
 	@Override
 	public void insertTogether(Together together) {
 		togetherDao.insertTogether(together);
+	}
+	
+	@Override
+	public List<Together> getTogetherListByCategory(String area, /*Date date,*/ String kind, int price, String sex, String age) {
+		return togetherDao.getTogetherListByCategory(area, kind, price, sex, age);
 	}
 	
 	//TogetherFood
@@ -283,6 +330,5 @@ public class AloneAlongImpl implements AloneAlongFacade{
 	public void insertTogetherMember(TogetherMember togetherMember) {
 		togetherMemberDao.insertTogetherMember(togetherMember);
 	}
-
 
 }

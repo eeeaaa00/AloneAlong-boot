@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dwu.alonealong.dao.mybatis.mapper.FoodLineItemMapper">
+
+  <cache />
+  
+  <insert id="insertFoodLineItem">
+    INSERT INTO FOOD_LINEITEM (ORDER_ID, FOOD_ID, QUANTITY, UNIT_PRICE)
+    VALUES (#{orderId}, #{foodId}, #{quantity}, #{unitPrice})
+  </insert>
+  
+
+</mapper>

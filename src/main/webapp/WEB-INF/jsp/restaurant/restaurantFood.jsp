@@ -1,17 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<style>
-b {color:#29A65F;}
-.card:hover, .card:focus {  filter: brightness(90%); }
-.card-body>p {color:#29A65F; margin-top:-5px;}
-.card { width:270px; height: 270px;}
-.overlay{ position: absolute; bottom: 0; left: 0; right: 0; top:0;}
-.card-body>div>a{ z-index:1;}
-.sold-out { background-color:gray; color:#FFFFFF; width:50px; padding: 2px 15px 2px 15px;}
-</style>
 
 <div class="row my-5 mx-5">
-					<div class="col-md-12" height="100%;">
+					<div class="col-md-12">
 				      <div class="shadow-sm rounded-lg">
 				        <!-- Tabs-->
 				        <ul class="nav nav-tabs nav-fill" role="tablist">
@@ -34,14 +25,14 @@ b {color:#29A65F;}
 					                <div class="d-flex justify-content-between align-items-start py-2" >
 									<h6 class="card-text text-left">${food.name}</h6>
 									</div>
-									<p>설명</p>
+									<p>${food.description}</p>
 									<p>${food.price}원 </p>  
 				              </div>
 				              <div class="card-footer">
 					            <button type = "button" onClick="location.href='<c:url value='/eating/${restaurant.resId}/addFoodToCart'><c:param name="foodId" value="${food.foodId}"/></c:url>'">담기</button></br> 
 					       		  <!--<button type="submit">담기</button></br>	 -->  
-					              <button type="button" >수정</button>
-					              <button>삭제</button>
+					              <button type="button" onClick="location.href='<c:url value='/eating/${restaurant.resId}/adminFood/update'><c:param name="foodId" value="${food.foodId}"/></c:url>'">수정</button>
+					              <button type="button" onClick="location.href='<c:url value='/eating/${restaurant.resId}/adminFood/delete'><c:param name="foodId" value="${food.foodId}"/></c:url>'">삭제</button>
 				              </div>
 				              
 				            </div>

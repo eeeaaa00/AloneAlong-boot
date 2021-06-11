@@ -10,10 +10,12 @@ public class ProductReview implements Serializable {
   private String reviewId;
   private String productId;
   private String userId;
+  private String nickname;
   private Date reviewDate;
   private String reviewContents;
   private int rating;
   private int recommend;
+  private boolean checkRecommend;
   
   public String getReviewId() { return reviewId; }
   public void setReviewId(String reviewId) { this.reviewId = reviewId; }
@@ -23,6 +25,9 @@ public class ProductReview implements Serializable {
 
   public String getUserId() { return userId; }
   public void setUserId(String userId) { this.userId = userId; }
+
+  public String getNickname() { return nickname; }
+  public void setNickname(String nickname) { this.nickname = nickname; }
   
   public Date getReviewDate() { return reviewDate; }
   public void setReviewDate(Date reviewDate) { this.reviewDate = reviewDate; }
@@ -35,6 +40,9 @@ public class ProductReview implements Serializable {
   
   public int getRecommend() { return recommend; }
   public void setRecommend(int recommend) { this.recommend = recommend; }
+  
+  public boolean getCheckRecommend() { return checkRecommend; }
+  public void setCheckRecommend(boolean checkRecommend) { this.checkRecommend = checkRecommend; }
   
   /* Public Methods */
   public void increaseRecommend() {

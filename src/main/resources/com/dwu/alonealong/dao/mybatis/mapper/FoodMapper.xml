@@ -31,6 +31,27 @@
     WHERE RES_ID = #{resId}
   </select>
   
+  <insert id="insertFood">
+    INSERT INTO FOOD (FOOD_ID, RES_ID, FOOD_NAME, FOOD_PRICE, FOOD_DES, FOOD_IMG, MAX_PEOPLE_NUM)
+    VALUES ('f' || FOODID_SEQ.NEXTVAL, #{resId}, #{name}, #{price}, #{description}, empty_blob(), #{maxPeopleNum})
+  </insert>
+  
+  <update id="updateFood">
+ 	UPDATE FOOD 
+ 	SET FOOD_NAME = #{name},
+    	FOOD_PRICE = #{price},
+    	FOOD_DES = #{description},
+    	FOOD_IMG = empty_blob(),
+    	MAX_PEOPLE_NUM = #{maxPeopleNum}
+ 	WHERE FOOD_ID = #{foodId}
+  </update>
+  
+  <delete id="deleteFood">
+  	DELETE FROM FOOD
+    WHERE FOOD_ID = #{foodId}
+  </delete>
+  
+  
   
 
 </mapper>

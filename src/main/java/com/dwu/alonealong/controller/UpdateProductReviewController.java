@@ -36,12 +36,14 @@ public class UpdateProductReviewController {
 		String userId = "1";
 		
 		//product를 구매한 user인지 검사하는 과정 추가 필요
-		ProductReview productReview = this.aloneAlong.getProductReview(reviewId);
+		ProductReview productReview = this.aloneAlong.getProductReview(reviewId, userId);
 		productReview.setRating(rating);
 		productReview.setReviewContents(contents);
 		
 		//결과값 검사 추가 필요
-		this.aloneAlong.updateProductReview(productReview);
+		if(productReview.getUserId() == userId) {
+			this.aloneAlong.updateProductReview(productReview);
+		}
 		return new RedirectView("/shop/{productId}/review");
 	}
 

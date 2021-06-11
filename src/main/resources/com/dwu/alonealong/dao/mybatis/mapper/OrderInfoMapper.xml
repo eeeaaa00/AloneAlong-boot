@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dwu.alonealong.dao.mybatis.mapper.OrderInfoMapper">
+
+  <cache />
+  
+  <insert id="insertFoodOrderInfo">
+    INSERT INTO ORDERINFO (ORDER_ID, ORDER_DATE, TOTAL_PRICE, ORDER_STATUS, USER_ID, CARD_NUM, CARD_DATE)
+    VALUES ('fo' || FOODORDERID_SEQ.NEXTVAL, TO_DATE(SYSDATE, 'YYYY-MM-DD'), #{totalPrice}, 'reserved', #{userId}, #{payment.cardNumber}, #{payment.cardDate})
+  </insert>
+  
+  <select id="getRecentOrderId" resultType="String">
+  	SELECT FOODORDERID_SEQ.CURRVAL FROM DUAL
+  </select>
+
+</mapper>

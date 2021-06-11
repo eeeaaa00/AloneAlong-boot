@@ -22,8 +22,7 @@ import com.dwu.alonealong.domain.FoodCart;
 import com.dwu.alonealong.domain.FoodCartItem;
 import com.dwu.alonealong.domain.Restaurant;
 import com.dwu.alonealong.service.AloneAlongFacade;
-import com.dwu.alonealong.service.FoodService;
-import com.dwu.alonealong.service.RestaurantService;
+
 
 @Controller
 @SessionAttributes("sessionFoodCart")
@@ -36,19 +35,6 @@ public class FoodCartController {
 	public void setAlonealong(AloneAlongFacade alonealong) {
 		this.alonealong = alonealong;
 	}
-	
-	@Autowired
-	private RestaurantService resService;	
-	public void setRestaurantService(RestaurantService resService) {
-		this.resService = resService;
-	}
-	
-	@Autowired
-	private FoodService foodService;	
-	public void setFoodService(FoodService foodService) {
-		this.foodService = foodService;
-	}
-	
 	
 	
 	@RequestMapping("/eating/{resId}/addFoodToCart")
@@ -72,31 +58,68 @@ public class FoodCartController {
 		List<Food> foodList = this.alonealong.getFoodListByRestaurant(resId); 
 		model.put("foodList", foodList);
 		model.put("foodCart", cart.getAllFoodCartItems());
+		model.put("totalPrice", cart.getSubTotal());
+		Restaurant res = alonealong.getRestaurantByResId(resId);
+		model.put("restaurant", res);
+		return "redirect:/eating/{resId}";
+	}
+	@RequestMapping("/eating/{resId}/updateFoodCartItem")
+	public String handleRequest2(
+			HttpServletRequest request,	
+			@ModelAttribute("sessionFoodCart") FoodCart cart,
+			@PathVariable("resId") String resId,
+			ModelMap model
+			) throws Exception {
+		
+		cart.setQuantityByFoodId(request.getParameter("foodId"), Integer.parseInt(request.getParameter("quantity")));
+				
+		List<Food> foodList = this.alonealong.getFoodListByRestaurant(resId); 
+		model.put("foodList", foodList);
+		model.put("foodCart", cart.getAllFoodCartItems());
+		model.put("totalPrice", cart.getSubTotal());
+		Restaurant res = alonealong.getRestaurantByResId(resId);
+		model.put("restaurant", res);
+		return "redirect:/eating/{resId}";
+	}
+	@RequestMapping("/eating/{resId}/deleteFoodCartItem")
+	public String handleRequest3(
+			HttpServletRequest request,	
+			@ModelAttribute("sessionFoodCart") FoodCart cart,
+			@PathVariable("resId") String resId,
+			ModelMap model
+			) throws Exception {
+		
+		cart.removeFoodById((request.getParameter("foodId")));
+				
+		List<Food> foodList = this.alonealong.getFoodListByRestaurant(resId); 
+		model.put("foodList", foodList);
+		model.put("foodCart", cart.getAllFoodCartItems());
+		model.put("totalPrice", cart.getSubTotal());
 		Restaurant res = alonealong.getRestaurantByResId(resId);
 		model.put("restaurant", res);
 		return "redirect:/eating/{resId}";
 	}
 	
-	@RequestMapping("/eating/{resId}/updateFoodCartQuantities")
-	public ModelAndView handleRequest(
-			HttpServletRequest request,	
-			@ModelAttribute("sessionCart") FoodCart cart) throws Exception {
-		Iterator<FoodCartItem> cartItems = cart.getAllFoodCartItems();
-		while (cartItems.hasNext()) {
-			FoodCartItem cartItem = (FoodCartItem) cartItems.next();
-			String itemId = cartItem.getFood().getFoodId();
-			try {
-				int quantity = Integer.parseInt(request.getParameter(itemId));
-				cart.setQuantityByFoodId(itemId, quantity);
-				if (quantity < 1) {
-					cartItems.remove();
-				}
-			}
-			catch (NumberFormatException ex) {
-				// ignore on purpose
-			}
-		}
-		return new ModelAndView("restaurant", "foodCart", cart);
-	}
+//	@RequestMapping("/eating/{resId}/updateFoodCartQuantities")
+//	public ModelAndView handleRequest(
+//			HttpServletRequest request,	
+//			@ModelAttribute("sessionCart") FoodCart cart) throws Exception {
+//		Iterator<FoodCartItem> cartItems = cart.getAllFoodCartItems();
+//		while (cartItems.hasNext()) {
+//			FoodCartItem cartItem = (FoodCartItem) cartItems.next();
+//			String itemId = cartItem.getFood().getFoodId();
+//			try {
+//				int quantity = Integer.parseInt(request.getParameter(itemId));
+//				cart.setQuantityByFoodId(itemId, quantity);
+//				if (quantity < 1) {
+//					cartItems.remove();
+//				}
+//			}
+//			catch (NumberFormatException ex) {
+//				// ignore on purpose
+//			}
+//		}
+//		return new ModelAndView("restaurant", "foodCart", cart);
+//	}
 
 }

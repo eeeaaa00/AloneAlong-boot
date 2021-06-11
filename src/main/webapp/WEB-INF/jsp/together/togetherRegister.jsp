@@ -34,7 +34,7 @@
 <div class="row g-5">
 	<!-- 글 작성하기 -->
 	<div class="col-md-6 col-lg-7">
-		<h5 class="mb-3"><span class="text-primary">상세 정보 작성</span></h5>
+		<h5 class="mb-3"><span class="text-success">상세 정보 작성</span></h5>
 		<form class="needs-validation" novalidate>
 			<div class="row g-3">
 				<div class="col-10">
@@ -44,15 +44,15 @@
                 </div>
                 <div class="col-10">
                     <label for="headCount" class="form-label">인원</label>
-                    <input type="number" class="form-control" id="headCount" placeholder="2" required>
+                    <input type="number" class="form-control" id="headCount" min="2" placeholder="2" required>
                     <div class="invalid-feedback">인원수를 입력해주세요.</div>
                 </div>
                 <div class="col-md-5">
                     <label for="sex" class="form-label">성별</label>
                     <select id="age" name="age" class="custom-select">
                     	<option value="none">상관없음</option>
-                      	<option value="female">여성만</option>
-                      	<option value="male">남성만</option>
+                      	<option value="female">여성</option>
+                      	<option value="male">남성</option>
                     </select>
                     <div class="invalid-feedback">성별을 조건을 설정해주세요.</div>
                 </div>
@@ -88,15 +88,19 @@
 
     <!-- 식당 선택 -->
     <div class="col-md-5 col-lg-5 order-md-last">
-    	<h5 class="d-flex justify-content-between align-items-center mb-3"><span class="text-primary">식당 선택</span></h5>
-        	<div class="col-sm-12">
-            	<input type="text" class="form-control" id="name" placeholder="ㅇㅇ고기" value="" required>
-            	<div class="invalid-feedback">식당을 입력하세요.</div>
-            </div>
+    	<h5 class="d-flex justify-content-between align-items-center mb-3">
+    		<span class="text-success">식당 선택</span>
+    		<button  type="button" class="btn btn-sm btn-outline-success" name="searchRes" data-toggle="modal" data-target="#searchResModal">검색</button>
+    	</h5>
+        <div class="col-sm-12">
+        	<input type="text" class="form-control" id="name" placeholder="ㅇㅇ고기" value="" required>
+            <div class="invalid-feedback">식당을 입력하세요.</div>
+        </div>
 	<!-- 메뉴 선택 -->
-	<h5 class="d-flex justify-content-between align-items-center mb-3"><span class="text-primary">메뉴 선택</span>
-    	<button type="button" class="btn btn-outline-primary">추가</button>
-        <span class="badge bg-primary rounded-pill">3</span>
+	<h5 class="d-flex justify-content-between align-items-center mb-3">
+		<span class="text-success">메뉴 선택</span>
+    	<button  type="button" class="btn btn-sm btn-outline-success" name="addFood" data-toggle="modal" data-target="#addFoodModal">추가</button>
+        <span class="badge bg-success rounded-pill">3</span>
 	</h5>
 	<ul class="list-group mb-3">
 		<li class="list-group-item d-flex justify-content-between lh-sm">
@@ -136,7 +140,45 @@
 
 <!--버튼 -->
 <div class="py-5 text-right">
-	<button class="w-40 btn btn-primary btn-lg" type="submit">등록하기</button>
+	<a type="button" class="w-40 btn btn-lg btn-success" href="#">등록하기</a>
+</div>
+
+<!-- 식당 검색 Modal -->
+<div class="modal fade" id="searchResModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">식당 검색</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+              ...
+            </div>
+            <div class="modal-footer">
+				<button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">취소</button>
+				<button type="button" class="btn btn-outline-success">확인</button>
+            </div>
+		</div>
+	</div>
+</div>
+
+<!-- 음식 추가 Modal -->
+<div class="modal fade" id="addFoodModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">음식 추가</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+              ...
+            </div>
+            <div class="modal-footer">
+				<button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">취소</button>
+				<button type="button" class="btn btn-outline-success">확인</button>
+            </div>
+		</div>
+	</div>
 </div>
 
 <script src="/docs/5.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>

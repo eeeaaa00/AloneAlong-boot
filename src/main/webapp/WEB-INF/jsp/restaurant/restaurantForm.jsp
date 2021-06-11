@@ -2,15 +2,9 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<style>
-b {color:#29A65F;}
-.card:hover, .card:focus {  filter: brightness(90%); }
-.card-body>p {color:#29A65F; margin-top:-5px;}
-.card { width:270px; height: 270px;}
-.overlay{ position: absolute; bottom: 0; left: 0; right: 0; top:0;}
-.card-body>div>a{ z-index:1;}
-.sold-out { background-color:gray; color:#FFFFFF; width:50px; padding: 2px 15px 2px 15px;}
-</style>
+  
+<div class=" mb-3 pb-3 text-center">
+	<h1>Restaurant Info</h1><hr></div>   
    
    <div align="center">
      <form:form modelAttribute="restaurant" >

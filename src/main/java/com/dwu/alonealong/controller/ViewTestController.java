@@ -74,4 +74,24 @@ public class ViewTestController {
 		mav.setViewName("/order");
 		return mav;
 	}
+	
+	@RequestMapping(value = "/orderTest")
+	public String orderTest() {
+		return "order_layout";
+	}
+	
+	@RequestMapping(value = "/productOrderTest")
+	public String productOrderTest() {
+		return "productOrder";
+	}
+	
+//	@RequestMapping(value = "/togetherOrderTest")
+//	public String togetherOrderTest() {
+//		return "togetherOrder";
+//	}
+	
+	@RequestMapping(value = "/foodOrderTest")
+	public String foodOrderTest() {
+		return "foodOrder";
+	}
 }

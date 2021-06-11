@@ -36,8 +36,8 @@ public interface AloneAlongFacade {
 	Product getProduct(String productId);
 	
 	//PRODUCT Review
-	ProductReview getProductReview(String reviewId);
-	List<ProductReview> getProductReviewList(String productId, String sortType);
+	ProductReview getProductReview(String reviewId, String userId);
+	List<ProductReview> getProductReviewList(String productId, String sortType, String userId);
 	List<ProductReview> getProductReviewListByUserId(String userId);
 	void insertProductReview(ProductReview productReview);
 	void updateProductReview(ProductReview productReview);
@@ -45,6 +45,8 @@ public interface AloneAlongFacade {
 	int numOfReviews(String productId);
 	double averageOfReviews(String productId);
 	int mostRatingOfReviews(String productId);
+	void insertProductReviewRecommend(String reviewId, String userId);
+	void deleteProductReviewRecommend(String reviewId, String userId);
 	
 	//PRODUCT Order
 	List<ProductOrder> getProductOrdersByUserId(String userId);
@@ -65,18 +67,20 @@ public interface AloneAlongFacade {
 	void updateCard(Payment payment);
 	
 	//Restaurant
+	void insertRestaurant(Restaurant res);
 	List<Restaurant> getRestaurantList();
-	
+	List<Restaurant> getRestaurantListByCategory(String category1, String category2, String sortType);
 	List<Restaurant> searchRestaurantList(String keywords);
 //
 	Restaurant getRestaurantByUserId(String userId);
 	Restaurant getRestaurantByResId(String resId);
-	void insertRestaurant(Restaurant res);
-//
-	List<Food> getFoodListByRestaurant(String resId);
-// 
+	
+	//Food
+	void insertFood(Food food);
+	void updateFood(Food food);
+	void deleteFood(String foodId );
+	List<Food> getFoodListByRestaurant(String resId); 
 	Food getFood(String foodId);
-//	FoodCart getFoodCart(String resId);
 	List<FoodReview> getFoodReviewList(String resId);
 //
 //	void insertOrder(Order order);
@@ -92,6 +96,7 @@ public interface AloneAlongFacade {
 	Together getTogetherByTogId(String togId);
 	List<Together> getTogetherList();
 	void insertTogether(Together together);
+	List<Together> getTogetherListByCategory(String area, /*Date date,*/ String kind, int price, String sex, String age);
 	
 	//TogetherFood
 	List<TogetherFood> getTogetherFoodListByTogId(String togId);
