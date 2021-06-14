@@ -13,35 +13,35 @@ public class ViewMypageController {
 
 		return "mypage";
 	}
-	
+
 	@RequestMapping(value = "/myPayment")
 	public ModelAndView myPayment() {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("/mypage/myPayment");
 		return mav;
 	}
-	
+
 	@RequestMapping(value = "/myOrder")
 	public ModelAndView myOrder() {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("/mypage/myOrder");
 		return mav;
 	}
-	
+
 	@RequestMapping(value = "/myFood")
 	public ModelAndView myFood() {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("/mypage/myFood");
 		return mav;
 	}
-	
+
 	@RequestMapping(value = "/myTogether")
 	public ModelAndView myTogether() {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("/mypage/myTogether");
 		return mav;
 	}
-	
+
 	@RequestMapping(value = "/myRestaurant")
 	public ModelAndView myRestaurant() {
 		ModelAndView mav = new ModelAndView();
