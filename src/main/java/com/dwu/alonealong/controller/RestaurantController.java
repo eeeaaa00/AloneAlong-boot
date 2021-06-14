@@ -1,5 +1,6 @@
 package com.dwu.alonealong.controller;
 
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
@@ -10,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.dwu.alonealong.domain.Restaurant;
 import com.dwu.alonealong.service.AloneAlongFacade;
@@ -38,23 +40,31 @@ public class RestaurantController {
 			@ModelAttribute("restaurant") RestaurantForm resForm,
 //			BindingResult bindingResult,
 			Model model) throws MalformedURLException {
-//		Restaurant res = new Restaurant("r" + nextResId, resForm.getResName(),
-//				resForm.getCategoryId(), resForm.getResAddress());
 		
-		Restaurant res = new Restaurant("RES_ID.NEXTVAL", resForm.getResName(), resForm.getResAddress(), resForm.getResPhone(), "user1",
-				resForm.getResDescription(), 0.0, resForm.getCategoryId(), new URL("http://naver.com"), resForm.getIsTogetherOk());
+		Restaurant res;
+		if(resForm.getImgFile() == null) {
+			res = new Restaurant("RES_ID.NEXTVAL", resForm.getResName(), resForm.getResAddress(), resForm.getResPhone(), "user1",
+					resForm.getResDescription(), 0.0, resForm.getCategoryId(), null, resForm.getIsTogetherOk(), resForm.getResArea());
+			//img null일 일 없게 무조건 만들기.
+		}else {
+			MultipartFile mf = resForm.getImgFile();
+			byte[] img = null;
+			try {
+				img = mf.getBytes();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			res = new Restaurant("RES_ID.NEXTVAL", resForm.getResName(), resForm.getResAddress(), resForm.getResPhone(), "user1",
+					resForm.getResDescription(), 0.0, resForm.getCategoryId(), img, resForm.getIsTogetherOk(), resForm.getResArea());
+		}
 
 		alonealong.insertRestaurant(res);
 		
 		List<Restaurant> restaurantList = alonealong.getRestaurantList();
 		model.addAttribute("restaurantList", restaurantList);
-//		return "eating/Food";
-//		return "test";
+
 		return "redirect:/eating";
-//		String form = "/eating/" + resId;
-//		if(resId == null)
-//			System.out.println("null 떴다");
-//		return form;
+
 	}
 	
 	

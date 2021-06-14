@@ -11,28 +11,21 @@ public class Food implements Serializable{
 	private int price;
 	private String name;
 	private String description;
-	private File imgFile;
+	private byte[] imgFile;
+	private String img64;
 	private URL img;
 	private int maxPeopleNum;
-	
-
-	public Food(String id, String name, int price){//임시
-		this.foodId = id;
-//		this.resId = resId;
-		this.price = price;
-		this.name = name;
-	}
 	
 	public Food() {
 	}
 
-	public Food(String resId, String id, String name, int price, String des, URL img, int maxPeopleNum){
+	public Food(String resId, String id, String name, int price, String des, byte[] img, int maxPeopleNum){
 		this.resId = resId;
 		this.foodId = id;
 		this.name = name;
 		this.price = price;
 		this.description = des;
-		this.img = img;
+		this.imgFile = img;
 		this.maxPeopleNum = maxPeopleNum;
 	}
 	
@@ -91,7 +84,7 @@ public class Food implements Serializable{
 		this.maxPeopleNum = maxPeopleNum;
 	}
 
-	public Food(String foodId, String resId, String ownerId, int price, String name, String description, URL img,
+	public Food(String foodId, String resId, String ownerId, int price, String name, String description, byte[] img,
 			int maxPeopleNum) {
 		super();
 		this.foodId = foodId;
@@ -100,16 +93,24 @@ public class Food implements Serializable{
 		this.price = price;
 		this.name = name;
 		this.description = description;
-		this.img = img;
+		this.imgFile = img;
 		this.maxPeopleNum = maxPeopleNum;
 	}
 
-	public File getImgFile() {
+	public byte[] getImgFile() {
 		return imgFile;
 	}
 
-	public void setImgFile(File imgFile) {
+	public void setImgFile(byte[] imgFile) {
 		this.imgFile = imgFile;
+	}
+
+	public String getImg64() {
+		return img64;
+	}
+
+	public void setImg64(String img64) {
+		this.img64 = img64;
 	}
 	
 	

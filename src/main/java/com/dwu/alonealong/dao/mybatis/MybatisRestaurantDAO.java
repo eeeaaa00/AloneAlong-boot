@@ -18,9 +18,11 @@ public class MybatisRestaurantDAO implements RestaurantDAO{
 	
 	
 	public List<Restaurant> getRestaurantListByCategory(String category1, String category2, String sortType) throws DataAccessException{ //나중에 지역분류 추가하자
+		if(category1.equals("지역")) category1 = "";
+		if(category2.equals("분류")) category2 = "";
 		return resMapper.getRestaurantListByCategory(category1, category2, sortType);
 	}
-	public List<Restaurant> getRestaurantList() throws DataAccessException{ //나중에 지역분류 추가하자
+	public List<Restaurant> getRestaurantList() throws DataAccessException{ 
 		return resMapper.getRestaurantList();
 	}
 	

@@ -16,5 +16,7 @@ public interface FoodMapper {
 	void insertFood(Food food);	
 	void updateFood(Food food);	
 	void deleteFood(String foodId);
+	void updateFoodwithoutImg(Food food);	
+	
 	
 }

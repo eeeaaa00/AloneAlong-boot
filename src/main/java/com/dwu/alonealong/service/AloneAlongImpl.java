@@ -12,6 +12,7 @@ import com.dwu.alonealong.dao.CartItemDAO;
 import com.dwu.alonealong.dao.FoodDAO;
 import com.dwu.alonealong.dao.FoodLineItemDAO;
 import com.dwu.alonealong.dao.FoodOrderDAO;
+import com.dwu.alonealong.dao.FoodReviewDAO;
 import com.dwu.alonealong.dao.OrderInfoDAO;
 import com.dwu.alonealong.dao.PaymentDAO;
 import com.dwu.alonealong.dao.ProductDAO;
@@ -55,6 +56,8 @@ public class AloneAlongImpl implements AloneAlongFacade{
 	private FoodOrderDAO foodOrderDao;
 	@Autowired
 	private OrderInfoDAO orderInfoDao;
+	@Autowired
+	private FoodReviewDAO foodReviewDao;
 	
 	
     @Autowired
@@ -255,11 +258,7 @@ public class AloneAlongImpl implements AloneAlongFacade{
 	public Food getFood(String foodId) {
 		return foodDao.getFood(foodId);
 	}
-	@Override
-	public List<FoodReview> getFoodReviewList(String resId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 	//Food Order
 	@Override
 	public void insertFoodOrder(FoodOrder order) {
@@ -276,8 +275,6 @@ public class AloneAlongImpl implements AloneAlongFacade{
 			FoodLineItem item = new FoodLineItem(newOrderId, val.getFood().getFoodId(), val.getQuantity(), val.getTotalPrice());
 			foodLineItemDao.insertFoodLineItem(item);
 		}
-			
-		
 		
 	}
 	@Override
@@ -290,7 +287,13 @@ public class AloneAlongImpl implements AloneAlongFacade{
 		// TODO Auto-generated method stub
 		return null;
 	}
-  
+	//FoodReview
+	public List<FoodReview> getFoodReviewListByResId(String resId) {
+		return foodReviewDao.getFoodReviewListByResId(resId);
+	}
+	public void insertFoodReview(FoodReview foodReview) {
+		foodReviewDao.insertFoodReview(foodReview);
+	}
   
   //together
 	@Override

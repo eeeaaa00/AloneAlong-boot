@@ -32,7 +32,7 @@
 	
 	<!-- Page Content -->
 	<div class="container mt-4">
-		<div class="row">
+		<div class="row" style="justify-content: center;">
 			<!-- 좌측 카테고리 -->
    			<tiles:insertAttribute name="menu" />
 			

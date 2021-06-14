@@ -7,7 +7,7 @@
 			<button class="btn btn-outline-success rounded-pill my-1 btn-block dropdown-toggle" data-toggle="dropdown"
 			aria-haspopup="true"><c:out value="${category1}"/></button>
 			<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-				<button class="dropdown-item" name="category1" value="" type="submit"><small>전체</small></button>
+				<button class="dropdown-item" name="category1" value="지역" type="submit"><small>전체</small></button>
 				<button class="dropdown-item" name="category1" value="서울특별시" type="submit"><small>서울특별시</small></button>
 				<button class="dropdown-item" name="category1" value="인천광역시" type="submit"><small>인천광역시</small></button>
 				<button class="dropdown-item" name="category1" value="대구광역시" type="submit"><small>대구광역시</small></button>
@@ -24,11 +24,12 @@
 			<button class="btn btn-outline-success rounded-pill my-1 btn-block dropdown-toggle" data-toggle="dropdown"
 			aria-haspopup="true"><c:out value="${category2}"/></button>
 			<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-				<button class="dropdown-item" name="category2" value="" type="submit"><small>전체</small></button>
+				<button class="dropdown-item" name="category2" value="분류" type="submit"><small>전체</small></button>
 				<button class="dropdown-item" name="category2" value="한식" type="submit"><small>한식</small></button>
-				<button class="dropdown-item" name="category2" value="분식" type="submit"><small>분식</small></button>
+				<button class="dropdown-item" name="category2" value="일식" type="submit"><small>일식</small></button>
+				<button class="dropdown-item" name="category2" value="중식" type="submit"><small>중식</small></button>
 				<button class="dropdown-item" name="category2" value="양식" type="submit"><small>양식</small></button>
-				<button class="dropdown-item" name="category2" value="중식" type="submit"><small>양식</small></button>
+				<button class="dropdown-item" name="category2" value="기타" type="submit"><small>기타</small></button>
 			</div>
 		</div>
 		<input type="hidden" name="category1" value="${category1}">

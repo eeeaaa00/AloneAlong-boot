@@ -1,21 +1,35 @@
 package com.dwu.alonealong.domain;
 
-public class FoodReview {
-	private Review review;
-	private String foodId;
+import java.io.Serializable;
+
+@SuppressWarnings("serial")
+public class FoodReview implements Serializable{
 	
-	public FoodReview() {
-	}
-	public FoodReview(Review review, String foodId) {
+	String reviewId;
+	String foodId;
+	String resId;
+	String userId;
+	String reviewDate;
+	int rating;
+	String contents;
+	int recommend;
+	
+	
+	public FoodReview(String foodId, String resId, String userId, int rating,
+			String contents, int recommend) {
 		super();
-		this.review = review;
 		this.foodId = foodId;
+		this.resId = resId;
+		this.userId = userId;
+		this.rating = rating;
+		this.contents = contents;
+		this.recommend = recommend;
 	}
-	public Review getReview() {
-		return review;
+	public String getReviewId() {
+		return reviewId;
 	}
-	public void setReview(Review review) {
-		this.review = review;
+	public void setReviewId(String reviewId) {
+		this.reviewId = reviewId;
 	}
 	public String getFoodId() {
 		return foodId;
@@ -23,9 +37,47 @@ public class FoodReview {
 	public void setFoodId(String foodId) {
 		this.foodId = foodId;
 	}
+	public String getResId() {
+		return resId;
+	}
+	public void setResId(String resId) {
+		this.resId = resId;
+	}
+	public String getUserId() {
+		return userId;
+	}
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+	public String getReviewDate() {
+		return reviewDate;
+	}
+	public void setReviewDate(String reviewDate) {
+		this.reviewDate = reviewDate;
+	}
+	public int getRating() {
+		return rating;
+	}
+	public void setRating(int rating) {
+		this.rating = rating;
+	}
+	public String getContents() {
+		return contents;
+	}
+	public void setContents(String contents) {
+		this.contents = contents;
+	}
+	public int getRecommend() {
+		return recommend;
+	}
+	public void setRecommend(int recommend) {
+		this.recommend = recommend;
+	}
 	@Override
 	public String toString() {
-		return "FoodReview [review=" + review + ", foodId=" + foodId + "]";
+		return "FoodReview [reviewId=" + reviewId + ", foodId=" + foodId + ", resId=" + resId + ", userId=" + userId
+				+ ", reviewDate=" + reviewDate + ", rating=" + rating + ", contents=" + contents + ", recommend="
+				+ recommend + "]";
 	}
 	
 	

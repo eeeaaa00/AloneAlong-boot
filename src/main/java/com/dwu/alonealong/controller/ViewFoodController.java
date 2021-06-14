@@ -1,6 +1,10 @@
 package com.dwu.alonealong.controller;
 
+import java.util.Base64;
+import java.util.Base64.*;
 import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,50 +32,41 @@ public class ViewFoodController {
 		this.alonealong = alonealong;
 	}
 	
-	//메뉴탭
-	@RequestMapping("/eating/viewFood")
-	public String handleRequest(
-//			@RequestParam("resId") String resId,
-			ModelMap model) throws Exception {
-//		List<Food> foodList = this.alonealong.getFoodListByRestaurant(resId);
-//		FoodCart foodCart = this.alonealong.getFoodCart(resId);
-//		model.put("foodList", foodList);
-//		model.put("foodCart", foodCart);
-
-		return "/eating/Food";
-	}
 	//가게 선택 resId로
 	@RequestMapping("/eating/{resId}")
 	public String resFood(
 			@PathVariable("resId") String resId,
 			@SessionAttribute("sessionFoodCart") FoodCart foodCart,
+			HttpServletResponse response,
 //			@RequestParam(value = "foodId", defaultValue="") String foodId,
 			ModelMap model) throws Exception {
-		
-//		if(foodId != "") {
-//			if (cart.containsFoodId(foodId)) {
-//				cart.incrementQuantityByFoodId(foodId);
-//			}
-//			else {
-//				Food item = this.alonealong.getFood(foodId);
-//				if(item == null)
-//					System.out.println("null들어왔다");
-//				cart.addFood(item);
-//			}	
-//		}
-//		List<Food> foodList = this.alonealong.getFoodListByRestaurant(resId);
-		List<Food> foodList = this.alonealong.getFoodListByRestaurant(resId); //지금만 다 불러오지 나중엔 resId 걸리는 것만 불러와야해
-//		FoodCart foodCart = this.alonealong.getFoodCart(resId);
+
+		List<Food> foodList = this.alonealong.getFoodListByRestaurant(resId); 
 		model.put("foodList", foodList);
 		model.put("foodCart", foodCart.getFoodItemList());
 		Restaurant res = alonealong.getRestaurantByResId(resId);
-		model.put("restaurant", res);
+		
 		model.put("totalPrice", foodCart.getSubTotal());
 		System.out.println(foodCart.getFoodItemList().size());
-		return "restaurant";
 		
-//		return "/eating/Food";
+		Encoder encoder = Base64.getEncoder();
+		byte[] imagefile;
+		String encodedString;
+        for(Food food : foodList) {
+        	imagefile = food.getImgFile();
+            encodedString = encoder.encodeToString(imagefile);
+            food.setImg64(encodedString);
+      
+        }
+        imagefile = res.getImgFile();
+        encodedString = encoder.encodeToString(imagefile);
+        res.setImg64(encodedString);
+        model.put("restaurant", res);
+        
+		return "restaurant";
+
 	}
+	
 	
 	//리뷰탭
 	@RequestMapping("/eating/{resId}/RestaurantReview")
@@ -79,28 +74,27 @@ public class ViewFoodController {
 			@PathVariable("resId") String resId,
 			@SessionAttribute("sessionFoodCart") FoodCart foodCart,
 			ModelMap model) throws Exception {
-//		List<FoodReview> reviewList = this.alonealong.getFoodReviewList(resId);
-//		FoodCart foodCart = this.alonealong.getFoodCart(resId);
-//		model.put("foodList", reviewList);
+		
+		List<FoodReview> reviewList = this.alonealong.getFoodReviewListByResId(resId);
+		model.put("foodReviewList", reviewList);
+				
 		model.put("foodCart", foodCart.getFoodItemList());
 		Restaurant res = alonealong.getRestaurantByResId(resId);
-		model.put("restaurant", res);
+		
 		model.put("totalPrice", foodCart.getSubTotal());
-//		return "/eating/RestaurantReview";
-		model.put("resId", resId);
+		System.out.println(foodCart.getFoodItemList().size());
+		
+		Encoder encoder = Base64.getEncoder();
+		byte[] imagefile;
+		String encodedString;
+        imagefile = res.getImgFile();
+        encodedString = encoder.encodeToString(imagefile);
+        res.setImg64(encodedString);
+        model.put("restaurant", res);
+        
 		return "restaurantReview";
 	}
 	
-	//메뉴수정버튼
-	@RequestMapping("/eating/viewFood/{foodId}/adminFood")
-	public String handleRequest3(
-//				@RequestParam("resId") String resId,
-			ModelMap model) throws Exception {
-//			List<FoodReview> reviewList = this.alonealong.getFoodReviewList(resId);
-//			FoodCart foodCart = this.alonealong.getFoodCart(resId);
-//			model.put("foodList", reviewList);
-//			model.put("foodCart", foodCart);
-		return "/eating/FoodForm";
-	}
+
 		
 }
