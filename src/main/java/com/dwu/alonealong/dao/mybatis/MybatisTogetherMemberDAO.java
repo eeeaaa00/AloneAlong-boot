@@ -2,6 +2,7 @@ package com.dwu.alonealong.dao.mybatis;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
@@ -10,8 +11,8 @@ import com.dwu.alonealong.dao.mybatis.mapper.TogetherMemberMapper;
 import com.dwu.alonealong.domain.TogetherMember;
 
 @Repository
-public class MybatisTogetherMember implements TogetherMemberDAO {
-
+public class MybatisTogetherMemberDAO implements TogetherMemberDAO {
+	@Autowired
 	private TogetherMemberMapper togetherMemberMapper; 
 	
 	@Override

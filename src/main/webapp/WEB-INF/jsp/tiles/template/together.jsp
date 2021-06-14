@@ -19,6 +19,9 @@
 <!-- 구글폰트링크 -->
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300&family=Roboto&display=swap" rel="stylesheet">
+<!-- 스와이퍼 -->
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/css/swiper.min.css">
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/js/swiper.min.js"></script>
 <!-- CSS -->
 <link href="../style/alonealong.css" rel="stylesheet" type="text/css">
 <title><tiles:getAsString name="title" /></title>

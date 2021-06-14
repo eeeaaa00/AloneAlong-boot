@@ -2,6 +2,9 @@ package com.dwu.alonealong.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.support.PagedListHolder;
 import org.springframework.stereotype.Controller;
@@ -16,10 +19,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.dwu.alonealong.domain.Together;
+import com.dwu.alonealong.domain.User;
 import com.dwu.alonealong.service.AloneAlongFacade;
 
 @Controller
-@SessionAttributes({"togetherList", "area", "kind", "price", "sex", "area"})
+@SessionAttributes("userSession")
 public class ViewTogetherListController {
 	
 	private AloneAlongFacade alonealong;
@@ -44,14 +48,29 @@ public class ViewTogetherListController {
 	//카테고리별 리스트
 	@GetMapping("/together")
 	public String listTogetherByCategory(
+//			HttpServletRequest request,
 			@RequestParam(value="area",  defaultValue="all") String area,
+			@RequestParam(value="date",  defaultValue="") String date,
 			@RequestParam(value="kind",  defaultValue="all") String kind,
 			@RequestParam(value="price",  defaultValue="99999") int price,
 			@RequestParam(value="sex",  defaultValue="all") String sex,
 			@RequestParam(value="age",  defaultValue="all") String age,
 			ModelMap model) throws Exception {
 		
-		List<Together> togetherList = this.alonealong.getTogetherListByCategory(area, kind, price, sex, age);
+		//유저 맞춤 추천기능
+		String userId = "2"; //임시
+		
+//		UserSession userSession = (UserSession)request.getSession().getAttribute("userSession");
+//		String userId = userSession.getUser().getUserId();
+		
+		User user = this.alonealong.getUserByUserId(userId);
+		List<Together> recommandList = this.alonealong.recommandTogetherList(user.getSex(), user.getAddress());
+		
+		model.put("user", user);
+		model.put("recommandList", recommandList);
+		
+		//공통 리스트
+		List<Together> togetherList = this.alonealong.getTogetherListByCategory(area, date, kind, price, sex, age);
 		
 		String areaName = "모든 지역";
 		switch(area) {
@@ -104,6 +123,7 @@ public class ViewTogetherListController {
 		model.put("ageName", ageName);
 		
 		model.put("area", area);
+		model.put("date", date);
 		model.put("kind", kind);
 		model.put("price", price);
 		model.put("sex", sex);

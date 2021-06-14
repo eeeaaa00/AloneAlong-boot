@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <!doctype html>
 <html lang="en">
@@ -23,169 +25,213 @@
 <body>
 <!-- header -->
 <%@include file="../header.jsp" %>
-   
-<div class="container my-5 pb-5">
-	<div class="py-5 text-center">
-	<h4>같이 먹기 등록</h4>
-    <p>주최자가 되어 같이 밥을 먹어보세요!</p>
-</div>
 
-<!-- 본문 시작 -->
-<div class="row g-5">
-	<!-- 글 작성하기 -->
-	<div class="col-md-6 col-lg-7">
-		<h5 class="mb-3"><span class="text-success">상세 정보 작성</span></h5>
-		<form class="needs-validation" novalidate>
+<div class="container my-5 pb-5">
+	<div class="container col-md-10 mx-auto mb-3">
+		<!--상단 -->
+		<div class="py-5 text-center">
+			<h3>함께 먹기 등록</h3>
+			<p>주최자가 되어 같이 밥을 먹어보세요!</p>
+		</div>
+		
+		<!-- 식당 선택 -->
+    	<h4 class="mb-3"><span class="text-success">STEP 1. 식당 선택</span></h4>
+    	<!-- 검색창 -->
+    	<div class="row g-5">
+    		<div class="col-md-6">
+				<form class="d-flex" action='<c:url value="/togetherRegister/searchRestaurant"/>'>
+          			<input class="form-control me-2" name="keywords" type="search" value="${keywords}" placeholder="식당명을 입력하세요" aria-label="Search">
+          			<button class="btn btn-outline-success" type="submit"><i class="fas fa-search"></i></button>
+        		</form>
+      		</div>
+      		<div class="col-md-6"></div>
+    	</div>
+      	<br>
+		<!-- 검색 결과 출력 -->
+		<div class="row mb-2">
+			<c:forEach var="restaurant" items="${restaurantList}">
+				<c:if test="${restaurant.isTogetherOk() eq true}">
+				<div class="col-md-6">
+					<div class="card mb-3">
+          				<div class="row g-0">
+            				<div class="col-md-4 align-self-center">
+              					<svg class="img" style="background-image: url('https://post-phinf.pstatic.net/MjAyMDAzMDNfMTcg/MDAxNTgzMTkwNjA3ODQ5.kUXPHqGJ2xPDSu_3FiEoFC3kY9QyQ_g9CziCGrFSDuEg.LpCfOTbc5qth9d-GKzGv9jwj2VKhcqmPHp5cp1KJYEsg.JPEG/IM_food02.jpg?type=w1200');
+  									background-size: cover; background-position:center; width:120px; height:90px;"></svg>
+            				</div>
+            				<div class="col-md-5 align-self-center">
+              					<h6 class="card-title"><a href="<c:url value='/eating/' />${restaurant.resId}"><c:out value="${restaurant.resName}"/></a></h6>
+                				<p class="card-text"><small class="text-muted"><c:out value="${restaurant.resAddress}"/></small></p>
+            				</div>
+            				<div class="col-md-3 align-self-center">
+            					<form action='<c:url value="/togetherRegister/searchMenu"/>'>
+            						<button class="btn btn-sm btn-success" name="resId" value="${restaurant.resId}" type="submit" >선택</button>
+            					</form>
+            				</div>
+          				</div>
+        			</div>
+				</div>
+				</c:if>
+			</c:forEach>
+		</div>
+		
+    	<hr>
+
+    	<!-- 메뉴 선택 시작 -->
+    	<h4 class="mb-3"><span class="text-success">STEP 2. 메뉴 선택</span></h4>
+    	<!-- 메뉴 리스트 -->
+    	<div class="row mb-2">
+      		<c:forEach var="food" items="${foodList}">
+      			<div class="col-md-6">
+      				<div class="card mb-3">
+          				<div class="row g-0">
+            				<div class="col-md-4 align-self-center">
+              					<svg class="img" style="background-image: url('https://post-phinf.pstatic.net/MjAyMDAzMDNfMTcg/MDAxNTgzMTkwNjA3ODQ5.kUXPHqGJ2xPDSu_3FiEoFC3kY9QyQ_g9CziCGrFSDuEg.LpCfOTbc5qth9d-GKzGv9jwj2VKhcqmPHp5cp1KJYEsg.JPEG/IM_food02.jpg?type=w1200');
+  									background-size: cover; background-position:center; width:120px; height:90px;"></svg>
+            				</div>
+            				<div class="col-md-5 align-self-center">
+              					<h6 class="card-title"><c:out value="${food.name}"/></h6>
+                				<p class="card-text"><small class="text-muted"><c:out value="${food.price}"/>원</small></p>
+            				</div>
+            				<div class="col-md-3 align-self-center">
+            					<form class="form" action='<c:url value="/togetherRegister/${selectedRes.resId}/addFoodToCart"/>'>
+            					<input type="hidden" name="foodId" value="${food.foodId}">
+									<span class="input-group-btn"><button class="btn btn-sm btn-success" type="submit">담기</button></span>
+								</form>
+            				</div>
+          				</div>
+        			</div>
+      			</div>
+        	</c:forEach>
+		</div>
+		
+		<!-- 음식 카트 -->
+		<div class="row g-5">
+      		<div class="col-md-12">
+        		<h5 class="d-flex justify-content-between align-items-center mb-3"><span class="text">음식 카트</span></h5>
+        		<ul class="list-group mb-3">
+  					<li class="list-group-item d-flex justify-content-between lh-sm">
+						<div class="col-md-4">음식</div>
+						<div class="d-none d-md-block col">
+							<div class="row">
+								<div class="col-md-4">가격</div>
+								<div class="col-md-4">수량</div>
+								<div class="col-md-4">총액</div>
+							</div>
+						</div>
+  					</li>
+					<!-- 음식 -->
+					<c:forEach var="foodCartItem" items="${foodCart}">
+					<li class="list-group-item d-flex justify-content-between lh-sm">
+						<div class="col-md-4">${foodCartItem.food.name}</div>
+						<div class="d-none d-md-block col">
+						<div class="align-items-center row">
+							<div class="col-md-4">${foodCartItem.food.price}원</div>
+							<div class="col-md-4 text-center">
+								<form class="form" action='<c:url value="/togetherRegister/${selectedRes.resId}/updateFoodCartItem"/>'>
+									<input type="hidden" name="foodId" value="${foodCartItem.food.foodId}">
+									<div class="input-group">
+										<input class="form-control text-center rounded" name="quantity" type="number" value="${foodCartItem.quantity}" min="1">
+										<span class="input-group-btn"><button class="btn" type="submit"><i class="text-orange fas fa-check"></i></button></span>
+									</div>
+								</form>
+							</div>
+							<div class="col-md-2">
+								<div class="row">
+									<div class="text-right text-md-center col-6 col-md-12">${foodCartItem.getUnitPrice()}원</div>
+								</div>
+							</div>
+							<form class="form" action='<c:url value="/togetherRegister/${selectedRes.resId}/deleteFoodCartItem"/>'>
+								<input type="hidden" name="foodId" value="${foodCartItem.food.foodId}">
+								<div class="d-none d-md-block text-center col-2">
+									<span class="btn cart-remove text-green" ><button class="btn" type="submit"><i class="delete fa fa-times"></i></button></span>
+								</div>
+							</form>
+						</div>
+						</div>
+  					</li>
+  					</c:forEach>
+					<!-- 합계 -->
+  					<li class="list-group-item d-flex justify-content-between bg-light">
+						<div class="col-md-4"><strong><span>합계</span></strong></div>
+						<div class="d-none d-md-block col">
+							<div class="row">
+								<div class="col-md-4"></div>
+								<div class="col-md-4"></div>
+								<div class="col-md-4"><strong>${totalPrice}원</strong></div>
+							</div>
+						</div>
+  		        	</li>
+  					<li class="list-group-item d-flex justify-content-between bg-light">
+						<div class="col-md-4 text-success"><strong><span>1인(어떻게 처리할지 고민중)</span></strong></div>
+						<div class="d-none d-md-block col">
+							<div class="row">
+								<div class="col-md-4"></div>
+								<div class="col-md-4"></div>
+								<div class="col-md-4 text-success"><strong>ㅇㅇㅇㅇ원</strong></div>
+							</div>
+						</div>
+  					</li>
+  				</ul>
+      		</div>
+		</div>
+
+		<hr>
+		
+		<!-- 글 작성하기 -->
+    	<h4 class="mb-3"><span class="text-success">STEP 3. 상세 정보 작성</span></h4>
+		<form action='<c:url value="/togetherRegister/complete"/>'>
+			<input type="hidden" name="resId" value="${selectedRes.resId}">
 			<div class="row g-3">
+				<div class="col-md-10">
+					<label for="title">제목</label>
+					<input type="text" class="form-control" name="name" placeholder="" required>
+				</div>
+				<div class="col-md-10">
+					<label for="headCount">인원</label>
+					<input type="number" class="form-control" name="headCount" min="2" placeholder="" required>
+				</div>
+				<div class="col-md-5">
+  					<label for="sex">성별</label>
+  					<select class="custom-select" name="sex">
+    					<option value="상관없음">상관없음</option>
+      					<option value="여성">여성</option>
+      					<option value="남성">남성</option>
+  					</select>
+				</div>
+				<div class="col-md-5">
+  					<label for="age">나이대</label>
+  					<select class="custom-select" name="age">
+    					<option value="상관없음">상관없음</option>
+      					<option value="10대">10대</option>
+      					<option value="20대">20대</option>
+      					<option value="30대">30대 </option>
+      					<option value="40대">40대</option>
+      					<option value="50대">50대이상</option>
+  					</select>
+				</div>
+				<div class="col-sm-5">
+  					<label for="date">날짜</label>
+  					<input type="date" class="form-control" name="date" placeholder="" value="" required>
+				</div>
+				<div class="col-sm-5">
+  					<label for="time">시간</label>
+  					<input type="time" class="form-control" name="time" placeholder="" value="" required>
+				</div>
 				<div class="col-10">
-                	<label for="title" class="form-label">제목</label>
-                    <input type="text" class="form-control" id="address" placeholder="삼겹살 같이 먹어요~" required>
-                    <div class="invalid-feedback">제목을 입력해주세요.</div>
-                </div>
-                <div class="col-10">
-                    <label for="headCount" class="form-label">인원</label>
-                    <input type="number" class="form-control" id="headCount" min="2" placeholder="2" required>
-                    <div class="invalid-feedback">인원수를 입력해주세요.</div>
-                </div>
-                <div class="col-md-5">
-                    <label for="sex" class="form-label">성별</label>
-                    <select id="age" name="age" class="custom-select">
-                    	<option value="none">상관없음</option>
-                      	<option value="female">여성</option>
-                      	<option value="male">남성</option>
-                    </select>
-                    <div class="invalid-feedback">성별을 조건을 설정해주세요.</div>
-                </div>
-                <div class="col-md-5">
-                    <label for="age" class="form-label">나이대</label>
-                    <select id="age" name="age" class="custom-select">
-                    	<option value="none">상관없음</option>
-                      	<option value="10s">10대</option>
-                      	<option value="20s">20대</option>
-                      	<option value="30s">30대 </option>
-                      	<option value="40s">40대</option>
-                      	<option value="50s">50대이상</option>
-                    </select>
-                    <div class="invalid-feedback">나이대 조건을 설정해주세요.</div>
-                </div>
-                <div class="col-sm-5">
-                    <label for="date" class="form-label">날짜</label>
-                    <input type="date" class="form-control" id="date" placeholder="" value="" required>
-                    <div class="invalid-feedback">날짜를 입력하세요.</div>
-                </div>
-                <div class="col-sm-5">
-                    <label for="time" class="form-label">시간</label>
-                    <input type="time" class="form-control" id="time" placeholder="" value="" required>
-                    <div class="invalid-feedback">시간을 입력하세요.</div>
-                </div>
-                <div class="col-10">
-                    <label for="description" class="form-label">주최자의 말<span class="text-muted">(옵션)</span></label>
-                    <input type="text" class="form-control" id="description" placeholder="말없이 고기만 먹어도 괜찮아요~">
-                </div>
+  					<label for="description">주최자의 말</label>
+  					<input type="text" class="form-control" name="description" placeholder="" required>
+				</div>
+			</div>
+
+			<!--버튼 -->
+			<div class="py-5 text-right">
+				<button class="w-40 btn btn-lg btn-success" type="submit">등록하기</button>
 			</div>
 		</form>
-	</div>
 
-    <!-- 식당 선택 -->
-    <div class="col-md-5 col-lg-5 order-md-last">
-    	<h5 class="d-flex justify-content-between align-items-center mb-3">
-    		<span class="text-success">식당 선택</span>
-    		<button  type="button" class="btn btn-sm btn-outline-success" name="searchRes" data-toggle="modal" data-target="#searchResModal">검색</button>
-    	</h5>
-        <div class="col-sm-12">
-        	<input type="text" class="form-control" id="name" placeholder="ㅇㅇ고기" value="" required>
-            <div class="invalid-feedback">식당을 입력하세요.</div>
-        </div>
-	<!-- 메뉴 선택 -->
-	<h5 class="d-flex justify-content-between align-items-center mb-3">
-		<span class="text-success">메뉴 선택</span>
-    	<button  type="button" class="btn btn-sm btn-outline-success" name="addFood" data-toggle="modal" data-target="#addFoodModal">추가</button>
-        <span class="badge bg-success rounded-pill">3</span>
-	</h5>
-	<ul class="list-group mb-3">
-		<li class="list-group-item d-flex justify-content-between lh-sm">
-			<div>
-				<h6 class="my-0">삽겹살 2인분</h6>
-                <small class="text-muted">13000원 * 2인분</small>
-            </div>
-            <span class="text-muted">26000원</span>
-		</li>
-        <li class="list-group-item d-flex justify-content-between lh-sm">
-        	<div>
-        		<h6 class="my-0">물냉면 1개</h6>
-                <small class="text-muted">5000원 * 1개</small>
-            </div>
-            <span class="text-muted">5000원</span>
-		</li>
-        <li class="list-group-item d-flex justify-content-between lh-sm">
-        	<div>
-				<h6 class="my-0">공기밥 2개</h6>
-                <small class="text-muted">1000원 * 2개</small>
-            </div>
-            <span class="text-muted">2000원</span>
-		</li>
-		<li class="list-group-item d-flex justify-content-between bg-light">
-			<strong><span>합계</span></strong>
-            <strong>33000원</strong>
-        </li>
-		<li class="list-group-item d-flex justify-content-between bg-light">
-			<div class="text-success">
-            	<h6 class="my-0">1인</h6>
-			</div>
-        	<span class="text-success"><strong>16500원</strong></span>
-		</li>
-	</ul>
 	</div>
 </div>
 
-<!--버튼 -->
-<div class="py-5 text-right">
-	<a type="button" class="w-40 btn btn-lg btn-success" href="#">등록하기</a>
-</div>
-
-<!-- 식당 검색 Modal -->
-<div class="modal fade" id="searchResModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-	<div class="modal-dialog modal-dialog-centered">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLabel">식당 검색</h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            </div>
-            <div class="modal-body">
-              ...
-            </div>
-            <div class="modal-footer">
-				<button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">취소</button>
-				<button type="button" class="btn btn-outline-success">확인</button>
-            </div>
-		</div>
-	</div>
-</div>
-
-<!-- 음식 추가 Modal -->
-<div class="modal fade" id="addFoodModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-	<div class="modal-dialog modal-dialog-centered">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLabel">음식 추가</h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            </div>
-            <div class="modal-body">
-              ...
-            </div>
-            <div class="modal-footer">
-				<button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">취소</button>
-				<button type="button" class="btn btn-outline-success">확인</button>
-            </div>
-		</div>
-	</div>
-</div>
-
-<script src="/docs/5.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
-<script src="form-validation.js"></script>
-		
-</div>
-   
 <!-- Footer -->
 <%@include file="../footer.jsp" %>
 </body>

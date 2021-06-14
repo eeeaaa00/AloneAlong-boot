@@ -17,6 +17,7 @@ import com.dwu.alonealong.domain.Restaurant;
 import com.dwu.alonealong.domain.Together;
 import com.dwu.alonealong.domain.TogetherFood;
 import com.dwu.alonealong.domain.TogetherMember;
+import com.dwu.alonealong.domain.TogetherOrder;
 import com.dwu.alonealong.domain.User;
 
 
@@ -96,7 +97,10 @@ public interface AloneAlongFacade {
 	Together getTogetherByTogId(String togId);
 	List<Together> getTogetherList();
 	void insertTogether(Together together);
-	List<Together> getTogetherListByCategory(String area, /*Date date,*/ String kind, int price, String sex, String age);
+	List<Together> getTogetherListByCategory(String area, String date, String kind, int price, String sex, String age);
+	void updateTogether(Together together);
+	List<Together> recommandTogetherList(String sex, String address);
+	List<Together> getTogetherListByResId(String resId);
 	
 	//TogetherFood
 	List<TogetherFood> getTogetherFoodListByTogId(String togId);
@@ -105,4 +109,7 @@ public interface AloneAlongFacade {
 	//TogetherMember
 	List<TogetherMember> getTogetherMemberListByTogId(String togId);
 	void insertTogetherMember(TogetherMember togetherMember);
+	
+	//TogetherOrder
+	void insertTogetherOrder(TogetherOrder togetherOrder);
 }
