@@ -4,9 +4,9 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
   
 <div class=" mb-3 pb-3 text-center">
-	<h1>Restaurant Info</h1><hr></div>   
+	<h1>Restaurant Info</h1><hr>
    
-   <div align="center">
+   <div style="text-align: left; margin-left : 300px;">
      <form:form modelAttribute="restaurant" ENCTYPE="multipart/form-data" method="post">
 		<p>
 			<form:label path="resName">식당 이름</form:label>
@@ -63,4 +63,4 @@
 		</p>
 	</form:form>
 	</div>
-	
+	</div>   

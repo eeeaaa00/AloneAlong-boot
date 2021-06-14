@@ -44,7 +44,8 @@ public class RestaurantController {
 		Restaurant res;
 		if(resForm.getImgFile() == null) {
 			res = new Restaurant("RES_ID.NEXTVAL", resForm.getResName(), resForm.getResAddress(), resForm.getResPhone(), "user1",
-					resForm.getResDescription(), 0.0, resForm.getCategoryId(), null, resForm.getIsTogetherOk());
+					resForm.getResDescription(), 0.0, resForm.getCategoryId(), null, resForm.getIsTogetherOk(), resForm.getResArea());
+			//img null일 일 없게 무조건 만들기.
 		}else {
 			MultipartFile mf = resForm.getImgFile();
 			byte[] img = null;
@@ -54,8 +55,9 @@ public class RestaurantController {
 				e.printStackTrace();
 			}
 			res = new Restaurant("RES_ID.NEXTVAL", resForm.getResName(), resForm.getResAddress(), resForm.getResPhone(), "user1",
-					resForm.getResDescription(), 0.0, resForm.getCategoryId(), img, resForm.getIsTogetherOk());
+					resForm.getResDescription(), 0.0, resForm.getCategoryId(), img, resForm.getIsTogetherOk(), resForm.getResArea());
 		}
+
 		alonealong.insertRestaurant(res);
 		
 		List<Restaurant> restaurantList = alonealong.getRestaurantList();

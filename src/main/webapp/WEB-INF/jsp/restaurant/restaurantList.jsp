@@ -38,7 +38,7 @@ b {color:#29A65F;}
 	
 	
 	<!-- 물품 목록 -->
-	<div class="row px-5 mb-lg-5 justify-content-between">
+	<div class="row px-5 mb-lg-5 pr-5 justify-content-md-between">
 		<c:forEach var="res" items="${restaurantList}">
 			<div class="card shadow-sm mb-4" type="button" onClick="location.href='<c:url value='/eating/' />${res.resId}'"> 
 				<img class="img ml-1 mt-1" src="data:image/jpeg;base64,${res.img64}"

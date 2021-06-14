@@ -26,9 +26,10 @@
 			<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 				<button class="dropdown-item" name="category2" value="분류" type="submit"><small>전체</small></button>
 				<button class="dropdown-item" name="category2" value="한식" type="submit"><small>한식</small></button>
-				<button class="dropdown-item" name="category2" value="분식" type="submit"><small>분식</small></button>
+				<button class="dropdown-item" name="category2" value="일식" type="submit"><small>일식</small></button>
+				<button class="dropdown-item" name="category2" value="중식" type="submit"><small>중식</small></button>
 				<button class="dropdown-item" name="category2" value="양식" type="submit"><small>양식</small></button>
-				<button class="dropdown-item" name="category2" value="중식" type="submit"><small>양식</small></button>
+				<button class="dropdown-item" name="category2" value="기타" type="submit"><small>기타</small></button>
 			</div>
 		</div>
 		<input type="hidden" name="category1" value="${category1}">

@@ -16,6 +16,7 @@ public class Restaurant implements Serializable{
 	private byte[] imgFile;
 	private String img64;
 	private boolean isTogetherOk;
+	private String area;
 	
 	private User owner;
 	private FoodReview[] reviewList;
@@ -23,7 +24,7 @@ public class Restaurant implements Serializable{
 	private Together[] togetherList;
 	
 	public Restaurant(String resId, String resName, String resAddress, String resPhone, String ownerId,
-			String resDescription, Double avgRating, String categoryId, byte[] imgFile, boolean isTogetherOk) {
+			String resDescription, Double avgRating, String categoryId, byte[] imgFile, boolean isTogetherOk, String area) {
 		super();
 		this.resId = resId;
 		this.resName = resName;
@@ -35,6 +36,7 @@ public class Restaurant implements Serializable{
 		this.categoryId = categoryId;
 		this.imgFile = imgFile;
 		this.isTogetherOk = isTogetherOk;
+		this.area = area;
 	}
 	
 	
@@ -42,6 +44,16 @@ public class Restaurant implements Serializable{
 		
 	}
 	
+	public String getArea() {
+		return area;
+	}
+
+
+	public void setArea(String area) {
+		this.area = area;
+	}
+
+
 	public String getResId() {
 		return resId;
 	}
@@ -138,6 +150,7 @@ public class Restaurant implements Serializable{
 	public void setTogetherList(Together[] togetherList) {
 		this.togetherList = togetherList;
 	}
+	
 	@Override
 	public String toString() {
 		return "Restaurant [resId=" + resId + ", resName=" + resName + ", categoryId=" + categoryId + ", resAddress="

@@ -32,7 +32,9 @@
     	AVG_RATING as avgRating,
     	RES_CATEGORY as categoryId,
     	RES_IMG as imgFile,
-    	IS_TOGETHER_OK as isTogetherOk
+    	IS_TOGETHER_OK as isTogetherOk,
+    	REV_COUNT,
+    	AREA as area
     FROM RESTAURANT
     ORDER BY resId DESC
   </select>
@@ -70,12 +72,14 @@
   </select>
   
   <insert id="insertRestaurant">
-    INSERT INTO RESTAURANT (RES_ID, RES_NAME, RES_ADDRESS, RES_PHONE, OWNER_ID, RES_DES, AVG_RATING, RES_CATEGORY, RES_IMG, IS_TOGETHER_OK)
-    VALUES ('r' || RESID_SEQ.NEXTVAL, #{resName}, #{resAddress}, #{resPhone}, #{ownerId}, #{resDescription}, #{avgRating}, #{categoryId}, #{imgFile}, #{isTogetherOk})
+    INSERT INTO RESTAURANT (RES_ID, RES_NAME, RES_ADDRESS, RES_PHONE, OWNER_ID, RES_DES, AVG_RATING, RES_CATEGORY, RES_IMG, IS_TOGETHER_OK, AREA)
+    VALUES ('r' || RESID_SEQ.NEXTVAL, #{resName}, #{resAddress}, #{resPhone}, #{ownerId}, #{resDescription}, #{avgRating}, #{categoryId}, #{imgFile}, #{isTogetherOk}, #{area})
   </insert>
-  <insert id="insertRestaurantwithoutImg">
-    INSERT INTO RESTAURANT (RES_ID, RES_NAME, RES_ADDRESS, RES_PHONE, OWNER_ID, RES_DES, AVG_RATING, RES_CATEGORY, IS_TOGETHER_OK)
-    VALUES ('r' || RESID_SEQ.NEXTVAL, #{resName}, #{resAddress}, #{resPhone}, #{ownerId}, #{resDescription}, #{avgRating}, #{categoryId}, #{isTogetherOk})
-  </insert>
+  <update id="updateRestaurant">
+    UPDATE RESTAURANT 
+    SET RES_ADDRESS = #{resName}, RES_PHONE = #{resPhone}, 
+    RES_DES = #{resDescription}, RES_CATEGORY = #{categoryId}, IS_TOGETHER_OK = #{isTogetherOk}, AREA = #{area}
+    WHERE RES_ID = #{resId}
+  </update>
 
 </mapper>
