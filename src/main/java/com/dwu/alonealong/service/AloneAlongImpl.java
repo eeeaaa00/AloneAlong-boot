@@ -12,6 +12,7 @@ import com.dwu.alonealong.dao.CartItemDAO;
 import com.dwu.alonealong.dao.FoodDAO;
 import com.dwu.alonealong.dao.FoodLineItemDAO;
 import com.dwu.alonealong.dao.FoodOrderDAO;
+import com.dwu.alonealong.dao.FoodReviewDAO;
 import com.dwu.alonealong.dao.OrderInfoDAO;
 import com.dwu.alonealong.dao.PaymentDAO;
 import com.dwu.alonealong.dao.ProductDAO;
@@ -21,6 +22,7 @@ import com.dwu.alonealong.dao.RestaurantDAO;
 import com.dwu.alonealong.dao.TogetherDAO;
 import com.dwu.alonealong.dao.TogetherFoodDAO;
 import com.dwu.alonealong.dao.TogetherMemberDAO;
+import com.dwu.alonealong.dao.TogetherOrderDAO;
 import com.dwu.alonealong.domain.CartItem;
 import com.dwu.alonealong.domain.Food;
 import com.dwu.alonealong.domain.FoodCart;
@@ -36,6 +38,7 @@ import com.dwu.alonealong.domain.Restaurant;
 import com.dwu.alonealong.domain.Together;
 import com.dwu.alonealong.domain.TogetherFood;
 import com.dwu.alonealong.domain.TogetherMember;
+import com.dwu.alonealong.domain.TogetherOrder;
 import com.dwu.alonealong.domain.User;
 
 @Service
@@ -53,6 +56,8 @@ public class AloneAlongImpl implements AloneAlongFacade{
 	private FoodOrderDAO foodOrderDao;
 	@Autowired
 	private OrderInfoDAO orderInfoDao;
+	@Autowired
+	private FoodReviewDAO foodReviewDao;
 	
 	
     @Autowired
@@ -79,6 +84,8 @@ public class AloneAlongImpl implements AloneAlongFacade{
 	private TogetherFoodDAO togetherFoodDao;
 	@Autowired
 	private TogetherMemberDAO togetherMemberDao;
+	@Autowired
+	private TogetherOrderDAO togetherOrderDao;
 
 	//User
 	public User getUserByUserId(String Id) throws DataAccessException{
@@ -251,11 +258,7 @@ public class AloneAlongImpl implements AloneAlongFacade{
 	public Food getFood(String foodId) {
 		return foodDao.getFood(foodId);
 	}
-	@Override
-	public List<FoodReview> getFoodReviewList(String resId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 	//Food Order
 	@Override
 	public void insertFoodOrder(FoodOrder order) {
@@ -272,8 +275,6 @@ public class AloneAlongImpl implements AloneAlongFacade{
 			FoodLineItem item = new FoodLineItem(newOrderId, val.getFood().getFoodId(), val.getQuantity(), val.getTotalPrice());
 			foodLineItemDao.insertFoodLineItem(item);
 		}
-			
-		
 		
 	}
 	@Override
@@ -286,7 +287,13 @@ public class AloneAlongImpl implements AloneAlongFacade{
 		// TODO Auto-generated method stub
 		return null;
 	}
-  
+	//FoodReview
+	public List<FoodReview> getFoodReviewListByResId(String resId) {
+		return foodReviewDao.getFoodReviewListByResId(resId);
+	}
+	public void insertFoodReview(FoodReview foodReview) {
+		foodReviewDao.insertFoodReview(foodReview);
+	}
   
   //together
 	@Override
@@ -305,8 +312,23 @@ public class AloneAlongImpl implements AloneAlongFacade{
 	}
 	
 	@Override
-	public List<Together> getTogetherListByCategory(String area, /*Date date,*/ String kind, int price, String sex, String age) {
-		return togetherDao.getTogetherListByCategory(area, kind, price, sex, age);
+	public List<Together> getTogetherListByCategory(String area, String date, String kind, int price, String sex, String age) {
+		return togetherDao.getTogetherListByCategory(area, date, kind, price, sex, age);
+	}
+	
+	@Override
+	public void updateTogether(Together together) {
+		togetherDao.updateTogether(together);
+	}
+	
+	@Override
+	public List<Together> recommandTogetherList(String sex, String address) {
+		return togetherDao.recommandTogetherList(sex, address);
+	}
+	
+	@Override
+	public List<Together> getTogetherListByResId(String resId) {
+		return togetherDao.getTogetherListByResId(resId);
 	}
 	
 	//TogetherFood
@@ -329,6 +351,12 @@ public class AloneAlongImpl implements AloneAlongFacade{
 	@Override
 	public void insertTogetherMember(TogetherMember togetherMember) {
 		togetherMemberDao.insertTogetherMember(togetherMember);
+	}
+	
+	//TogetherOrder
+	@Override
+	public void insertTogetherOrder(TogetherOrder togetherOrder) {
+		togetherOrderDao.insertTogetherOrder(togetherOrder);
 	}
 
 }

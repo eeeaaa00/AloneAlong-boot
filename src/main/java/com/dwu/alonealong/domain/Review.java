@@ -20,6 +20,9 @@ public class Review {
 		this.content = content;
 		this.recommend = recommend;
 	}
+	public Review() {
+		// TODO Auto-generated constructor stub
+	}
 	public String getReviewId() {
 		return reviewId;
 	}

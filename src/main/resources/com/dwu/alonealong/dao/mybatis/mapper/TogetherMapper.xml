@@ -43,13 +43,6 @@
 		WHERE T.RES_ID = R.RES_ID
 			AND T.TOG_ID = #{togId}
 	</select>
-
-	<insert id="insertTogether">
-    	INSERT INTO TOGETHER (TOG_ID, TOG_NAME, HEADCOUNT, TOG_DATE, TOG_TIME, TOG_SEX, TOG_AGE,
-      		TOG_DES, TOG_STATUS)
-    	VALUES(#{togetherId}, #{togetherName}, #{headCount}, #{togetherDate}, #{togetherTime}, #{sex},
-      		#{age}, #{togetherDes}, #{status})
-	</insert>
 	
 	<select id="getTogetherListByCategory" resultType="Together">
 		SELECT
@@ -69,8 +62,74 @@
     		R.RES_CATEGORY AS "restaurant.categoryId"
 		FROM TOGETHER T, RESTAURANT R
 		WHERE T.RES_ID = R.RES_ID
-			AND R.AREA LIKE '%${area}%' AND R.RES_CATEGORY LIKE '%${kind}%' AND T.PRICE <![CDATA[ < ]]> #{price}
+			AND R.AREA LIKE '%${area}%' AND T.TOG_DATE LIKE '%${date}%' AND R.RES_CATEGORY LIKE '%${kind}%' AND T.PRICE <![CDATA[ < ]]> #{price}
 			AND T.TOG_SEX LIKE '%${sex}%' AND T.TOG_AGE LIKE '%${age}%'
+			AND T.TOG_STATUS = 0
 	</select>
+	
+	<select id="recommandTogetherList" resultType="Together">
+		SELECT
+    		T.TOG_ID AS togetherId,
+    		T.TOG_NAME AS togetherName,
+    		T.HEADCOUNT AS headCount,
+    		T.TOG_DATE AS togetherDate,
+    		T.TOG_TIME AS togetherTime,
+    		T.TOG_SEX AS sex,
+    		T.TOG_AGE AS age,
+    		T.TOG_DES AS togetherDes,
+    		T.RES_ID AS resId,
+    		T.TOG_STATUS AS status,
+    		T.PRICE AS price,
+    		R.RES_NAME AS "restaurant.resName",
+    		R.RES_ADDRESS AS "restaurant.resAddress",
+    		R.RES_CATEGORY AS "restaurant.categoryId"
+		FROM TOGETHER T, RESTAURANT R
+		WHERE T.RES_ID = R.RES_ID AND ((T.TOG_SEX = #{sex} OR T.TOG_SEX LIKE '%상관없음%') AND R.RES_ADDRESS LIKE '%${address}%')
+			AND T.TOG_STATUS = 0
+	</select>
+	
+	<select id="getTogetherListByResId" resultType="Together">
+		SELECT
+    		T.TOG_ID AS togetherId,
+    		T.TOG_NAME AS togetherName,
+    		T.HEADCOUNT AS headCount,
+    		T.TOG_DATE AS togetherDate,
+    		T.TOG_TIME AS togetherTime,
+    		T.TOG_SEX AS sex,
+    		T.TOG_AGE AS age,
+    		T.TOG_DES AS togetherDes,
+    		T.RES_ID AS resId,
+    		T.TOG_STATUS AS status,
+    		T.PRICE AS price,
+    		R.RES_NAME AS "restaurant.resName",
+    		R.RES_ADDRESS AS "restaurant.resAddress",
+    		R.RES_CATEGORY AS "restaurant.categoryId"
+		FROM TOGETHER T, RESTAURANT R
+		WHERE T.RES_ID = R.RES_ID
+			AND T.RES_ID = #{resId} AND T.TOG_STATUS = 0
+	</select>
+	
+	<insert id="insertTogether" useGeneratedKeys="true" keyColumn="TOG_ID" keyProperty="togetherId">
+    	INSERT INTO TOGETHER (TOG_ID, TOG_NAME, HEADCOUNT, TOG_DATE, TOG_TIME, TOG_SEX, TOG_AGE,
+      		TOG_DES, RES_ID, TOG_STATUS, PRICE)
+    	VALUES(TOG_ID_SEQ.NEXTVAL, #{togetherName}, #{headCount}, #{togetherDate}, #{togetherTime}, #{sex},
+      		#{age}, #{togetherDes}, #{resId}, #{status}, #{price})
+	</insert>
+	
+	<update id="updateTogether">
+ 		UPDATE FOOD 
+ 		SET TOG_ID = #{togetherId},
+    		TOG_NAME = #{togetherName},
+    		HEADCOUNT = #{headCount},
+    		TOG_DATE = #{togetherDate},
+    		TOG_TIME = #{togetherTime},
+    		TOG_SEX = #{sex},
+    		TOG_AGE = #{age},
+    		TOG_DES = #{togetherDes},
+    		RES_ID = #{resId},
+    		TOG_STATUS = #{status},
+    		PRICE = #{price},
+ 		WHERE TOG_ID = #{togetherId}
+  	</update>
 
 </mapper> 

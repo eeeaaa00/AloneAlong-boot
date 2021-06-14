@@ -15,7 +15,7 @@
     	RES_DES as resDescription,
     	AVG_RATING as avgRating,
     	RES_CATEGORY as categoryId,
-    	RES_IMG as resImage,
+    	RES_IMG as imgFile,
     	IS_TOGETHER_OK as isTogetherOk
     FROM RESTAURANT
     WHERE RES_ID = #{resId}
@@ -31,15 +31,17 @@
     	RES_DES as resDescription,
     	AVG_RATING as avgRating,
     	RES_CATEGORY as categoryId,
-    	RES_IMG as resImage,
-    	IS_TOGETHER_OK as isTogetherOk
+    	RES_IMG as imgFile,
+    	IS_TOGETHER_OK as isTogetherOk,
+    	REV_COUNT,
+    	AREA as area
     FROM RESTAURANT
     ORDER BY resId DESC
   </select>
   
   <select id="searchRestaurantList" resultType="Restaurant">
     SELECT
-    	RES_ID as resId, 
+    	RES_ID as resId,
     	RES_NAME as resName,
     	RES_ADDRESS as resAddress,
     	RES_PHONE as resPhone,
@@ -47,10 +49,10 @@
     	RES_DES as resDescription,
     	AVG_RATING as avgRating,
     	RES_CATEGORY as categoryId,
-    	RES_IMG as resImage,
+    	RES_IMG as imgFile,
     	IS_TOGETHER_OK as isTogetherOk
     FROM RESTAURANT
-    WHERE lower(resName) like %#{keywords}%
+    WHERE lower(RES_NAME) like '%${keywords}%'
   </select>
   
   <select id="getRestaurantListByCategory" resultType="Restaurant">
@@ -63,15 +65,21 @@
     	RES_DES as resDescription,
     	AVG_RATING as avgRating,
     	RES_CATEGORY as categoryId,
-    	RES_IMG as resImage,
+    	RES_IMG as imgFile,
     	IS_TOGETHER_OK as isTogetherOk
     FROM (SELECT * FROM RESTAURANT WHERE AREA LIKE '%${category1}%' AND RES_CATEGORY LIKE '%${category2}%') 
     ORDER BY ${sortType} DESC
   </select>
   
   <insert id="insertRestaurant">
-    INSERT INTO RESTAURANT (RES_ID, RES_NAME, RES_ADDRESS, RES_PHONE, OWNER_ID, RES_DES, AVG_RATING, RES_CATEGORY, RES_IMG, IS_TOGETHER_OK)
-    VALUES ('r' || RESID_SEQ.NEXTVAL, #{resName}, #{resAddress}, #{resPhone}, #{ownerId}, #{resDescription}, #{avgRating}, #{categoryId}, empty_blob(), #{isTogetherOk})
+    INSERT INTO RESTAURANT (RES_ID, RES_NAME, RES_ADDRESS, RES_PHONE, OWNER_ID, RES_DES, AVG_RATING, RES_CATEGORY, RES_IMG, IS_TOGETHER_OK, AREA)
+    VALUES ('r' || RESID_SEQ.NEXTVAL, #{resName}, #{resAddress}, #{resPhone}, #{ownerId}, #{resDescription}, #{avgRating}, #{categoryId}, #{imgFile}, #{isTogetherOk}, #{area})
   </insert>
+  <update id="updateRestaurant">
+    UPDATE RESTAURANT 
+    SET RES_ADDRESS = #{resName}, RES_PHONE = #{resPhone}, 
+    RES_DES = #{resDescription}, RES_CATEGORY = #{categoryId}, IS_TOGETHER_OK = #{isTogetherOk}, AREA = #{area}
+    WHERE RES_ID = #{resId}
+  </update>
 
 </mapper>

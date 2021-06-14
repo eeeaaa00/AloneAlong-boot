@@ -27,7 +27,10 @@ public class MyBatisFoodDAO implements FoodDAO{
 		foodMapper.insertFood(food);
 	}
 	public void updateFood(Food food) {
-		foodMapper.updateFood(food);
+		if(food.getImgFile().length == 0)
+			foodMapper.updateFoodwithoutImg(food);
+		else
+			foodMapper.updateFood(food);
 	}
 	public void deleteFood(String foodId) {
 		foodMapper.deleteFood(foodId);

@@ -3,6 +3,8 @@ package com.dwu.alonealong.controller;
 import java.io.File;
 import java.net.URL;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class FoodForm {
 	private String foodId;
 	private String resId;
@@ -10,7 +12,7 @@ public class FoodForm {
 	private int price;
 	private String name;
 	private String description;
-	private File imgFile;
+	private MultipartFile imgFile;
 	private URL img;
 	private int maxPeopleNum;
 	
@@ -77,13 +79,13 @@ public class FoodForm {
 
 
 
-	public File getImgFile() {
+	public MultipartFile getImgFile() {
 		return imgFile;
 	}
 
 
 
-	public void setImgFile(File imgFile) {
+	public void setImgFile(MultipartFile imgFile) {
 		this.imgFile = imgFile;
 	}
 	

@@ -1,5 +1,6 @@
 package com.dwu.alonealong.controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.dwu.alonealong.domain.Food;
 import com.dwu.alonealong.domain.Restaurant;
@@ -47,7 +49,14 @@ public class FoodController {
 //			BindingResult bindingResult,
 			Model model) {
 		
-		Food food = new Food(resId, "FOOD_ID.NEXTVAL", foodForm.getName(), foodForm.getPrice(), foodForm.getDescription(), null, foodForm.getMaxPeopleNum());
+		MultipartFile mf = foodForm.getImgFile();
+		byte[] img = null;
+		try {
+			img = mf.getBytes();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		Food food = new Food(resId, "FOOD_ID.NEXTVAL", foodForm.getName(), foodForm.getPrice(), foodForm.getDescription(), img, foodForm.getMaxPeopleNum());
 		alonealong.insertFood(food);
 		
 		List<Food> foodList = alonealong.getFoodListByRestaurant(resId);
@@ -76,7 +85,20 @@ public class FoodController {
 //			BindingResult bindingResult,
 			Model model) {
 		
-		Food food = new Food(resId, foodId, foodForm.getName(), foodForm.getPrice(), foodForm.getDescription(), null, foodForm.getMaxPeopleNum());
+		Food food;
+		if(foodForm.getImgFile() == null)
+			food = new Food(resId, foodId, foodForm.getName(), foodForm.getPrice(), foodForm.getDescription(), null, foodForm.getMaxPeopleNum());
+		else {
+			MultipartFile mf = foodForm.getImgFile();
+			byte[] img = null;
+			try {
+				img = mf.getBytes();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			food = new Food(resId, foodId, foodForm.getName(), foodForm.getPrice(), foodForm.getDescription(), img, foodForm.getMaxPeopleNum());
+		}
+			
 		alonealong.updateFood(food);
 		
 		List<Food> foodList = alonealong.getFoodListByRestaurant(resId);

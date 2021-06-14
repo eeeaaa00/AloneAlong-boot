@@ -12,21 +12,37 @@ public class Together implements Serializable {
 	private String togetherId;
 	private String togetherName;
 	private int headCount;
-	private Date togetherDate;
-	private Date togetherTime;
+	private String togetherDate;
+	private String togetherTime;
 	private String sex;
 	private String age;
 	private String togetherDes;
 	private String resId;
-	private boolean status;
+	private int status;
 	private int price;
 	
 	private Restaurant restaurant;
 	private List<TogetherFood> togetherFoodList = new ArrayList<TogetherFood>();
 	private List<TogetherMember> togetherMemberList = new ArrayList<TogetherMember>();
 	
-	public Together() { }
+	public Together() {}
 	
+	public Together(String togetherId, String togetherName, int headCount, String togetherDate, String togetherTime,
+			String sex, String age, String togetherDes, String resId, int status, int price) {
+		super();
+		this.togetherId = togetherId;
+		this.togetherName = togetherName;
+		this.headCount = headCount;
+		this.togetherDate = togetherDate;
+		this.togetherTime = togetherTime;
+		this.sex = sex;
+		this.age = age;
+		this.togetherDes = togetherDes;
+		this.resId = resId;
+		this.status = status;
+		this.price = price;
+	}
+
 	public String getTogetherId() {return togetherId;}
 	public void setTogetherId(String togetherId) {this.togetherId = togetherId;}
 	
@@ -36,12 +52,12 @@ public class Together implements Serializable {
 	public int getHeadCount() {return headCount;}
 	public void setHeadCount(int headCount) {this.headCount = headCount;}
 	
-	public Date getTogetherDate() {return togetherDate;}
-	public void setTogetherDate(Date togetherDate) {this.togetherDate = togetherDate;}
+	public String getTogetherDate() {return togetherDate;}
+	public void setTogetherDate(String togetherDate) {this.togetherDate = togetherDate;}
 	
-	public Date getTogetherTime() {return togetherTime;}
-	public void setTogetherTime(Date togetherTime) {this.togetherTime = togetherTime;}
-	
+	public String getTogetherTime() {return togetherTime;}
+	public void setTogetherTime(String togetherTime) {this.togetherTime = togetherTime;}
+
 	public String getSex() {return sex;}
 	public void setSex(String sex) {this.sex = sex;}
 	
@@ -54,9 +70,9 @@ public class Together implements Serializable {
 	public String getResId() {return resId;}
 	public void setResId(String resId) {this.resId = resId;}
 
-	public boolean isStatus() {return status;}
-	public void setStatus(boolean status) {this.status = status;}
-	
+	public int getStatus() {return status;}
+	public void setStatus(int status) {this.status = status;}
+
 	public int getPrice() {return price;}
 	public void setPrice(int price) {this.price = price;}
 
@@ -68,15 +84,6 @@ public class Together implements Serializable {
 
 	public List<TogetherMember> getTogetherMemberList() {return togetherMemberList;}
 	public void setTogetherMemberList(List<TogetherMember> togetherMemberList) {this.togetherMemberList = togetherMemberList;}
-	
-	@Override
-	public String toString() {
-		return "Together [togetherId=" + togetherId + ", togetherName=" + togetherName + ", headCount=" + headCount
-				+ ", togetherDate=" + togetherDate + ", togetherTime=" + togetherTime + ", sex=" + sex + ", age=" + age
-				+ ", togetherDes=" + togetherDes + ", resId=" + resId + ", status=" + status + ", price=" + price
-				+ ", restaurant=" + restaurant + ", togetherFoodList=" + togetherFoodList + ", togetherMemberList="
-				+ togetherMemberList + "]";
-	}
 
 	//음식 총합 구하기
 	public int getTotalPrice() {

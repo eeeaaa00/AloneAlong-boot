@@ -1,6 +1,5 @@
 package com.dwu.alonealong.dao;
 
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.dao.DataAccessException;
@@ -19,6 +18,9 @@ public interface TogetherDAO {
 	
 	List<Together> getTogetherList() throws DataAccessException;
 	
-	List<Together> getTogetherListByCategory(String area, /*Date date,*/ String kind, int price, String sex, String age) throws DataAccessException;
+	List<Together> getTogetherListByCategory(String area, String date, String kind, int price, String sex, String age) throws DataAccessException;
 	
+	List<Together> recommandTogetherList(String sex, String address) throws DataAccessException;
+	
+	List<Together> getTogetherListByResId(String resId) throws DataAccessException;
 }			

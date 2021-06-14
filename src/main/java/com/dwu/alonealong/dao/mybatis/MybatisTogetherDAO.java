@@ -2,6 +2,7 @@ package com.dwu.alonealong.dao.mybatis;
 
 import java.util.Date;
 import java.util.List;
+import java.util.StringTokenizer;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -46,8 +47,7 @@ public class MybatisTogetherDAO implements TogetherDAO {
 
 	@Override
 	public void updateTogether(Together together) throws DataAccessException {
-		// TODO Auto-generated method stub
-		
+		togetherMapper.updateTogether(together);
 	}
 
 	@Override
@@ -63,7 +63,7 @@ public class MybatisTogetherDAO implements TogetherDAO {
 	}
 
 	@Override
-	public List<Together> getTogetherListByCategory(String area, /*Date date,*/ String kind, int price, String sex, String age)
+	public List<Together> getTogetherListByCategory(String area, String date, String kind, int price, String sex, String age)
 			throws DataAccessException {
 		switch(area) {
 			case "all" : area = ""; break;
@@ -100,7 +100,34 @@ public class MybatisTogetherDAO implements TogetherDAO {
 			case "50" : age = "50대 이상"; break;
 		}
 		
-		List<Together> togetherList = togetherMapper.getTogetherListByCategory(area, /*Date date,*/ kind, price, sex, age);
+		List<Together> togetherList = togetherMapper.getTogetherListByCategory(area, date, kind, price, sex, age);
+		for(int i = 0; i < togetherList.size(); i++) {
+			String togId = togetherList.get(i).getTogetherId();
+			togetherList.get(i).setTogetherFoodList(togetherFoodMapper.getTogetherFoodListByTogId(togId));
+			togetherList.get(i).setTogetherMemberList(togetherMemberMapper.getTogetherMemberListByTogId(togId));
+		}
+		
+		return togetherList;
+	}
+
+	@Override
+	public List<Together> recommandTogetherList(String sex, String address) throws DataAccessException {
+		StringTokenizer st = new StringTokenizer(address); //주소에서 '서울'만 따기
+		String addressTag = st.nextToken();
+		
+		List<Together> togetherList = togetherMapper.recommandTogetherList(sex, addressTag);
+		for(int i = 0; i < togetherList.size(); i++) {
+			String togId = togetherList.get(i).getTogetherId();
+			togetherList.get(i).setTogetherFoodList(togetherFoodMapper.getTogetherFoodListByTogId(togId));
+			togetherList.get(i).setTogetherMemberList(togetherMemberMapper.getTogetherMemberListByTogId(togId));
+		}
+		
+		return togetherList;
+	}
+
+	@Override
+	public List<Together> getTogetherListByResId(String resId) throws DataAccessException {
+		List<Together> togetherList = togetherMapper.getTogetherListByResId(resId);
 		for(int i = 0; i < togetherList.size(); i++) {
 			String togId = togetherList.get(i).getTogetherId();
 			togetherList.get(i).setTogetherFoodList(togetherFoodMapper.getTogetherFoodListByTogId(togId));

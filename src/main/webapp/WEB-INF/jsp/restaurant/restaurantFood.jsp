@@ -19,7 +19,7 @@
 							<div class="shadow-sm m-2">
 				            <div class="row no-gutters">
 				              <div class="col-4">
-				                <img src="https://img-cf.kurly.com/shop/data/goods/1575003713758y0.jpg" width="100%" height="150px" />
+				                <img src="data:image/jpeg;base64,${food.img64}" style="width:230px; height:150px; object-fit: cover;" />
 				              </div>
 				                <div class="card-body">
 					                <div class="d-flex justify-content-between align-items-start py-2" >

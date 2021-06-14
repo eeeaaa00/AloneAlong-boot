@@ -10,6 +10,14 @@ public class TogetherFood implements Serializable {
 	private int quantity;
 	private Food food;
 	
+	public TogetherFood(String togetherFoodId, String togetherId, String foodId, int quantity) {
+		super();
+		this.togetherFoodId = togetherFoodId;
+		this.togetherId = togetherId;
+		this.foodId = foodId;
+		this.quantity = quantity;
+	}
+	
 	public String getTogetherFoodId() {return togetherFoodId;}
 	public void setTogetherFoodId(String togetherFoodId) {this.togetherFoodId = togetherFoodId;}
 	

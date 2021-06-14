@@ -17,6 +17,7 @@ import com.dwu.alonealong.domain.Restaurant;
 import com.dwu.alonealong.domain.Together;
 import com.dwu.alonealong.domain.TogetherFood;
 import com.dwu.alonealong.domain.TogetherMember;
+import com.dwu.alonealong.domain.TogetherOrder;
 import com.dwu.alonealong.domain.User;
 
 
@@ -81,22 +82,22 @@ public interface AloneAlongFacade {
 	void deleteFood(String foodId );
 	List<Food> getFoodListByRestaurant(String resId); 
 	Food getFood(String foodId);
-	List<FoodReview> getFoodReviewList(String resId);
-//
-//	void insertOrder(Order order);
+
 	void insertFoodOrder(FoodOrder order);
-//
-//	Order getOrder(int orderId);
 	FoodOrder getFoodOrder(int orderId);
-//
-//	List<Order> getOrdersByUsername(String username);
 	List<FoodOrder> getOrdersByUserId(String userId);
+	
+	public List<FoodReview> getFoodReviewListByResId(String resId);
+	public void insertFoodReview(FoodReview foodReview);
 	
 	//Together
 	Together getTogetherByTogId(String togId);
 	List<Together> getTogetherList();
 	void insertTogether(Together together);
-	List<Together> getTogetherListByCategory(String area, /*Date date,*/ String kind, int price, String sex, String age);
+	List<Together> getTogetherListByCategory(String area, String date, String kind, int price, String sex, String age);
+	void updateTogether(Together together);
+	List<Together> recommandTogetherList(String sex, String address);
+	List<Together> getTogetherListByResId(String resId);
 	
 	//TogetherFood
 	List<TogetherFood> getTogetherFoodListByTogId(String togId);
@@ -105,4 +106,7 @@ public interface AloneAlongFacade {
 	//TogetherMember
 	List<TogetherMember> getTogetherMemberListByTogId(String togId);
 	void insertTogetherMember(TogetherMember togetherMember);
+	
+	//TogetherOrder
+	void insertTogetherOrder(TogetherOrder togetherOrder);
 }
