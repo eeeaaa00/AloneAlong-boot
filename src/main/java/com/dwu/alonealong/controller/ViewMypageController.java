@@ -14,19 +14,16 @@ public class ViewMypageController {
 		return "mypage";
 	}
 
-	@RequestMapping(value = "/myPayment")
-	public ModelAndView myPayment() {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("/mypage/myPayment");
-		return mav;
+	@RequestMapping("/myCredit")
+	public String credit() {
+		return "myCredit"; 
 	}
-
-	@RequestMapping(value = "/myOrder")
-	public ModelAndView myOrder() {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("/mypage/myOrder");
-		return mav;
+	
+	@RequestMapping("/myOrder")
+	public String order() {
+		return "myOrder"; 
 	}
+	
 
 	@RequestMapping(value = "/myFood")
 	public ModelAndView myFood() {

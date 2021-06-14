@@ -5,7 +5,7 @@
 <div class="col-md-2">
 	<a href="<c:url value='/mypage' />"
 		class="btn btn-outline-success rounded-pill my-1 btn-block active">정보
-		변경</a> <a href="<c:url value='/myPayment' />"
+		변경</a> <a href="<c:url value='/myCredit' />"
 		class="btn btn-outline-success rounded-pill my-1 btn-block">결제정보
 		관리</a> <a href="<c:url value='/myOrder' />"
 		class="btn btn-outline-success rounded-pill my-1 btn-block">구매 내역</a>

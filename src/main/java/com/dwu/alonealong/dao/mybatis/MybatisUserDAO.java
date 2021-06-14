@@ -37,7 +37,7 @@ public class MybatisUserDAO implements UserDAO {
 	@Override
 	public void updateUser(User user) {
 			//throws com.dwu.alonealong.dao.DataAccessException {
-		if (user.getPassword() != null && user.getPassword().length() > 0) 
+		if (user.getPw() != null && user.getPw().length() > 0) 
 		{
 			userMapper.updateUser(user);
 		}

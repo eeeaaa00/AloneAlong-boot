@@ -18,7 +18,6 @@ import org.springframework.web.util.WebUtils;
 
 import com.dwu.alonealong.service.AloneAlongFacade;
 
-
 /**
  * @author Juergen Hoeller
  * @since 01.12.2003
@@ -26,20 +25,31 @@ import com.dwu.alonealong.service.AloneAlongFacade;
  */
 
 @Controller
-@RequestMapping({ "/signUp", "/mypage/myInfo" })
+@RequestMapping({ "/signUp", "/mypage" })
 public class UserFormController {
 
-	@Value("EditAccountForm")
+	@Value("myEditForm")
 	private String formViewName;
+
 	@Value("index")
-	private String successViewName;
+	private String successUpdateName;
+
+	@Value("login")
+	private String successCreateName;
+
+	private static final String[] SEX = { "여", "남" };
 
 	@Autowired
 	private AloneAlongFacade alonealong;
 
 	@Autowired
-	public void setPetStore(AloneAlongFacade alonealong) {
+	public void setAlongAlone(AloneAlongFacade alonealong) {
 		this.alonealong = alonealong;
+	}
+
+	@ModelAttribute("sex")
+	public String[] getLanguages() {
+		return SEX;
 	}
 
 	/*
@@ -50,11 +60,11 @@ public class UserFormController {
 	public UserForm formBackingObject(HttpServletRequest request) throws Exception {
 		UserSession userSession = (UserSession) WebUtils.getSessionAttribute(request, "userSession");
 
-		if (userSession != null) { // edit an existing account 
-			return new UserForm(
-			alonealong.getUserByUserId(userSession.getUser().getUserId()));
+		if (userSession != null) { // edit an existing account
+			return new UserForm(alonealong.getUserByUserId(userSession.getUser().getId()));
 		} else {
 			/// create a new account
+			System.out.print("회원가입");
 			return new UserForm();
 		}
 	}
@@ -70,27 +80,28 @@ public class UserFormController {
 
 		// validator.validate(accountForm, result);
 
-		if (result.hasErrors())
-			return formViewName;
+		//if (result.hasErrors())
+		//	return formViewName;
 		try {
 			if (userForm.isNewUser()) {
 				alonealong.createUser(userForm.getUser());
+				System.out.print("성공");
 			} else {
 				alonealong.updateUser(userForm.getUser());
 			}
 		} catch (DataIntegrityViolationException ex) {
-			result.rejectValue("account.username", "USER_ID_ALREADY_EXISTS",
-					"User ID already exists: choose a different ID.");
+			// result.rejectValue("user.name", "USER_ID_ALREADY_EXISTS",
+			// "User ID already exists: choose a different ID.");
 			return formViewName;
 		}
 
-		UserSession userSession = new UserSession(alonealong.getUserByUserId(
-				userForm.getUser().getUserId()));
-		// PagedListHolder<Product> myList = new PagedListHolder<Product>(
-		// petStore.getProductListByCategory(accountForm.getAccount().getFavouriteCategoryId()));
-		// myList.setPageSize(4);
-		// userSession.setMyList(myList);
-		session.setAttribute("userSession", userSession);
-		return successViewName;
+		UserSession userSession = (UserSession) WebUtils.getSessionAttribute(request, "userSession");
+
+		if (userSession != null) {
+			return successUpdateName;
+		} else {
+			session.setAttribute("userSession", userSession);
+			return successCreateName;
+		}
 	}
 }
