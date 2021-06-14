@@ -28,5 +28,12 @@ public class FoodCartItem {
 	}	
 	public void decrementQuantity() {
 		quantity--;
-	}	
+	}
+	
+	//상품*수량 가격
+	public int getUnitPrice() {
+		int unitPrice = 0;
+		unitPrice += quantity * food.getPrice();
+		return unitPrice;
+	}
 }

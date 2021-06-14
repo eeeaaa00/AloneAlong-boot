@@ -1,8 +1,11 @@
 package com.dwu.alonealong.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -19,6 +22,13 @@ public class ViewTogetherController {
 	@Autowired
 	public void setPetStore(AloneAlongFacade aloneAlong) {
 		this.aloneAlong = aloneAlong;
+	}
+	
+	@ModelAttribute("together")
+	public Together createTogether(HttpSession session) {
+		Together together = (Together)session.getAttribute("together");
+		together = new Together();
+		return together;
 	}
 
 	@RequestMapping("/together/{togetherId}")

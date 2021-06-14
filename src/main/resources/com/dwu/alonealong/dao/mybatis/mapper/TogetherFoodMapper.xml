@@ -17,8 +17,8 @@
 	</select>
 
 	<insert id="insertTogetherFood">
-    	INSERT INTO TOGETHER_FOOD (TOGFOOD_ID, TOG_ID, QUANTITY)
-    	VALUES(#{togetherFoodId}, #{togetherId}, #{quantity})
+    	INSERT INTO TOGETHER_FOOD (TOGFOOD_ID, TOG_ID, FOOD_ID, QUANTITY)
+    	VALUES(TOGFOOD_ID_SEQ.NEXTVAL, #{togetherId}, #{foodId}, #{quantity})
 	</insert>
 
 </mapper>
