@@ -10,6 +10,6 @@ public class LogoutController {
 	public String handleRequest(HttpSession session) throws Exception {
 		session.removeAttribute("userSession");
 		session.invalidate();
-		return "home";
+		return "index";
 	}
 }

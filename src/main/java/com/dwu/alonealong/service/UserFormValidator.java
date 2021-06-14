@@ -29,14 +29,14 @@ public class UserFormValidator {
 		
 		if (accountForm.isNewUser()) {
 			ValidationUtils.rejectIfEmptyOrWhitespace(errors, "account.username", "USER_ID_REQUIRED", "User ID is required.");
-			if (account.getPassword() == null || account.getPassword().length() < 1 ||
-					!account.getPassword().equals(accountForm.getRepeatedPassword())) {
+			if (account.getPw() == null || account.getPw().length() < 1 ||
+					!account.getPw().equals(accountForm.getRepeatedPassword())) {
 				errors.reject("PASSWORD_MISMATCH",
 					 "Passwords did not match or were not provided. Matching passwords are required.");
 			}
 		}
-		else if (account.getPassword() != null && account.getPassword().length() > 0) {
-			if (!account.getPassword().equals(accountForm.getRepeatedPassword())) {
+		else if (account.getPw() != null && account.getPw().length() > 0) {
+			if (!account.getPw().equals(accountForm.getRepeatedPassword())) {
 				errors.reject("PASSWORD_MISMATCH", "Passwords did not match. Matching passwords are required.");
 			}
 		}

@@ -19,6 +19,7 @@ import org.springframework.web.bind.support.SessionStatus;
 import com.dwu.alonealong.domain.FoodCart;
 import com.dwu.alonealong.domain.FoodCartItem;
 import com.dwu.alonealong.domain.Payment;
+import com.dwu.alonealong.domain.User;
 import com.dwu.alonealong.service.AloneAlongFacade;
 import com.dwu.alonealong.domain.FoodOrder;
 @Controller
@@ -41,10 +42,11 @@ public class FoodOrderController {
 		model.addAttribute("foodOrderForm", new FoodOrder());
 
 		//유저 정보 및 결제 정보 받아오기
-//		UserSession userSession = (UserSession)request.getSession().getAttribute("userSession");
-//		User user = aloneAlong.getUser(userSession.getUser().getUserId());
-//		Payment paymentMethod = aloneAlong.getCard(userSession.getUser().getUserId());
+		UserSession userSession = (UserSession)request.getSession().getAttribute("userSession");
+		User user = aloneAlong.getUserByUserId(userSession.getUser().getId());
+		Payment paymentMethod = aloneAlong.getCard(userSession.getUser().getId());
 
+		System.out.print(user);
 		//LineItem 설정 
 //		List<ProductLineItem> orderList = new ArrayList<ProductLineItem>();
 		

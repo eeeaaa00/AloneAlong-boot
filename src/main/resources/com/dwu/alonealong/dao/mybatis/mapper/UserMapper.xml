@@ -1,83 +1,84 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.dwu.alonealong.dao.mybatis.mapper.UserMapper">
-  <cache />
+<mapper
+	namespace="com.dwu.alonealong.dao.mybatis.mapper.UserMapper">
+	<cache />
+	<select id="getUserByUserId" resultType="User">
+		SELECT USER_ID,
+		PW,
+		NAME,
+		NICKNAME,
+		EMAIL,
+		PHONE,
+		BIRTHDAY,
+		SEX,
+		ADDRESS,
+		ZIP,
+		BUSINESS_NUM
+		FROM USERINFO
+		WHERE USER_ID = #{Id}
+	</select>
 
-  <select id="getUserByUserId" resultType="User">
-    SELECT USER_ID, 
-         PW, 
-         NAME, 
-         NICKNAME, 
-         EMAIL, 
-         PHONE, 
-         SEX, 
-         BIRTHDAY, 
-         ADDRESS, 
-         ZIP, 
-         REGISTERDATE
-    FROM USERINFO
-    WHERE USER_ID = #{Id}
-  </select>
+	<select id="getUserByUserIdAndPassword" resultType="User">
+		SELECT USER_ID,
+		PW,
+		NAME,
+		NICKNAME,
+		EMAIL,
+		PHONE,
+		BIRTHDAY,
+		SEX,
+		ADDRESS,
+		ZIP,
+		BUSINESS_NUM
+		FROM USERINFO
+		WHERE USER_ID = #{Id}
+		AND PW = #{password}
+	</select>
 
-  <select id="getUserByUserIdAndPassword" resultType="User">
-  SELECT USER_ID, 
-         PW,
-         NAME
-    FROM USERINFO
-    WHERE USER_ID = #{Id}
-      AND PW = #{password}
-  </select>
 
-  <select id="getUserIdList" resultType="java.lang.String">
-    SELECT USERID AS VALUE FROM USER
-  </select>
+	<select id="getUserIdList" resultType="java.lang.String">
+		SELECT USERID AS VALUE FROM USER
+	</select>
 
-  <update id="updateUser" parameterType="User">
-    UPDATE ACCOUNT SET
-      PW = #{password},
-      NAME = #{name},
-      NICKNAME = #{nickname},
-      EMAIL = #{email},
-      PHONE = #{phone},
-      SEX = #{sex},
-      BIRTHDAY = #{birthday},
-      ADDRESS = #{address},
-      ZIP = #{zip}
-    WHERE USERID = #{user_id}
-  </update>
+	<update id="updateUser" parameterType="User">
+		UPDATE USERINFO SET
+		PW = #{pw},
+		NAME = #{name},
+		NICKNAME = #{nickname},
+		EMAIL = #{email},
+		PHONE = #{phone},
+		SEX = #{sex},
+		BIRTHDAY = #{birthday},
+		ADDRESS = #{address},
+		ZIP = #{zip}
+		WHERE USER_ID = #{user_id}
+	</update>
 
-  <insert id="createUser" parameterType="User">
-    INSERT INTO USER
-      (USER_ID, PW, NAME, NICKNAME, EMAIL, PHONE, SEX, BIRTHDAY, ADDRESS, ZIP, REGISTERDATE)
-    VALUES
-      (#{user_id}, #{password}, #{name}, #{nickname}, #{email}, #{phone}, #{sex}, #{birthday}, #{address}, #{zip}, #{registerDate})
-  </insert>
-  
-   <delete id="removeUser" parameterType="User">
-    DELETE FROM USER
-    WHERE USER_ID = #{user_id}
-   </delete>
-  
-	
-  <!--  
-  TODO MyBatis 3 does not map booleans to integers
-  <update id="updateProfile" parameterType="Account">
-    UPDATE PROFILE SET
-      LANGPREF = #{languagePreference},
-      FAVCATEGORY = #{favouriteCategoryId},
-      MYLISTOPT = #{listOption},
-      BANNEROPT = #{bannerOption}
-    WHERE USERID = #{username}
-  </update>
-  -->
-  
-  <!--  
-  TODO MyBatis 3 does not map booleans to integers
-  <insert id="insertProfile" parameterType="Account">
-    INSERT INTO PROFILE (LANGPREF, FAVCATEGORY, MYLISTOPT, BANNEROPT, USERID)
-    VALUES (#{languagePreference}, #{favouriteCategoryId}, #{listOption}, #{bannerOption}, #{username})
-  </insert>
-  -->
+	<insert id="createUser" parameterType="User">
+		INSERT INTO USERINFO
+		(USER_ID, PW, NAME, NICKNAME, EMAIL, PHONE, SEX, BIRTHDAY, ADDRESS, ZIP,
+		REGISTERDATE)
+		VALUES
+		(#{user_id}, #{pw}, #{name}, #{nickname}, #{email}, #{phone}, #{sex}, #{birthday},
+		#{address}, #{zip}, SYSDATE)
+	</insert>
+
+	<delete id="removeUser" parameterType="User">
+		DELETE FROM USERINFO
+		WHERE USER_ID = #{user_id}
+	</delete>
+
+
+	<!-- TODO MyBatis 3 does not map booleans to integers <update id="updateProfile" 
+		parameterType="Account"> UPDATE PROFILE SET LANGPREF = #{languagePreference}, 
+		FAVCATEGORY = #{favouriteCategoryId}, MYLISTOPT = #{listOption}, BANNEROPT 
+		= #{bannerOption} WHERE USERID = #{username} </update> -->
+
+	<!-- TODO MyBatis 3 does not map booleans to integers <insert id="insertProfile" 
+		parameterType="Account"> INSERT INTO PROFILE (LANGPREF, FAVCATEGORY, MYLISTOPT, 
+		BANNEROPT, USERID) VALUES (#{languagePreference}, #{favouriteCategoryId}, 
+		#{listOption}, #{bannerOption}, #{username}) </insert> -->
 
 </mapper>
