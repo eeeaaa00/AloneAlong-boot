@@ -1,36 +1,44 @@
 package com.dwu.alonealong.domain;
 import java.io.Serializable;
+import java.sql.Date;
 	@SuppressWarnings("serial")
 	public class User implements Serializable {
+		private String id;
 		private String pw;
 		private String name;
+		private String nickname;
 		private String email;
 		private String sex;
-		private String birthday;
+		private Date birthday;
 		private String address;
 		private String state;
-		private String zip;
+		private int zip;
 		private String phone;
 		private String buisnessNum;
-		/* Private Fields */
-		private String userId;
-		public String getUserId() {
-			return userId;
+		
+		public String getId() {
+			return id;
 		}
-		public void setUserId(String userId) {
-			this.userId = userId;
-		}
-		public String getPassword() {
-			return pw;
-		}
-		public void setPassword(String password) {
-			this.pw = password;
+		public void setId(String id) {
+			this.id = id;
 		}
 		public String getName() {
 			return name;
 		}
 		public void setName(String name) {
 			this.name = name;
+		}
+		public String getPw() {
+			return pw;
+		}
+		public void setPw(String pw) {
+			this.pw = pw;
+		}
+		public String getNickname() {
+			return nickname;
+		}
+		public void setNickname(String nickname) {
+			this.nickname = nickname;
 		}
 		public String getEmail() {
 			return email;
@@ -44,10 +52,10 @@ import java.io.Serializable;
 		public void setSex(String sex) {
 			this.sex = sex;
 		}
-		public String getBirthday() {
+		public Date getBirthday() {
 			return birthday;
 		}
-		public void setBirthday(String birthday) {
+		public void setBirthday(Date birthday) {
 			this.birthday = birthday;
 		}
 		public String getAddress() {
@@ -62,10 +70,10 @@ import java.io.Serializable;
 		public void setState(String state) {
 			this.state = state;
 		}
-		public String getZip() {
+		public int getZip() {
 			return zip;
 		}
-		public void setZip(String zip) {
+		public void setZip(int zip) {
 			this.zip = zip;
 		}
 		public String getPhone() {

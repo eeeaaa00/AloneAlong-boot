@@ -52,12 +52,7 @@
 		<div class="row">
 			<!-- 좌측 카테고리 -->
 			<tiles:insertAttribute name="menu" />
-
-			<!-- 상품 정보 -->
-			<div class="col-md-10 my-1">
-				<tiles:getAsString name="desc" />
-				<tiles:insertAttribute name="body" />
-			</div>
+			<tiles:insertAttribute name="body" />
 		</div>
 	</div>
 

@@ -21,7 +21,7 @@
 			<div class="col-md-2">
 				<a class="text-muted px-3" href="<c:url value='/mypage' />">
 				<i class="far fa-user" style="color: #29A65F;"></i> <b style="color: #29A65F;">${userSession.user.name}</b> 님</a> <a
-					class="text-muted" href="#"><i class="fas fa-sign-out-alt"
+					class="text-muted" href="<c:url value='/logout' />"><i class="fas fa-sign-out-alt"
 					style="color: #29A65F;"></i> 로그아웃</a>
 			</div>
 			<div class="col-md-2"></div>

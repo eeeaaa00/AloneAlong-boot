@@ -7,15 +7,7 @@
   <select id="getUserByUserId" resultType="User">
     SELECT USER_ID, 
          PW, 
-         NAME, 
-         NICKNAME, 
-         EMAIL, 
-         PHONE, 
-         SEX, 
-         BIRTHDAY, 
-         ADDRESS, 
-         ZIP, 
-         REGISTERDATE
+         NAME
     FROM USERINFO
     WHERE USER_ID = #{Id}
   </select>
@@ -44,19 +36,19 @@
       BIRTHDAY = #{birthday},
       ADDRESS = #{address},
       ZIP = #{zip}
-    WHERE USERID = #{user_id}
+    WHERE USER_ID = #{user_id}
   </update>
 
   <insert id="createUser" parameterType="User">
-    INSERT INTO USER
+    INSERT INTO USERINFO
       (USER_ID, PW, NAME, NICKNAME, EMAIL, PHONE, SEX, BIRTHDAY, ADDRESS, ZIP, REGISTERDATE)
     VALUES
-      (#{user_id}, #{password}, #{name}, #{nickname}, #{email}, #{phone}, #{sex}, #{birthday}, #{address}, #{zip}, #{registerDate})
+      (#{id}, #{pw}, #{name}, #{nickname}, #{email}, #{phone}, #{sex}, #{birthday}, #{address}, #{zip}, SYSDATE)
   </insert>
   
    <delete id="removeUser" parameterType="User">
     DELETE FROM USER
-    WHERE USER_ID = #{user_id}
+    WHERE USER_ID = #{id}
    </delete>
   
 	

@@ -23,6 +23,11 @@
 		<put-attribute name="body" value="/WEB-INF/jsp/tiles/login.jsp" />
 	</definition>	
 	
+	<definition name="myEditForm" extends = "base_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/myEditForm.jsp" />
+	</definition>
+	
 	<definition name="logined_layout"
 		template="/WEB-INF/jsp/tiles/template/layout.jsp">
 		<put-attribute name="title" value="AloneAlong" type="string"/>
@@ -44,13 +49,17 @@
 		<put-attribute name="menu"
 			value="/WEB-INF/jsp/mypage/menu.jsp" />
 		<put-attribute name="header"
-			value="/WEB-INF/jsp/tiles/header2.jsp" />
+			value="/WEB-INF/jsp/tiles/header.jsp" />
 		<put-attribute name="footer"
 			value="/WEB-INF/jsp/tiles/footer.jsp" />
 	</definition>
 	
+	<definition name="myEditForm" extends = "base_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/myEditForm.jsp" />
+	</definition>
+	
 	<definition name="mypage" extends = "mypage_layout">
-			<put-attribute name="desc" value="정보 변경" type="string"/>
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/mypage/myEditForm.jsp" />
 	</definition>

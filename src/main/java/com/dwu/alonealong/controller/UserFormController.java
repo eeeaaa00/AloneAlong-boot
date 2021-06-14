@@ -26,13 +26,16 @@ import com.dwu.alonealong.service.AloneAlongFacade;
  */
 
 @Controller
-@RequestMapping({ "/signUp", "/mypage/myInfo" })
+@RequestMapping({ "/signUp", "/mypage" })
 public class UserFormController {
 
-	@Value("EditAccountForm")
+	@Value("myEditForm")
 	private String formViewName;
-	@Value("index")
+	
+	@Value("login")
 	private String successViewName;
+	private static final String[] SEX = {"여", "남"};
+	
 
 	@Autowired
 	private AloneAlongFacade alonealong;
@@ -41,7 +44,11 @@ public class UserFormController {
 	public void setPetStore(AloneAlongFacade alonealong) {
 		this.alonealong = alonealong;
 	}
-
+	
+	@ModelAttribute("sex")
+	public String[] getLanguages() {
+		return SEX;
+	}
 	/*
 	 * @Autowired private AccountFormValidator validator; public void
 	 * setValidator(AccountFormValidator validator) { this.validator = validator; }
@@ -52,7 +59,7 @@ public class UserFormController {
 
 		if (userSession != null) { // edit an existing account 
 			return new UserForm(
-			alonealong.getUserByUserId(userSession.getUser().getUserId()));
+			alonealong.getUserByUserId(userSession.getUser().getId()));
 		} else {
 			/// create a new account
 			return new UserForm();
@@ -70,8 +77,10 @@ public class UserFormController {
 
 		// validator.validate(accountForm, result);
 
-		if (result.hasErrors())
+		if (result.hasErrors()) {
+			System.out.print("");
 			return formViewName;
+		}
 		try {
 			if (userForm.isNewUser()) {
 				alonealong.createUser(userForm.getUser());
@@ -79,17 +88,18 @@ public class UserFormController {
 				alonealong.updateUser(userForm.getUser());
 			}
 		} catch (DataIntegrityViolationException ex) {
-			result.rejectValue("account.username", "USER_ID_ALREADY_EXISTS",
-					"User ID already exists: choose a different ID.");
+			//result.rejectValue("user.name", "USER_ID_ALREADY_EXISTS",
+			//		"User ID already exists: choose a different ID.");
 			return formViewName;
 		}
+		
+		System.out.print(alonealong.getUserByUserId(
+				userForm.getUser().getId()));
 
 		UserSession userSession = new UserSession(alonealong.getUserByUserId(
-				userForm.getUser().getUserId()));
-		// PagedListHolder<Product> myList = new PagedListHolder<Product>(
-		// petStore.getProductListByCategory(accountForm.getAccount().getFavouriteCategoryId()));
-		// myList.setPageSize(4);
-		// userSession.setMyList(myList);
+				userForm.getUser().getId()));
+		
+		
 		session.setAttribute("userSession", userSession);
 		return successViewName;
 	}
