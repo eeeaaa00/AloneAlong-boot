@@ -16,5 +16,6 @@ public interface CartItemDAO {
 	
 	void insertCartItem(String productId, int quantity, String userId)  throws DataAccessException;
 	void deleteCartItem(String cartItemId) throws DataAccessException;
+	void deleteAllCartItem(String userId) throws DataAccessException;
 	void updateCartItem(CartItem cartItem) throws DataAccessException;
 }

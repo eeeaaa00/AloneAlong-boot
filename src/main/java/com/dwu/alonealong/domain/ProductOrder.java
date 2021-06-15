@@ -2,37 +2,38 @@ package com.dwu.alonealong.domain;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @SuppressWarnings("serial")
 public class ProductOrder implements Serializable {
 
   /* Private Fields */
-
   private String orderId;
-  private String date;
+  private String orderDate;
   private int totalPrice;
-  private String status;
+  private String status; //현재 DB에는 존재하지만 이용X
   private String userId;
   private String cardNum;
-  private String cardDate;
-  private String billName;
-  private String billPhone;
+  private String cardMonth;
+  private String cardYear;
+  private String cardName;
   private String shipName;
+  private String shipPhone1;
+  private String shipPhone2;
+  private String shipPhone3;
+  private String shipEmail;
   private int shipZip;
-  private String shipAddress;
-  private String shipPhone; 
+  private String shipAddress; 
   
-  private List<LineItem> lineItems = new ArrayList<LineItem>();
+  private List<ProductLineItem> lineItems = new ArrayList<ProductLineItem>();
 
   /* JavaBeans Properties */
 
   public String getOrderId() { return orderId;  }
   public void setOrderId(String orderId) { this.orderId = orderId; }
   
-  public String getDate() { return date; }
-  public void setDate(String date) { this.date = date; }
+  public String getOrderDate() { return orderDate; }
+  public void setOrderDate(String orderDate) { this.orderDate = orderDate; }
   
   public int getTotalPrice() { return totalPrice; }
   public void setTotalPrice(int totalPrice) { this.totalPrice = totalPrice; }
@@ -46,21 +47,17 @@ public class ProductOrder implements Serializable {
   public String getCardNum() { return cardNum; }
   public void setCardNum(String cardNum) { this.cardNum = cardNum; }
   
-  public String getCardDate() { return cardDate; }
-  public void setCardDate(String cardDate) { this.cardDate = cardDate; }
+  public String getCardMonth() { return cardMonth; }
+  public void setCardMonth(String cardMonth) { this.cardMonth = cardMonth; }
+  public String getCardYear() { return cardYear; }
+  public void setCardYear(String cardYear) { this.cardYear = cardYear; }
   
-  public List<LineItem> getLineItems() { return lineItems; }
-  public void setLineItems(List<LineItem> lineItems) { this.lineItems = lineItems; }
+  public String getCardName() { return cardName; }
+  public void setcardName(String cardName) { this.cardName = cardName; }
   
-  public void addLineItem(CartItem cartItem) {  LineItem lineItem = new LineItem(lineItems.size() + 1, cartItem);  addLineItem(lineItem); }
-  public void addLineItem(LineItem lineItem) {  lineItems.add(lineItem); }
-
-  public String getBillName() { return billName; }
-  public void setBillName(String billName) { this.billName = billName; }
-  
-  public String getBillPhone() { return billPhone; }
-  public void setBillPhone(String billPhone) { this.billPhone = billPhone; }
-  
+  public List<ProductLineItem> getLineItems() { return lineItems; }
+  public void setLineItems(List<ProductLineItem> lineItems) { this.lineItems = lineItems; }
+    
   public String getShipName() { return shipName; }
   public void setShipName(String shipName) { this.shipName = shipName; }
   
@@ -70,56 +67,22 @@ public class ProductOrder implements Serializable {
   public String getShipAddress() { return shipAddress; }
   public void setShipAddress(String shipAddress) { this.shipAddress = shipAddress; }
   
-  public String getShipPhone() { return shipPhone; }
-  public void setShipPhone(String shipPhone) { this.shipPhone = shipPhone; }
+  public String getShipPhone1() { return shipPhone1; }
+  public void setShipPhone1(String shipPhone1) { this.shipPhone1 = shipPhone1; }
+  public String getShipPhone2() { return shipPhone2; }
+  public void setShipPhone2(String shipPhone2) { this.shipPhone2 = shipPhone2; }
+  public String getShipPhone3() { return shipPhone3; }
+  public void setShipPhone3(String shipPhone3) { this.shipPhone3 = shipPhone3; }
+
+  public String getShipEmail() { return shipEmail; }
+  public void setShipEmail(String shipEmail) { this.shipEmail = shipEmail; }
   
-  /* Public Methods */
-  public void initProductOrder(User user, Payment paymentMethod, List<ProductLineItem> orderList) {
-	  totalPrice = 0;
-	  //status = ?;
-	  
-	  userId = user.getId();
-	  date = (new Date()).toString();
-
-	  shipName = user.getName();
-	  shipPhone = user.getPhone();
-	  shipZip = user.getZip();
-	  shipAddress = user.getAddress();
-
-	  billName = user.getName();
-	  billPhone = user.getPhone();
-	  
-	  if(paymentMethod != null) {
-		  cardNum = paymentMethod.getCard_num();
-		  cardDate = paymentMethod.getCard_date();
-	  }
-	  
-	  for(ProductLineItem orderItem : orderList) {
-		  totalPrice += orderItem.getUnitPrice();
-	  }
-	}
-
-  //��ٱ��Ͽ��� �ֹ����� �Ѿ ���
-//  public void initOrderByCart(Account account, Cart cart) { 
-//	  setTotalPrice(cart.getTotalPrice());
-//	  for(CartItem cartItem : cart.getCartItemList()) {
-//		  LineItem lineItem = new LineItem();
-//		  lineItems.add(lineItem);
-//	  }
-//  }
-  /*
-  //���� ������� ���
-  public void setOrderByPaymentmethod(Paymentmethod method) {
-	  setCardNum(method.getCardNum);
-	  setCardDate(method.getCardDate);
+  @Override
+  public String toString() {
+	return "ProductOrder [orderId=" + orderId + ", orderDate=" + orderDate + ", totalPrice=" + totalPrice + ", status="
+			+ status + ", userId=" + userId + ", cardNum=" + cardNum + ", cardMonth=" + cardMonth + ", cardYear="
+			+ cardYear + ", cardName=" + cardName + ", shipName=" + shipName + ", shipPhone1=" + shipPhone1
+			+ ", shipPhone2=" + shipPhone2 + ", shipPhone3=" + shipPhone3 + ", shipEmail=" + shipEmail + ", shipZip="
+			+ shipZip + ", shipAddress=" + shipAddress + "]";
   }
-  
-  //��������� �ֹ������� ����
-  public void setShipInfoByUserInfo(Account account) {
-	  setShipName(account.getUsername());
-	  setShipZip(account.getZip());
-	  setShipAddress(account.getAddress());
-	  setShipPhone(account.getPhone());
-  }
-  */
 }

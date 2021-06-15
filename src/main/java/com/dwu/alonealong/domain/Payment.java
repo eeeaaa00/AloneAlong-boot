@@ -1,6 +1,7 @@
 package com.dwu.alonealong.domain;
 
 import java.io.Serializable;
+import java.util.StringTokenizer;
 
 @SuppressWarnings("serial")
 public class Payment implements Serializable{
@@ -9,6 +10,8 @@ public class Payment implements Serializable{
 	private String card_num;
 	private String card_name;
 	private String card_date;
+	private String card_month;
+	private String card_year;
 	private String card_cvc;
 	
 	public Payment() {
@@ -53,6 +56,10 @@ public class Payment implements Serializable{
 
 	public void setCard_date(String card_date) {
 		this.card_date = card_date;
+		
+		StringTokenizer itr = new StringTokenizer(card_date, "/");
+		card_month =  itr.nextToken();
+		card_year =  itr.nextToken();
 	}
 
 	public String getCard_cvc() {
@@ -61,6 +68,14 @@ public class Payment implements Serializable{
 
 	public void setCard_cvc(String card_cvc) {
 		this.card_cvc = card_cvc;
+	}
+
+	public String getCard_month() {
+		return card_month;
+	}
+
+	public String getCard_year() {
+		return card_year;
 	}
 
 	@Override

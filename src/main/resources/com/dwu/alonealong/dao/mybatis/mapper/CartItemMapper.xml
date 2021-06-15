@@ -68,5 +68,10 @@
     WHERE CARTITEM_ID = #{cartItemId}
   </delete>
 
+  <delete id="deleteAllCartItem">
+  	DELETE
+    FROM CARTITEM
+    WHERE USER_ID = #{userId}
+  </delete>
   
 </mapper>

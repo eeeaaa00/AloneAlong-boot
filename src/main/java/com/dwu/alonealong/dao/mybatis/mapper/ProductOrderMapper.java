@@ -21,24 +21,11 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.dao.DataAccessException;
 
-import com.dwu.alonealong.domain.CartItem;
+import com.dwu.alonealong.domain.Product;
+import com.dwu.alonealong.domain.ProductOrder;
 
 
 @Mapper
-public interface CartItemMapper {
-
-	List<CartItem> getAllCartItem(String userId) throws DataAccessException;
-	CartItem getCartItem(String cartItemId) throws DataAccessException;
-
-//	int getUnitPrice(String cartItemID) throws DataAccessException;
-//	int getTotalPrice(String userId) throws DataAccessException;
-	
-	void insertCartItem(String productId, int quantity, String userId)  throws DataAccessException;
-	
-	CartItem isInCart(String productId, String userId) throws DataAccessException;
-	void updateCartItem(CartItem cartItem) throws DataAccessException;
-	void deleteCartItem(String cartItemId) throws DataAccessException;
-	void deleteAllCartItem(String userId) throws DataAccessException;
-//	void updateQuantity(String cartItemID, int quantity) throws DataAccessException;
-
+public interface ProductOrderMapper {
+	void insertProductOrder(ProductOrder order) throws DataAccessException;
 }

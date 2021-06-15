@@ -50,16 +50,17 @@ public interface AloneAlongFacade {
 	void deleteProductReviewRecommend(String reviewId, String userId);
 	
 	//PRODUCT Order
-	List<ProductOrder> getProductOrdersByUserId(String userId);
-	List<ProductOrder> getProductOrdersByProductId(String productId);
-  	ProductOrder getProductOrder(int orderId);
-	int insertProductOrder(ProductOrder order);
+//	List<ProductOrder> getProductOrdersByUserId(String userId);
+//	List<ProductOrder> getProductOrdersByProductId(String productId);
+//  	ProductOrder getProductOrder(int orderId);
+	void insertProductOrder(ProductOrder order);
 	
 	//CART
 	List<CartItem> getAllCartItem(String userId) throws DataAccessException;
 	CartItem getCartItem(String cartItemId) throws DataAccessException;
 	void insertCartItem(String productId, int quantity, String userId)  throws DataAccessException;
 	void deleteCartItem(String cartItemId) throws DataAccessException;
+	void deleteAllCartItem(String userId) throws DataAccessException;
 	void updateCartItem(CartItem cartItem) throws DataAccessException;
 	
 	//PAYMENT

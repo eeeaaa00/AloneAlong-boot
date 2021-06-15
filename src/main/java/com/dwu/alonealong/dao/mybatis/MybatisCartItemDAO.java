@@ -41,7 +41,10 @@ public class MybatisCartItemDAO implements CartItemDAO{
 		cartItemMapper.deleteCartItem(cartItemId);
 	    return;
 	}
-
+	public void deleteAllCartItem(String userId) throws DataAccessException{
+		cartItemMapper.deleteAllCartItem(userId);
+	    return;
+	}
 	public void updateCartItem(CartItem cartItem) throws DataAccessException{
 		cartItemMapper.updateCartItem(cartItem);
 	    return;

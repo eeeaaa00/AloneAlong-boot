@@ -66,8 +66,8 @@ public class AloneAlongImpl implements AloneAlongFacade{
 	private ProductDAO productDao;
 	@Autowired
 	private ProductReviewDAO productReviewDao;
-//	@Autowired
-//	private ProductOrderDAO productOrderDao;
+	@Autowired
+	private ProductOrderDAO productOrderDao;
 	
 	@Autowired
 	private PaymentDAO paymentDao;
@@ -76,7 +76,7 @@ public class AloneAlongImpl implements AloneAlongFacade{
 	
 //	private ProductDAO productDao;
 //	private ProductReviewDAO productReviewDao;
-	private ProductOrderDAO productOrderDao;
+//	private ProductOrderDAO productOrderDao;
 //	private PaymentDAO paymentDao;
 	
 	@Autowired
@@ -164,17 +164,17 @@ public class AloneAlongImpl implements AloneAlongFacade{
 	}
 	
 	//PRODUCT Order
-	public List<ProductOrder> getProductOrdersByUserId(String userId){
-		return productOrderDao.getOrdersByUserId(userId);
-	}
-	public List<ProductOrder> getProductOrdersByProductId(String productId){
-		return productOrderDao.getOrdersByProductId(productId);
-	}
-	public ProductOrder getProductOrder(int orderId){
-		return productOrderDao.getProductOrder(orderId);
-	}
-	public int insertProductOrder(ProductOrder order){
-		return productOrderDao.insertProductOrder(order);
+//	public List<ProductOrder> getProductOrdersByUserId(String userId){
+//		return productOrderDao.getOrdersByUserId(userId);
+//	}
+//	public List<ProductOrder> getProductOrdersByProductId(String productId){
+//		return productOrderDao.getOrdersByProductId(productId);
+//	}
+//	public ProductOrder getProductOrder(int orderId){
+//		return productOrderDao.getProductOrder(orderId);
+//	}
+	public void insertProductOrder(ProductOrder order){
+		productOrderDao.insertProductOrder(order);
 	}
 	
 	//cart
@@ -190,6 +190,10 @@ public class AloneAlongImpl implements AloneAlongFacade{
 	}
 	public void deleteCartItem(String cartItemId) throws DataAccessException{
 		cartItemDao.deleteCartItem(cartItemId);
+		return;
+	}
+	public void deleteAllCartItem(String userId) throws DataAccessException{
+		cartItemDao.deleteAllCartItem(userId);
 		return;
 	}
 	public void updateCartItem(CartItem cartItem) throws DataAccessException{
