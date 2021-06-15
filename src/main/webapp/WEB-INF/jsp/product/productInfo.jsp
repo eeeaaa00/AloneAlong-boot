@@ -31,17 +31,20 @@
 		</div>
 		
 		<!-- 임시 -->
-		<form action='<c:url value="/shop/${productId}"/>' method="post">
-		<input name="quantity" type="hidden" value="${param.quantity}"/>
-		<a data-toggle="modal" data-target="#cartModal"></a>
+		<form method="post">
+		<input name="type" type="hidden" value="product">
+		<input name="productId" type="hidden" value="${product.productId}">
+		<input name="quantity" type="hidden" value="${product.quantity}">
 		<div class="totalPriceInfo bg-light">
 			<p class="text-right">총 금액 <b class="pl-2 text-roboto">
 				<fmt:formatNumber value="${product.getUnitPrice()}" pattern="#,###,###"/></b>원</p>
 			<div class="row justify-content-around">
-				<button type="submit" class="btn btn-green rounded-pill">
+				<button type="submit" class="btn btn-green rounded-pill"
+					onclick="javascript: form.action='/shop/${productId}';">
 					<small><i class="fas fa-shopping-cart pr-1"></i></small> 장바구니</button>
-				<a type="button" class="btn btn-orange rounded-pill" href="<c:url value='/order' />">
-					<small> <i class="far fa-credit-card pr-1"></i></small> 결제하기</a>
+				<button type="submit" class="btn btn-orange rounded-pill"
+					onclick="javascript: form.action='/shop/order';">
+					<small> <i class="far fa-credit-card pr-1"></i></small> 결제하기</button>
 			</div>
 		</div>
 		</form>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dwu.alonealong.dao.mybatis.mapper.ProductOrderMapper">
+
+  <cache />
+
+  <update id="insertProductOrder">
+  	INSERT ALL
+	 INTO ORDERINFO
+    	VALUES('p' || PRODUCTORDERID_SEQ.NEXTVAL, SYSDATE, #{totalPrice}, '결제완료',
+			#{userId}, #{cardNum}, #{cardMonth} || '/' || #{cardYear}, #{cardName})
+	 INTO PRODUCT_ORDER
+    	VALUES('p' || PRODUCTORDERID_SEQ.CURRVAL,
+			#{shipName}, #{shipPhone1} || '-' || #{shipPhone2} || '-' || #{shipPhone3}, #{shipEmail}, #{shipZip}, #{shipAddress})
+    <foreach collection="lineItems" item="item" separator=" ">
+     INTO PRODUCT_LINEITEM
+    	VALUES
+        ('p' || PRODUCTORDERID_SEQ.CURRVAL, #{item.productId}, #{item.quantity}, #{item.unitPrice})
+    </foreach>
+	SELECT *
+	FROM DUAL
+  </update>
+</mapper>
