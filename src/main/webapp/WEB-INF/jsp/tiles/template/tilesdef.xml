@@ -21,7 +21,7 @@
 	</definition>
 
 	<definition name="index" extends="base_layout">
-		<put-attribute name="body" value="" />
+		<put-attribute name="body" value="/WEB-INF/jsp/main.jsp" />
 	</definition>
 
 	<definition name="login" extends="base_layout">
