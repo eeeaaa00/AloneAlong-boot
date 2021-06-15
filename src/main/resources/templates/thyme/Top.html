@@ -33,6 +33,11 @@
 		margin: 0px 0px 0px -50px;
 	}
 	</style>
+<script th:inline="javascript">
+    $(document).ready(function(){
+		$("#alertModal").modal("show");
+    });
+</script>
 </head>
 <body>
   <header th:fragment="header" class="blog-header py-4">

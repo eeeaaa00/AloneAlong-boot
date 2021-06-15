@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.dwu.alonealong.dao.ProductDAO;
 import com.dwu.alonealong.domain.Product;
+import com.dwu.alonealong.domain.ProductLineItem;
 import com.dwu.alonealong.dao.mybatis.mapper.ProductMapper;
 
 @Repository
@@ -35,5 +36,15 @@ public class MybatisProductDAO implements ProductDAO{
 	//get Product Method
 	public Product getProduct(String productId) throws DataAccessException{
 	    return productMapper.getProduct(productId);
+	}
+	
+	public boolean checkStock(String productId, int quantity) throws DataAccessException{
+		Product product = productMapper.getProduct(productId);
+		if(product.getProductStock() >= quantity) {
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 }

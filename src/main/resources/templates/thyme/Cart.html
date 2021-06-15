@@ -122,4 +122,19 @@
 		</div>
 	</div>
 </div>
+<div th:if="${param.stockError}" class="modal fade" id="alertModal" tabindex="-1" role="dialog">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content pb-4">
+			<div class="modal-header">
+				<h5 class="modal-title">Error</h5>
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body text-center">현재 <span class="text-green" th:text="${param.product}"></span>의 재고수량은
+				<span class="text-orange" th:text="${param.stock}"></span>개 입니다.</div>
+		</div>
+	</div>
+</div>
 <div th:replace="thyme/Bottom :: footer"></div>

@@ -40,7 +40,7 @@
 				<fmt:formatNumber value="${product.getUnitPrice()}" pattern="#,###,###"/></b>원</p>
 			<div class="row justify-content-around">
 				<button type="submit" class="btn btn-green rounded-pill"
-					onclick="javascript: form.action='/shop/${productId}';">
+					onclick="javascript: form.action='/cart/insert/${productId}/${product.quantity}/product';">
 					<small><i class="fas fa-shopping-cart pr-1"></i></small> 장바구니</button>
 				<button type="submit" class="btn btn-orange rounded-pill"
 					onclick="javascript: form.action='/shop/order';">
