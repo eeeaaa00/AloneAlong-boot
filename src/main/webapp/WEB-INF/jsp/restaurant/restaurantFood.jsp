@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+<script>
+
+</script>
 <div class="row my-5 mx-5">
 					<div class="col-md-12">
 				      <div class="shadow-sm rounded-lg">
@@ -31,8 +34,8 @@
 				              <div class="card-footer">
 					            <button type = "button" onClick="location.href='<c:url value='/eating/${restaurant.resId}/addFoodToCart'><c:param name="foodId" value="${food.foodId}"/></c:url>'">담기</button></br> 
 					       		  <!--<button type="submit">담기</button></br>	 -->  
-					              <button type="button" onClick="location.href='<c:url value='/eating/${restaurant.resId}/adminFood/update'><c:param name="foodId" value="${food.foodId}"/></c:url>'">수정</button>
-					              <button type="button" onClick="location.href='<c:url value='/eating/${restaurant.resId}/adminFood/delete'><c:param name="foodId" value="${food.foodId}"/></c:url>'">삭제</button>
+					              <button id="btnEdit" type="button" onClick="location.href='<c:url value='/eating/${restaurant.resId}/adminFood/update'><c:param name="foodId" value="${food.foodId}"/></c:url>'">수정</button>
+					              <button id="btnDel" type="button" onClick="location.href='<c:url value='/eating/${restaurant.resId}/adminFood/delete'><c:param name="foodId" value="${food.foodId}"/></c:url>'">삭제</button>
 				              </div>
 				              
 				            </div>

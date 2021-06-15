@@ -24,7 +24,7 @@ import com.dwu.alonealong.service.AloneAlongFacade;
 
 
 @Controller
-@SessionAttributes({"sessionFoodCart", "category1", "category2"})
+@SessionAttributes({"sessionFoodCart", "category1", "category2", "userSession"})
 public class ViewRestaurantController {
 	private AloneAlongFacade alonealong;
 	

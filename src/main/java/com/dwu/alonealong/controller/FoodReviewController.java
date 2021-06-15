@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import com.dwu.alonealong.domain.Food;
 import com.dwu.alonealong.domain.FoodReview;
 import com.dwu.alonealong.domain.Review;
+import com.dwu.alonealong.domain.User;
 import com.dwu.alonealong.service.AloneAlongFacade;
 
 @Controller
@@ -34,9 +35,11 @@ public class FoodReviewController {
 //			BindingResult bindingResult,
 			Model model) {
 	
+		UserSession userSession = (UserSession)request.getSession().getAttribute("userSession");
+		User user = alonealong.getUserByUserId(userSession.getUser().getId());
 		
 		String foodOrderId = "f10"; //foodId로 넣는 것보단 orderId가 나아보임. 그러려면 foodreview의 무결성키 제약조건도 food말고 foodOrder로 바꿔야함. 아닌가 order에서 foodid 가져오는게 나을지도. 그럼 이름도 갖고오고..
-		String userId = "3"; //임시
+		String userId = user.getId(); 
 		int rating = Integer.parseInt(request.getParameter("rating"));
 		String contents = request.getParameter("review");
 		FoodReview foodReview = new FoodReview(foodOrderId, resId, userId, rating, contents, 0);

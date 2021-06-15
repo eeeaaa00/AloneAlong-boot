@@ -63,7 +63,7 @@
     	RES_PHONE as resPhone,
     	OWNER_ID as ownerId,
     	RES_DES as resDescription,
-    	AVG_RATING as avgRating,
+    	ROUND(AVG_RATING,1) as avgRating,
     	RES_CATEGORY as categoryId,
     	RES_IMG as imgFile,
     	IS_TOGETHER_OK as isTogetherOk
