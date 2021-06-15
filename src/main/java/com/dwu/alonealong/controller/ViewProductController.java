@@ -22,23 +22,8 @@ public class ViewProductController {
 	public void setAloneAlong(AloneAlongFacade aloneAlong) {
 		this.aloneAlong = aloneAlong;
 	}
-
-	@PostMapping("/shop/{productId}")
-	public String insertCartItem(@PathVariable("productId") String productId,
-			@RequestParam(value="quantity",  defaultValue="1") int quantity, 
-			ModelMap model) throws Exception {
-		String userId = "1";
-		Product product = this.aloneAlong.getProduct(productId);
-		aloneAlong.insertCartItem(productId, quantity, userId);
-		
-		product.setQuantity(quantity);
-		model.put("product", product);
-		model.put("pcId", product.getPcId());
-		model.put("insertCart", true);
-		return "product";
-	}
 	
-	@GetMapping("/shop/{productId}")
+	@RequestMapping("/shop/{productId}")
 	public String handleRequest(@PathVariable("productId") String productId,
 			@RequestParam(value="quantity",  defaultValue="1") int quantity, 
 			ModelMap model) throws Exception {

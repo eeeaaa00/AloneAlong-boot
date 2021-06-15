@@ -122,6 +122,9 @@ public class AloneAlongImpl implements AloneAlongFacade{
 	public Product getProduct(String productId){
 		return productDao.getProduct(productId);
 	}
+	public boolean checkStock(String productId, int quantity) {
+		return productDao.checkStock(productId, quantity);
+	}
 	
 	//Product Review
 	public ProductReview getProductReview(String reviewId, String userId){

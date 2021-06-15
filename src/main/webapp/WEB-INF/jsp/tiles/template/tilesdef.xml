@@ -145,6 +145,8 @@
 			value="/WEB-INF/jsp/product/menu.jsp" />
 		<put-attribute name="cart"
 			value="/WEB-INF/jsp/product/cartModal.jsp" />
+		<put-attribute name="alert"
+			value="/WEB-INF/jsp/product/stockModal.jsp" />
 		<put-attribute name="header"
 			value="/WEB-INF/jsp/tiles/header.jsp" />
 		<put-attribute name="footer"

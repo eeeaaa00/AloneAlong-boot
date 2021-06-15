@@ -1,7 +1,5 @@
 package com.dwu.alonealong.dao;
 
-import java.util.List;
-
 import org.springframework.dao.DataAccessException;
 
 import com.dwu.alonealong.domain.ProductOrder;

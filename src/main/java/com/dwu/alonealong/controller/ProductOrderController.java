@@ -59,19 +59,29 @@ public class ProductOrderController {
 		//1. Cart
 		if(type.equals("cart")){
 			List<CartItem> cart = this.aloneAlong.getAllCartItem(userId);
-			for(CartItem cartItem : cart){
+			for(CartItem cartItem : cart){ 
+				if(!aloneAlong.checkStock(cartItem.getProductId(), cartItem.getQuantity())){
+					Product product = this.aloneAlong.getProduct(cartItem.getProductId());
+					return "redirect:/cart?stockError=true&product=" + product.getProductName() + "&stock=" + product.getProductStock();
+				}
 				ProductLineItem orderItem = new ProductLineItem(cartItem);
 				totalPrice += orderItem.getUnitPrice();
 				orderList.add(orderItem);
 			}
+			if(totalPrice < 30000) {
+				totalPrice += 3000;
+			}
 		}
 		//2. Product
 		else if (type.equals("product")){
-			if(productId == null || quantity == -1) {
+			if(productId == null || quantity < 0) {
 				return "error";
 			}
 			Product product = this.aloneAlong.getProduct(productId);
 			product.setQuantity(quantity);
+			if(!aloneAlong.checkStock(product.getProductId(), quantity)){
+				return "redirect:/shop/" + product.getProductId() + "?stockError=true";
+			}
 			totalPrice = product.getUnitPrice();
 			ProductLineItem orderItem = new ProductLineItem(product);
 			orderList.add(orderItem);
