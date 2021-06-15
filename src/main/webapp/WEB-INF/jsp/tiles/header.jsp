@@ -18,9 +18,17 @@
 		<div class="row pb-3 text-right">
 			<div class="col-md-8"></div>
 			<div class="col-md-2">
-				<a class="text-muted px-3" href="<c:url value='/signUp' />"><i class="fas fa-user-plus"></i> 
+			 <c:if test="${!empty userSession.user}">
+			     <a class="text-muted px-3" href="<c:url value='/mypage' />">
+				 <i class="far fa-user" style="color: #29A65F;"></i> <b style="color: #29A65F;">${userSession.user.name}</b> 님</a> <a
+					class="text-muted" href="/logout"><i class="fas fa-sign-out-alt"
+					style="color: #29A65F;"></i> 로그아웃</a>
+                </c:if>&nbsp;
+               <c:if test="${empty userSession.user}">
+			    <a class="text-muted px-3" href="<c:url value='/signUp' />"><i class="fas fa-user-plus"></i> 
 				<b style="color: #29A65F;"> 회원가입</b></a> 
 				<a class="text-muted" href="<c:url value='/login' />"><i class="fas fa-sign-in-alt" style="color: #29A65F;"></i> 로그인</a>
+                </c:if>&nbsp;     
 			</div>
 			<div class="col-md-2"></div>
 		</div>

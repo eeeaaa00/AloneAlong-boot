@@ -8,90 +8,105 @@
 	<!-- layout -->
 	<definition name="base_layout"
 		template="/WEB-INF/jsp/tiles/template/layout.jsp">
-		<put-attribute name="title" value="AloneAlong" type="string"/>
+		<put-attribute name="title" value="AloneAlong"
+			type="string" />
 		<put-attribute name="header"
 			value="/WEB-INF/jsp/tiles/header.jsp" />
 		<put-attribute name="footer"
 			value="/WEB-INF/jsp/tiles/footer.jsp" />
 	</definition>
-	
+
 	<definition name="index" extends="base_layout">
 		<put-attribute name="body" value="" />
-	</definition>	
-	
-	<definition name="login" extends="base_layout">
-		<put-attribute name="body" value="/WEB-INF/jsp/tiles/login.jsp" />
-	</definition>	
-	
-	<definition name="logined_layout"
-		template="/WEB-INF/jsp/tiles/template/layout.jsp">
-		<put-attribute name="title" value="AloneAlong" type="string"/>
-		<put-attribute name="header"
-			value="/WEB-INF/jsp/tiles/header2.jsp" />
-		<put-attribute name="footer"
-			value="/WEB-INF/jsp/tiles/footer.jsp" />
-		</definition>
-		
-	<definition name="loginTest" extends="logined_layout">
-		<put-attribute name="body" value="/WEB-INF/jsp/loginTest.jsp" />
 	</definition>
-	
-		
+
+	<definition name="login" extends="base_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/tiles/login.jsp" />
+	</definition>
+
+	<definition name="loginTest" extends="base_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/loginTest.jsp" />
+	</definition>
+
+
 	<!-- mypage -->
 	<definition name="mypage_layout"
 		template="/WEB-INF/jsp/tiles/template/mypage.jsp">
-		<put-attribute name="title" value="MyPage" type="string"/>
+		<put-attribute name="title" value="MyPage" type="string" />
 		<put-attribute name="menu"
 			value="/WEB-INF/jsp/mypage/menu.jsp" />
 		<put-attribute name="header"
-			value="/WEB-INF/jsp/tiles/header2.jsp" />
+			value="/WEB-INF/jsp/tiles/header.jsp" />
 		<put-attribute name="footer"
 			value="/WEB-INF/jsp/tiles/footer.jsp" />
 	</definition>
-	
-	<definition name="mypage" extends = "mypage_layout">
-			<put-attribute name="desc" value="정보 변경" type="string"/>
+
+	<definition name="myEditForm" extends="mypage_layout">
+		<put-attribute name="func" value="정보 변경" type="string" />
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/mypage/myEditForm.jsp" />
 	</definition>
 	
+	<definition name="myCredit" extends="mypage_layout">
+		<put-attribute name="func" value="결제정보 관리" type="string" />
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/mypage/myCredit.jsp" />
+	</definition>
+	
+	<definition name="myOrder" extends="mypage_layout">
+		<put-attribute name="func" value="구매내역" type="string" />
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/mypage/myOrder.jsp" />
+	</definition>
+	
+
 	<!-- order -->
 	<definition name="order_layout"
 		template="/WEB-INF/jsp/tiles/template/order.jsp">
-		<put-attribute name="title" value="Order" type="string"/>
+		<put-attribute name="title" value="Order" type="string" />
 		<put-attribute name="lineItem" value="" />
-		<put-attribute name="orderInfo" value="/WEB-INF/jsp/order/orderInfo.jsp" />
+		<put-attribute name="orderInfo"
+			value="/WEB-INF/jsp/order/orderInfo.jsp" />
 		<put-attribute name="shipInfo" value="" />
-		<put-attribute name="paymentInfo" value="/WEB-INF/jsp/order/paymentInfo.jsp" />
+		<put-attribute name="paymentInfo"
+			value="/WEB-INF/jsp/order/paymentInfo.jsp" />
 		<put-attribute name="header"
-			value="/WEB-INF/jsp/tiles/header2.jsp" />
+			value="/WEB-INF/jsp/tiles/header.jsp" />
 		<put-attribute name="footer"
 			value="/WEB-INF/jsp/tiles/footer.jsp" />
 	</definition>
-	
+
 	<definition name="productOrder" extends="order_layout">
-		<put-attribute name="lineItem" value="/WEB-INF/jsp/order/productLineItem.jsp"  />
-		<put-attribute name="shipInfo" value="/WEB-INF/jsp/order/shipInfo.jsp"  />
+		<put-attribute name="lineItem"
+			value="/WEB-INF/jsp/order/productLineItem.jsp" />
+		<put-attribute name="shipInfo"
+			value="/WEB-INF/jsp/order/shipInfo.jsp" />
 	</definition>
-	
+
 	<definition name="togetherOrder" extends="order_layout">
-		<put-attribute name="lineItem" value="/WEB-INF/jsp/order/togetherLineItem.jsp"  />
+		<put-attribute name="lineItem"
+			value="/WEB-INF/jsp/order/togetherLineItem.jsp" />
 	</definition>
-		
+
 	<definition name="foodOrder" extends="order_layout">
-		<put-attribute name="lineItem" value="/WEB-INF/jsp/order/foodLineItem.jsp"  />
+		<put-attribute name="lineItem"
+			value="/WEB-INF/jsp/order/foodLineItem.jsp" />
 	</definition>
-		
+
 	<!-- product -->
-	<definition name="productCart" extends="logined_layout">
-		<put-attribute name="title" value="Shopping Cart" type="string"/>
+	<definition name="productCart" extends="base_layout">
+		<put-attribute name="title" value="Shopping Cart"
+			type="string" />
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/product/productCart.jsp" />
 	</definition>
-	
+
 	<definition name="product_layout"
 		template="/WEB-INF/jsp/tiles/template/product.jsp">
-		<put-attribute name="title" value="Shopping" type="string"/>
+		<put-attribute name="title" value="Shopping"
+			type="string" />
 		<put-attribute name="main-top" value="" />
 		<put-attribute name="main-body" value="" />
 		<put-attribute name="menu"
@@ -99,48 +114,50 @@
 		<put-attribute name="cart"
 			value="/WEB-INF/jsp/product/cartModal.jsp" />
 		<put-attribute name="header"
-			value="/WEB-INF/jsp/tiles/header2.jsp" />
+			value="/WEB-INF/jsp/tiles/header.jsp" />
 		<put-attribute name="footer"
 			value="/WEB-INF/jsp/tiles/footer.jsp" />
 	</definition>
-	
+
 	<definition name="productList" extends="product_layout">
 		<put-attribute name="main-top"
 			value="/WEB-INF/jsp/product/productList-top.jsp" />
 		<put-attribute name="main-body"
 			value="/WEB-INF/jsp/product/productList.jsp" />
 	</definition>
-	
+
 	<definition name="product" extends="product_layout">
 		<put-attribute name="main-top"
 			value="/WEB-INF/jsp/product/productInfo.jsp" />
 		<put-attribute name="main-body"
 			value="/WEB-INF/jsp/product/productInfoImage.jsp" />
 	</definition>
-	
+
 	<definition name="productReview" extends="product">
 		<put-attribute name="main-body"
 			value="/WEB-INF/jsp/product/productReview.jsp" />
 	</definition>
-	
+
 	<!-- restaurant -->
-	<definition name="restaurant_layout" template="/WEB-INF/jsp/tiles/template/restaurant.jsp">
-		<put-attribute name="title" value="Eating" type="string"/>
-		<put-attribute name="body-tab" value="" />	
-		<put-attribute name="menu" 
-		value="/WEB-INF/jsp/restaurant/menu.jsp"/>
+	<definition name="restaurant_layout"
+		template="/WEB-INF/jsp/tiles/template/restaurant.jsp">
+		<put-attribute name="title" value="Eating" type="string" />
+		<put-attribute name="body-tab" value="" />
+		<put-attribute name="menu"
+			value="/WEB-INF/jsp/restaurant/menu.jsp" />
 		<put-attribute name="header"
-			value="/WEB-INF/jsp/tiles/header2.jsp" />
+			value="/WEB-INF/jsp/tiles/header.jsp" />
 		<put-attribute name="footer"
 			value="/WEB-INF/jsp/tiles/footer.jsp" />
 	</definition>
-	
-	<definition name="restaurantList" extends="restaurant_layout">
+
+	<definition name="restaurantList"
+		extends="restaurant_layout">
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/restaurant/restaurantList.jsp" />
-		
+
 	</definition>
-	
+
 	<definition name="restaurant" extends="restaurant_layout">
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/restaurant/restaurantInfo.jsp" />
@@ -151,72 +168,59 @@
 		<put-attribute name="body-tab"
 			value="/WEB-INF/jsp/restaurant/restaurantReview.jsp" />
 	</definition>
-	
-	<definition name="restaurantForm" extends="restaurant_layout">
+
+	<definition name="restaurantForm"
+		extends="restaurant_layout">
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/restaurant/restaurantForm.jsp" />
-		<put-attribute name="menu" 
-		value=""/>
+		<put-attribute name="menu" value="" />
 	</definition>
-	
+
 	<definition name="foodForm" extends="restaurant_layout">
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/restaurant/foodForm.jsp" />
-		<put-attribute name="menu" 
-		value=""/>
+		<put-attribute name="menu" value="" />
 	</definition>
-	
+
 	<definition name="foodOrderForm" extends="order_layout">
-		<put-attribute name="lineItem" value="/WEB-INF/jsp/order/foodLineItem.jsp" />
-		<put-attribute name="orderInfo" value="/WEB-INF/jsp/restaurant/orderUserInfo.jsp" />
+		<put-attribute name="lineItem"
+			value="/WEB-INF/jsp/order/foodLineItem.jsp" />
+		<put-attribute name="orderInfo"
+			value="/WEB-INF/jsp/restaurant/orderUserInfo.jsp" />
 		<put-attribute name="shipInfo" value="" />
 		<put-attribute name="paymentInfo" value="" />
 	</definition>
-	
+
 	<definition name="restaurantReview" extends="restaurant">
 		<put-attribute name="body-tab"
 			value="/WEB-INF/jsp/restaurant/restaurantReview.jsp" />
 	</definition>
-	
-	
-	
+
+
+
 	<!-- together -->
-	<definition name="together_layout" template="/WEB-INF/jsp/tiles/template/together.jsp">
-		<put-attribute name="title" value="together" type="string"/>
+	<definition name="together_layout"
+		template="/WEB-INF/jsp/tiles/template/together.jsp">
+		<put-attribute name="title" value="together"
+			type="string" />
 		<put-attribute name="main-top" value="" />
 		<put-attribute name="main-body" value="" />
-		<put-attribute name="category" value="/WEB-INF/jsp/together/togetherCategory.jsp" />
-		<put-attribute name="header" value="/WEB-INF/jsp/tiles/header2.jsp" />
-		<put-attribute name="footer" value="/WEB-INF/jsp/tiles/footer.jsp" />
-	</definition>
-	
-	<definition name="togetherList" extends="together_layout">
-		<put-attribute name="main-body" value="/WEB-INF/jsp/together/togetherList.jsp" />
-	</definition>
-	
-	<definition name="togetherInfo" extends="together_layout">
-		<put-attribute name="main-body" value="/WEB-INF/jsp/together/togetherInfo.jsp" />
-	</definition>
-	
-	<!-- 
-	<definition name="tiles/*" extends="base_layout">
-		<put-attribute name="body"
-			value="/WEB-INF/jsp/tiles/{1}.jsp" />
-	</definition> 
- 
- 	<definition name="tiles/Category" extends="base_layout">
-		<put-attribute name="body"
-			value="/WEB-INF/jsp/tiles/Category.jsp" />
+		<put-attribute name="category"
+			value="/WEB-INF/jsp/together/togetherCategory.jsp" />
+		<put-attribute name="header"
+			value="/WEB-INF/jsp/tiles/header.jsp" />
+		<put-attribute name="footer"
+			value="/WEB-INF/jsp/tiles/footer.jsp" />
 	</definition>
 
-	<definition name="tiles/SignonForm" extends="base_layout">
-		<put-attribute name="body"
-			value="/WEB-INF/jsp/tiles/SignonForm.jsp" />			
+	<definition name="togetherList" extends="together_layout">
+		<put-attribute name="main-body"
+			value="/WEB-INF/jsp/together/togetherList.jsp" />
 	</definition>
-	
-	<definition name="tiles/EditAccountForm" extends="base_layout">
-		<put-attribute name="body"
-			value="/WEB-INF/jsp/tiles/EditAccountForm.jsp" />			
+
+	<definition name="togetherInfo" extends="together_layout">
+		<put-attribute name="main-body"
+			value="/WEB-INF/jsp/together/togetherInfo.jsp" />
 	</definition>
-  -->
+
 </tiles-definitions>

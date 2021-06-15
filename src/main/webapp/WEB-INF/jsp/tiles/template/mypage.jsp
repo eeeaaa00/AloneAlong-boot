@@ -48,18 +48,44 @@
 <body>
 	<tiles:insertAttribute name="header" />
 	<!-- Page Content -->
-	<div class="container mt-4">
-		<div class="row">
-			<!-- 좌측 카테고리 -->
-			<tiles:insertAttribute name="menu" />
-
-			<!-- 상품 정보 -->
-			<div class="col-md-10 my-1">
-				<tiles:getAsString name="desc" />
-				<tiles:insertAttribute name="body" />
+	<c:if test="${!empty userSession.user}">
+		<div class="container mt-4">
+			<div class="row">
+				<!-- 좌측 카테고리 -->
+				<tiles:insertAttribute name="menu" />
+				<div class="col-md-9">
+					<div class="card">
+						<div class="card-body">
+							<div class="row">
+								<div class="col-md-12">
+									<h4><tiles:getAsString name="func" /></h4>
+									<hr>
+								</div>
+								<tiles:insertAttribute name="body" />
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
-	</div>
+	</c:if>
+
+	<c:if test="${empty userSession.user}">
+		<div class="container mt-4">
+			<div align="center">
+				<h2>회원가입</h2>
+				<br>
+			</div>
+			<div class="card">
+				<div class="card-body">
+
+					<tiles:insertAttribute name="body" />
+				</div>
+			</div>
+		</div>
+	</c:if>
+
+
 
 	<!-- /.container -->
 	<!-- Modal -->

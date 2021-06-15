@@ -41,7 +41,7 @@
   
   <select id="searchRestaurantList" resultType="Restaurant">
     SELECT
-    	RES_ID as resId, 
+    	RES_ID as resId,
     	RES_NAME as resName,
     	RES_ADDRESS as resAddress,
     	RES_PHONE as resPhone,
@@ -52,7 +52,7 @@
     	RES_IMG as imgFile,
     	IS_TOGETHER_OK as isTogetherOk
     FROM RESTAURANT
-    WHERE lower(resName) like %#{keywords}%
+    WHERE lower(RES_NAME) like '%${keywords}%'
   </select>
   
   <select id="getRestaurantListByCategory" resultType="Restaurant">

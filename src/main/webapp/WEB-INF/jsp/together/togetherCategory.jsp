@@ -3,6 +3,7 @@
 
 <div class="col-md-2">
 	<form action='<c:url value="/together"/>'>
+		<c:if test="${age != ''}"><input type="hidden" name="date" value="${date}"></c:if>
 		<c:if test="${kind != 'all'}"><input type="hidden" name="kind" value="${kind}"></c:if>
 		<c:if test="${price != '99999'}"><input type="hidden" name="price" value="${price}"></c:if>
 		<c:if test="${sex != 'all'}"><input type="hidden" name="sex" value="${sex}"></c:if>
@@ -23,11 +24,19 @@
 		</div>
 	</form>
 	
-	<!-- 날짜 -->
-	<!-- <input type="date" id="date" name="date" min="2021-05-01">  -->
+  	<form action='<c:url value="/together"/>'>
+  		<c:if test="${area != 'all'}"><input type="hidden" name="area" value="${area}"></c:if>
+  		<c:if test="${kind != 'all'}"><input type="hidden" name="kind" value="${kind}"></c:if>
+		<c:if test="${price != '99999'}"><input type="hidden" name="price" value="${price}"></c:if>
+		<c:if test="${sex != 'all'}"><input type="hidden" name="sex" value="${sex}"></c:if>
+		<c:if test="${age != 'all'}"><input type="hidden" name="age" value="${age}"></c:if>
+		
+    	<input type="date" class="btn btn-outline-success rounded-pill my-1 btn-block" name="date" onchange='this.form.submit()' value="${date}" min="2021-06-01">
+  	</form>
 	
 	<form action='<c:url value="/together"/>'>
 		<c:if test="${area != 'all'}"><input type="hidden" name="area" value="${area}"></c:if>
+		<c:if test="${age != ''}"><input type="hidden" name="date" value="${date}"></c:if>
 		<c:if test="${price != '99999'}"><input type="hidden" name="price" value="${price}"></c:if>
 		<c:if test="${sex != 'all'}"><input type="hidden" name="sex" value="${sex}"></c:if>
 		<c:if test="${age != 'all'}"><input type="hidden" name="age" value="${age}"></c:if>
@@ -47,6 +56,7 @@
 	
 	<form action='<c:url value="/together"/>'>
 		<c:if test="${area != 'all'}"><input type="hidden" name="area" value="${area}"></c:if>
+		<c:if test="${age != ''}"><input type="hidden" name="date" value="${date}"></c:if>
 		<c:if test="${kind != 'all'}"><input type="hidden" name="kind" value="${kind}"></c:if>
 		<c:if test="${sex != 'all'}"><input type="hidden" name="sex" value="${sex}"></c:if>
 		<c:if test="${age != 'all'}"><input type="hidden" name="age" value="${age}"></c:if>
@@ -66,6 +76,7 @@
 	
 	<form action='<c:url value="/together"/>'>
 		<c:if test="${area != 'all'}"><input type="hidden" name="area" value="${area}"></c:if>
+		<c:if test="${age != ''}"><input type="hidden" name="date" value="${date}"></c:if>
 		<c:if test="${kind != 'all'}"><input type="hidden" name="kind" value="${kind}"></c:if>
 		<c:if test="${price != '99999'}"><input type="hidden" name="price" value="${price}"></c:if>
 		<c:if test="${age != 'all'}"><input type="hidden" name="age" value="${age}"></c:if>
@@ -82,6 +93,7 @@
 	
 	<form action='<c:url value="/together"/>'>
 		<c:if test="${area != 'all'}"><input type="hidden" name="area" value="${area}"></c:if>
+		<c:if test="${age != ''}"><input type="hidden" name="date" value="${date}"></c:if>
 		<c:if test="${kind != 'all'}"><input type="hidden" name="kind" value="${kind}"></c:if>
 		<c:if test="${price != '99999'}"><input type="hidden" name="price" value="${price}"></c:if>
 		<c:if test="${sex != 'all'}"><input type="hidden" name="sex" value="${sex}"></c:if>

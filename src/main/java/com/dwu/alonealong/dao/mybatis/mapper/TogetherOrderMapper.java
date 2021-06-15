@@ -1,13 +1,11 @@
-package com.dwu.alonealong.dao;
+package com.dwu.alonealong.dao.mybatis.mapper;
 
+import org.apache.ibatis.annotations.Mapper;
 import org.springframework.dao.DataAccessException;
 
 import com.dwu.alonealong.domain.TogetherOrder;
 
-public interface TogetherOrderDAO {
-	
+@Mapper
+public interface TogetherOrderMapper {
 	void insertTogetherOrder(TogetherOrder togetherOrder) throws DataAccessException;
-	
-	void removeTogetherOrder(TogetherOrder togetherOrder) throws DataAccessException;
-	
 }

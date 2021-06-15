@@ -17,8 +17,8 @@
 	</select>
 
 	<insert id="insertTogetherMember">
-    	INSERT INTO TOGETHER_MEMBER (TOGMEM_ID, TOG_ID, USER_ID)
-    	VALUES(#{togetherMemberId}, #{togetherId}, #{userId})
+    	INSERT INTO TOGETHER_MEMBER (TOGMEM_ID, USER_ID, TOG_ID, IS_HOST)
+    	VALUES(TOGMEM_ID_SEQ.NEXTVAL, #{userId}, #{togetherId}, #{isHost})
 	</insert>
 
 </mapper>

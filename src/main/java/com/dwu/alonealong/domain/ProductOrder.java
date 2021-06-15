@@ -20,7 +20,7 @@ public class ProductOrder implements Serializable {
   private String billName;
   private String billPhone;
   private String shipName;
-  private String shipZip;
+  private int shipZip;
   private String shipAddress;
   private String shipPhone; 
   
@@ -64,8 +64,8 @@ public class ProductOrder implements Serializable {
   public String getShipName() { return shipName; }
   public void setShipName(String shipName) { this.shipName = shipName; }
   
-  public String getShipZip() { return shipZip; }
-  public void setShipZip(String shipZip) { this.shipZip = shipZip; }
+  public int getShipZip() { return shipZip; }
+  public void setShipZip(int shipZip) { this.shipZip = shipZip; }
   
   public String getShipAddress() { return shipAddress; }
   public void setShipAddress(String shipAddress) { this.shipAddress = shipAddress; }
@@ -78,7 +78,7 @@ public class ProductOrder implements Serializable {
 	  totalPrice = 0;
 	  //status = ?;
 	  
-	  userId = user.getUserId();
+	  userId = user.getId();
 	  date = (new Date()).toString();
 
 	  shipName = user.getName();
