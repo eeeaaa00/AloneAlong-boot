@@ -294,6 +294,10 @@ public class AloneAlongImpl implements AloneAlongFacade{
 	public void insertFoodReview(FoodReview foodReview) {
 		foodReviewDao.insertFoodReview(foodReview);
 	}
+	@Override
+	public void updateAvgRating(int rating, String resId) {
+		restaurantDao.updateAvgRating(rating, resId);
+	}
   
   //together
 	@Override
@@ -352,11 +356,11 @@ public class AloneAlongImpl implements AloneAlongFacade{
 	public void insertTogetherMember(TogetherMember togetherMember) {
 		togetherMemberDao.insertTogetherMember(togetherMember);
 	}
-	
 	//TogetherOrder
 	@Override
 	public void insertTogetherOrder(TogetherOrder togetherOrder) {
 		togetherOrderDao.insertTogetherOrder(togetherOrder);
 	}
+
 
 }

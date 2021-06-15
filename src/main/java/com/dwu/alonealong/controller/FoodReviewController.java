@@ -42,6 +42,7 @@ public class FoodReviewController {
 		FoodReview foodReview = new FoodReview(foodOrderId, resId, userId, rating, contents, 0);
 
 		alonealong.insertFoodReview(foodReview);
+		alonealong.updateAvgRating(rating, resId);
 		//식당 평균별점 update 시키는 코드.
 		System.out.println("insertReview 진행");
 		return "redirect:/eating/{resId}/RestaurantReview";

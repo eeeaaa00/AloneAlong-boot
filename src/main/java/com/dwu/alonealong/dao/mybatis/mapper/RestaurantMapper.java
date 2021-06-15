@@ -21,5 +21,7 @@ public interface RestaurantMapper {
 	void insertRestaurant(Restaurant res) throws DataAccessException;
 	void updateRestaurant(Restaurant res) throws DataAccessException;
 	void deleteRestaurant(Restaurant res) throws DataAccessException;
+	
+	void updateAvgRating(int rating, String resId) throws DataAccessException;
 	 
 }

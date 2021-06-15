@@ -89,6 +89,7 @@ public interface AloneAlongFacade {
 	
 	public List<FoodReview> getFoodReviewListByResId(String resId);
 	public void insertFoodReview(FoodReview foodReview);
+	void updateAvgRating(int rating, String resId);
 	
 	//Together
 	Together getTogetherByTogId(String togId);
