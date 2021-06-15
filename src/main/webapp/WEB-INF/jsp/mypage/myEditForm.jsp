@@ -85,15 +85,16 @@
 			</div>
 		</div>
 		<div class="form-group row">
-			<label for="publicinfo" class="col-4 col-form-label">사업자 등록</label>
+			<label for="publicinfo" class="col-4 col-form-label">사업자등록</label>
 			<div class="col-8">
 				<form:input class="form-control here" placeholder="사업자번호"
-					path="user.buisnessNum" />
+					path="user.buisness_num" />
 			</div>
 		</div>
 		<div class="form-group row">
 				<button name="submit" type="submit"
 					class="btn btn-outline-success rounded-pill my-1 btn-block">완료</button>
+					
 			<c:if test="${!empty userSession.user}">
 				<a href="<c:url value='/signOut' />">회원 탈퇴</a>
 			</c:if>

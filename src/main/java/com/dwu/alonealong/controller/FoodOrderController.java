@@ -70,7 +70,7 @@ public class FoodOrderController {
 		List<FoodCartItem> foodList = cart.getFoodItemList();
 		String reserveType = form.getReserveType();
 		String visitDate = form.getVisitDate();
-		Payment payment = new Payment(form.getCcName(), form.getCcNum(), form.getCcDate());
+		Payment payment = new Payment(form.getCcName(), form.getCcNum(), form.getCcDate(),form.getCcCVC());
 		
 		//임시user id
 		String userId = "1";

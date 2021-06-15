@@ -6,23 +6,24 @@
   <cache />
   
   <select id="getCard" resultType="Payment">
-    SELECT CARD_NUM, CARD_NAME, CARD_DATE
+    SELECT USER_ID, CARD_NUM, CARD_NAME, CARD_DATE, CARD_CVC 
     FROM PAYMENT
-    WHERE USER_ID = #{userId}
+    WHERE USER_ID = #{user_id,jdbcType=VARCHAR}
   </select>
 
    <update id="updateCard" parameterType="Payment">
     UPDATE PAYMENT SET
-      CARD_NUM = #{cardNumber},
-      CARD_NAME = #{cardName},
-      CARD_DATE = #{cardDate},
-    WHERE USERID = #{user_id}
+      CARD_NUM = #{card_num},
+      CARD_NAME = #{card_name},
+      CARD_DATE = #{card_date},
+      CARD_CVC = #{card_cvc}
+    WHERE USER_ID = #{user_id}
   </update>
 
   <insert id="createCard" parameterType="Payment">
     INSERT INTO PAYMENT
-      (USER_ID, CARD_NUM, CARD_NAME, CARD_DATE)
+      (USER_ID, CARD_NUM, CARD_NAME, CARD_DATE, CARD_CVC)
     VALUES
-      (#{user_id}, #{cardNumber}, #{cardName}, #{cardDate})
+      (#{user_id,jdbcType=VARCHAR}, #{card_num,jdbcType=VARCHAR}, #{card_name,jdbcType=VARCHAR}, #{card_date,jdbcType=VARCHAR}, #{card_cvc,jdbcType=VARCHAR})
   </insert>
 </mapper>

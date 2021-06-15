@@ -14,7 +14,7 @@ import java.sql.Date;
 		private String state;
 		private int zip;
 		private String phone;
-		private String buisnessNum;
+		private String business_num;
 		
 		public String getId() {
 			return user_id;
@@ -82,11 +82,11 @@ import java.sql.Date;
 		public void setPhone(String phone) {
 			this.phone = phone;
 		}
-		public String getBuisnessNum() {
-			return buisnessNum;
+		public String getBuisness_num() {
+			return business_num;
 		}
-		public void setBuisnessNum(String buisnessNum) {
-			this.buisnessNum = buisnessNum;
+		public void setBuisness_num(String business_num) {
+			this.business_num = business_num;
 		}
 		/* JavaBeans Properties */
 	}

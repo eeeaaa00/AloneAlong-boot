@@ -24,7 +24,7 @@ import com.dwu.alonealong.domain.User;
 public interface AloneAlongFacade {
 
 	//USER
-	User getUserByUserId(String Id); //throws DataAccessException;
+	User getUserByUserId(String Id) throws DataAccessException;
 	User getUserByUserIdAndPassword(String Id, String password);
 	void createUser(User user);
 	void updateUser(User user);
@@ -63,7 +63,7 @@ public interface AloneAlongFacade {
 	void updateCartItem(CartItem cartItem) throws DataAccessException;
 	
 	//PAYMENT
-	Payment getCard(String Id);
+	Payment getCard(String Id) throws DataAccessException;
 	void createCard(Payment payment);
 	void updateCard(Payment payment);
 	

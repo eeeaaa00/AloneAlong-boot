@@ -90,8 +90,8 @@ public class ProductOrder implements Serializable {
 	  billPhone = user.getPhone();
 	  
 	  if(paymentMethod != null) {
-		  cardNum = paymentMethod.getCardNumber();
-		  cardDate = paymentMethod.getCardDate();
+		  cardNum = paymentMethod.getCard_num();
+		  cardDate = paymentMethod.getCard_date();
 	  }
 	  
 	  for(ProductLineItem orderItem : orderList) {

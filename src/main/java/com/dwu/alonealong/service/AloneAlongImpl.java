@@ -68,6 +68,7 @@ public class AloneAlongImpl implements AloneAlongFacade{
 	private ProductReviewDAO productReviewDao;
 //	@Autowired
 //	private ProductOrderDAO productOrderDao;
+	
 	@Autowired
 	private PaymentDAO paymentDao;
 	@Autowired
@@ -91,6 +92,7 @@ public class AloneAlongImpl implements AloneAlongFacade{
 	public User getUserByUserId(String Id) throws DataAccessException{
 		return userDao.getUserByUserId(Id);
 	}
+	
 	public User getUserByUserIdAndPassword(String Id, String password) throws DataAccessException{
 		return userDao.getUserByUserIdAndPassword(Id, password);
 	}
@@ -196,7 +198,7 @@ public class AloneAlongImpl implements AloneAlongFacade{
 	}
 	
 	//Payment
-	public Payment getCard(String Id) {
+	public Payment getCard(String Id) throws DataAccessException{
 		return paymentDao.getCard(Id);
 	}
 	public void createCard(Payment payment) {
