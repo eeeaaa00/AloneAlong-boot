@@ -20,6 +20,7 @@ import com.dwu.alonealong.domain.Food;
 import com.dwu.alonealong.domain.FoodCart;
 import com.dwu.alonealong.domain.FoodReview;
 import com.dwu.alonealong.domain.Restaurant;
+import com.dwu.alonealong.domain.User;
 import com.dwu.alonealong.service.AloneAlongFacade;
 
 @Controller
@@ -76,6 +77,10 @@ public class ViewFoodController {
 			ModelMap model) throws Exception {
 		
 		List<FoodReview> reviewList = this.alonealong.getFoodReviewListByResId(resId);
+		for(FoodReview review : reviewList) {
+			User user = alonealong.getUserByUserId(review.getUserId());
+			review.setUserNickName(user.getNickname());
+		}
 		model.put("foodReviewList", reviewList);
 				
 		model.put("foodCart", foodCart.getFoodItemList());

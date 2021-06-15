@@ -14,7 +14,15 @@ public class FoodReview implements Serializable{
 	String contents;
 	int recommend;
 	
+	String userNickName;
 	
+	
+	public String getUserNickName() {
+		return userNickName;
+	}
+	public void setUserNickName(String userNickName) {
+		this.userNickName = userNickName;
+	}
 	public FoodReview(String foodId, String resId, String userId, int rating,
 			String contents, int recommend) {
 		super();

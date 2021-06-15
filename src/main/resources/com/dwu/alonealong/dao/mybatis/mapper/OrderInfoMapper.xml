@@ -6,8 +6,8 @@
   <cache />
   
   <insert id="insertFoodOrderInfo">
-    INSERT INTO ORDERINFO (ORDER_ID, ORDER_DATE, TOTAL_PRICE, ORDER_STATUS, USER_ID, CARD_NUM, CARD_DATE)
-    VALUES ('fo' || FOODORDERID_SEQ.NEXTVAL, TO_DATE(SYSDATE, 'YYYY-MM-DD'), #{totalPrice}, 'reserved', #{userId}, #{payment.cardNumber}, #{payment.cardDate})
+    INSERT INTO ORDERINFO (ORDER_ID, ORDER_DATE, TOTAL_PRICE, ORDER_STATUS, USER_ID, CARD_NUM, CARD_DATE, CARD_NAME)
+    VALUES ('fo' || FOODORDERID_SEQ.NEXTVAL, TO_DATE(SYSDATE, 'YYYY-MM-DD'), #{totalPrice}, 'reserved', #{userId}, #{payment.cardNumber}, #{payment.cardDate}, #{payment.cardName})
   </insert>
   
   <select id="getRecentOrderId" resultType="String">

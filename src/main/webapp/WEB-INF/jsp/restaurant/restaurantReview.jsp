@@ -65,7 +65,7 @@
 						</div>
 					</div>
 					<div class="text-muted ml-2">
-						<small>공지수 | ${rev.reviewDate}</small>
+						<small>${rev.userNickName} | ${rev.reviewDate}</small>
 					</div>
 					<div class="mx-4 my-2">
 						<div class="my-3">

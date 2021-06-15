@@ -64,6 +64,7 @@ public class FoodOrderController {
 			@RequestParam(value="resId", required=false) String resId, 
 			@SessionAttribute("sessionFoodCart") FoodCart cart,
 			@ModelAttribute("foodOrderForm") FoodOrderForm form, //jsp에서 modelattribute 등록해라
+			HttpServletRequest request,
 			SessionStatus status
 			) {
 		
@@ -72,9 +73,10 @@ public class FoodOrderController {
 		String visitDate = form.getVisitDate();
 		Payment payment = new Payment(form.getCcName(), form.getCcNum(), form.getCcDate());
 		
-		//임시user id
-		String userId = "1";
-		
+		//user id
+		UserSession userSession = (UserSession)request.getSession().getAttribute("userSession");
+		User user = aloneAlong.getUserByUserId(userSession.getUser().getId());
+		String userId = user.getId();
 		
 		FoodOrder order = new FoodOrder(resId, userId, foodList, reserveType, visitDate, payment);
 		System.out.println("form 잘 들어 왔는지: " + order.toString());
