@@ -27,8 +27,7 @@ public class LoginController {
 	}
 
 	@RequestMapping(value = "/login")
-	public String handleRequest(
-			ModelMap model) throws Exception {
+	public String handleRequest(ModelMap model) throws Exception {
 
 		return "login";
 	}
@@ -41,9 +40,8 @@ public class LoginController {
 		User user = alonealong.getUserByUserIdAndPassword(userId, password);
 
 		if (user == null) {
-			return new ModelAndView("Error", "message", "Invalid username or password.  Signon failed.");
+			return new ModelAndView("login", "message", "아이디와 비밀번호를 다시 확인해주세요.");
 		} else {
-
 			UserSession userSession = new UserSession(user);
 			model.addAttribute("userSession", userSession);
 

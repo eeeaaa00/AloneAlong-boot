@@ -15,6 +15,10 @@
 		<put-attribute name="footer"
 			value="/WEB-INF/jsp/tiles/footer.jsp" />
 	</definition>
+	
+	<definition name="Error" extends="base_layout">
+				<put-attribute name="body" value="/WEB-INF/jsp/Error.jsp" />
+	</definition>
 
 	<definition name="index" extends="base_layout">
 		<put-attribute name="body" value="" />
@@ -49,10 +53,16 @@
 			value="/WEB-INF/jsp/mypage/myEditForm.jsp" />
 	</definition>
 	
-	<definition name="myCredit" extends="mypage_layout">
+	<definition name="myPayForm" extends="mypage_layout">
 		<put-attribute name="func" value="결제정보 관리" type="string" />
 		<put-attribute name="body"
-			value="/WEB-INF/jsp/mypage/myCredit.jsp" />
+			value="/WEB-INF/jsp/mypage/myPayForm.jsp" />
+	</definition>
+	
+	<definition name="myCredit" extends="mypage_layout">
+		<put-attribute name="func" value="결제 관리" type="string" />
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/mypage/myPayForm.jsp" />
 	</definition>
 	
 	<definition name="myOrder" extends="mypage_layout">
@@ -61,6 +71,18 @@
 			value="/WEB-INF/jsp/mypage/myOrder.jsp" />
 	</definition>
 	
+	<definition name="myResOrder" extends="mypage_layout">
+		<put-attribute name="func" value="식당예약" type="string" />
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/mypage/myResOrder.jsp" />
+	</definition>
+	
+	<definition name="myTogetherOrder" extends="mypage_layout">
+		<put-attribute name="func" value="같밥예약" type="string" />
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/mypage/myTogetherOrder.jsp" />
+	</definition>
+		
 
 	<!-- order -->
 	<definition name="order_layout"

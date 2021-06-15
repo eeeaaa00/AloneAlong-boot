@@ -5,41 +5,67 @@ import java.io.Serializable;
 @SuppressWarnings("serial")
 public class Payment implements Serializable{
 	
-	private String cardName;
-	private String cardNumber;
-	private String cardDate;
+	private String user_id;
+	private String card_num;
+	private String card_name;
+	private String card_date;
+	private String card_cvc;
 	
+	public Payment() {
+		
+	}
 	
-
-	public Payment(String cardName, String cardNumber, String cardDate) {
+	public Payment(String cardName, String cardNumber, String cardDate,String cardCVC) {
 		super();
-		this.cardNumber = cardNumber;
-		this.cardName = cardName;
-		this.cardDate = cardDate;
+		this.card_num = cardNumber;
+		this.card_name = cardName;
+		this.card_date = cardDate;
+		this.card_cvc = cardCVC;
 	}
 
-	public String getCardNumber() {
-		return cardNumber;
+	public String getId() {
+		return user_id;
+	}
+	public void setId(String id) {
+		this.user_id = id;
 	}
 
-	public void setCardNumber(String cardNumber) {
-		this.cardNumber = cardNumber;
+
+	public String getCard_num() {
+		return card_num;
 	}
 
-	public String getCardName() {
-		return cardName;
+	public void setCard_num(String card_num) {
+		this.card_num = card_num;
 	}
 
-	public void setCardName(String name) {
-		this.cardName = name;
+	public String getCard_name() {
+		return card_name;
 	}
 
-	public String getCardDate() {
-		return cardDate;
+	public void setCard_name(String card_name) {
+		this.card_name = card_name;
 	}
 
-	public void setCardDate(String cardDate) {
-		this.cardDate = cardDate;
+	public String getCard_date() {
+		return card_date;
+	}
+
+	public void setCard_date(String card_date) {
+		this.card_date = card_date;
+	}
+
+	public String getCard_cvc() {
+		return card_cvc;
+	}
+
+	public void setCard_cvc(String card_cvc) {
+		this.card_cvc = card_cvc;
+	}
+
+	@Override
+	public String toString() {
+		return "Payment [user_id ="+user_id+" cardNUm"+card_num+" cardName"+ card_name+" cardCVC"+card_cvc+"]";
 	}
 
 }

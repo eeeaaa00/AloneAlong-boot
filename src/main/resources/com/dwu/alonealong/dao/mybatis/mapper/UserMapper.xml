@@ -52,17 +52,18 @@
 		SEX = #{sex},
 		BIRTHDAY = #{birthday},
 		ADDRESS = #{address},
-		ZIP = #{zip}
+		ZIP = #{zip},
+		BUSINESS_NUM = #{business_num}
 		WHERE USER_ID = #{user_id}
 	</update>
 
 	<insert id="createUser" parameterType="User">
 		INSERT INTO USERINFO
-		(USER_ID, PW, NAME, NICKNAME, EMAIL, PHONE, SEX, BIRTHDAY, ADDRESS, ZIP,
+		(USER_ID, PW, NAME, NICKNAME, EMAIL, PHONE, SEX, BIRTHDAY, ADDRESS, ZIP, BUSINESS_NUM,
 		REGISTERDATE)
 		VALUES
 		(#{user_id}, #{pw}, #{name}, #{nickname}, #{email}, #{phone}, #{sex}, #{birthday},
-		#{address}, #{zip}, SYSDATE)
+		#{address}, #{zip}, #{business_num}, SYSDATE)
 	</insert>
 
 	<delete id="removeUser" parameterType="User">

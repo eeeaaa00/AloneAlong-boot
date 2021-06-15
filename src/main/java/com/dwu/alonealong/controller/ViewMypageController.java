@@ -7,23 +7,22 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class ViewMypageController {
-
-	@RequestMapping(value = "/mypage")
-	public String handleRequest(ModelMap model) throws Exception {
-
-		return "mypage";
-	}
-
-	@RequestMapping("/myCredit")
-	public String credit() {
-		return "myCredit"; 
-	}
 	
 	@RequestMapping("/myOrder")
 	public String order() {
 		return "myOrder"; 
 	}
 	
+	@RequestMapping("/myResOrder")
+	public String Resorder() {
+		return "myResOrder"; 
+	}
+	
+	@RequestMapping("/myTogetherOrder")
+	public String Togorder() {
+		return "myTogetherOrder"; 
+	}
+
 
 	@RequestMapping(value = "/myFood")
 	public ModelAndView myFood() {
