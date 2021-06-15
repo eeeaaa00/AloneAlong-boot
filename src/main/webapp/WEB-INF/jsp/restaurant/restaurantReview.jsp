@@ -15,7 +15,7 @@
 	        <div class="review-content pb-3 mb-5 border">
 	          <!-- 상단 리뷰 통계 -->
 	          <div class="bg-light py-5">
-	          	<div class="row align-items-center">
+	          	<div class="row align-items-center justify-content-between">
 	          		<div class="col-md-1"></div>
 	          		<div class="col-md-3 text-center">
 	          			<h4><i class="green fas fa-comment-dots"></i></h4>
@@ -25,13 +25,9 @@
 	          		<div class="col-md-4 text-center align-items-center">
 	          			<h4><i class="far green fa-star"></i></h4>
 	          			<h4 class="green pb-1">평균 평점</h4>
-	          			<h4><b class="orange">여기채워라</b><small> 점</small></h4>
+	          			<h4><b class="orange">${restaurant.avgRating}</b><small> 점</small></h4>
 	          		</div>
-	          		<div class="col-md-3 text-center align-items-center">
-	          			<h4><i class="green fas fa-signal"></i></h4>
-	          			<h4 class="green pb-1">최다 평점</h4>
-	          			<h4><b class="orange">여기도채워라</b><small> 점</small></h4>
-	          		</div>
+	          		
 	          		<div class="col-md-1"></div>
 	          	</div>
 	          </div>

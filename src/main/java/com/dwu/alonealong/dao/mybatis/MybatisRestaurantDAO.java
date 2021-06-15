@@ -34,9 +34,7 @@ public class MybatisRestaurantDAO implements RestaurantDAO{
 		return resMapper.getRestaurant(resId);
 	}
 	
-	
-	
-	
+
 	public void insertRestaurant(Restaurant res) throws DataAccessException{
 		resMapper.insertRestaurant(res);
 	}
@@ -47,6 +45,10 @@ public class MybatisRestaurantDAO implements RestaurantDAO{
 	
 	public void deleteRestaurant(Restaurant res) throws DataAccessException{
 		resMapper.deleteRestaurant(res);
+	}
+	@Override
+	public void updateAvgRating(int rating, String resId) throws DataAccessException {
+		resMapper.updateAvgRating(rating, resId);
 	}
 	 
 }

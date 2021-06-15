@@ -13,7 +13,7 @@
     	RES_PHONE as resPhone,
     	OWNER_ID as ownerId,
     	RES_DES as resDescription,
-    	AVG_RATING as avgRating,
+    	ROUND(AVG_RATING,1) as avgRating,
     	RES_CATEGORY as categoryId,
     	RES_IMG as imgFile,
     	IS_TOGETHER_OK as isTogetherOk
@@ -29,7 +29,7 @@
     	RES_PHONE as resPhone,
     	OWNER_ID as ownerId,
     	RES_DES as resDescription,
-    	AVG_RATING as avgRating,
+    	ROUND(AVG_RATING,1) as avgRating,
     	RES_CATEGORY as categoryId,
     	RES_IMG as imgFile,
     	IS_TOGETHER_OK as isTogetherOk,
@@ -81,5 +81,11 @@
     RES_DES = #{resDescription}, RES_CATEGORY = #{categoryId}, IS_TOGETHER_OK = #{isTogetherOk}, AREA = #{area}
     WHERE RES_ID = #{resId}
   </update>
+  <update id="updateAvgRating">
+  	UPDATE RESTAURANT
+	SET AVG_RATING = ((AVG_RATING * REV_COUNT + #{rating}) / (REV_COUNT + 1)), REV_COUNT = REV_COUNT + 1
+	WHERE RES_ID = #{resId}
+  </update>
+  
 
 </mapper>
