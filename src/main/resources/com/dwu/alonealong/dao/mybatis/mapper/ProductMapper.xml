@@ -115,7 +115,7 @@
     WHERE lower(PRODUCT_NAME) like lower('%${keyword}%')
   </select>
   
-  <update id="updateProduct" parameterType="ProductLineItem">
+  <update id="updateProductStock" parameterType="ProductLineItem">
 	  <foreach collection="lineItems" item="item" separator=";" open="DECLARE BEGIN" close="; END;">
 	    UPDATE PRODUCT
 	        SET
@@ -124,5 +124,14 @@
 	        WHERE
 	        	PRODUCT_ID = #{item.productId}
 	   </foreach>
+   </update>
+   
+   
+  <update id="updateProduct" >
+	  UPDATE PRODUCT
+	  SET 
+    	PRODUCT_IMG = #{productImg}
+     WHERE
+    	PRODUCT_ID = #{productId}
    </update>
 </mapper>

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <style>
 b {color:#29A65F;}
 .card:hover, .card:focus {  filter: brightness(90%); }
@@ -21,11 +22,10 @@ b {color:#29A65F;}
 	<input type="hidden" name="pcId" value="${param.pcId}"/>
 	<input type="hidden" name="sortType" value="${param.sortType}"/>
 	<input name="productId" type="hidden" value="${product.productId}"/>
-	<div class="card shadow-sm">
+	<div class="card shadow-sm rounded">
 		<div class="contents">
-			<svg class="img"
-				style="background-image: url('https://img-cf.kurly.com/shop/data/goods/1575003713758y0.jpg'); background-size: cover; background-position: center"
-				width="100%" height="150px"></svg>
+		<svg class="img" style="background-image: url('data:image/jpeg;base64,${product.img64}'); background-size: cover; background-position: center"
+										width="100%" height="150px"></svg>
 			<div class="card-body">
 				<div class="d-flex justify-content-between align-items-start">
 					<h6 class="card-text text-left"><c:out value="${product.productName}"/></h6>
@@ -43,7 +43,7 @@ b {color:#29A65F;}
 	</div>
 </c:forEach>
 <c:set var="pageListSize" value="${productList.pageList.size()}" />
-<c:if test="${(pageListSize % 3) != 0}"><div style="width:300px;"></div></c:if>
+<c:if test="${(pageListSize % 3) != 0}"><div style="width:268px;"></div></c:if>
 </div>
 <!-- /.물품목록 -->
 

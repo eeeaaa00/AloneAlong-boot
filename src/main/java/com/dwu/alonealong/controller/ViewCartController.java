@@ -1,6 +1,8 @@
 package com.dwu.alonealong.controller;
 
+import java.util.Base64;
 import java.util.List;
+import java.util.Base64.Encoder;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -38,12 +40,14 @@ public class ViewCartController {
 		int totalPrice = 0;
 		int shippingFee = 0;
 		List<CartItem> cart = this.aloneAlong.getAllCartItem(userId);
+		Encoder encoder = Base64.getEncoder();
 		for(CartItem cartItem : cart) {
-//			cartItem.setProductName(product.getProductName());
-//			cartItem.setPrice(product.getProductPrice());
-//			cartItem.setShippingFee(product.getShippingFee());
 			totalPrice += cartItem.getUnitPrice();
-//			cartItem.setImg(product.getProductImg());
+        	byte[] imagefile = cartItem.getImg();
+        	if(imagefile == null)
+        		continue;
+            String encodedString = encoder.encodeToString(imagefile);
+            cartItem.setImg64(encodedString);
 		}
 
 		model.put("productsPrice", totalPrice);

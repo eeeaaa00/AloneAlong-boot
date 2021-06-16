@@ -40,5 +40,7 @@ public interface ProductMapper {
 	//get Product Method
 	Product getProduct(String productId) throws DataAccessException;
 	 
-	void updateProduct(List<ProductLineItem> lineItems) throws DataAccessException;
+	void updateProductStock(List<ProductLineItem> lineItems) throws DataAccessException;
+	
+	void updateProduct(Product product) throws DataAccessException;
 }

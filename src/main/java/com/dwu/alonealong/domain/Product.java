@@ -19,6 +19,7 @@ public class Product implements Serializable {
   private int productStock;
   private int shippingFee;
   private int quantity;
+  private String img64;
   
   /* JavaBeans Properties */
   public String getProductId() { return productId; }
@@ -56,6 +57,9 @@ public class Product implements Serializable {
   
   public int getQuantity() { return quantity; }
   public void setQuantity(int quantity) { this.quantity = quantity; }
+  
+  public String getImg64() { return img64; }
+  public void setImg64(String img64) { this.img64 = img64; }
 
   /*Additional Methods*/
   public boolean isInStock() {
