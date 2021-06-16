@@ -57,6 +57,8 @@
 									onClick="location.href='<c:url value='/shop/${product.productId}' />'"></div>
 							</div>
 						</c:forEach>
+						<c:set var="productSize" value="${productList.size()}" />
+						<c:if test="${(productSize % 3) != 0}"><div style="width:300px;"></div></c:if>
 					</div>
 				</c:if>
 				<c:if test="${resCnt != '0'}">
@@ -87,6 +89,8 @@
 
 							</div>
 						</c:forEach>
+						<c:set var="restaurantSize" value="${restaurantList.size()}" />
+						<c:if test="${(restaurantSize % 3) != 0}"><div style="width:300px;"></div></c:if>
 					</div>
 
 
