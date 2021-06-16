@@ -33,5 +33,10 @@ public class MyBatisFoodOrderDAO implements FoodOrderDAO{
 		foodOrderMapper.insertFoodOrder(foodOrder, orderId);
 		
 	}
+
+	@Override
+	public void insertFoodOrderForTogetherOrder(FoodOrder foodOrder) {
+		foodOrderMapper.insertFoodOrderForTogetherOrder(foodOrder);
+	}
 	
 }

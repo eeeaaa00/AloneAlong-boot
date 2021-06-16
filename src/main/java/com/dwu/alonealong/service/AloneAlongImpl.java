@@ -30,6 +30,7 @@ import com.dwu.alonealong.domain.FoodCartItem;
 import com.dwu.alonealong.domain.FoodLineItem;
 import com.dwu.alonealong.domain.FoodOrder;
 import com.dwu.alonealong.domain.FoodReview;
+import com.dwu.alonealong.domain.Order;
 import com.dwu.alonealong.domain.Payment;
 import com.dwu.alonealong.domain.Product;
 import com.dwu.alonealong.domain.ProductOrder;
@@ -369,6 +370,16 @@ public class AloneAlongImpl implements AloneAlongFacade{
 	@Override
 	public void insertTogetherOrder(TogetherOrder togetherOrder) {
 		togetherOrderDao.insertTogetherOrder(togetherOrder);
+	}
+	
+	@Override
+	public void insertTogetherOrderInfo(Order order) {
+		orderInfoDao.insertTogetherOrderInfo(order);
+	}
+	
+	@Override
+	public void insertFoodOrderForTogetherOrder(FoodOrder foodOrder) {
+		foodOrderDao.insertFoodOrderForTogetherOrder(foodOrder);
 	}
 
 

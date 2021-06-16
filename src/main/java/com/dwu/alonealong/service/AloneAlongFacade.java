@@ -9,6 +9,7 @@ import com.dwu.alonealong.domain.Food;
 import com.dwu.alonealong.domain.FoodCart;
 import com.dwu.alonealong.domain.FoodOrder;
 import com.dwu.alonealong.domain.FoodReview;
+import com.dwu.alonealong.domain.Order;
 import com.dwu.alonealong.domain.Payment;
 import com.dwu.alonealong.domain.Product;
 import com.dwu.alonealong.domain.ProductOrder;
@@ -110,6 +111,8 @@ public interface AloneAlongFacade {
 	List<TogetherMember> getTogetherMemberListByTogId(String togId);
 	void insertTogetherMember(TogetherMember togetherMember);
 	
-	//TogetherOrder
+	//TogetherOrder 관련
+	void insertTogetherOrderInfo(Order order);
 	void insertTogetherOrder(TogetherOrder togetherOrder);
+	void insertFoodOrderForTogetherOrder(FoodOrder foodOrder);
 }

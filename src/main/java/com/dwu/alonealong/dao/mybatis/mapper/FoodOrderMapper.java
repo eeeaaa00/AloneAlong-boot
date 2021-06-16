@@ -15,4 +15,5 @@ public interface FoodOrderMapper {
 
 	void insertFoodOrder(FoodOrder foodOrder, String orderId);
 	
+	void insertFoodOrderForTogetherOrder(FoodOrder foodOrder); //추가함
 }

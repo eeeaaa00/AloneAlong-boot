@@ -1,83 +1,62 @@
 package com.dwu.alonealong.domain;
 
 public class Order {
-	private int orderId;
+	private String orderId;
 	private String orderDate;
-	private String totalPrice;
+	private int totalPrice;
 	private String status;
-	private User user;
-	private String cardName;
+	private String userId;
 	private String cardNum;
 	private String cardDate;
+	private String cardName;
 	
-	public Order(int orderId, String orderDate, String totalPrice, String status, User user, String cardName,
-			String cardNum, String cardDate) {
+	public Order(String orderId, String orderDate, int totalPrice, String status, String userId, String cardNum,
+			String cardDate, String cardName) {
 		super();
 		this.orderId = orderId;
 		this.orderDate = orderDate;
 		this.totalPrice = totalPrice;
 		this.status = status;
-		this.user = user;
-		this.cardName = cardName;
+		this.userId = userId;
 		this.cardNum = cardNum;
 		this.cardDate = cardDate;
+		this.cardName = cardName;
 	}
-	
-	public int getOrderId() {
-		return orderId;
-	}
-	public void setOrderId(int orderId) {
+
+	public Order(String orderId, int totalPrice, String status, String userId, String cardNum, String cardDate,
+			String cardName) {
+		super();
 		this.orderId = orderId;
-	}
-	public String getOrderDate() {
-		return orderDate;
-	}
-	public void setOrderDate(String orderDate) {
-		this.orderDate = orderDate;
-	}
-	public String getTotalPrice() {
-		return totalPrice;
-	}
-	public void setTotalPrice(String totalPrice) {
 		this.totalPrice = totalPrice;
-	}
-	public String getStatus() {
-		return status;
-	}
-	public void setStatus(String status) {
 		this.status = status;
-	}
-	public User getUser() {
-		return user;
-	}
-	public void setUser(User user) {
-		this.user = user;
-	}
-	public String getCardName() {
-		return cardName;
-	}
-	public void setCardName(String cardName) {
+		this.userId = userId;
+		this.cardNum = cardNum;
+		this.cardDate = cardDate;
 		this.cardName = cardName;
 	}
-	public String getCardNum() {
-		return cardNum;
-	}
-	public void setCardNum(String cardNum) {
-		this.cardNum = cardNum;
-	}
-	public String getCardDate() {
-		return cardDate;
-	}
-	public void setCardDate(String cardDate) {
-		this.cardDate = cardDate;
-	}
-	@Override
-	public String toString() {
-		return "Order [orderId=" + orderId + ", orderDate=" + orderDate + ", totalPrice=" + totalPrice + ", status="
-				+ status + ", user=" + user + ", cardName=" + cardName + ", cardNum=" + cardNum + ", cardDate="
-				+ cardDate + "]";
-	}
+
+	public String getOrderId() {return orderId;}
+	public void setOrderId(String orderId) {this.orderId = orderId;}
 	
+	public String getOrderDate() {return orderDate;}
+	public void setOrderDate(String orderDate) {this.orderDate = orderDate;}
 	
+	public int getTotalPrice() {return totalPrice;}
+	public void setTotalPrice(int totalPrice) {this.totalPrice = totalPrice;}
+	
+	public String getStatus() {return status;}
+	public void setStatus(String status) {this.status = status;}
+	
+	public String getUserId() {return userId;}
+	public void setUserId(String userId) {this.userId = userId;}
+	
+	public String getCardName() {return cardName;}
+	public void setCardName(String cardName) {this.cardName = cardName;}
+	
+	public String getCardNum() {return cardNum;}
+	public void setCardNum(String cardNum) {this.cardNum = cardNum;}
+	
+	public String getCardDate() {return cardDate;}
+	public void setCardDate(String cardDate) {this.cardDate = cardDate;}
 	
 }

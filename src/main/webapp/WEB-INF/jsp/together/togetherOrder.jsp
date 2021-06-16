@@ -2,6 +2,8 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <!doctype html>
 <html lang="en">
@@ -73,93 +75,64 @@
 			</div>
 		</div>
     
-    	<div class="mb-5 pb-5 border-bottom pr-5">
-		<h4 class="mb-5 mx-2">주문 정보</h4>
-		<div class="row w-50 mx-2 mb-3">
-			<label>이름</label> <input id="orderName" name="orderName" type="text" class="form-control" required value="${orderForm.getOrderUser().name}">
-		</div>
-
-		<label class="mx-2">전화번호</label>
-		<c:set var="orderPhone" value="${fn:split(orderForm.getOrderUser().phone, '-')}"/>
-		<div class="row w-50 mx-2 mb-3 input-group">
-			<div class="input-group-prepend">
-				<select id="orderPhone1" name="orderPhone1" class="custom-select">
-					<option ${orderPhone[0] == '010' ? 'selected="selected"' : ''} value="010">010</option>
-					<option ${orderPhone[0] == '011' ? 'selected="selected"' : ''} value="011">011</option>
-					<option ${orderPhone[0] == '016' ? 'selected="selected"' : ''} value="016">016</option>
-					<option ${orderPhone[0] == '017' ? 'selected="selected"' : ''} value="017">017</option>
-				</select>
+    	<!-- 결제하기 -->
+    	<form action="/togetherOrder/complete">
+    		<input type="hidden" name="cardName" value="${cardName}">
+    		<input type="hidden" name="cardNum" value="${cardNum}">
+    		<input type="hidden" name="cardDate1" value="${cardDate1}">
+    		<input type="hidden" name="cardDate2" value="${cardDate2}">
+    		<input type="hidden" name="cardCVC" value="${cardCVC}">
+    	
+    		<div class="mb-5 pb-5 border-bottom pr-5">
+			<h4 class="mx-2 mb-5">결제 정보</h4>
+			<div class="row w-100 mx-2 mb-3 no-gutters">
+				<label for="cardName" class="col-4 col-form-label">카드 이름</label>
+				<div class="col-8">
+					<select id="cardName" name="cardName" class="custom-select">
+						<option value="농협">농협</option>
+						<option value="국민">국민</option>
+						<option value="신한">신한</option>
+						<option value="우리">우리</option>
+						<option value="기업">기업</option>
+						<option value="SC제일">SC제일</option>
+						<option value="카카오뱅크">카카오뱅크</option>
+						<option value="새마을금고">새마을금고</option>
+					</select>
+				</div>
 			</div>
-			<input type="text" id="orderPhone2" name="orderPhone2" class="form-control" maxlength="4" required value="${orderPhone[1]}">
-			<input type="text" id="orderPhone3" name="orderPhone3" class="form-control" maxlength="4" required value="${orderPhone[2]}">
-		</div>
-
-		<div class="row w-100 mx-2 mb-3">
-			<label for="orderEmail">이메일</label>
-			<input type="email" class="form-control" name="orderEmail" id="orderEmail" value="${orderForm.getOrderUser().email}">
-		</div>
-
-		<div class="row px-2 mb-1">
-			<label for="orderZip" class="col-md-3">우편번호</label>
-			<label for="orderAddress" class="col-md-9">주소</label>
-		</div>
-		<div class="row mx-2 mb-3 input-group">
-			<input type="number" name="orderZip" class="col-md-3 form-control" id="orderZip" required value="${orderForm.getOrderUser().zip}">
-			<input type="text" name="orderAddress" class="col-md-9 form-control" id="orderAddress" required  value="${orderForm.getOrderUser().address}">
-		</div>
-		</div>
-    
-    
-    <!-- 결제하기 -->
-    <div class="mb-5 pb-5 border-bottom pr-5">
-	<h4 class="mx-2 mb-5">결제 정보</h4>
-	<div class="row w-100 mx-2 mb-3 no-gutters">
-		<label for="cardname" class="col-4 col-form-label">카드 이름</label>
-		<div class="col-8">
-			<select id="cardName" name="cardName" class="custom-select">
-				<option value="NH">농협</option>
-				<option value="KM">국민</option>
-				<option value="SH">신한</option>
-				<option value="WE">우리</option>
-				<option value="IBK">기업</option>
-				<option value="SC">SC제일</option>
-				<option value="KK">카카오뱅크</option>
-				<option value="NT">새마을금고</option>
-			</select>
-		</div>
-	</div>
-	<div class="row w-100 mx-2 mb-3 no-gutters">
-		<label for="cardNum" class="col-4 col-form-label">카드 번호</label>
-		<div class="col-8">
-			<input id="cardNum" name="cardNum" placeholder="카드 번호"
-				class="form-control here" required="required" type="text">
-		</div>
-	</div>
-	<div class="row w-100 mx-2 mb-3 justify-content-between no-gutters">
-		<label class="col-4 col-form-label">카드 정보</label>
-		<div class="row col-8 no-gutters">
-			<div class="col-6 input-group">
-				<input name="cardYear" placeholder="YY" class="form-control" maxlength="2" required type="text">
-				<input name="cardMonth" placeholder="MM" class="form-control " maxlength="2" required type="text">
+			<div class="row w-100 mx-2 mb-3 no-gutters">
+				<label for="cardNum" class="col-4 col-form-label">카드 번호</label>
+				<div class="col-8">
+					<input id="cardNum" name="cardNum" placeholder="카드 번호"
+						class="form-control here" required="required" type="text">
+				</div>
 			</div>
-			<div class="col-1"></div>
-			<div class="col-5">
-				<input name="CardCVC" placeholder="CVC" class="form-control" required type="text">
+			<div class="row w-100 mx-2 mb-3 justify-content-between no-gutters">
+				<label class="col-4 col-form-label">카드 정보</label>
+					<div class="row col-8 no-gutters">
+						<div class="col-6 input-group">
+							<input name="cardDate1" placeholder="YY" class="form-control" maxlength="2" required type="text">
+							<input name="cardDate2" placeholder="MM" class="form-control " maxlength="2" required type="text">
+						</div>
+						<div class="col-1"></div>
+						<div class="col-5">
+							<input name="cardCVC" placeholder="CVC" class="form-control" required type="text">
+						</div>
+					</div>
+				</div>
 			</div>
-		</div>
-	</div>
-</div>
-<div class="row mx-5 mb-5 pb-5 justify-content-end">
-	<div class="col-md-3 text-right align-self-end">
-		합계 <span class="text-orange-roboto text-roboto pl-1"> <fmt:formatNumber
-				value="${together.getPricePerPerson()}" pattern="#,###,###" /></span>원
-	</div>
-	<div class="col-md-6">
-		<button type="submit" class="btn btn-orange btn-block rounded-pill py-3 my-1 mt-3 mx-3" >
-			<small><i class="far fa-credit-card pr-1"></i></small> 결제하기
-		</button>
-	</div>
-</div>
+			<div class="row mx-5 mb-5 pb-5 justify-content-end">
+			<div class="col-md-3 text-right align-self-end">
+				합계 <span class="text-orange-roboto text-roboto pl-1"> <fmt:formatNumber
+					value="${together.getPricePerPerson()}" pattern="#,###,###" /></span>원
+			</div>
+			<div class="col-md-6">
+				<button type="submit" class="btn btn-orange btn-block rounded-pill py-3 my-1 mt-3 mx-3" >
+					<small><i class="far fa-credit-card pr-1"></i></small> 결제하기
+				</button>
+			</div>
+			</div>
+    	</form>
     
 	</div>
 </div>
