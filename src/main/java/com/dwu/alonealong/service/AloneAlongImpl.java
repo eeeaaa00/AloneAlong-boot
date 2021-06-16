@@ -344,6 +344,11 @@ public class AloneAlongImpl implements AloneAlongFacade{
 		return togetherDao.getTogetherListByResId(resId);
 	}
 	
+	@Override
+	public List<Together> searchTogetherList(String keyword) {
+		return togetherDao.searchTogetherList(keyword);
+	}
+	
 	//TogetherFood
 	@Override
 	public List<TogetherFood> getTogetherFoodListByTogId(String togId) {

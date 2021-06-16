@@ -109,6 +109,26 @@
 			AND T.RES_ID = #{resId} AND T.TOG_STATUS = 0
 	</select>
 	
+	<select id="searchTogetherList" resultType="Together">
+		SELECT
+    		T.TOG_ID AS togetherId,
+    		T.TOG_NAME AS togetherName,
+    		T.HEADCOUNT AS headCount,
+    		T.TOG_DATE AS togetherDate,
+    		T.TOG_TIME AS togetherTime,
+    		T.TOG_SEX AS sex,
+    		T.TOG_AGE AS age,
+    		T.TOG_DES AS togetherDes,
+    		T.RES_ID AS resId,
+    		T.TOG_STATUS AS status,
+    		T.PRICE AS price,
+    		R.RES_NAME AS "restaurant.resName",
+    		R.RES_ADDRESS AS "restaurant.resAddress",
+    		R.RES_CATEGORY AS "restaurant.categoryId"
+		FROM TOGETHER T, RESTAURANT R
+		WHERE T.RES_ID = R.RES_ID AND (lower(T.TOG_NAME) LIKE lower('%${keyword}%') OR lower(R.RES_CATEGORY) LIKE lower('%${keyword}%'))
+	</select>
+	
 	<insert id="insertTogether" useGeneratedKeys="true" keyColumn="TOG_ID" keyProperty="togetherId">
     	INSERT INTO TOGETHER (TOG_ID, TOG_NAME, HEADCOUNT, TOG_DATE, TOG_TIME, TOG_SEX, TOG_AGE,
       		TOG_DES, RES_ID, TOG_STATUS, PRICE)

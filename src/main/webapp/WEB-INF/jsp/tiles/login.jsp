@@ -22,11 +22,11 @@
 				</p>
 
 				<button id="btn-Yes" class="btn btn-success btn-block" type="submit">로
-					그 인</button>
+					그 인</button></form>
 				<button id="btn-Yes" class="btn btn-outline-success btn-block"
 					onClick="location.href='<c:url value='/signUp' />'">회 원 가
 					입</button>
-			</form>
+			
 
 		</div>
 	</div>

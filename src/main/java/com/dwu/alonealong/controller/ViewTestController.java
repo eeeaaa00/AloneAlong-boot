@@ -39,7 +39,8 @@ public class ViewTestController {
 			model.put("recommandList", recommandList);
 		}
 		else {
-			List<Together> togetherList = this.alonealong.getTogetherListByCategory("all", "", "all", 99999, "all", "all");
+			
+			List<Together> togetherList = this.alonealong.getTogetherList();
 			model.put("togetherList", togetherList);
 		}
 
@@ -76,7 +77,6 @@ public class ViewTestController {
 		
 
 		return "index";
-
 	}
 
 	@RequestMapping("/product")

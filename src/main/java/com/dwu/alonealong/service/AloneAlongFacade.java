@@ -101,6 +101,8 @@ public interface AloneAlongFacade {
 	void updateTogether(Together together);
 	List<Together> recommandTogetherList(String sex, String address);
 	List<Together> getTogetherListByResId(String resId);
+	List<Together> searchTogetherList(String keyword);
+
 	
 	//TogetherFood
 	List<TogetherFood> getTogetherFoodListByTogId(String togId);
