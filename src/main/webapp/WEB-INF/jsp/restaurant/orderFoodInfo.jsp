@@ -6,7 +6,7 @@ div.shipInfo{
 	display:none;
 }
 </style>
-
+<!-- 사용x. order폴더의 foodLineItem -->
 <div class="row">
 	<div class="col-md-1"></div>
 	<div class="col-md-10 bg-light rounded-lg py-3">
@@ -31,8 +31,7 @@ div.shipInfo{
 							class=" d-flex align-items-center text-center text-md-center row">
 							<div class="col-12 col-md-7">
 								<div class="d-flex align-items-center">
-									<a href="/detail-1"> <svg class="img rounded-lg"
-											style="background-image: url('https://img-cf.kurly.com/shop/data/goods/1575003713758y0.jpg'); background-size: cover; background-position: center; width: 100px; height: 100px;"></svg>
+									<a href="/detail-1"> <img src="data:image/jpeg;base64,${item.food.img64}" style="width:100px; height:100px; object-fit: cover;" />
 									</a>
 									<div class="cart-title text-left ml-3">
 										<a class="text-uppercase text-dark" href="/detail-1"> <strong>${item.food.name}</strong></a>

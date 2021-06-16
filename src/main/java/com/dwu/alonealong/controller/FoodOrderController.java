@@ -1,6 +1,8 @@
 package com.dwu.alonealong.controller;
 
 
+import java.util.Base64;
+import java.util.Base64.Encoder;
 import java.util.Date;
 import java.util.List;
 
@@ -46,11 +48,16 @@ public class FoodOrderController {
 		Payment paymentMethod = aloneAlong.getCard(userSession.getUser().getId());
 
 		System.out.print(user);
+		Encoder encoder = Base64.getEncoder();
+		for(FoodCartItem item : cart.getFoodItemList()) {
+			item.getFood().setImg64(encoder.encodeToString(item.getFood().getImgFile()));
+		}
 		
 		//만약 sessionFoodCart.size가 0이면 order창으로 넘어가지 못하도록.
 		model.put("foodCart", cart.getAllFoodCartItems());
 		model.put("totalPrice", cart.getSubTotal());
 		model.put("resId", resId);
+		model.put("user", user);
 
 		return "foodOrderForm";
 	}

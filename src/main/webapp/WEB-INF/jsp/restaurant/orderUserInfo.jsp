@@ -24,15 +24,16 @@
 	          <input type="time" class="form-control" id="visitDate" name = "visitDate">
 	        </div> 
 	           
-	        <label class="mx-2">전화번호</label>
-	        <div class="row w-50 mx-2 mb-3 input-group">
-				전화번호
-			</div>
-	
+			<div class="row w-50 mx-2 ">
+	          <label for="phone">전화번호</label>
+	          <div class="row w-50 mx-2 mb-3 input-group">
+	          	${user.phone}
+	          </div>
+	        </div>
 	        <div class="row w-50 mx-2 mb-3">
 	          <label for="email">이메일</label>
 	          <div class="row w-50 mx-2 mb-3 input-group">
-	          	이메일. 수정할거있으면 회원정보수정링크 만들어놓겠음
+	          	${user.email}
 	          </div>
 	        </div>
 	

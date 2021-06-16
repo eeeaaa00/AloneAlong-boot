@@ -38,7 +38,10 @@
 				              </div>
 				              <div class="card-footer" style="width:120px; text-align: center;">
 				              	<div class="mt-5">
-					              <button type = "button" class="btn btn-md btn-success" onClick="location.href='<c:url value='/eating/${restaurant.resId}/addFoodToCart'><c:param name="foodId" value="${food.foodId}"/></c:url>'">담기</button></br> 	       		  
+				              		
+					              <button type = "button" class="btn btn-md btn-success" 
+					              onClick="location.href='<c:url value='/eating/${restaurant.resId}/addFoodToCart'>
+					              <c:param name="foodId" value="${food.foodId}"/></c:url>'">담기</button></br> 	       		  
 				             	  </div>
 				              </div>
 				              
