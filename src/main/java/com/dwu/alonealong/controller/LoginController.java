@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.dwu.alonealong.domain.User;
 import com.dwu.alonealong.service.AloneAlongFacade;
@@ -47,8 +48,12 @@ public class LoginController {
 
 			if (forwardAction != null)
 				return new ModelAndView("redirect:" + forwardAction);
-			else
-				return new ModelAndView("loginTest");
+			else {
+				ModelAndView mv = new ModelAndView(); 
+				mv.setViewName("redirect:/");
+				return mv;
+			}
+				
 
 		}
 	}
