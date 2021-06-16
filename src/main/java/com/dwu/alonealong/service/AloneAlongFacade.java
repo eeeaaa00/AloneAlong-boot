@@ -56,6 +56,7 @@ public interface AloneAlongFacade {
 //	List<ProductOrder> getProductOrdersByProductId(String productId);
 //  	ProductOrder getProductOrder(int orderId);
 	void insertProductOrder(ProductOrder order);
+	boolean checkUsersOrder(String userId, String productId);
 	
 	//CART
 	List<CartItem> getAllCartItem(String userId) throws DataAccessException;

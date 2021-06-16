@@ -28,4 +28,5 @@ import com.dwu.alonealong.domain.ProductOrder;
 @Mapper
 public interface ProductOrderMapper {
 	void insertProductOrder(ProductOrder order) throws DataAccessException;
+	int checkUsersOrder(String userId, String productId) throws DataAccessException;
 }

@@ -22,4 +22,13 @@ public class MybatisProductOrderDAO implements ProductOrderDAO{
 	    productOrderMapper.insertProductOrder(order);
 		productMapper.updateProduct(order.getLineItems());
 	}
+	
+	public boolean checkUsersOrder(String userId, String productId) throws DataAccessException{
+		if(productOrderMapper.checkUsersOrder(userId, productId) == 0) {
+			return false;
+		}
+		else {
+			return true;
+		}
+	}
 }

@@ -15,6 +15,8 @@ public interface ProductOrderDAO {
   	//�ֹ� �߰�
 	void insertProductOrder(ProductOrder order) throws DataAccessException;
 	
+	boolean checkUsersOrder(String userId, String productId) throws DataAccessException;
+	
 	//�ʹ� ���߱����ϸ� ��...
 	//��ǰ Id�� ���� �ֹ� Ƚ�� ��ȯ
 //	int getCountOrdersByProductId(String productId) throws DataAccessException; 

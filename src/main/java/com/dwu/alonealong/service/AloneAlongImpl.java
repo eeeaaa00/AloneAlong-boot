@@ -180,6 +180,9 @@ public class AloneAlongImpl implements AloneAlongFacade{
 	public void insertProductOrder(ProductOrder order){
 		productOrderDao.insertProductOrder(order);
 	}
+	public boolean checkUsersOrder(String userId, String productId){
+		return productOrderDao.checkUsersOrder(userId, productId);
+	}
 	
 	//cart
 	public List<CartItem> getAllCartItem(String userId) throws DataAccessException{

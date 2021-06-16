@@ -2,6 +2,8 @@ package com.dwu.alonealong.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.support.PagedListHolder;
 import org.springframework.stereotype.Controller;
@@ -25,10 +27,13 @@ public class ViewCartController {
 	}
 	
 	@RequestMapping("/cart")
-	public String handleRequest(
+	public String handleRequest(HttpServletRequest request,
 			ModelMap model) throws Exception {
-		//로그인 구현 전까지 임시
-		String userId = "1";
+		UserSession userSession = (UserSession)request.getSession().getAttribute("userSession");
+		if(userSession == null) {
+			return "redirect:/login";
+		}
+		String userId = userSession.getUser().getId();
 		
 		int totalPrice = 0;
 		int shippingFee = 0;

@@ -61,8 +61,10 @@
 				</form>
 				
 				<!-- 리뷰 작성 -->
+				<c:if test="${isPurchaser == true}">
 				<button type="button" class="btn btn-sm btn-orange rounded-pill px-3"
 				data-toggle="modal" data-target="#exampleModal"><i class="far fa-edit"></i> 작성하기</button>
+				</c:if>
           	</div>
 
 			<!-- 리뷰 목록 -->
