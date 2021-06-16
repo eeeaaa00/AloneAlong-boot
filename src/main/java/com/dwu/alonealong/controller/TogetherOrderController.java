@@ -43,13 +43,13 @@ public class TogetherOrderController {
 //			return "redirect:/login";
 //		}
 		
-		//조건에 안맞으면 신청 못하게 하기(구현중)///////////
-		if(userSession != null) {
-			User user = aloneAlong.getUserByUserId(userSession.getUser().getId());
-			
-			if(user.getSex() != together.getSex())
-				return "신청 불가";
-		}
+//		//조건에 안맞으면 신청 못하게 하기(구현중)///////////
+//		if(userSession != null) {
+//			User user = aloneAlong.getUserByUserId(userSession.getUser().getId());
+//			
+//			if(user.getSex() != together.getSex())
+//				return "redirect:/togetherInfo";
+//		}
 		
 		return "together/togetherOrder";
 //		return "togetherOrder";
