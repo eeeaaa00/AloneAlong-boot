@@ -10,5 +10,14 @@
     VALUES (#{orderId}, #{foodId}, #{quantity}, #{unitPrice})
   </insert>
   
+  <select id="getFoodLineItemByOrderId" resultType="FoodLineItem">
+	  SELECT 
+		food_id as foodId,
+		quantity as quantity,
+		unit_price as unitPrice
+	  FROM FOOD_LINEITEM
+	  WHERE ORDER_ID = #{orderId}
+  </select>
+  
 
 </mapper>

@@ -31,6 +31,12 @@ public class MyBatisOrderInfoDAO implements OrderInfoDAO{
 	public String getRecentOrderId() {
 		return orderInfoMapper.getRecentOrderId();
 	}
+
+	@Override
+	public List<FoodOrder> getOrdersByUserId(String userId) throws DataAccessException {
+		// TODO Auto-generated method stub
+		return orderInfoMapper.getOrdersByUserId(userId);
+	}
 	
 	
 	

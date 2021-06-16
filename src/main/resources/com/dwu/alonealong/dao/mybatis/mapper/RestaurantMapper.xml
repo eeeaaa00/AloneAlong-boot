@@ -16,9 +16,26 @@
     	ROUND(AVG_RATING,1) as avgRating,
     	RES_CATEGORY as categoryId,
     	RES_IMG as imgFile,
+    	AREA as area,
     	IS_TOGETHER_OK as isTogetherOk
     FROM RESTAURANT
     WHERE RES_ID = #{resId}
+  </select>
+  <select id="getRestaurantByOwnerId" resultType="Restaurant">
+     SELECT
+    	RES_ID as resId, 
+    	RES_NAME as resName,
+    	RES_ADDRESS as resAddress,
+    	RES_PHONE as resPhone,
+    	OWNER_ID as ownerId,
+    	RES_DES as resDescription,
+    	ROUND(AVG_RATING,1) as avgRating,
+    	RES_CATEGORY as categoryId,
+    	RES_IMG as imgFile,
+    	AREA as area,
+    	IS_TOGETHER_OK as isTogetherOk
+    FROM RESTAURANT
+    WHERE OWNER_ID = #{ownerId}
   </select>
 
   <select id="getRestaurantList" resultType="Restaurant">
@@ -47,9 +64,10 @@
     	RES_PHONE as resPhone,
     	OWNER_ID as ownerId,
     	RES_DES as resDescription,
-    	AVG_RATING as avgRating,
+    	ROUND(AVG_RATING,1) as avgRating,
     	RES_CATEGORY as categoryId,
     	RES_IMG as imgFile,
+    	AREA as area,
     	IS_TOGETHER_OK as isTogetherOk
     FROM RESTAURANT
     WHERE lower(RES_NAME) like '%${keywords}%'
@@ -66,6 +84,7 @@
     	ROUND(AVG_RATING,1) as avgRating,
     	RES_CATEGORY as categoryId,
     	RES_IMG as imgFile,
+    	AREA as area,
     	IS_TOGETHER_OK as isTogetherOk
     FROM (SELECT * FROM RESTAURANT WHERE AREA LIKE '%${category1}%' AND RES_CATEGORY LIKE '%${category2}%') 
     ORDER BY ${sortType} DESC
@@ -77,15 +96,20 @@
   </insert>
   <update id="updateRestaurant">
     UPDATE RESTAURANT 
-    SET RES_ADDRESS = #{resName}, RES_PHONE = #{resPhone}, 
+    SET RES_ADDRESS = #{resName}, RES_PHONE = #{resPhone}, RES_IMG = #{imgFile},
     RES_DES = #{resDescription}, RES_CATEGORY = #{categoryId}, IS_TOGETHER_OK = #{isTogetherOk}, AREA = #{area}
     WHERE RES_ID = #{resId}
   </update>
+   <delete id="deleteRestaurant">
+ 	DELETE FROM RESTAURANT
+    WHERE OWNER_ID = #{ownerId}
+  </delete>
   <update id="updateAvgRating">
   	UPDATE RESTAURANT
 	SET AVG_RATING = ((AVG_RATING * REV_COUNT + #{rating}) / (REV_COUNT + 1)), REV_COUNT = REV_COUNT + 1
 	WHERE RES_ID = #{resId}
   </update>
+ 
   
 
 </mapper>

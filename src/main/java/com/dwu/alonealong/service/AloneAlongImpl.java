@@ -212,7 +212,14 @@ public class AloneAlongImpl implements AloneAlongFacade{
 	@Override
 	public void insertRestaurant(Restaurant res) {
 		restaurantDao.insertRestaurant(res);
-		
+	}
+	@Override
+	public void updateRestaurant(Restaurant res) {
+		restaurantDao.updateRestaurant(res);
+	}
+	@Override
+	public void deleteRestaurant(String ownerId) {
+		restaurantDao.deleteRestaurant(ownerId);
 	}
 	@Override
 	public List<Restaurant> getRestaurantList() {
@@ -228,12 +235,10 @@ public class AloneAlongImpl implements AloneAlongFacade{
 	}
 	@Override
 	public Restaurant getRestaurantByUserId(String userId) {
-		// TODO Auto-generated method stub
-		return null;
+		return restaurantDao.getRestaurantByOwnerId(userId);
 	}
 	@Override
 	public Restaurant getRestaurantByResId(String resId) {
-		// TODO Auto-generated method stub
 		return restaurantDao.getRestaurant(resId);
 	}
 	
@@ -285,9 +290,18 @@ public class AloneAlongImpl implements AloneAlongFacade{
 		return null;
 	}
 	@Override
-	public List<FoodOrder> getOrdersByUserId(String userId) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<FoodOrder> getFoodOrdersByUserId(String userId) {
+		List<FoodOrder> orderList = orderInfoDao.getOrdersByUserId(userId);
+		for(FoodOrder order : orderList) {
+			List<FoodLineItem> orderedItemList = foodLineItemDao.getFoodLineItemByOrderId(order.getOrderId());
+			for(FoodLineItem orderedItem : orderedItemList) {
+				String foodName = foodDao.getFood(orderedItem.getFoodId()).getName();
+				orderedItem.setFoodName(foodName);
+			}
+			order.setOrderedList(orderedItemList);
+		}
+		
+		return orderList;
 	}
 	//FoodReview
 	public List<FoodReview> getFoodReviewListByResId(String resId) {

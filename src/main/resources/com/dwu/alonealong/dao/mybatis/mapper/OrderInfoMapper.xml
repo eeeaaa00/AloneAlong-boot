@@ -7,11 +7,28 @@
   
   <insert id="insertFoodOrderInfo">
     INSERT INTO ORDERINFO (ORDER_ID, ORDER_DATE, TOTAL_PRICE, ORDER_STATUS, USER_ID, CARD_NUM, CARD_DATE, CARD_NAME)
-    VALUES ('fo' || FOODORDERID_SEQ.NEXTVAL, TO_DATE(SYSDATE, 'YYYY-MM-DD'), #{totalPrice}, 'reserved', #{userId}, #{payment.cardNumber}, #{payment.cardDate}, #{payment.cardName})
+    VALUES ('fo' || FOODORDERID_SEQ.NEXTVAL, TO_DATE(SYSDATE, 'YYYY-MM-DD'), #{totalPrice}, 'reserved', #{userId}, #{payment.card_num}, #{payment.card_date}, #{payment.card_name})
   </insert>
   
   <select id="getRecentOrderId" resultType="String">
   	SELECT FOODORDERID_SEQ.CURRVAL FROM DUAL
   </select>
+  
+  <select id="getOrdersByUserId" resultType="FoodOrder">
+  SELECT 
+	o.order_id as orderId, 
+	TO_CHAR(order_date, 'yy-mm-dd') as orderDate, 
+	total_price as totalPrice, 
+	reserve_type as reserveType, 
+	visit_date as visitDate, 
+	food_id as firstFoodId, 
+	res_id as resId,
+	card_name as cardName
+	FROM ORDERINFO o JOIN FOOD_ORDER f ON o.order_id = f.order_id
+	WHERE o.user_id = #{userId}
+	ORDER BY orderDate DESC
+  </select>
+  
+  
 
 </mapper>

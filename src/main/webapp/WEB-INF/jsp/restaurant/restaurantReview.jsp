@@ -40,7 +40,7 @@
 				<div class="dropdown">
 					<button class="btn btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true">최신순</button>
 						<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-							<a class="dropdown-item" href="#"><small>좋아요순</small></a>
+							<a class="dropdown-item" href="#"><small>최신순</small></a>
 							<a class="dropdown-item" href="#"><small>높은 평점순</small></a>
 							<a class="dropdown-item" href="#"><small>낮은 평점순</small></a>
 						</div>
@@ -71,8 +71,8 @@
 						<div class="my-3">
 							${rev.contents}
 						</div>
-						<div class="bg-light rounded-pill mt-3 py-1 w-25 text-center" type="button"> <i class="green fas fa-thumbs-up"></i>
-							<span class="green-roboto">${rev.recommend}</span><small class="text-muted"> 명이 추천</small></div>
+						<!--  <div class="bg-light rounded-pill mt-3 py-1 w-25 text-center" type="button"> <i class="green fas fa-thumbs-up"></i>
+							<span class="green-roboto">${rev.recommend}</span><small class="text-muted"> 명이 추천</small></div>-->
 					</div>
 				</div>
 			</c:forEach>
@@ -128,7 +128,7 @@
 						</div>
 						<div class="form-group">
 							<textarea rows="4" name="review" id="review"
-								placeholder="리뷰를 작성하세요" required="" class="form-control"></textarea>
+								placeholder="수정이 불가하오니 신중히 리뷰를 작성하세요." required="" class="form-control"></textarea>
 						</div>
 					
 				</div>

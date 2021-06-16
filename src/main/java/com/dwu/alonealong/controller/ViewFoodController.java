@@ -4,6 +4,7 @@ import java.util.Base64;
 import java.util.Base64.*;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,10 +39,17 @@ public class ViewFoodController {
 	public String resFood(
 			@PathVariable("resId") String resId,
 			@SessionAttribute("sessionFoodCart") FoodCart foodCart,
-			HttpServletResponse response,
+			HttpServletRequest request,
 //			@RequestParam(value = "foodId", defaultValue="") String foodId,
 			ModelMap model) throws Exception {
 
+		UserSession userSession = (UserSession)request.getSession().getAttribute("userSession");
+		if(userSession != null) {
+			User user = alonealong.getUserByUserId(userSession.getUser().getId());
+			String userId = user.getId();
+			model.put("userId", userId);
+		}
+	
 		List<Food> foodList = this.alonealong.getFoodListByRestaurant(resId); 
 		model.put("foodList", foodList);
 		model.put("foodCart", foodCart.getFoodItemList());

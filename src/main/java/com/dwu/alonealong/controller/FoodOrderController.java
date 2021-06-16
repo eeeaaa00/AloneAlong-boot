@@ -36,7 +36,6 @@ public class FoodOrderController {
 	public String initNewOrder(HttpServletRequest request,
 		@RequestParam(value="resId", required=false) String resId, 
 		@ModelAttribute("sessionFoodCart") FoodCart cart,
-//		@ModelAttribute("productOrderForm") ProductOrderForm productOrderForm,
 		ModelMap model) throws Exception {
 		
 		model.addAttribute("foodOrderForm", new FoodOrder());
@@ -47,15 +46,12 @@ public class FoodOrderController {
 		Payment paymentMethod = aloneAlong.getCard(userSession.getUser().getId());
 
 		System.out.print(user);
-		//LineItem 설정 
-//		List<ProductLineItem> orderList = new ArrayList<ProductLineItem>();
 		
 		//만약 sessionFoodCart.size가 0이면 order창으로 넘어가지 못하도록.
 		model.put("foodCart", cart.getAllFoodCartItems());
 		model.put("totalPrice", cart.getSubTotal());
 		model.put("resId", resId);
-//		//받아온 유저정보 & 결제정보 & LineItem으로 orderForm 세팅 
-//		productOrderForm.getProductOrder().initProductOrder(user, paymentMethod, orderList);
+
 		return "foodOrderForm";
 	}
 	
