@@ -90,15 +90,16 @@ public class editCartItemController {
 			if(!aloneAlong.checkStock(productId, quantity)) {
 				return "redirect:/shop?stockError=true&product=" + product.getProductName() + "&stock=" + product.getProductStock();
 			}
+			aloneAlong.insertCartItem(productId, quantity, userId);
 			return "redirect:/shop?insertCart=true";
 		}
 		else if(type.equals("product")) {
 			if(!aloneAlong.checkStock(productId, quantity)) {
 				return "redirect:/shop/" + productId + "?stockError=true&product=" + product.getProductName() + "&stock=" + product.getProductStock();
 			}
+			aloneAlong.insertCartItem(productId, quantity, userId);
 			return "redirect:/shop/" + productId + "?insertCart=true";
 		}
-		aloneAlong.insertCartItem(productId, quantity, userId);
 		return "error";
 	}
 }
