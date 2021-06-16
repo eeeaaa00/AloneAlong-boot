@@ -202,6 +202,10 @@
 		<put-attribute name="body-tab"
 			value="/WEB-INF/jsp/restaurant/restaurantReview.jsp" />
 	</definition>
+	<definition name="togetherListTab" extends="restaurant">
+		<put-attribute name="body-tab"
+			value="/WEB-INF/jsp/restaurant/togetherList.jsp" />
+	</definition>
 
 	<definition name="restaurantForm"
 		extends="restaurant_layout">

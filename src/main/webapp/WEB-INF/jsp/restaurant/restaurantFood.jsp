@@ -11,7 +11,7 @@
 				        <ul class="nav nav-tabs nav-fill" role="tablist">
 				          <li class="nav-item"><a class="nav-link py-4 px-sm-4 active" href="<c:url value='/eating/'/> ${restaurant.resId}">메뉴</a></li>
 				          <li class="nav-item"><a class="nav-link py-4 px-sm-4" href="<c:url value='/eating/${restaurant.resId}/RestaurantReview' />">한줄평</a></li> <!-- mav.setViewName("/eating/RestaurantReview");로 연결 -->
-				          <li class="nav-item"><a class="nav-link py-4 px-sm-4" >같밥 모집ing</a></li>
+				          <li class="nav-item"><a class="nav-link py-4 px-sm-4" href="<c:url value='/eating/${resId}/togetherList' />">같밥 모집ing</a></li>
 				        </ul>
 				        <!-- General info tab-->
 				        <div class="tab-content px-lg-3 py-5">

@@ -36,11 +36,20 @@ public class TogetherOrderController {
 	
 	//신청하기	
 	@RequestMapping(value = "/togetherOrder")
-	public String joinTogether(HttpServletRequest request) {
-//		UserSession userSession = (UserSession)request.getSession().getAttribute("userSession");
+	public String joinTogether(HttpServletRequest request,
+			@ModelAttribute("together") Together together) {
+		UserSession userSession = (UserSession)request.getSession().getAttribute("userSession");
 //		if(userSession == null) {
 //			return "redirect:/login";
 //		}
+		
+		//조건에 안맞으면 신청 못하게 하기(구현중)///////////
+		if(userSession != null) {
+			User user = aloneAlong.getUserByUserId(userSession.getUser().getId());
+			
+			if(user.getSex() != together.getSex())
+				return "신청 불가";
+		}
 		
 		return "together/togetherOrder";
 //		return "togetherOrder";
@@ -84,7 +93,7 @@ public class TogetherOrderController {
 			aloneAlong.updateTogether(newTogether);
 			
 			System.out.println("음식 주문 추가 전--------------- ");
-			//foodOrder에 넣기(구현해야함)
+			//foodOrder에 넣기
 			for(int i = 0; i < together.getTogetherFoodList().size(); i++) {
 				FoodOrder foodOrder = new FoodOrder(newOrder.getOrderId(), "visit", together.getTogetherDate() + "," + together.getTogetherTime(), 
 						together.getTogetherFoodList().get(i).getFoodId(), together.getResId());
