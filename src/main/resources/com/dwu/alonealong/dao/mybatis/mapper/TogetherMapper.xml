@@ -137,7 +137,7 @@
 	</insert>
 	
 	<update id="updateTogether">
- 		UPDATE FOOD 
+ 		UPDATE TOGETHER 
  		SET TOG_ID = #{togetherId},
     		TOG_NAME = #{togetherName},
     		HEADCOUNT = #{headCount},
@@ -148,7 +148,7 @@
     		TOG_DES = #{togetherDes},
     		RES_ID = #{resId},
     		TOG_STATUS = #{status},
-    		PRICE = #{price},
+    		PRICE = #{price}
  		WHERE TOG_ID = #{togetherId}
   	</update>
 

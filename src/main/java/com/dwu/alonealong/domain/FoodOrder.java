@@ -15,6 +15,10 @@ public class FoodOrder {
 	String firstFoodId;
 	int totalPrice;
 	
+	//togetherOrder 넣기 위해 추가
+	String orderId;
+	String foodId;
+	
 	public FoodOrder() {
 		
 	}
@@ -45,12 +49,14 @@ public class FoodOrder {
 		this.payment = payment;
 	}
 	
-	
-	
-	@Override
-	public String toString() {
-		return "FoodOrder [resId=" + resId + ", userId=" + userId + ", foodList=" + foodList + ", reserveType="
-				+ reserveType + ", visitDate=" + visitDate + ", payment=" + payment + "]";
+	//Together order시에 foodOrder를 위한 생성자
+	public FoodOrder(String orderId, String reserveType, String visitDate, String foodId, String resId) {
+		super();
+		this.resId = resId;
+		this.reserveType = reserveType;
+		this.visitDate = visitDate;
+		this.orderId = orderId;
+		this.foodId = foodId;
 	}
 
 	public String getUserId() {
@@ -92,4 +98,5 @@ public class FoodOrder {
 	public void setVisitDate(String visitDate) {
 		this.visitDate = visitDate;
 	}
+
 }

@@ -20,6 +20,7 @@ import com.dwu.alonealong.domain.Food;
 import com.dwu.alonealong.domain.FoodCart;
 import com.dwu.alonealong.domain.FoodReview;
 import com.dwu.alonealong.domain.Restaurant;
+import com.dwu.alonealong.domain.Together;
 import com.dwu.alonealong.domain.User;
 import com.dwu.alonealong.service.AloneAlongFacade;
 
@@ -100,6 +101,31 @@ public class ViewFoodController {
 		return "restaurantReview";
 	}
 	
-
+	//togetherList 탭
+	@RequestMapping("/eating/{resId}/togetherList")
+	public String listTogether(
+			@PathVariable("resId") String resId,
+			@SessionAttribute("sessionFoodCart") FoodCart foodCart,
+			ModelMap model
+			) throws Exception {
+		List<Together> togetherList = this.alonealong.getTogetherListByResId(resId);
+		model.put("togetherList", togetherList);
+		
+		model.put("foodCart", foodCart.getFoodItemList());
+		Restaurant res = alonealong.getRestaurantByResId(resId);
+		
+		model.put("totalPrice", foodCart.getSubTotal());
+		System.out.println(foodCart.getFoodItemList().size());
+		
+		Encoder encoder = Base64.getEncoder();
+		byte[] imagefile;
+		String encodedString;
+        imagefile = res.getImgFile();
+        encodedString = encoder.encodeToString(imagefile);
+        res.setImg64(encodedString);
+        model.put("restaurant", res);
+		
+		return "togetherListTab";
+	}
 		
 }

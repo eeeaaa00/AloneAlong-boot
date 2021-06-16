@@ -12,6 +12,7 @@ public interface FoodOrderDAO {
 	
 	void insertFoodOrder(FoodOrder foodOrder, String orderId);
 	
+	void insertFoodOrderForTogetherOrder(FoodOrder foodOrder); //추가함
 	
 	//void insertOrderStatus(FoodOrder foodOrder);
 	//int mySqlServerInsertOrder(FoodOrder order);

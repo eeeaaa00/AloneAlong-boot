@@ -24,6 +24,7 @@ import com.dwu.alonealong.domain.Restaurant;
 import com.dwu.alonealong.domain.Together;
 import com.dwu.alonealong.domain.TogetherFood;
 import com.dwu.alonealong.domain.TogetherMember;
+import com.dwu.alonealong.domain.User;
 import com.dwu.alonealong.service.AloneAlongFacade;
 
 @SessionAttributes({"retaurantList", "sessionFoodCart"})
@@ -46,8 +47,15 @@ public class TogetherRegisterController {
 	
 	@RequestMapping("/togetherRegister")
 	public String handleRequest(
+			HttpServletRequest request
 		) throws Exception {
 		System.out.println("등록하기 페이지로 들어가기");
+		
+//		UserSession userSession = (UserSession)request.getSession().getAttribute("userSession");
+//		if(userSession == null) {
+//			return "login";
+//		}
+		
 		return "together/togetherRegister";
 	}
 	
@@ -88,6 +96,7 @@ public class TogetherRegisterController {
 	//together 등록(구현중 - 유저세션 구현해야함)
 	@GetMapping("/togetherRegister/complete")
 	public String insertTogether(
+			HttpServletRequest request,
 			@RequestParam("name") String name,
 			@RequestParam("headCount") int headCount,
 			@RequestParam("sex") String sex,
@@ -110,9 +119,11 @@ public class TogetherRegisterController {
 			alonealong.insertTogetherFood(togetherFood);
 		}
 		
-		//멤버 넣기/////////////////////////////////수정해야함 : 유저세션의 유저//////////////////
-		String userId = "2";
-		TogetherMember togetherMember = new TogetherMember("TOGMEM_ID.NEXTVAL", userId, together.getTogetherId(), 1);
+		//멤버 넣기
+		UserSession userSession = (UserSession)request.getSession().getAttribute("userSession");
+		User user = alonealong.getUserByUserId(userSession.getUser().getId());
+		
+		TogetherMember togetherMember = new TogetherMember("TOGMEM_ID.NEXTVAL", user.getId(), together.getTogetherId(), 1);
 		alonealong.insertTogetherMember(togetherMember);
 		
 		List<Together> togetherList = alonealong.getTogetherList();

@@ -5,6 +5,6 @@
 	
 	<insert id="insertTogetherOrder">
     	INSERT INTO TOGETHER_ORDER (ORDER_ID, TOG_ID)
-    	VALUES('t' || TOGORDER_ID_SEQ.NEXTVAL, #{togetherId})
+    	VALUES(#{orderId}, #{togetherId})
 	</insert>
 </mapper>
