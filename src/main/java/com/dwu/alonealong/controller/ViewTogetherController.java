@@ -3,6 +3,7 @@ package com.dwu.alonealong.controller;
 import java.util.Base64;
 import java.util.Base64.Encoder;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.dwu.alonealong.domain.Together;
+import com.dwu.alonealong.domain.User;
 import com.dwu.alonealong.service.AloneAlongFacade;
 
 @Controller
@@ -36,7 +38,7 @@ public class ViewTogetherController {
 	}
 
 	@RequestMapping("/together/{togetherId}")
-	public String viewTogether(
+	public String viewTogether(HttpServletRequest request,
 			@PathVariable("togetherId") String togId,
 			@RequestParam(value="area",  defaultValue="all") String area,
 			@RequestParam(value="date",  defaultValue="") String date,
@@ -47,6 +49,30 @@ public class ViewTogetherController {
 			ModelMap model) throws Exception {
 		Together together = this.aloneAlong.getTogetherByTogId(togId);
 		
+		boolean isHost = false;
+		
+		UserSession userSession = (UserSession)request.getSession().getAttribute("userSession");
+		
+		//글 등록, 삭제 접근 조건(구현중)////////////////
+		if(userSession != null) {
+			User user = aloneAlong.getUserByUserId(userSession.getUser().getId());
+			
+			System.out.println("멤버에 들어있는 유저 아이디 : " + together.getTogetherMemberList().get(0).getUserId());
+			System.out.println("user.getId() : " + user.getId());
+			System.out.println("together.getTogetherMemberList().size() : " + together.getTogetherMemberList().size());
+			
+			System.out.println("멤버에 들어있는 유저 아이디 : " + together.getTogetherMemberList().get(0).getUserId());
+			System.out.println("user.getId() : " + user.getId());
+			System.out.println("together.getTogetherMemberList().size() : " + together.getTogetherMemberList().size());
+			
+			if(together.getTogetherMemberList().size() == 1 && user.getId() == together.getTogetherMemberList().get(0).getUserId()) {
+				System.out.println("조건문 실행");
+				isHost = true;
+			}
+		}
+		
+		System.out.println("isHost : " + isHost);
+		
 		//이미지
 //		Encoder encoder = Base64.getEncoder();
 //		byte[] imagefile = together.getRestaurant().getImgFile();
@@ -54,7 +80,6 @@ public class ViewTogetherController {
 //        String encodedString = encoder.encodeToString(imagefile);
 //        System.out.println("여기64: " + encodedString);
 //        together.getRestaurant().setImg64(encodedString);
-		
 		
 		//카테고리
 		String areaName = "모든 지역";
@@ -115,6 +140,7 @@ public class ViewTogetherController {
 		model.put("age", age);
 		
 		model.put("together", together);
+		model.put("isHost", isHost);
 		return "togetherInfo";
 	}
 }
