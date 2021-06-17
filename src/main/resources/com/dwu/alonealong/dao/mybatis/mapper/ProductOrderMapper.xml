@@ -21,4 +21,10 @@
 	SELECT *
 	FROM DUAL
   </update>
+  
+  <select id="checkUsersOrder" resultType="int">
+     SELECT COUNT(*)
+    FROM PRODUCT_LINEITEM PL, ORDERINFO O
+    WHERE PL.ORDER_ID = O.ORDER_ID AND O.USER_ID = #{userId} AND PL.PRODUCT_ID = #{productId}
+  </select>
 </mapper>

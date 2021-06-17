@@ -2,6 +2,8 @@ package com.dwu.alonealong.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.support.PagedListHolder;
 import org.springframework.stereotype.Controller;
@@ -13,10 +15,10 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.dwu.alonealong.domain.Product;
 import com.dwu.alonealong.domain.ProductReview;
+import com.dwu.alonealong.domain.User;
 import com.dwu.alonealong.service.AloneAlongFacade;
 
 @Controller
-@SessionAttributes({"product"})
 public class ViewProductReviewController {
 	private AloneAlongFacade aloneAlong;
 
@@ -26,14 +28,19 @@ public class ViewProductReviewController {
 	}
 	
 	@RequestMapping("/shop/{productId}/review")
-	public String handleRequest(@PathVariable("productId") String productId,
+	public String handleRequest(HttpServletRequest request,
+			@PathVariable("productId") String productId,
 			@RequestParam(value="page", defaultValue="1") int page,
 			@RequestParam(value="sortType", defaultValue="new") String sortType,
 			@RequestParam(value="quantity", defaultValue="1") int quantity,  
 			ModelMap model) throws Exception {
-		//임시
-		String userId = "1";
-
+		String userId = " ";
+		UserSession userSession = (UserSession)request.getSession().getAttribute("userSession");
+		if(userSession != null) {
+			userId = userSession.getUser().getId();
+			model.put("isPurchaser", aloneAlong.checkUsersOrder(userId, productId));
+		}
+		
 		String sortTypeName = "최신순";
 		switch(sortType) {
 			case "recommend" : sortTypeName = "추천순"; break;
@@ -65,7 +72,7 @@ public class ViewProductReviewController {
 		model.put("sortTypeName", sortTypeName);
 		
 		//로그인 완성 후 수정 필요
-		model.put("userId", "1");
+		model.put("userId", userId);
 		return "productReview";
 	}
 

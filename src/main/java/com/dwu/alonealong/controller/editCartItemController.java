@@ -1,6 +1,8 @@
 package com.dwu.alonealong.controller;
 
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -24,18 +26,37 @@ public class editCartItemController {
 	}
 
 	@RequestMapping("/cart/delete/{cartItemId}")
-	public String deleteCartItem(@PathVariable("cartItemId") String cartItemId,
+	public String deleteCartItem(HttpServletRequest request,
+			@PathVariable("cartItemId") String cartItemId,
 			ModelMap model) throws Exception {
+		UserSession userSession = (UserSession)request.getSession().getAttribute("userSession");
+		if(userSession == null) {
+			return "redirect:/login";
+		}
+		
+		CartItem cartItem = aloneAlong.getCartItem(cartItemId);
+		if(!userSession.getUser().getId().equals(cartItem.getUserId())) {
+			return  "redirect:/error";
+		}
 		this.aloneAlong.deleteCartItem(cartItemId);
 		
 		return "redirect:/cart";
 	}
 
 	@RequestMapping("/cart/update/{cartItemId}")
-	public String updateCartItem(@PathVariable("cartItemId") String cartItemId,
+	public String updateCartItem(HttpServletRequest request,
+			@PathVariable("cartItemId") String cartItemId,
 			@RequestParam(value="quantity") int quantity,
 			ModelMap model) throws Exception {
+		UserSession userSession = (UserSession)request.getSession().getAttribute("userSession");
+		if(userSession == null) {
+			return "redirect:/login";
+		}
+		
 		CartItem cartItem = aloneAlong.getCartItem(cartItemId);
+		if(!userSession.getUser().getId().equals(cartItem.getUserId())) {
+			return  "redirect:/error";
+		}
 		Product product = aloneAlong.getProduct(cartItem.getProductId());
 		cartItem.setQuantity(quantity);
 		
@@ -49,11 +70,16 @@ public class editCartItemController {
 
 
 	@RequestMapping("/cart/insert/{productId}/{quantity}/{type}")
-	public String insertCartItem(@PathVariable("productId") String productId,
+	public String insertCartItem(HttpServletRequest request,
+			@PathVariable("productId") String productId,
 			@PathVariable(value="quantity") int quantity, 
 			@PathVariable(value="type") String type, 
 			ModelMap model) throws Exception {
-		String userId = "1";
+		UserSession userSession = (UserSession)request.getSession().getAttribute("userSession");
+		if(userSession == null) {
+			return "redirect:/login";
+		}
+		String userId = userSession.getUser().getId();
 		Product product = aloneAlong.getProduct(productId);
 		
 		product.setQuantity(quantity);
@@ -64,15 +90,16 @@ public class editCartItemController {
 			if(!aloneAlong.checkStock(productId, quantity)) {
 				return "redirect:/shop?stockError=true&product=" + product.getProductName() + "&stock=" + product.getProductStock();
 			}
+			aloneAlong.insertCartItem(productId, quantity, userId);
 			return "redirect:/shop?insertCart=true";
 		}
 		else if(type.equals("product")) {
 			if(!aloneAlong.checkStock(productId, quantity)) {
 				return "redirect:/shop/" + productId + "?stockError=true&product=" + product.getProductName() + "&stock=" + product.getProductStock();
 			}
+			aloneAlong.insertCartItem(productId, quantity, userId);
 			return "redirect:/shop/" + productId + "?insertCart=true";
 		}
-		aloneAlong.insertCartItem(productId, quantity, userId);
 		return "error";
 	}
 }

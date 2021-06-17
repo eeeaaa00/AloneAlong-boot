@@ -48,6 +48,9 @@ public class ProductOrderController {
 		
 		//유저 정보 및 결제 정보 받아오기
 		UserSession userSession = (UserSession)request.getSession().getAttribute("userSession");
+		if(userSession == null) {
+			return "redirect:/login";
+		}
 		String userId = userSession.getUser().getId();
 		User user = aloneAlong.getUserByUserId(userId);
 		Payment paymentMethod = aloneAlong.getCard(userId);

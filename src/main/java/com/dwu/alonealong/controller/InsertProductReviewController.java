@@ -1,5 +1,7 @@
 package com.dwu.alonealong.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -25,25 +27,29 @@ public class InsertProductReviewController {
 	}
 	
 	@RequestMapping("/shop/{productId}/review/insert")
-	public RedirectView handleRequest(
+	public String handleRequest(HttpServletRequest request,
 //			@ModelAttribute("userSession") UserSession userSession,
 			@PathVariable("productId") String productId,
 			@RequestParam(value="rating") int rating,
 			@RequestParam(value="contents") String contents, 
 			ModelMap model) throws Exception {
-		//임시
-		String userId = "1";
+		UserSession userSession = (UserSession)request.getSession().getAttribute("userSession");
+		if(userSession == null) {
+			return "redirect:/login";
+		}
+		String userId = userSession.getUser().getId();
+		if(!aloneAlong.checkUsersOrder(userId, productId)) {
+			return "redirect:/error";
+		}
 		
-		//product를 구매한 user인지 검사하는 과정 추가 필요
 		ProductReview productReview = new ProductReview();
 		productReview.setUserId(userId);
 		productReview.setProductId(productId);
 		productReview.setRating(rating);
 		productReview.setReviewContents(contents);
 		
-		//결과값 검사 추가 필요
 		this.aloneAlong.insertProductReview(productReview);
-		return new RedirectView("/shop/{productId}/review");
+		return "redirect:/shop/{productId}/review";
 	}
 
 }

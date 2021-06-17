@@ -37,6 +37,7 @@ public interface AloneAlongFacade {
 	List<Product> searchProductList(String keywords);
 	Product getProduct(String productId);
 	boolean checkStock(String productId, int quantity);
+	void updateProduct(Product product);
 	
 	//PRODUCT Review
 	ProductReview getProductReview(String reviewId, String userId);
@@ -56,6 +57,7 @@ public interface AloneAlongFacade {
 //	List<ProductOrder> getProductOrdersByProductId(String productId);
 //  	ProductOrder getProductOrder(int orderId);
 	void insertProductOrder(ProductOrder order);
+	boolean checkUsersOrder(String userId, String productId);
 	
 	//CART
 	List<CartItem> getAllCartItem(String userId) throws DataAccessException;

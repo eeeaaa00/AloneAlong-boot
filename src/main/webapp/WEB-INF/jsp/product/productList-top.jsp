@@ -6,7 +6,7 @@
 <div class="row mx-3">
 	<div class="col-md-5">
 		<h2 style="text-color: #29A65F;"><c:out value="${pcList[pcId - 1]}"/></h2>
-		총 <b><c:out value="${productList.size()}"/></b>개의 상품이 있습니다.
+		총 <b><c:out value="${productCount}"/></b>개의 상품이 있습니다.
 	</div>
 	<div class="col-md-5"></div>
 	<div class="col-md-2"></div>

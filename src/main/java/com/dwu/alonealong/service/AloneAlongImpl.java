@@ -126,6 +126,9 @@ public class AloneAlongImpl implements AloneAlongFacade{
 	public boolean checkStock(String productId, int quantity) {
 		return productDao.checkStock(productId, quantity);
 	}
+	public void updateProduct(Product product) {
+		productDao.updateProduct(product);
+	}
 	
 	//Product Review
 	public ProductReview getProductReview(String reviewId, String userId){
@@ -179,6 +182,9 @@ public class AloneAlongImpl implements AloneAlongFacade{
 //	}
 	public void insertProductOrder(ProductOrder order){
 		productOrderDao.insertProductOrder(order);
+	}
+	public boolean checkUsersOrder(String userId, String productId){
+		return productOrderDao.checkUsersOrder(userId, productId);
 	}
 	
 	//cart
