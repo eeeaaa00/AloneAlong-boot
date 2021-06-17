@@ -17,9 +17,9 @@ public class MyBatisFoodReviewDAO implements FoodReviewDAO{
 	private FoodReviewMapper foodReviewMapper;
 
 	@Override
-	public List<FoodReview> getFoodReviewListByResId(String resId) {
+	public List<FoodReview> getFoodReviewListByResId(String resId, String sortType) {
 		// TODO Auto-generated method stub
-		return foodReviewMapper.getFoodReviewListByResId(resId);
+		return foodReviewMapper.getFoodReviewListByResId(resId, sortType);
 	}
 	@Override
 	public void insertFoodReview(FoodReview foodReview) {

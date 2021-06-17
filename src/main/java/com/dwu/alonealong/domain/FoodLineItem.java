@@ -1,16 +1,27 @@
 package com.dwu.alonealong.domain;
 
-public class FoodLineItem {
+import java.io.Serializable;
+
+public class FoodLineItem implements Serializable{
 	private String orderId;
 	private String foodId;
 	private int quantity;
 	private int unitPrice;
+	
+	private String foodName;
 	
 	
 	public FoodLineItem(String orderId, String foodId, int quantity, int unitPrice) {
 		super();
 		this.orderId = orderId;
 		this.foodId = foodId;
+		this.quantity = quantity;
+		this.unitPrice = unitPrice;
+	}
+	//조회용 생성자
+	public FoodLineItem(String foodName, int quantity, int unitPrice) {
+		super();
+		this.setFoodName(foodName);
 		this.quantity = quantity;
 		this.unitPrice = unitPrice;
 	}
@@ -43,6 +54,12 @@ public class FoodLineItem {
 	}
 	public void setUnitPrice(int unitPrice) {
 		this.unitPrice = unitPrice;
+	}
+	public String getFoodName() {
+		return foodName;
+	}
+	public void setFoodName(String foodName) {
+		this.foodName = foodName;
 	}
 	
 	

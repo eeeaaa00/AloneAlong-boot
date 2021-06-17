@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+ 
+ 
     
 <div class="bg-light rounded-lg py-3">
 			<div class="cart-header text-center mb-3 pb-3 border-bottom">
@@ -21,8 +23,7 @@
 							class=" d-flex align-items-center text-center text-md-center row">
 							<div class="col-12 col-md-7">
 								<div class="d-flex align-items-center">
-									<a href="/detail-1"> <svg class="img rounded-lg"
-											style="background-image: url('https://img-cf.kurly.com/shop/data/goods/1575003713758y0.jpg'); background-size: cover; background-position: center; width: 100px; height: 100px;"></svg>
+									<a href="/detail-1"> <img src="data:image/jpeg;base64,${item.food.img64}" style="margin-left:20px;width:100px; height:100px; object-fit: cover;" />
 									</a>
 									<div class="cart-title text-left ml-3">
 										<a class="text-uppercase text-dark" href="/detail-1"> <strong>${item.food.name}</strong></a>

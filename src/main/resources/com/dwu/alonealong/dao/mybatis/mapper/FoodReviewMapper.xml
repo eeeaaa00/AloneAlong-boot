@@ -17,11 +17,12 @@
     	REVIEW_RECOMMEND as recommend
     FROM FOOD_REVIEW
     WHERE RES_ID = #{resId}
+    ORDER BY ${sortType}
   </select>
 
   <insert id="insertFoodReview">
     INSERT INTO FOOD_REVIEW (REVIEW_ID, FOOD_ID, RES_ID, USER_ID, REVIEW_DATE, REVIEW_RATING, REVIEW_CONTENTS, REVIEW_RECOMMEND)
-    VALUES ('rev' || REVIEWID_SEQ.NEXTVAL, #{foodId}, #{resId}, #{userId}, SYSDATE, #{rating}, #{contents}, #{recommend})
+    VALUES ('rev' || REVIEWID_SEQ.NEXTVAL, 'none', #{resId}, #{userId}, SYSDATE, #{rating}, #{contents}, #{recommend})
   </insert>
   
 

@@ -2,7 +2,9 @@ package com.dwu.alonealong.controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Base64;
 import java.util.List;
+import java.util.Base64.Encoder;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -74,6 +76,16 @@ public class FoodController {
 			Model model) {
 		System.out.println("update");
 		Food foodData = alonealong.getFood(foodId);
+		
+		
+		Encoder encoder = Base64.getEncoder();
+		byte[] imagefile;
+		String encodedString;
+        imagefile = foodData.getImgFile();
+        encodedString = encoder.encodeToString(imagefile);
+        foodData.setImg64(encodedString);
+		
+		
 		model.addAttribute("food", foodData);
 		return "foodForm";
 	}
