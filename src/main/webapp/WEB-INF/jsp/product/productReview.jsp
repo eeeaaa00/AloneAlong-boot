@@ -6,6 +6,24 @@
 .btn-recommend:hover, .btn-recommend:focus, .btn-recommend.active
 	{  color:#F27024; border-color:#F27024; }
 </style>
+<script type="text/javascript">
+$(document).on("click", ".open-updateModal", function () {
+     var reviewId = $(this).data('id');
+     var reviewContents = $(this).data('contents');
+     $(".modal-body #reviewId").val(reviewId);
+     $(".modal-body #reviewContents").val(reviewContents);
+     // As pointed out in comments, 
+     // it is unnecessary to have to manually call the modal.
+     // $('#addBookDialog').modal('show');
+});
+$(document).on("click", ".open-deleteModal", function () {
+    var reviewId = $(this).data('id');
+    $(".modal-body #reviewId").val(reviewId);
+    // As pointed out in comments, 
+    // it is unnecessary to have to manually call the modal.
+    // $('#addBookDialog').modal('show');
+});
+</script>
 
 <div class="row my-5 mx-5">
 	<div class="col-md-12" style="width:100%;">
@@ -63,7 +81,7 @@
 				<!-- 리뷰 작성 -->
 				<c:if test="${isPurchaser == true}">
 				<button type="button" class="btn btn-sm btn-orange rounded-pill px-3"
-				data-toggle="modal" data-target="#exampleModal"><i class="far fa-edit"></i> 작성하기</button>
+				data-toggle="modal" data-target="#insertModal"><i class="far fa-edit"></i> 작성하기</button>
 				</c:if>
           	</div>
 
@@ -90,8 +108,8 @@
 					</div>
 					<c:if test="${review.userId eq userId}">
 					<div class="col-md-6 text-right">
-						<a class="textbtn-gray" data-toggle="modal" data-target="#updateModal" ><small><i class="fas fa-pen mx-2"></i></small></a>
-						<a class="textbtn-gray" data-toggle="modal" data-target="#deleteModal" ><small><i class="far fa-trash-alt"></i></small></a>
+						<a class="textbtn-gray open-updateModal" data-contents="${review.reviewContents}" data-id="${review.reviewId}" data-toggle="modal" data-target="#updateModal" ><small><i class="fas fa-pen mx-2"></i></small></a>
+						<a class="textbtn-gray open-deleteModal" data-id="${review.reviewId}" data-toggle="modal" data-target="#deleteModal" ><small><i class="far fa-trash-alt"></i></small></a>
 					</div>
 					</c:if>
 				</div>
@@ -110,57 +128,6 @@
 						${review.recommend}<small class="text-gray"> 명이 추천</small>
 					</a>
 				</div>
-				<div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-hidden="true">
-				<form action='<c:url value="/shop/${productId}/review/update/${review.reviewId}"/>'>
-					<div class="modal-dialog modal-dialog-centered" role="document">
-						<div class="modal-content pb-4">
-							<div class="modal-header">
-								<h5 class="modal-title">리뷰 수정</h5>
-								<button type="button" class="close" data-dismiss="modal"
-									aria-label="Close">
-									<span aria-hidden="true">&times;</span>
-								</button>
-							</div>
-							<div class="modal-body">
-									<div class="row">
-										<div class="col-sm-6">
-											<div class="form-group">
-												<select name="rating" class="custom-select focus-shadow-0">
-													<option value="5">★★★★★ (5/5)</option>
-													<option value="4">★★★★☆ (4/5)</option>
-													<option value="3">★★★☆☆ (3/5)</option>
-													<option value="2">★★☆☆☆ (2/5)</option>
-													<option value="1">★☆☆☆☆ (1/5)</option>
-												</select>
-											</div>
-										</div>
-									</div>
-									<div class="form-group">
-										<textarea rows="4" name="contents" id="review"
-											required="" class="form-control">${review.reviewContents}</textarea>
-									</div>
-							</div>
-							<div class="text-center">
-								<button type="submit" class="btn btn-orange rounded-pill w-25 pb-2">수정하기</button>
-							</div>
-						</div>
-					</div>
-				</form>
-			</div>
-			<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-hidden="true">
-				<div class="modal-dialog modal-dialog-centered" role="document">
-					<div class="modal-content py-5">
-						<div class="modal-body text-center pb-4">
-							<h6>정말 삭제하시겠습니까?</h6>
-						</div>
-						<div class="row mx-5 mb-2 justify-content-center">
-							<a type="button" class="btn btn-green rounded-pill mx-2 py-2 px-3" data-dismiss="modal">취소</a>
-							<a type="button" class="btn btn-orange rounded-pill mx-2 py-2 px-3"
-								href="<c:url value='/shop/${productId}/review/delete/${review.reviewId}'/>">삭제</a>
-						</div>
-					</div>
-				</div>
-			</div>
 			</div>
 			</c:forEach>
 		  </div>
@@ -180,8 +147,69 @@
       </div>
 	</div>
 </div>
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-hidden="true">
-	<form action='<c:url value="/shop/${productId}/review/insert"/>'>
+<!-- Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog"
+	aria-hidden="true">
+	<form action='<c:url value="/shop/review/delete"/>'>
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content py-5">
+			<div class="modal-body text-center pb-4">
+				<h6>정말 삭제하시겠습니까?</h6>
+				<input type="hidden" name="productId" id="productId" value="${productId}"/>
+				<input type="hidden" name="reviewId" id="reviewId" value=""/>
+			</div>
+			<div class="row mx-5 mb-2 justify-content-center">
+				<a type="button" class="btn btn-green rounded-pill mx-2 py-2 px-3"
+					data-dismiss="modal">취소</a>
+				<button type="submit" class="btn btn-orange rounded-pill mx-2 py-2 px-3">삭제</button>
+			</div>
+		</div>
+	</div>
+	</form>
+</div>
+<div class="modal fade" id="updateModal" tabindex="-1" role="dialog"
+	aria-hidden="true">
+	<form
+		action='<c:url value="/shop/review/update"/>'>
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content pb-4">
+				<div class="modal-header">
+					<h5 class="modal-title">리뷰 수정</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="form-group">
+								<select name="rating" class="custom-select focus-shadow-0">
+									<option value="5">★★★★★ (5/5)</option>
+									<option value="4">★★★★☆ (4/5)</option>
+									<option value="3">★★★☆☆ (3/5)</option>
+									<option value="2">★★☆☆☆ (2/5)</option>
+									<option value="1">★☆☆☆☆ (1/5)</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<textarea rows="4" name="contents" id="reviewContents" required=""
+							class="form-control">${review.reviewContents}</textarea>
+					</div>
+					<input type="hidden" name="productId" id="productId" value="${productId}"/>
+					<input type="hidden" name="reviewId" id="reviewId" value=""/>
+				</div>
+				<div class="text-center">
+					<button type="submit" class="btn btn-orange rounded-pill w-25 pb-2">수정하기</button>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>
+<div class="modal fade" id="insertModal" tabindex="-1" role="dialog" aria-hidden="true">
+	<form action='<c:url value="/shop/review/insert"/>'>
 		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content pb-4">
 				<div class="modal-header">
@@ -209,6 +237,7 @@
 							<textarea rows="4" name="contents" id="review"
 								placeholder="리뷰를 작성하세요" required="" class="form-control"></textarea>
 						</div>
+					<input type="hidden" name="productId" id="productId" value="${productId}"/>
 				</div>
 				<div class="text-center">
 					<button type="submit" class="btn btn-orange rounded-pill w-25 pb-2">작성하기</button>

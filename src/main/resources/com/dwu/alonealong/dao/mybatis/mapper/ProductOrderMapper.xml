@@ -24,11 +24,13 @@
 		PO.SHIP_ADDRESS as shipAddress
 	FROM ORDERINFO O, PRODUCT_ORDER PO
 	WHERE O.ORDER_ID = PO.ORDER_ID AND O.USER_ID = #{userId}
+    ORDER BY ORDER_DATE DESC
   </select>
   
   <select id="getLineItemsByOrderId" resultType="ProductLineItem">
    SELECT
 		PL.PRODUCT_ID as productId,
+		P.PRODUCT_NAME as productName,
 		PL.QUANTITY as quantity,
 		PL.UNIT_PRICE as unitPrice,
 		P.PRODUCT_IMG as productImg

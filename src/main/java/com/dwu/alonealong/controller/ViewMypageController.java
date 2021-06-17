@@ -28,6 +28,8 @@ import com.dwu.alonealong.service.AloneAlongFacade;
 import com.dwu.alonealong.domain.Food;
 import com.dwu.alonealong.domain.FoodLineItem;
 import com.dwu.alonealong.domain.FoodOrder;
+import com.dwu.alonealong.domain.ProductLineItem;
+import com.dwu.alonealong.domain.ProductOrder;
 import com.dwu.alonealong.domain.Restaurant;
 import com.dwu.alonealong.domain.User;
 import com.dwu.alonealong.service.AloneAlongFacade;
@@ -41,8 +43,27 @@ public class ViewMypageController {
     this.aloneAlong = aloneAlong;
   }
 
-	@RequestMapping("/myOrder")
-	public String order() {
+  	@RequestMapping("/myOrder")
+	public String order(
+			HttpServletRequest request,
+			Model model) throws Exception {
+		UserSession userSession = (UserSession)request.getSession().getAttribute("userSession");
+		if(userSession == null) {
+			return "redirect:/login";
+		}
+		String userId = userSession.getUser().getId();
+		User user = aloneAlong.getUserByUserId(userId);
+		List<ProductOrder> productOrderList = aloneAlong.getOrdersByUserId(userId);
+		
+		Encoder encoder = Base64.getEncoder();
+		for(ProductOrder order : productOrderList) {
+			for(ProductLineItem product : order.getLineItems()) {
+				byte[] img = product.getProductImg();
+				String encodedString = encoder.encodeToString(img);
+				product.setImg64(encodedString);
+			}
+		}
+		model.addAttribute("productOrderList", productOrderList);
 		return "myOrder";
 	}
 
