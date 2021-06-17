@@ -53,9 +53,9 @@ public interface AloneAlongFacade {
 	void deleteProductReviewRecommend(String reviewId, String userId);
 	
 	//PRODUCT Order
-//	List<ProductOrder> getProductOrdersByUserId(String userId);
-//	List<ProductOrder> getProductOrdersByProductId(String productId);
-//  	ProductOrder getProductOrder(int orderId);
+	List<ProductOrder> getOrdersByUserId(String userId);
+//	List<ProductOrder> getOrdersByProductId(String productId);
+  	ProductOrder getProductOrder(String orderId);
 	void insertProductOrder(ProductOrder order);
 	boolean checkUsersOrder(String userId, String productId);
 	

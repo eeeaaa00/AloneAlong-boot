@@ -1,13 +1,17 @@
 package com.dwu.alonealong.domain;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class ProductLineItem {
+@SuppressWarnings("serial")
+public class ProductLineItem implements Serializable {
 	private String productId;
 	private String productName;
 	private int quantity;
 	private int unitPrice;
 	private int price;
+	private byte[] productImg;
+	private String img64;
 
 	public ProductLineItem() {
 		super();
@@ -43,6 +47,12 @@ public class ProductLineItem {
 	
 	public int getPrice() { return price; }
 	public void setPrice(int price) { this.price = price; }
+
+	public byte[] getProductImg() { return productImg; }
+	public void setProductImg(byte[] productImg) { this.productImg = productImg; }
+	  
+	public String getImg64() { return img64; }
+	public void setImg64(String img64) { this.img64 = img64; }
 	
 	@Override
 	public String toString() {
