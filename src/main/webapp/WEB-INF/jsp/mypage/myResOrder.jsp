@@ -11,7 +11,7 @@
 			</a>
 		</div>
 		<div class="d-flex align-items-center">
-			<a href="/detail-1"> <img src="data:image/jpeg;base64,${foodOrder.img64}" style="width: 100px; height: 100px;">
+			<a href="/detail-1"> <img src="data:image/jpeg;base64,${foodOrder.img64}" style="width: 100px; height: 100px; object-fit: cover;">
 			</a>
 			<div class="cart-title text-left ml-3">
 				<a class="text-uppercase text-dark" href="/detail-1"> <strong>${foodOrder.resName}</strong></a> <br> 
