@@ -34,17 +34,22 @@
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/tiles/search.jsp" />
 	</definition>
-	
+
 	<definition name="productOrderResult" extends="base_layout">
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/product/productOrderResult.jsp" />
 	</definition>
-	
-		<definition name="resOrderResult" extends="base_layout">
+
+	<definition name="resOrderResult" extends="base_layout">
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/restaurant/resOrderResult.jsp" />
 	</definition>
-	
+
+	<definition name="togOrderResult" extends="base_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/together/togOrderResult.jsp" />
+	</definition>
+
 
 
 	<!-- mypage -->
@@ -94,7 +99,7 @@
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/mypage/myTogetherOrder.jsp" />
 	</definition>
-  <definition name="restaurantForm" extends="mypage_layout">
+	<definition name="restaurantForm" extends="mypage_layout">
 		<put-attribute name="func" value="내 식당 관리" type="string" />
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/restaurant/restaurantForm.jsp" />

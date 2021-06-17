@@ -73,7 +73,7 @@ public class FoodOrderController {
 			@RequestParam(value="resId", required=false) String resId, 
 			@SessionAttribute("sessionFoodCart") FoodCart cart,
 			@ModelAttribute("foodOrderForm") FoodOrderForm form, //jsp에서 modelattribute 등록해라
-			HttpServletRequest request,
+			HttpServletRequest request, ModelMap model,
 			SessionStatus status
 			) {
 		
@@ -94,9 +94,11 @@ public class FoodOrderController {
 			return "";
 		aloneAlong.insertFoodOrder(order);
 
-
+		String resName = aloneAlong.getRestaurantByResId(resId).getResName();
 		status.setComplete();  // remove sessionCart and orderForm from session
-		return "restaurant";
+		
+		model.put("resName", resName);
+		return "resOrderResult";
 	}
 
 }
