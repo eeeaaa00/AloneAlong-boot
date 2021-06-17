@@ -24,7 +24,6 @@ public class FoodOrder implements Serializable{
 	String orderDate;
 	
   //togetherOrder 넣기 위해 추가
-	String orderId;
 	String foodId;
 	public FoodOrder() {
 		
@@ -60,7 +59,7 @@ public class FoodOrder implements Serializable{
 		this.visitDate = visitDate;
 		this.orderId = orderId;
 		this.foodId = foodId;	
-	
+	}
 	public String getResName() {
 		return resName;
 	}
