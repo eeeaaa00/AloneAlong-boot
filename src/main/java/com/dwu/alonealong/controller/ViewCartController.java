@@ -33,7 +33,7 @@ public class ViewCartController {
 			ModelMap model) throws Exception {
 		UserSession userSession = (UserSession)request.getSession().getAttribute("userSession");
 		if(userSession == null) {
-			return "redirect:/login";
+			return "forward:/login";
 		}
 		String userId = userSession.getUser().getId();
 		
