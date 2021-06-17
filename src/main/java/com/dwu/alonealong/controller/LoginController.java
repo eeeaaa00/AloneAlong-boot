@@ -17,7 +17,7 @@ import com.dwu.alonealong.domain.User;
 import com.dwu.alonealong.service.AloneAlongFacade;
 
 @Controller
-@SessionAttributes("userSession")
+@SessionAttributes({"userSession", "refererURL"})
 public class LoginController {
 
 	private AloneAlongFacade alonealong;
@@ -28,13 +28,21 @@ public class LoginController {
 	}
 
 	@RequestMapping(value = "/login")
-	public String handleRequest(ModelMap model) throws Exception {
-
+	public String handleRequest(HttpServletRequest request,
+			ModelMap model) throws Exception {
+		String refererURL = request.getHeader("referer");
+		if(refererURL != null) {
+			model.addAttribute("refererURL", refererURL);
+		}
+		else {
+			model.addAttribute("refererURL", "/");
+		}
 		return "login";
 	}
 
 	@RequestMapping(value = "/loginTest")
-	public ModelAndView handleRequest(HttpServletRequest request, @RequestParam("id") String userId,
+	public ModelAndView handleRequest(HttpServletRequest request, 
+			@RequestParam("id") String userId,
 			@RequestParam("pw") String password,
 			@RequestParam(value = "forwardAction", required = false) String forwardAction, Model model)
 			throws Exception {
@@ -45,16 +53,17 @@ public class LoginController {
 		} else {
 			UserSession userSession = new UserSession(user);
 			model.addAttribute("userSession", userSession);
-
-			if (forwardAction != null)
-				return new ModelAndView("redirect:" + forwardAction);
-			else {
-				ModelAndView mv = new ModelAndView(); 
-				mv.setViewName("redirect:/");
+			String refererURL = (String)request.getSession().getAttribute("refererURL");
+			
+			ModelAndView mv = new ModelAndView();
+			if (forwardAction != null) {
+				mv.setViewName("redirect:" + forwardAction);
 				return mv;
 			}
-				
-
+			else{
+				mv.setViewName("redirect:" + refererURL);
+				return mv;
+			}
 		}
 	}
 }
