@@ -13,7 +13,7 @@
 		class="btn btn-outline-success rounded-pill my-1 btn-block">함께먹기 예약</a>
 	
 	
-	<c:if test="${!empty userSession.user.buisness_num}">
+	<c:if test="${!empty userSession.user.business_num}">
 		<hr>	
 		<a href="<c:url value='/eating/adminRes' />" class="btn btn-outline-info rounded-pill my-1 btn-block">식당 관리</a>
 	</c:if>	
