@@ -171,15 +171,15 @@ public class AloneAlongImpl implements AloneAlongFacade{
 	}
 	
 	//PRODUCT Order
-//	public List<ProductOrder> getProductOrdersByUserId(String userId){
-//		return productOrderDao.getOrdersByUserId(userId);
-//	}
+	public List<ProductOrder> getOrdersByUserId(String userId){
+		return productOrderDao.getOrdersByUserId(userId);
+	}
 //	public List<ProductOrder> getProductOrdersByProductId(String productId){
 //		return productOrderDao.getOrdersByProductId(productId);
 //	}
-//	public ProductOrder getProductOrder(int orderId){
-//		return productOrderDao.getProductOrder(orderId);
-//	}
+	public ProductOrder getProductOrder(String orderId){
+		return productOrderDao.getProductOrder(orderId);
+	}
 	public void insertProductOrder(ProductOrder order){
 		productOrderDao.insertProductOrder(order);
 	}

@@ -1,5 +1,7 @@
 package com.dwu.alonealong.dao.mybatis;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
@@ -17,6 +19,21 @@ public class MybatisProductOrderDAO implements ProductOrderDAO{
 	@Autowired
 	private ProductMapper productMapper;
 
+	@Transactional
+	public List<ProductOrder> getOrdersByUserId(String userId) throws DataAccessException{
+		List<ProductOrder> productOrder = productOrderMapper.getOrdersByUserId(userId);
+		for(ProductOrder order : productOrder) {
+			order.setLineItems(productOrderMapper.getLineItemsByOrderId(order.getOrderId()));
+		}
+		return productOrder;
+	}
+//	List<ProductOrder> getOrdersByProductId(String productId) throws DataAccessException;
+	
+  	//get ProductOrder Method
+  	public ProductOrder getProductOrder(String orderId) throws DataAccessException{
+  		return productOrderMapper.getProductOrder(orderId);
+  	}
+  	
 	@Transactional
 	public void insertProductOrder(ProductOrder order) throws DataAccessException{
 	    productOrderMapper.insertProductOrder(order);
