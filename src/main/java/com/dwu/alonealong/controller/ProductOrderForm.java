@@ -8,20 +8,21 @@ import com.dwu.alonealong.domain.ProductOrder;
 import com.dwu.alonealong.domain.User;
 
 public class ProductOrderForm {
+	private int totalPrice;
 	private User orderUser;
 	private User shipUser;
 	private Payment payment;
+	private String type;
 	private List<ProductLineItem> orderList;
 	
-	private final ProductOrder productOrder = new ProductOrder();
+	private final ProductOrder order = new ProductOrder();
 	
-	public ProductOrder getProductOrder(){
-		return productOrder;
+	public ProductOrder getOrder(){
+		return order;
 	}
 	
-	public void initProductOrder(User user, List<ProductLineItem> orderList, Payment payment) {
+	public void initProductOrder(User user, Payment payment) {
 		this.orderUser = user;
-		this.orderList = orderList;
 		this.payment = payment;
 	}
 
@@ -36,4 +37,10 @@ public class ProductOrderForm {
 
 	public List<ProductLineItem> getOrderList() { return orderList; }
 	public void setOrderList(List<ProductLineItem> orderList) { this.orderList = orderList; }
+	
+	public int getTotalPrice() { return totalPrice; }
+	public void setTotalPrice(int totalPrice) { this.totalPrice = totalPrice; }
+
+	public String getType() { return type; }
+	public void setType(String type) { this.type = type; }
 }

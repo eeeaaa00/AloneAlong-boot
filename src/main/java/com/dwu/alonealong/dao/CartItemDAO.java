@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.dao.DataAccessException;
 
-import com.dwu.alonealong.domain.Cart;
 import com.dwu.alonealong.domain.CartItem;
 
 public interface CartItemDAO {
@@ -16,5 +15,6 @@ public interface CartItemDAO {
 	
 	void insertCartItem(String productId, int quantity, String userId)  throws DataAccessException;
 	void deleteCartItem(String cartItemId) throws DataAccessException;
+	void deleteAllCartItem(String userId) throws DataAccessException;
 	void updateCartItem(CartItem cartItem) throws DataAccessException;
 }

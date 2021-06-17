@@ -14,6 +14,7 @@ import com.dwu.alonealong.dao.mybatis.mapper.FoodOrderMapper;
 import com.dwu.alonealong.dao.mybatis.mapper.OrderInfoMapper;
 import com.dwu.alonealong.domain.Food;
 import com.dwu.alonealong.domain.FoodOrder;
+import com.dwu.alonealong.domain.Order;
 
 @Repository
 public class MyBatisOrderInfoDAO implements OrderInfoDAO{
@@ -33,11 +34,13 @@ public class MyBatisOrderInfoDAO implements OrderInfoDAO{
 	}
 
 	@Override
-	public List<FoodOrder> getOrdersByUserId(String userId) throws DataAccessException {
+  public List<FoodOrder> getOrdersByUserId(String userId) throws DataAccessException {
 		// TODO Auto-generated method stub
 		return orderInfoMapper.getOrdersByUserId(userId);
 	}
-	
-	
+  @Override
+  public void insertTogetherOrderInfo(Order order) throws DataAccessException {
+		orderInfoMapper.insertTogetherOrderInfo(order);
+	}
 	
 }

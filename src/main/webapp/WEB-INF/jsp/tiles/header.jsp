@@ -42,10 +42,10 @@
 				<a class="pt-2 px-4 textbtn" href="<c:url value='/together' />"><h6>함께 먹기</h6></a>
 			</div>
 			<div class="row no-gutters topnav py-2 col-md-4 text-right justify-content-end">
-				<form class="searchform form-inline">
-					<input class="px-3 pr-5 form-control rounded-pill" style="font-size: 13px;" type="text"
-						placeholder="검색" aria-label="Search" size=12 >
-					<a class="btn text-right" type="submit"><i class="fas fa-search textbtn"></i></a>
+				<form action='<c:url value="/search"/>' class="searchform form-inline" id="myForm">
+					<input class="px-3 pr-5 form-control rounded-pill" name="keyword" style="font-size: 13px;" type="text"
+						placeholder="검색" aria-label="Search" size=15 >	
+					<a class="btn text-right" href="#" onclick="document.getElementById('myForm').submit();"><i class="fas fa-search textbtn"></i></a>
 				</form>
 				<a class="pt-2 pl-3" href="<c:url value='/cart' />"><h6><i class="fas fa-shopping-cart textbtn"></i></h6></a>
 			</div>

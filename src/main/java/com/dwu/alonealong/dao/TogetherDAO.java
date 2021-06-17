@@ -18,6 +18,8 @@ public interface TogetherDAO {
 	
 	List<Together> getTogetherList() throws DataAccessException;
 	
+	List<Together> searchTogetherList(String keyword) throws DataAccessException;
+	
 	List<Together> getTogetherListByCategory(String area, String date, String kind, int price, String sex, String age) throws DataAccessException;
 	
 	List<Together> recommandTogetherList(String sex, String address) throws DataAccessException;

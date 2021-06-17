@@ -30,6 +30,7 @@ import com.dwu.alonealong.domain.FoodCartItem;
 import com.dwu.alonealong.domain.FoodLineItem;
 import com.dwu.alonealong.domain.FoodOrder;
 import com.dwu.alonealong.domain.FoodReview;
+import com.dwu.alonealong.domain.Order;
 import com.dwu.alonealong.domain.Payment;
 import com.dwu.alonealong.domain.Product;
 import com.dwu.alonealong.domain.ProductOrder;
@@ -66,8 +67,8 @@ public class AloneAlongImpl implements AloneAlongFacade{
 	private ProductDAO productDao;
 	@Autowired
 	private ProductReviewDAO productReviewDao;
-//	@Autowired
-//	private ProductOrderDAO productOrderDao;
+	@Autowired
+	private ProductOrderDAO productOrderDao;
 	
 	@Autowired
 	private PaymentDAO paymentDao;
@@ -76,7 +77,7 @@ public class AloneAlongImpl implements AloneAlongFacade{
 	
 //	private ProductDAO productDao;
 //	private ProductReviewDAO productReviewDao;
-	private ProductOrderDAO productOrderDao;
+//	private ProductOrderDAO productOrderDao;
 //	private PaymentDAO paymentDao;
 	
 	@Autowired
@@ -122,6 +123,12 @@ public class AloneAlongImpl implements AloneAlongFacade{
 	public Product getProduct(String productId){
 		return productDao.getProduct(productId);
 	}
+	public boolean checkStock(String productId, int quantity) {
+		return productDao.checkStock(productId, quantity);
+	}
+	public void updateProduct(Product product) {
+		productDao.updateProduct(product);
+	}
 	
 	//Product Review
 	public ProductReview getProductReview(String reviewId, String userId){
@@ -164,17 +171,20 @@ public class AloneAlongImpl implements AloneAlongFacade{
 	}
 	
 	//PRODUCT Order
-	public List<ProductOrder> getProductOrdersByUserId(String userId){
-		return productOrderDao.getOrdersByUserId(userId);
+//	public List<ProductOrder> getProductOrdersByUserId(String userId){
+//		return productOrderDao.getOrdersByUserId(userId);
+//	}
+//	public List<ProductOrder> getProductOrdersByProductId(String productId){
+//		return productOrderDao.getOrdersByProductId(productId);
+//	}
+//	public ProductOrder getProductOrder(int orderId){
+//		return productOrderDao.getProductOrder(orderId);
+//	}
+	public void insertProductOrder(ProductOrder order){
+		productOrderDao.insertProductOrder(order);
 	}
-	public List<ProductOrder> getProductOrdersByProductId(String productId){
-		return productOrderDao.getOrdersByProductId(productId);
-	}
-	public ProductOrder getProductOrder(int orderId){
-		return productOrderDao.getProductOrder(orderId);
-	}
-	public int insertProductOrder(ProductOrder order){
-		return productOrderDao.insertProductOrder(order);
+	public boolean checkUsersOrder(String userId, String productId){
+		return productOrderDao.checkUsersOrder(userId, productId);
 	}
 	
 	//cart
@@ -190,6 +200,10 @@ public class AloneAlongImpl implements AloneAlongFacade{
 	}
 	public void deleteCartItem(String cartItemId) throws DataAccessException{
 		cartItemDao.deleteCartItem(cartItemId);
+		return;
+	}
+	public void deleteAllCartItem(String userId) throws DataAccessException{
+		cartItemDao.deleteAllCartItem(userId);
 		return;
 	}
 	public void updateCartItem(CartItem cartItem) throws DataAccessException{
@@ -351,6 +365,11 @@ public class AloneAlongImpl implements AloneAlongFacade{
 		return togetherDao.getTogetherListByResId(resId);
 	}
 	
+	@Override
+	public List<Together> searchTogetherList(String keyword) {
+		return togetherDao.searchTogetherList(keyword);
+	}
+	
 	//TogetherFood
 	@Override
 	public List<TogetherFood> getTogetherFoodListByTogId(String togId) {
@@ -376,6 +395,16 @@ public class AloneAlongImpl implements AloneAlongFacade{
 	@Override
 	public void insertTogetherOrder(TogetherOrder togetherOrder) {
 		togetherOrderDao.insertTogetherOrder(togetherOrder);
+	}
+	
+	@Override
+	public void insertTogetherOrderInfo(Order order) {
+		orderInfoDao.insertTogetherOrderInfo(order);
+	}
+	
+	@Override
+	public void insertFoodOrderForTogetherOrder(FoodOrder foodOrder) {
+		foodOrderDao.insertFoodOrderForTogetherOrder(foodOrder);
 	}
 
 

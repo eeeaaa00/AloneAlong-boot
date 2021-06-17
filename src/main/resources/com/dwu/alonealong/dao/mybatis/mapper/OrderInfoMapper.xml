@@ -29,6 +29,9 @@
 	ORDER BY orderDate DESC
   </select>
   
-  
+  <insert id="insertTogetherOrderInfo" useGeneratedKeys="true" keyColumn="ORDER_ID" keyProperty="orderId">
+    	INSERT INTO ORDERINFO (ORDER_ID, ORDER_DATE, TOTAL_PRICE, ORDER_STATUS, USER_ID, CARD_NUM, CARD_DATE, CARD_NAME)
+    	VALUES('t' || TOGORDER_ID_SEQ.NEXTVAL, TO_DATE(SYSDATE, 'YYYY-MM-DD'), #{totalPrice}, #{status}, #{userId}, #{cardName}, #{cardDate}, #{cardName})
+	</insert>
 
 </mapper>

@@ -48,7 +48,7 @@ public class ViewTogetherListController {
 	//카테고리별 리스트
 	@GetMapping("/together")
 	public String listTogetherByCategory(
-//			HttpServletRequest request,
+			HttpServletRequest request,
 			@RequestParam(value="area",  defaultValue="all") String area,
 			@RequestParam(value="date",  defaultValue="") String date,
 			@RequestParam(value="kind",  defaultValue="all") String kind,
@@ -58,16 +58,17 @@ public class ViewTogetherListController {
 			ModelMap model) throws Exception {
 		
 		//유저 맞춤 추천기능
-		String userId = "2"; //임시
+		UserSession userSession = (UserSession)request.getSession().getAttribute("userSession");
 		
-//		UserSession userSession = (UserSession)request.getSession().getAttribute("userSession");
-//		String userId = userSession.getUser().getUserId();
-		
-		User user = this.alonealong.getUserByUserId(userId);
-		List<Together> recommandList = this.alonealong.recommandTogetherList(user.getSex(), user.getAddress());
-		
-		model.put("user", user);
-		model.put("recommandList", recommandList);
+		if(userSession != null) {
+			User user = alonealong.getUserByUserId(userSession.getUser().getId());
+			
+			List<Together> recommandList = this.alonealong.recommandTogetherList(user.getSex(), user.getAddress());
+			
+			model.put("userSession", userSession);
+			model.put("user", user);
+			model.put("recommandList", recommandList);
+		}
 		
 		//공통 리스트
 		List<Together> togetherList = this.alonealong.getTogetherListByCategory(area, date, kind, price, sex, age);

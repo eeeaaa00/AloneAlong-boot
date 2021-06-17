@@ -70,7 +70,7 @@
     	AREA as area,
     	IS_TOGETHER_OK as isTogetherOk
     FROM RESTAURANT
-    WHERE lower(RES_NAME) like '%${keywords}%'
+    WHERE lower(RES_NAME) like lower('%${keyword}%') OR lower(RES_DES) like lower('%${keyword}%')
   </select>
   
   <select id="getRestaurantListByCategory" resultType="Restaurant">

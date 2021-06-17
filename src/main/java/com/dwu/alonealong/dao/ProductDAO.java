@@ -14,4 +14,8 @@ public interface ProductDAO {
 
 	//get Product Method
 	Product getProduct(String productId) throws DataAccessException;
+	
+	boolean checkStock(String productId, int quantity) throws DataAccessException;
+	
+	void updateProduct(Product product) throws DataAccessException;
 }

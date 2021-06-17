@@ -38,6 +38,7 @@ public interface CartItemMapper {
 	CartItem isInCart(String productId, String userId) throws DataAccessException;
 	void updateCartItem(CartItem cartItem) throws DataAccessException;
 	void deleteCartItem(String cartItemId) throws DataAccessException;
+	void deleteAllCartItem(String userId) throws DataAccessException;
 //	void updateQuantity(String cartItemID, int quantity) throws DataAccessException;
 
 }

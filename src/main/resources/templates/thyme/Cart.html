@@ -33,8 +33,8 @@
 							class=" d-flex align-items-center text-left text-md-center row">
 							<div class="col-12 col-md-5">
 								<div class="d-flex align-items-center">
-									<a href="/detail-1"> <svg class="img rounded-lg"
-											style="background-image: url('https://img-cf.kurly.com/shop/data/goods/1575003713758y0.jpg'); background-size: cover; background-position: center; width: 100px; height: 100px;"></svg>
+									<a href="/detail-1"> <img th:src="*{'data:image/png;base64,'+ cartItem.img64}" class="img rounded-lg"
+											style="object-fit: cover; background-position: center; width: 100px; height: 100px;"/>
 									</a>
 									<div class="cart-title text-left ml-3">
 										<a class="text-uppercase text-dark" th:href="@{/shop/{productId}(productId=${cartItem.productId})}"><strong th:text="${cartItem.productName}"></strong></a>
@@ -119,6 +119,21 @@
 					</form>
 				</div>
 			</div>
+		</div>
+	</div>
+</div>
+<div th:if="${param.stockError}" class="modal fade" id="alertModal" tabindex="-1" role="dialog">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content pb-4">
+			<div class="modal-header">
+				<h5 class="modal-title">Error</h5>
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body text-center">현재 <span class="text-green" th:text="${param.product}"></span>의 재고수량은
+				<span class="text-orange" th:text="${param.stock}"></span>개 입니다.</div>
 		</div>
 	</div>
 </div>

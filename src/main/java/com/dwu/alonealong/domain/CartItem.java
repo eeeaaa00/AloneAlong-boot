@@ -14,7 +14,8 @@ public class CartItem implements Serializable {
   private int price;
   private int unitPrice;
   private int shippingFee;
-//  private byte[] img;
+  private byte[] img;
+  private String img64;
 
   /* JavaBeans Properties */
 
@@ -38,6 +39,12 @@ public class CartItem implements Serializable {
 
   public int getShippingFee() { return shippingFee; }
   public void setShippingFee(int shippingFee) { this.shippingFee = shippingFee; }
+
+  public byte[] getImg() { return img; }
+  public void setImg(byte[] img) { this.img = img; }
+
+  public String getImg64() { return img64; }
+  public void setImg64(String img64) { this.img64 = img64; }
   
   /* Public methods */
   public int getUnitPrice() {

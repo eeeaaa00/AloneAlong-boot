@@ -33,6 +33,11 @@
 		margin: 0px 0px 0px -50px;
 	}
 	</style>
+<script th:inline="javascript">
+    $(document).ready(function(){
+		$("#alertModal").modal("show");
+    });
+</script>
 </head>
 <body>
   <header th:fragment="header" class="blog-header py-4">
@@ -40,8 +45,8 @@
 			<div class="col-md-8"></div>
 			<div class="col-md-2">
 				<a class="text-muted px-3" th:href="@{/mypage}"><i class="far fa-user"
-					style="color: #29A65F;"></i> <b style="color: #29A65F;">공지수</b> 님</a> <a
-					class="text-muted" href="#"><i class="fas fa-sign-out-alt"
+					style="color: #29A65F;"></i> <b th:text="${userSession.user.name}" style="color: #29A65F;"></b> 님</a> <a
+					class="text-muted" th:href="@{/logout}"><i class="fas fa-sign-out-alt"
 					style="color: #29A65F;"></i> 로그아웃</a>
 			</div>
 			<div class="col-md-2"></div>

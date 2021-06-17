@@ -29,7 +29,8 @@
         P.PRODUCT_NAME as productName,
     	C.USER_ID as userId,
     	C.QUANTITY as quantity,
-        P.PRODUCT_PRICE as price
+        P.PRODUCT_PRICE as price,
+        P.PRODUCT_IMG as img
     FROM CARTITEM C
     LEFT OUTER JOIN PRODUCT P ON C.PRODUCT_ID = P.PRODUCT_ID
     WHERE P.PRODUCT_ID = #{productId}
@@ -43,7 +44,8 @@
         P.PRODUCT_NAME as productName,
     	C.USER_ID as userId,
     	C.QUANTITY as quantity,
-        P.PRODUCT_PRICE as price
+        P.PRODUCT_PRICE as price,
+        P.PRODUCT_IMG as img
     FROM CARTITEM C
     LEFT OUTER JOIN PRODUCT P ON C.PRODUCT_ID = P.PRODUCT_ID
     WHERE C.USER_ID = #{userId}
@@ -56,7 +58,8 @@
         P.PRODUCT_NAME as productName,
     	C.USER_ID as userId,
     	C.QUANTITY as quantity,
-        P.PRODUCT_PRICE as price
+        P.PRODUCT_PRICE as price,
+        P.PRODUCT_IMG as img
     FROM CARTITEM C
     LEFT OUTER JOIN PRODUCT P ON C.PRODUCT_ID = P.PRODUCT_ID
     WHERE C.CARTITEM_ID = #{cartItemId}
@@ -68,5 +71,10 @@
     WHERE CARTITEM_ID = #{cartItemId}
   </delete>
 
+  <delete id="deleteAllCartItem">
+  	DELETE
+    FROM CARTITEM
+    WHERE USER_ID = #{userId}
+  </delete>
   
 </mapper>

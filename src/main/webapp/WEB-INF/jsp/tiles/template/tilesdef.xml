@@ -15,18 +15,24 @@
 		<put-attribute name="footer"
 			value="/WEB-INF/jsp/tiles/footer.jsp" />
 	</definition>
-	
+
 	<definition name="Error" extends="base_layout">
-				<put-attribute name="body" value="/WEB-INF/jsp/Error.jsp" />
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/Error.jsp" />
 	</definition>
 
 	<definition name="index" extends="base_layout">
-		<put-attribute name="body" value="" />
+		<put-attribute name="body" value="/WEB-INF/jsp/main.jsp" />
 	</definition>
 
 	<definition name="login" extends="base_layout">
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/tiles/login.jsp" />
+	</definition>
+
+	<definition name="search" extends="base_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/tiles/search.jsp" />
 	</definition>
 
 	<definition name="loginTest" extends="base_layout">
@@ -52,43 +58,41 @@
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/mypage/myEditForm.jsp" />
 	</definition>
-	
+
 	<definition name="myPayForm" extends="mypage_layout">
 		<put-attribute name="func" value="결제정보 관리" type="string" />
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/mypage/myPayForm.jsp" />
 	</definition>
-	
+
 	<definition name="myCredit" extends="mypage_layout">
 		<put-attribute name="func" value="결제 관리" type="string" />
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/mypage/myPayForm.jsp" />
 	</definition>
-	
+
 	<definition name="myOrder" extends="mypage_layout">
 		<put-attribute name="func" value="구매내역" type="string" />
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/mypage/myOrder.jsp" />
 	</definition>
-	
+
 	<definition name="myResOrder" extends="mypage_layout">
 		<put-attribute name="func" value="식당예약" type="string" />
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/mypage/myResOrder.jsp" />
 	</definition>
-	
+
 	<definition name="myTogetherOrder" extends="mypage_layout">
 		<put-attribute name="func" value="같밥예약" type="string" />
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/mypage/myTogetherOrder.jsp" />
 	</definition>
-	
-	<definition name="restaurantForm" extends="mypage_layout">
+  <definition name="restaurantForm" extends="mypage_layout">
 		<put-attribute name="func" value="내 식당 관리" type="string" />
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/restaurant/restaurantForm.jsp" />
 	</definition>
-		
 
 	<!-- order -->
 	<definition name="order_layout"
@@ -106,11 +110,21 @@
 			value="/WEB-INF/jsp/tiles/footer.jsp" />
 	</definition>
 
-	<definition name="productOrder" extends="order_layout">
+	<definition name="productOrder"
+		template="/WEB-INF/jsp/product/productOrder.jsp">
+		<put-attribute name="title" value="Order" type="string" />
 		<put-attribute name="lineItem"
-			value="/WEB-INF/jsp/order/productLineItem.jsp" />
+			value="/WEB-INF/jsp/product/productLineItem.jsp" />
+		<put-attribute name="orderInfo"
+			value="/WEB-INF/jsp/product/orderInfo.jsp" />
 		<put-attribute name="shipInfo"
-			value="/WEB-INF/jsp/order/shipInfo.jsp" />
+			value="/WEB-INF/jsp/product/shipInfo.jsp" />
+		<put-attribute name="paymentInfo"
+			value="/WEB-INF/jsp/product/paymentInfo.jsp" />
+		<put-attribute name="header"
+			value="/WEB-INF/jsp/tiles/header.jsp" />
+		<put-attribute name="footer"
+			value="/WEB-INF/jsp/tiles/footer.jsp" />
 	</definition>
 
 	<definition name="togetherOrder" extends="order_layout">
@@ -141,6 +155,8 @@
 			value="/WEB-INF/jsp/product/menu.jsp" />
 		<put-attribute name="cart"
 			value="/WEB-INF/jsp/product/cartModal.jsp" />
+		<put-attribute name="alert"
+			value="/WEB-INF/jsp/product/stockModal.jsp" />
 		<put-attribute name="header"
 			value="/WEB-INF/jsp/tiles/header.jsp" />
 		<put-attribute name="footer"
@@ -196,13 +212,11 @@
 		<put-attribute name="body-tab"
 			value="/WEB-INF/jsp/restaurant/restaurantReview.jsp" />
 	</definition>
-
-	<definition name="restaurantForm1"
-		extends="restaurant_layout">
-		<put-attribute name="body"
-			value="/WEB-INF/jsp/restaurant/restaurantForm.jsp" />
-		<put-attribute name="menu" value="" />
+	<definition name="togetherListTab" extends="restaurant">
+		<put-attribute name="body-tab"
+			value="/WEB-INF/jsp/restaurant/togetherList.jsp" />
 	</definition>
+
 
 	<definition name="foodForm" extends="restaurant_layout">
 		<put-attribute name="body"

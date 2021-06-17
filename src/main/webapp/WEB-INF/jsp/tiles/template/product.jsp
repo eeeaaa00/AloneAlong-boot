@@ -48,6 +48,7 @@
 	<!-- Modal -->
 	<!-- 장바구니 -->
 	<tiles:insertAttribute name="cart" />
+	<tiles:insertAttribute name="alert" />
     <tiles:insertAttribute name="footer" />
 </body>
 </html>

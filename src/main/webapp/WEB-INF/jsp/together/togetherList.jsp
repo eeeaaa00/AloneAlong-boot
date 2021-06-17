@@ -18,6 +18,7 @@ b {color:#29A65F;}
 </div>
 
 <!-- 추천 기능 -->
+<c:if test="${userSession != null}">
 <div class="swiper-container">
 	<p><b><c:out value="${user.name}"/></b>님을 위한 함께 먹기 추천</p>
 	<div class="swiper-wrapper">
@@ -50,6 +51,7 @@ b {color:#29A65F;}
 	<div class="swiper-button-next"></div> <!-- 네비게이션 -->
 	<div class="swiper-pagination"></div> <!-- 페이징 -->
 </div>
+</c:if>
 
 총 <b>${togetherList.size()}</b>개의 함께 먹기가 있습니다.
 

@@ -9,6 +9,7 @@ import com.dwu.alonealong.domain.Food;
 import com.dwu.alonealong.domain.FoodCart;
 import com.dwu.alonealong.domain.FoodOrder;
 import com.dwu.alonealong.domain.FoodReview;
+import com.dwu.alonealong.domain.Order;
 import com.dwu.alonealong.domain.Payment;
 import com.dwu.alonealong.domain.Product;
 import com.dwu.alonealong.domain.ProductOrder;
@@ -35,6 +36,8 @@ public interface AloneAlongFacade {
 	List<Product> getProductList(int pcId, String sortType);	
 	List<Product> searchProductList(String keywords);
 	Product getProduct(String productId);
+	boolean checkStock(String productId, int quantity);
+	void updateProduct(Product product);
 	
 	//PRODUCT Review
 	ProductReview getProductReview(String reviewId, String userId);
@@ -50,16 +53,18 @@ public interface AloneAlongFacade {
 	void deleteProductReviewRecommend(String reviewId, String userId);
 	
 	//PRODUCT Order
-	List<ProductOrder> getProductOrdersByUserId(String userId);
-	List<ProductOrder> getProductOrdersByProductId(String productId);
-  	ProductOrder getProductOrder(int orderId);
-	int insertProductOrder(ProductOrder order);
+//	List<ProductOrder> getProductOrdersByUserId(String userId);
+//	List<ProductOrder> getProductOrdersByProductId(String productId);
+//  	ProductOrder getProductOrder(int orderId);
+	void insertProductOrder(ProductOrder order);
+	boolean checkUsersOrder(String userId, String productId);
 	
 	//CART
 	List<CartItem> getAllCartItem(String userId) throws DataAccessException;
 	CartItem getCartItem(String cartItemId) throws DataAccessException;
 	void insertCartItem(String productId, int quantity, String userId)  throws DataAccessException;
 	void deleteCartItem(String cartItemId) throws DataAccessException;
+	void deleteAllCartItem(String userId) throws DataAccessException;
 	void updateCartItem(CartItem cartItem) throws DataAccessException;
 	
 	//PAYMENT
@@ -101,6 +106,8 @@ public interface AloneAlongFacade {
 	void updateTogether(Together together);
 	List<Together> recommandTogetherList(String sex, String address);
 	List<Together> getTogetherListByResId(String resId);
+	List<Together> searchTogetherList(String keyword);
+
 	
 	//TogetherFood
 	List<TogetherFood> getTogetherFoodListByTogId(String togId);
@@ -110,6 +117,8 @@ public interface AloneAlongFacade {
 	List<TogetherMember> getTogetherMemberListByTogId(String togId);
 	void insertTogetherMember(TogetherMember togetherMember);
 	
-	//TogetherOrder
+	//TogetherOrder 관련
+	void insertTogetherOrderInfo(Order order);
 	void insertTogetherOrder(TogetherOrder togetherOrder);
+	void insertFoodOrderForTogetherOrder(FoodOrder foodOrder);
 }

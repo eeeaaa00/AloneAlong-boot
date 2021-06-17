@@ -22,6 +22,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.springframework.dao.DataAccessException;
 
 import com.dwu.alonealong.domain.Product;
+import com.dwu.alonealong.domain.ProductLineItem;
 
 
 @Mapper
@@ -38,5 +39,8 @@ public interface ProductMapper {
 
 	//get Product Method
 	Product getProduct(String productId) throws DataAccessException;
-
+	 
+	void updateProductStock(List<ProductLineItem> lineItems) throws DataAccessException;
+	
+	void updateProduct(Product product) throws DataAccessException;
 }
