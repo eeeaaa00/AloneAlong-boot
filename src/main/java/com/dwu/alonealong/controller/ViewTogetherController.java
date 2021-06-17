@@ -49,29 +49,34 @@ public class ViewTogetherController {
 			ModelMap model) throws Exception {
 		Together together = this.aloneAlong.getTogetherByTogId(togId);
 		
-		boolean isHost = false;
-		
+		//글 수정, 삭제 접근 조건
 		UserSession userSession = (UserSession)request.getSession().getAttribute("userSession");
+		boolean isHost = false; //호스트 여부
+		boolean hostButCant = false; //글 수정 및 삭제 가능 여부
+		boolean canApply = false; //신청 가능 여부
+		boolean alreadyApply = false; //이미 신청했는지 여부
 		
-		//글 등록, 삭제 접근 조건(구현중)////////////////
 		if(userSession != null) {
 			User user = aloneAlong.getUserByUserId(userSession.getUser().getId());
 			
-			System.out.println("멤버에 들어있는 유저 아이디 : " + together.getTogetherMemberList().get(0).getUserId());
-			System.out.println("user.getId() : " + user.getId());
-			System.out.println("together.getTogetherMemberList().size() : " + together.getTogetherMemberList().size());
-			
-			System.out.println("멤버에 들어있는 유저 아이디 : " + together.getTogetherMemberList().get(0).getUserId());
-			System.out.println("user.getId() : " + user.getId());
-			System.out.println("together.getTogetherMemberList().size() : " + together.getTogetherMemberList().size());
-			
-			if(together.getTogetherMemberList().size() == 1 && user.getId() == together.getTogetherMemberList().get(0).getUserId()) {
-				System.out.println("조건문 실행");
+			if(together.getTogetherMemberList().size() == 1 && together.getTogetherMemberList().get(0).getUserId().equals(user.getId()))
 				isHost = true;
+			if(together.getTogetherMemberList().size() != 1 && together.getTogetherMemberList().get(0).getUserId().equals(user.getId()))
+				hostButCant = true;
+			
+			for(int i= 0; i < together.getTogetherMemberList().size(); i++) {
+				if(together.getTogetherMemberList().get(i).getUserId().equals(user.getId()))
+					alreadyApply = true;
 			}
 		}
+		if(isHost == false && hostButCant != true)
+			canApply = true;
 		
-		System.out.println("isHost : " + isHost);
+		model.put("userSession", userSession);
+		model.put("isHost", isHost);
+		model.put("hostButCant", hostButCant);
+		model.put("canApply", canApply);
+		model.put("alreadyApply", alreadyApply);
 		
 		//이미지
 //		Encoder encoder = Base64.getEncoder();
@@ -140,7 +145,7 @@ public class ViewTogetherController {
 		model.put("age", age);
 		
 		model.put("together", together);
-		model.put("isHost", isHost);
+		
 		return "togetherInfo";
 	}
 }

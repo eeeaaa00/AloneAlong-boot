@@ -24,7 +24,7 @@
 </head>
 <body>
 <!-- header -->
-<%@include file="../header.jsp" %>
+<%@include file="../tiles/header.jsp" %>
 
 <div class="container my-5 pb-5">
 	<div class="container col-md-10 mx-auto mb-3">
@@ -179,16 +179,16 @@
 		
 		<!-- 글 작성하기 -->
     	<h4 class="mb-3"><span class="text-success">STEP 3. 상세 정보 작성</span></h4>
-		<form action='<c:url value="/togetherRegister/complete"/>'>
+		<form>
 			<input type="hidden" name="resId" value="${selectedRes.resId}">
 			<div class="row g-3">
 				<div class="col-md-10">
 					<label for="title">제목</label>
-					<input type="text" class="form-control" name="name" placeholder="" required>
+					<input type="text" class="form-control" name="name" value="${together.togetherName}" placeholder="" required>
 				</div>
 				<div class="col-md-10">
 					<label for="headCount">인원</label>
-					<input type="number" class="form-control" name="headCount" min="2" placeholder="" required>
+					<input type="number" class="form-control" name="headCount" value="${together.headCount}" min="2" placeholder="" required>
 				</div>
 				<div class="col-md-5">
   					<label for="sex">성별</label>
@@ -211,21 +211,21 @@
 				</div>
 				<div class="col-sm-5">
   					<label for="date">날짜</label>
-  					<input type="date" class="form-control" name="date" placeholder="" value="" required>
+  					<input type="date" class="form-control" name="date" value="${together.togetherDate}" placeholder="" value="" required>
 				</div>
 				<div class="col-sm-5">
   					<label for="time">시간</label>
-  					<input type="time" class="form-control" name="time" placeholder="" value="" required>
+  					<input type="time" class="form-control" name="time" value="${together.togetherTime}" placeholder="" value="" required>
 				</div>
 				<div class="col-10">
   					<label for="description">주최자의 말</label>
-  					<input type="text" class="form-control" name="description" placeholder="" required>
+  					<input type="text" class="form-control" name="description" value="${together.togetherDes}" placeholder="" required>
 				</div>
 			</div>
 
 			<!--버튼 -->
 			<div class="py-5 text-right">
-				<button class="w-40 btn btn-lg btn-success" type="submit">등록하기</button>
+				<button class="w-40 btn btn-lg btn-success" type="submit" formaction="/togetherRegister/complete">등록하기</button>
 			</div>
 		</form>
 

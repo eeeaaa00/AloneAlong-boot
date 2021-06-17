@@ -1,5 +1,7 @@
 package com.dwu.alonealong.dao.mybatis;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
@@ -22,6 +24,11 @@ public class MyBatisTogetherOrderDAO implements TogetherOrderDAO{
 	public void removeTogetherOrder(TogetherOrder togetherOrder) throws DataAccessException {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public List<TogetherOrder> getTogetherOrderByUserId(String userId) throws DataAccessException {
+		return togetherOrderMapper.getTogetherOrderByUserId(userId);
 	}
 	
 }

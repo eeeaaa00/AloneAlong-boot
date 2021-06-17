@@ -38,18 +38,6 @@ public class TogetherOrderController {
 	@RequestMapping(value = "/togetherOrder")
 	public String joinTogether(HttpServletRequest request,
 			@ModelAttribute("together") Together together) {
-		UserSession userSession = (UserSession)request.getSession().getAttribute("userSession");
-//		if(userSession == null) {
-//			return "redirect:/login";
-//		}
-		
-//		//조건에 안맞으면 신청 못하게 하기(구현중)///////////
-//		if(userSession != null) {
-//			User user = aloneAlong.getUserByUserId(userSession.getUser().getId());
-//			
-//			if(user.getSex() != together.getSex())
-//				return "redirect:/togetherInfo";
-//		}
 		
 		return "together/togetherOrder";
 //		return "togetherOrder";

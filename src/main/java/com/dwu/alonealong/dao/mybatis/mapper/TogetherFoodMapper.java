@@ -11,4 +11,6 @@ import com.dwu.alonealong.domain.TogetherFood;
 public interface TogetherFoodMapper {
 	List<TogetherFood> getTogetherFoodListByTogId(String togId) throws DataAccessException;
 	void insertTogetherFood(TogetherFood togetherFood) throws DataAccessException;
+	void deleteTogetherFood(String togId) throws DataAccessException;
+	void updateTogetherFood(TogetherFood togetherFood) throws DataAccessException;
 }

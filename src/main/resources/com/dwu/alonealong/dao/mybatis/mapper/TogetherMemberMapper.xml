@@ -21,4 +21,8 @@
     	VALUES(TOGMEM_ID_SEQ.NEXTVAL, #{userId}, #{togetherId}, #{isHost})
 	</insert>
 
+	<delete id="deleteTogetherMember"> 
+  		DELETE FROM TOGETHER_MEMBER WHERE TOG_ID = #{togetherId}
+  	</delete>
+
 </mapper>

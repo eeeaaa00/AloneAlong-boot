@@ -27,9 +27,8 @@ public class MybatisTogetherMemberDAO implements TogetherMemberDAO {
 	}
 
 	@Override
-	public void removeTogetherMember(TogetherMember togetherMember) throws DataAccessException {
-		// TODO Auto-generated method stub
-		
+	public void deleteTogetherMember(String togId) throws DataAccessException {
+		togetherMemberMapper.deleteTogetherMember(togId);
 	}
 
 	@Override

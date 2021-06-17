@@ -79,10 +79,32 @@
 <!-- 신청하기 버튼 -->
 <div class="py-5 text-right">
 	<c:if test="${isHost eq true}">
-		<a type="button" class="w-40 btn btn-lg btn-success" href="<c:url value='/togetherOrder' />">수정하기</a>
-		<a type="button" class="w-40 btn btn-lg btn-success" href="<c:url value='/togetherOrder' />">삭제하기</a>
+		<c:if test="${hostButCant eq false}">
+			<a type="button" class="w-40 btn btn-lg btn-success" href="<c:url value='/togetherRegister/update/${together.togetherId}' />">수정하기</a>
+			<a type="button" class="w-40 btn btn-lg btn-success" href="<c:url value='/togetherRegister/delete/${together.togetherId}' />">삭제하기</a>
+		</c:if>
 	</c:if>
-	<c:if test="${isHost eq false}">
-		<a type="button" class="w-40 btn btn-lg btn-success" href="<c:url value='/togetherOrder' />">신청하기</a>
+	<c:if test="${hostButCant eq true}">
+		<button class="w-40 btn btn-lg btn-success" onclick="javascript:btn('모집 중인 인원이 1명일 때만 가능합니다.' )">수정하기</button>
+        <button class="w-40 btn btn-lg btn-success" onclick="javascript:btn('모집 중인 인원이 1명일 때만 가능합니다.' )">삭제하기</button>
+	</c:if>
+	<c:if test="${canApply eq true}">
+		<c:if test="${userSession eq null}">
+			<button class="w-40 btn btn-lg btn-success" onclick="javascript:btn('로그인 후 이용하세요.' )">신청하기</button>
+		</c:if>
+		<c:if test="${userSession != null}">
+			<c:if test="${alreadyApply eq true}">
+				<button class="w-40 btn btn-lg btn-success" onclick="javascript:btn('이미 신청한 함께 먹기 입니다.' )">신청하기</button>
+			</c:if>
+			<c:if test="${alreadyApply eq false}">
+				<a type="button" class="w-40 btn btn-lg btn-success" href="<c:url value='/togetherOrder' />">신청하기</a>
+			</c:if>
+		</c:if>
 	</c:if>
 </div>
+
+<script> 
+function btn(message){ 
+	alert(message); 
+} 
+</script>

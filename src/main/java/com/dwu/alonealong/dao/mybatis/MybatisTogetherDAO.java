@@ -40,9 +40,8 @@ public class MybatisTogetherDAO implements TogetherDAO {
 	}
 
 	@Override
-	public void removeTogether(Together together) throws DataAccessException {
-		// TODO Auto-generated method stub
-		
+	public void deleteTogether(String togId) throws DataAccessException {
+		togetherMapper.deleteTogether(togId);
 	}
 
 	@Override

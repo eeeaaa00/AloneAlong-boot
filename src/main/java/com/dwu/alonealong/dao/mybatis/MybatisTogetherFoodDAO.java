@@ -22,14 +22,12 @@ public class MybatisTogetherFoodDAO implements TogetherFoodDAO {
 
 	@Override
 	public void updateTogetherFood(TogetherFood togetherFood) throws DataAccessException {
-		// TODO Auto-generated method stub
-		
+		togetherFoodMapper.updateTogetherFood(togetherFood);
 	}
 
 	@Override
-	public void removeTogetherFood(TogetherFood togetherFood) throws DataAccessException {
-		// TODO Auto-generated method stub
-		
+	public void deleteTogetherFood(String togId) throws DataAccessException {
+		togetherFoodMapper.deleteTogetherFood(togId);
 	}
 
 	@Override
