@@ -82,10 +82,10 @@ import java.sql.Date;
 		public void setPhone(String phone) {
 			this.phone = phone;
 		}
-		public String getBuisness_num() {
+		public String getBusiness_num() {
 			return business_num;
 		}
-		public void setBuisness_num(String business_num) {
+		public void setBusiness_num(String business_num) {
 			this.business_num = business_num;
 		}
 		/* JavaBeans Properties */

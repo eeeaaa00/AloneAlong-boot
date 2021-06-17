@@ -133,7 +133,7 @@ public class ProductOrderController {
 			aloneAlong.deleteAllCartItem(userId);
 		}
 		status.setComplete();  // remove sessionCart and orderForm from session
-		return "redirect:/myOrder";
+		return "productOrderResult";
 	}
 
 }

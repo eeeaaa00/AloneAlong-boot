@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<c:if test="${!empty userSession.user.buisness_num}">
+<c:if test="${!empty userSession.user.business_num}">
 	<div class="col-md-12">
 		<div class="form-row float-right">
 			<button class="btn btn-sm btn-success"
