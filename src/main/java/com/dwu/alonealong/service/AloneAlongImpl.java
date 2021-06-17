@@ -309,7 +309,7 @@ public class AloneAlongImpl implements AloneAlongFacade{
 		restaurantDao.updateAvgRating(rating, resId);
 	}
   
-  //together
+	//together
 	@Override
 	public Together getTogetherByTogId(String togId) {
 		return togetherDao.getTogetherByTodId(togId);
@@ -345,6 +345,11 @@ public class AloneAlongImpl implements AloneAlongFacade{
 		return togetherDao.getTogetherListByResId(resId);
 	}
 	
+	@Override
+	public void deleteTogether(String togId) throws DataAccessException {
+		togetherDao.deleteTogether(togId);
+	}
+	
 	//TogetherFood
 	@Override
 	public List<TogetherFood> getTogetherFoodListByTogId(String togId) {
@@ -354,6 +359,16 @@ public class AloneAlongImpl implements AloneAlongFacade{
 	@Override
 	public void insertTogetherFood(TogetherFood togetherFood) {
 		togetherFoodDao.insertTogetherFood(togetherFood);
+	}
+	
+	@Override
+	public void deleteTogetherFood(String togId) {
+		togetherFoodDao.deleteTogetherFood(togId);
+	}
+	
+	@Override
+	public void updateTogetherFood(TogetherFood togetherFood) {
+		togetherFoodDao.updateTogetherFood(togetherFood);
 	}
 	
 	//TogetherMember
@@ -366,6 +381,12 @@ public class AloneAlongImpl implements AloneAlongFacade{
 	public void insertTogetherMember(TogetherMember togetherMember) {
 		togetherMemberDao.insertTogetherMember(togetherMember);
 	}
+	
+	@Override
+	public void deleteTogetherMember(String togId) {
+		togetherMemberDao.deleteTogetherMember(togId);
+	}
+	
 	//TogetherOrder
 	@Override
 	public void insertTogetherOrder(TogetherOrder togetherOrder) {
@@ -381,6 +402,10 @@ public class AloneAlongImpl implements AloneAlongFacade{
 	public void insertFoodOrderForTogetherOrder(FoodOrder foodOrder) {
 		foodOrderDao.insertFoodOrderForTogetherOrder(foodOrder);
 	}
-
+	
+	@Override
+	public List<TogetherOrder> getTogetherOrderByUserId(String userId) {
+		return togetherOrderDao.getTogetherOrderByUserId(userId);
+	}
 
 }

@@ -11,7 +11,7 @@ public interface TogetherFoodDAO {
 	
 	void updateTogetherFood(TogetherFood togetherFood) throws DataAccessException;
 	
-	void removeTogetherFood(TogetherFood togetherFood) throws DataAccessException;
+	void deleteTogetherFood(String togId) throws DataAccessException;
 	
 	List<TogetherFood> getTogetherFoodListByTogId(String togId) throws DataAccessException;
 }

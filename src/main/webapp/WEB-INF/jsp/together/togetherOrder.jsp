@@ -26,7 +26,7 @@
 </head>
 <body>
 <!-- header -->
-<%@include file="../header.jsp" %>
+<%@include file="../tiles/header.jsp" %>
 
 <div class="container my-5 pb-5">
 	<div class="container col-md-10 mx-auto mb-3">

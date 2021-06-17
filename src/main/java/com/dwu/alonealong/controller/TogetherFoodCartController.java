@@ -56,7 +56,7 @@ public class TogetherFoodCartController {
 		Restaurant res = alonealong.getRestaurantByResId(resId);
 		model.put("keywords", res.getResName()); //검색창에 레스토랑 이름 세팅하기
 		model.put("selectedRes", res); //선택된 레스토랑
-		return "together/togetherRegister";
+		return "together/togetherForm";
 	}
 	
 	@RequestMapping("/togetherRegister/{resId}/updateFoodCartItem")
@@ -76,7 +76,7 @@ public class TogetherFoodCartController {
 		Restaurant res = alonealong.getRestaurantByResId(resId);
 		model.put("keywords", res.getResName()); //검색창에 레스토랑 이름 세팅하기
 		model.put("selectedRes", res); //선택된 레스토랑
-		return "together/togetherRegister";
+		return "together/togetherForm";
 	}
 	
 	@RequestMapping("/togetherRegister/{resId}/deleteFoodCartItem")
@@ -96,7 +96,7 @@ public class TogetherFoodCartController {
 		Restaurant res = alonealong.getRestaurantByResId(resId);
 		model.put("keywords", res.getResName()); //검색창에 레스토랑 이름 세팅하기
 		model.put("selectedRes", res); //선택된 레스토랑
-		return "together/togetherRegister";
+		return "together/togetherForm";
 	}
 	
 }

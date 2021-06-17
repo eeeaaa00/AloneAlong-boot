@@ -7,4 +7,21 @@
     	INSERT INTO TOGETHER_ORDER (ORDER_ID, TOG_ID)
     	VALUES(#{orderId}, #{togetherId})
 	</insert>
+	
+	<select id="getTogetherOrderByUserId" resultType="TogetherOrder">
+		SELECT
+    		A.ORDER_ID AS orderId,
+    		A.TOG_ID AS togetherId,
+    		T.TOG_DATE AS "together.togetherDate",
+    		T.TOG_TIME AS "together.togetherTime",
+    		T.RES_ID AS "together.resId",
+    		T.TOG_STATUS AS "together.status",
+    		T.PRICE AS "together.price",
+    		O.ORDER_STATUS AS "order.status",
+    		O.USER_ID AS "order.userId"
+		FROM TOGETHER_ORDER TO, TOGETHER T, ORDERINFO O
+		WHERE A.TOG_ID = T.TOG_ID AND A.ORDER_ID = O.ORDER_ID
+			AND O.USER_ID = #{userId}
+	</select>
+	
 </mapper>

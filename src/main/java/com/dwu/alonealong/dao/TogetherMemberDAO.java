@@ -12,7 +12,7 @@ public interface TogetherMemberDAO {
 	
 	void updateTogetherMember(TogetherMember togetherMember) throws DataAccessException;
 	
-	void removeTogetherMember(TogetherMember togetherMember) throws DataAccessException;
+	void deleteTogetherMember(String togId) throws DataAccessException;
 	
 	List<TogetherMember> getTogetherMemberListByTogId(String togId) throws DataAccessException;
 	

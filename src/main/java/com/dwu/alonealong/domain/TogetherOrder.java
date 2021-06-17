@@ -7,10 +7,10 @@ public class TogetherOrder implements Serializable {
 	
 	private String orderId;
 	private String togetherId;
+	private Order order;
 	private Together together;
 	
 	public TogetherOrder(String orderId, String togetherId) {
-		super();
 		this.orderId = orderId;
 		this.togetherId = togetherId;
 	}
@@ -20,6 +20,9 @@ public class TogetherOrder implements Serializable {
 
 	public String getTogetherId() {return togetherId;}
 	public void setTogetherId(String togetherId) {this.togetherId = togetherId;}
+	
+	public Order getOrder() {return order;}
+	public void setOrder(Order order) {this.order = order;}
 
 	public Together getTogether() {return together;}
 	public void setTogether(Together together) {this.together = together;}

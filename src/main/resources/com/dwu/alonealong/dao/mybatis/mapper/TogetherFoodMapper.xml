@@ -21,4 +21,17 @@
     	VALUES(TOGFOOD_ID_SEQ.NEXTVAL, #{togetherId}, #{foodId}, #{quantity})
 	</insert>
 
+	<delete id="deleteTogetherFood"> 
+  		DELETE FROM TOGETHER_FOOD WHERE TOG_ID = #{togetherId}
+  	</delete>
+  	
+  	<update id="updateTogetherFood">
+ 		UPDATE TOGETHER_FOOD 
+ 		SET TOGFOOD_ID = #{togetherFoodId},
+    		TOG_ID = #{togetherId},
+    		FOOD_ID = #{foodId},
+    		QUANTITY = #{quantity},
+ 		WHERE TOG_ID = #{togetherId}
+  	</update>
+
 </mapper>

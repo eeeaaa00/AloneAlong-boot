@@ -12,7 +12,7 @@ public interface TogetherDAO {
 	
 	void insertTogether(Together together) throws DataAccessException;
 	
-	void removeTogether(Together together) throws DataAccessException;
+	void deleteTogether(String togId) throws DataAccessException;
 	
 	void updateTogether(Together together) throws DataAccessException;
 	

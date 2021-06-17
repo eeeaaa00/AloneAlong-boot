@@ -102,17 +102,22 @@ public interface AloneAlongFacade {
 	void updateTogether(Together together);
 	List<Together> recommandTogetherList(String sex, String address);
 	List<Together> getTogetherListByResId(String resId);
+	void deleteTogether(String togId);
 	
 	//TogetherFood
 	List<TogetherFood> getTogetherFoodListByTogId(String togId);
 	void insertTogetherFood(TogetherFood togetherFood);
+	void deleteTogetherFood(String togId);
+	void updateTogetherFood(TogetherFood togetherFood);
 	
 	//TogetherMember
 	List<TogetherMember> getTogetherMemberListByTogId(String togId);
 	void insertTogetherMember(TogetherMember togetherMember);
+	void deleteTogetherMember(String togId);
 	
 	//TogetherOrder 관련
 	void insertTogetherOrderInfo(Order order);
 	void insertTogetherOrder(TogetherOrder togetherOrder);
 	void insertFoodOrderForTogetherOrder(FoodOrder foodOrder);
+	List<TogetherOrder> getTogetherOrderByUserId(String userId);
 }
