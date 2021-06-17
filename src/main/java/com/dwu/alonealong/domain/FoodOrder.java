@@ -92,7 +92,13 @@ public class FoodOrder implements Serializable{
 	public void setOrderDate(String orderDate) {
 		this.orderDate = orderDate;
 	}
-
+	public int calcTotalPrice() {
+		int total = 0;
+		for(FoodCartItem item : foodList) {
+			total += item.getUnitPrice();
+		}
+		return total;
+	}
 	public int getTotalPrice() {
 		return totalPrice;
 	}

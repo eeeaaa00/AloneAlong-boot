@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -44,6 +45,10 @@ public class FoodOrderController {
 
 		//유저 정보 및 결제 정보 받아오기
 		UserSession userSession = (UserSession)request.getSession().getAttribute("userSession");
+		if(userSession == null) {
+			//response로 forwardAction전달하면좋을것같음.
+			return "login";
+		}
 		User user = aloneAlong.getUserByUserId(userSession.getUser().getId());
 		Payment paymentMethod = aloneAlong.getCard(userSession.getUser().getId());
 
@@ -58,6 +63,7 @@ public class FoodOrderController {
 		model.put("totalPrice", cart.getSubTotal());
 		model.put("resId", resId);
 		model.put("user", user);
+		model.put("payment", paymentMethod);
 
 		return "foodOrderForm";
 	}
@@ -82,7 +88,10 @@ public class FoodOrderController {
 		String userId = user.getId();
 		
 		FoodOrder order = new FoodOrder(resId, userId, foodList, reserveType, visitDate, payment);
-		System.out.println("form 잘 들어 왔는지: " + order.toString());
+		order.setTotalPrice(order.calcTotalPrice());
+		System.out.println("totalprice 무슨일이야 잘 들어 왔는지: " + order.getTotalPrice());
+		if(order.getTotalPrice() == 0)
+			return "";
 		aloneAlong.insertFoodOrder(order);
 
 

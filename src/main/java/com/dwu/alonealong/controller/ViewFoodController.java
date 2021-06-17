@@ -56,7 +56,7 @@ public class ViewFoodController {
 		Restaurant res = alonealong.getRestaurantByResId(resId);
 		
 		model.put("totalPrice", foodCart.getSubTotal());
-		System.out.println(foodCart.getFoodItemList().size());
+		//System.out.println(foodCart.getFoodItemList().size());
 		
 		Encoder encoder = Base64.getEncoder();
 		byte[] imagefile;
@@ -71,6 +71,7 @@ public class ViewFoodController {
         encodedString = encoder.encodeToString(imagefile);
         res.setImg64(encodedString);
         model.put("restaurant", res);
+
         
 		return "restaurant";
 
@@ -82,9 +83,28 @@ public class ViewFoodController {
 	public String handleRequest2(
 			@PathVariable("resId") String resId,
 			@SessionAttribute("sessionFoodCart") FoodCart foodCart,
+			HttpServletRequest request,
 			ModelMap model) throws Exception {
 		
-		List<FoodReview> reviewList = this.alonealong.getFoodReviewListByResId(resId);
+		String sortType = request.getParameter("sortType");
+		if(sortType == null)
+			sortType = "REVIEW_DATE DESC";
+	
+		String sortTypeName = "";
+		switch(sortType) {
+			case "REVIEW_DATE DESC":
+				sortTypeName = "최신 등록순";
+				break;
+			case "REVIEW_RATING DESC":
+				sortTypeName = "높은 평점순";
+				break;
+			case "REVIEW_RATING":
+				sortTypeName = "낮은 평점순";
+				break;
+		}
+		
+		model.put("sortTypeName", sortTypeName);
+		List<FoodReview> reviewList = this.alonealong.getFoodReviewListByResId(resId, sortType);
 		for(FoodReview review : reviewList) {
 			User user = alonealong.getUserByUserId(review.getUserId());
 			review.setUserNickName(user.getNickname());

@@ -279,7 +279,7 @@ public class AloneAlongImpl implements AloneAlongFacade{
 		
 		//카트 item들 모두 넣기
 		for(FoodCartItem val : order.getFoodList()) {
-			FoodLineItem item = new FoodLineItem(newOrderId, val.getFood().getFoodId(), val.getQuantity(), val.getTotalPrice());
+			FoodLineItem item = new FoodLineItem(newOrderId, val.getFood().getFoodId(), val.getQuantity(), val.getUnitPrice());
 			foodLineItemDao.insertFoodLineItem(item);
 		}
 		
@@ -304,8 +304,8 @@ public class AloneAlongImpl implements AloneAlongFacade{
 		return orderList;
 	}
 	//FoodReview
-	public List<FoodReview> getFoodReviewListByResId(String resId) {
-		return foodReviewDao.getFoodReviewListByResId(resId);
+	public List<FoodReview> getFoodReviewListByResId(String resId, String sortType) {
+		return foodReviewDao.getFoodReviewListByResId(resId, sortType);
 	}
 	public void insertFoodReview(FoodReview foodReview) {
 		foodReviewDao.insertFoodReview(foodReview);

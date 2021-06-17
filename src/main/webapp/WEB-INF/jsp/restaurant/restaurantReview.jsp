@@ -1,6 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+<script>
+$(document).ready(function() {
+		<c:if test="${userSession == null}">
+			$("#writeBtn").css("visibility", "hidden");
+		</c:if>
+});
+</script>
 
 	<div class="row my-5 mx-5">
 		<div class="col-md-12" style="width:100%;">
@@ -37,16 +44,19 @@
 				<div class="d-flex justify-content-between pb-4 px-4 border-bottom mb-4">
 				
 				<!-- 드롭다운 -->
-				<div class="dropdown">
-					<button class="btn btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true">최신순</button>
+				<form action="#">
+					<div class="dropdown">
+						<button class="btn btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true">${sortTypeName}</button>
 						<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-							<a class="dropdown-item" href="#"><small>최신순</small></a>
-							<a class="dropdown-item" href="#"><small>높은 평점순</small></a>
-							<a class="dropdown-item" href="#"><small>낮은 평점순</small></a>
+							<button class="dropdown-item" name="sortType" value="REVIEW_DATE DESC" type="submit"><small>최신 등록순</small></button>
+							<button class="dropdown-item" name="sortType" value="REVIEW_RATING DESC" type="submit"><small>높은 평점순</small></button>
+							<button class="dropdown-item" name="sortType" value="REVIEW_RATING" type="submit"><small>낮은 평점순</small></button>
 						</div>
-				</div>
+				
+					</div>
+				</form>
 				<!-- 리뷰 작성 -->
-				<button type="button" class="btn btn-sm btn-orange rounded-pill px-3"
+				<button id="writeBtn" type="button" class="btn btn-sm btn-orange rounded-pill px-3"
 					data-toggle="modal" data-target="#exampleModal"><i class="far fa-edit"></i> 작성하기</button>
 			</div>
 			

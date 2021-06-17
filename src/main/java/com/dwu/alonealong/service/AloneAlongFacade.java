@@ -89,7 +89,7 @@ public interface AloneAlongFacade {
 	FoodOrder getFoodOrder(int orderId); //사용x
 	List<FoodOrder> getFoodOrdersByUserId(String userId);
 	
-	public List<FoodReview> getFoodReviewListByResId(String resId);
+	public List<FoodReview> getFoodReviewListByResId(String resId, String sortType);
 	public void insertFoodReview(FoodReview foodReview);
 	void updateAvgRating(int rating, String resId);
 	

@@ -10,6 +10,15 @@ b {color:#29A65F;}
 .sold-out { background-color:gray; color:#FFFFFF; width:50px; padding: 2px 15px 2px 15px;}
 
 </style>
+<script>
+$(document).ready(function() {
+
+		<c:if test="${foodCart.size() == 0}">
+			$("#orderBtn").bind('click', false)
+			.attr('class', "btn btn-gray rounded-pill");
+		</c:if>
+});
+</script>
 
 <div class="row mx-5 mb-5" name="FoodInfoWithCart">
 	<!-- 사진 -->
@@ -50,8 +59,23 @@ b {color:#29A65F;}
 			<hr>
 			<p class="text-right">총 금액  <b class="pl-2">${totalPrice}</b>원</p>
 			<div class="row justify-content-around">
-				<a type="button" class="btn btn-orange rounded-pill" href="<c:url value='/eating/order'><c:param name = "resId" value="${restaurant.resId}"/></c:url>"><small>
+				<a id="orderBtn" type="button" class="btn btn-orange rounded-pill" href="<c:url value='/eating/order'><c:param name = "resId" value="${restaurant.resId}"/></c:url>"><small>
 					<i class="far fa-credit-card pr-1"></i></small> 결제하기</a>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="checkModal" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content py-5">
+			<div class="modal-body text-center pb-4">
+				<h6>상품이 장바구니에 담겼습니다.</h6>
+				<h6>장바구니로 이동하시겠습니까?</h6>
+			</div>
+			<div class="row mx-5 mb-2 justify-content-center">
+				<a type="button" class="btn btn-green rounded-pill mx-2 py-2 px-3" href="<c:url value='${referer}' />">쇼핑 계속하기</a>
+				<a type="button" class="btn btn-orange rounded-pill mx-2 py-2 px-3" href="<c:url value='/cart' />" >장바구니 보기</a>
 			</div>
 		</div>
 	</div>
