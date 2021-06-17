@@ -39,6 +39,20 @@ public class Restaurant implements Serializable{
 		this.area = area;
 	}
 	
+	public Restaurant(String resId, String resName, String resAddress, String resPhone,
+			String resDescription, String categoryId, byte[] imgFile, boolean isTogetherOk, String area) {
+		super();
+		this.resId = resId;
+		this.resName = resName;
+		this.resAddress = resAddress;
+		this.resPhone = resPhone;
+		this.resDescription = resDescription;
+		this.categoryId = categoryId;
+		this.imgFile = imgFile;
+		this.isTogetherOk = isTogetherOk;
+		this.area = area;
+	}
+	
 	
 	public Restaurant(){
 		
@@ -125,6 +139,9 @@ public class Restaurant implements Serializable{
 
 	public void setImg64(String img64) {
 		this.img64 = img64;
+	}
+	public boolean getIsTogetherOk() {
+		return isTogetherOk;
 	}
 	public boolean isTogetherOk() {
 		return isTogetherOk;

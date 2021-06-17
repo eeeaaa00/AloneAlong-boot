@@ -50,7 +50,7 @@ public class RestaurantForm {
 	public boolean getIsTogetherOk() { //Does the return type of the getter match the parameter type of the setter? 오류날 수 있으니 get 붙이자.
 		return isTogetherOk;
 	}
-	public void setTogetherOk(boolean isTogetherOk) {
+	public void setIsTogetherOk(boolean isTogetherOk) {
 		this.isTogetherOk = isTogetherOk;
 	}
 	public String getResArea() {

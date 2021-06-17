@@ -1,5 +1,7 @@
 package com.dwu.alonealong.controller;
 
+import java.util.Base64;
+import java.util.Base64.Encoder;
 import java.util.Iterator;
 import java.util.List;
 

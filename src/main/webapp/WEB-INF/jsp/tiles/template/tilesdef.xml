@@ -88,7 +88,11 @@
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/mypage/myTogetherOrder.jsp" />
 	</definition>
-
+  <definition name="restaurantForm" extends="mypage_layout">
+		<put-attribute name="func" value="내 식당 관리" type="string" />
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/restaurant/restaurantForm.jsp" />
+	</definition>
 
 	<!-- order -->
 	<definition name="order_layout"
@@ -213,12 +217,6 @@
 			value="/WEB-INF/jsp/restaurant/togetherList.jsp" />
 	</definition>
 
-	<definition name="restaurantForm"
-		extends="restaurant_layout">
-		<put-attribute name="body"
-			value="/WEB-INF/jsp/restaurant/restaurantForm.jsp" />
-		<put-attribute name="menu" value="" />
-	</definition>
 
 	<definition name="foodForm" extends="restaurant_layout">
 		<put-attribute name="body"

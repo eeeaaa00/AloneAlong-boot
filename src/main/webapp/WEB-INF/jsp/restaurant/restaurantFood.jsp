@@ -16,8 +16,9 @@
 				        <!-- General info tab-->
 				        <div class="tab-content px-lg-3 py-5">
 				        <div class="info-content px-4 pt-lg-3 pb-3 mb-5 border">
-				        <button type = "button" onClick="location.href='<c:url value='/eating/${restaurant.resId}/adminFood' />'">메뉴 추가</button> <!-- 여기 r2라고 해놨으니 바꿔야해 -->
-				        
+				        <c:if test="${restaurant.ownerId eq userId}">
+				        	<button type = "button" class="btn btn-sm btn-warning" onClick="location.href='<c:url value='/eating/${restaurant.resId}/adminFood' />'">메뉴 추가</button> <!-- 여기 r2라고 해놨으니 바꿔야해 -->
+				        </c:if>
 				        <c:forEach var="food" items="${foodList}">     
 							<div class="shadow-sm m-2">
 				            <div class="row no-gutters">
@@ -30,12 +31,18 @@
 									</div>
 									<p>${food.description}</p>
 									<p>${food.price}원 </p>  
+									<c:if test="${restaurant.ownerId eq userId}">
+					              	<button id="btnEdit" type="button" class="btn btn-sm btn-warning" onClick="location.href='<c:url value='/eating/${restaurant.resId}/adminFood/update'><c:param name="foodId" value="${food.foodId}"/></c:url>'">수정</button>
+					              	<button id="btnDel" type="button" class="btn btn-sm btn-outline-warning" onClick="location.href='<c:url value='/eating/${restaurant.resId}/adminFood/delete'><c:param name="foodId" value="${food.foodId}"/></c:url>'">삭제</button>
+				             	  	</c:if>
 				              </div>
-				              <div class="card-footer">
-					            <button type = "button" onClick="location.href='<c:url value='/eating/${restaurant.resId}/addFoodToCart'><c:param name="foodId" value="${food.foodId}"/></c:url>'">담기</button></br> 
-					       		  <!--<button type="submit">담기</button></br>	 -->  
-					              <button id="btnEdit" type="button" onClick="location.href='<c:url value='/eating/${restaurant.resId}/adminFood/update'><c:param name="foodId" value="${food.foodId}"/></c:url>'">수정</button>
-					              <button id="btnDel" type="button" onClick="location.href='<c:url value='/eating/${restaurant.resId}/adminFood/delete'><c:param name="foodId" value="${food.foodId}"/></c:url>'">삭제</button>
+				              <div class="card-footer" style="width:120px; text-align: center;">
+				              	<div class="mt-5">
+				              		
+					              <button type = "button" class="btn btn-md btn-success" 
+					              onClick="location.href='<c:url value='/eating/${restaurant.resId}/addFoodToCart'>
+					              <c:param name="foodId" value="${food.foodId}"/></c:url>'">담기</button></br> 	       		  
+				             	  </div>
 				              </div>
 				              
 				            </div>
