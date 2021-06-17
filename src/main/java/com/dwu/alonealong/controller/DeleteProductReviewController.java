@@ -26,11 +26,11 @@ public class DeleteProductReviewController {
 		this.aloneAlong = aloneAlong;
 	}
 	
-	@RequestMapping("/shop/{productId}/review/delete/{reviewId}")
+	@RequestMapping("/shop/review/delete")
 	public String handleRequest(HttpServletRequest request,
 //			@ModelAttribute("userSession") UserSession userSession,
-			@PathVariable("productId") String productId,
-			@PathVariable("reviewId") String reviewId,
+			@RequestParam(value="productId") String productId,
+			@RequestParam(value="reviewId") String reviewId,
 			ModelMap model) throws Exception {
 		UserSession userSession = (UserSession)request.getSession().getAttribute("userSession");
 		if(userSession == null) {
@@ -45,7 +45,7 @@ public class DeleteProductReviewController {
 		}
 		this.aloneAlong.deleteProductReview(reviewId);
 
-		return "redirect:/shop/{productId}/review";
+		return "redirect:/shop/" + productId + "/review";
 	}
 
 }//.

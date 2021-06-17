@@ -26,11 +26,11 @@ public class UpdateProductReviewController {
 		this.aloneAlong = aloneAlong;
 	}
 	
-	@RequestMapping("/shop/{productId}/review/update/{reviewId}")
+	@RequestMapping("/shop/review/update")
 	public RedirectView handleRequest(HttpServletRequest request,
 //			@ModelAttribute("userSession") UserSession userSession,
-			@PathVariable("productId") String productId,
-			@PathVariable("reviewId") String reviewId,
+			@RequestParam(value="productId") String productId,
+			@RequestParam(value="reviewId") String reviewId,
 			@RequestParam(value="rating") int rating,
 			@RequestParam(value="contents") String contents, 
 			ModelMap model) throws Exception {
@@ -49,7 +49,7 @@ public class UpdateProductReviewController {
 		productReview.setReviewContents(contents);
 		aloneAlong.updateProductReview(productReview);
 		
-		return new RedirectView("/shop/{productId}/review");
+		return new RedirectView("/shop/" + productId + "/review");
 	}
 
 }

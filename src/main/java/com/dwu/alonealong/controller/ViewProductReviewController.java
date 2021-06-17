@@ -1,6 +1,8 @@
 package com.dwu.alonealong.controller;
 
+import java.util.Base64;
 import java.util.List;
+import java.util.Base64.Encoder;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -65,6 +67,12 @@ public class ViewProductReviewController {
 //		reviewList.setPageSize(3);
 //		reviewList.setPage(page);
 
+		Encoder encoder = Base64.getEncoder();
+        byte[] imagefile = product.getProductImg();
+        if(imagefile != null){
+        	String encodedString = encoder.encodeToString(imagefile);
+            product.setImg64(encodedString);
+        }
 		product.setQuantity(quantity);
 		model.put("product", product);
 		model.put("pcId", product.getPcId());

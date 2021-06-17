@@ -1,6 +1,7 @@
 package com.dwu.alonealong.domain;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.List;
 
 @SuppressWarnings("serial")
@@ -53,10 +54,10 @@ public class ProductLineItem implements Serializable {
 	  
 	public String getImg64() { return img64; }
 	public void setImg64(String img64) { this.img64 = img64; }
-	
+
 	@Override
 	public String toString() {
-		return "ProductLineItem [productId=" + productId + ", quantity=" + quantity + ", unitPrice=" + unitPrice + "]";
+		return "ProductLineItem [productId=" + productId + ", productName=" + productName + ", quantity=" + quantity
+				+ ", unitPrice=" + unitPrice + ", price=" + price + "]";
 	}
-	
 }

@@ -26,10 +26,10 @@ public class InsertProductReviewController {
 		this.aloneAlong = aloneAlong;
 	}
 	
-	@RequestMapping("/shop/{productId}/review/insert")
+	@RequestMapping("/shop/review/insert")
 	public String handleRequest(HttpServletRequest request,
 //			@ModelAttribute("userSession") UserSession userSession,
-			@PathVariable("productId") String productId,
+			@RequestParam(value="productId") String productId,
 			@RequestParam(value="rating") int rating,
 			@RequestParam(value="contents") String contents, 
 			ModelMap model) throws Exception {
@@ -49,7 +49,7 @@ public class InsertProductReviewController {
 		productReview.setReviewContents(contents);
 		
 		this.aloneAlong.insertProductReview(productReview);
-		return "redirect:/shop/{productId}/review";
+		return "redirect:/shop/" + productId + "/review";
 	}
 
 }
