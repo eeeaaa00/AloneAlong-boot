@@ -1,5 +1,8 @@
 package com.dwu.alonealong.controller;
 
+import java.util.Base64;
+import java.util.Base64.Encoder;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -28,6 +31,13 @@ public class ViewProductController {
 			@RequestParam(value="quantity",  defaultValue="1") int quantity, 
 			ModelMap model) throws Exception {
 		Product product = this.aloneAlong.getProduct(productId);
+		Encoder encoder = Base64.getEncoder();
+        byte[] imagefile = product.getProductImg();
+        if(imagefile != null){
+        	String encodedString = encoder.encodeToString(imagefile);
+            product.setImg64(encodedString);
+        }
+        
 		product.setQuantity(quantity);
 		model.put("product", product);
 		model.put("pcId", product.getPcId());

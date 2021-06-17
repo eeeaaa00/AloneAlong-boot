@@ -20,6 +20,8 @@ import org.springframework.web.util.WebUtils;
 
 import com.dwu.alonealong.domain.Payment;
 import com.dwu.alonealong.service.AloneAlongFacade;
+import com.dwu.alonealong.service.PaymentFormValidator;
+import com.dwu.alonealong.service.UserFormValidator;
 
 /**
  * @author Juergen Hoeller
@@ -50,10 +52,12 @@ public class PaymentController {
 		return bank;
 	}
 
-	/*
-	 * @Autowired private AccountFormValidator validator; public void
-	 * setValidator(AccountFormValidator validator) { this.validator = validator; }
-	 */
+
+	@Autowired
+	private PaymentFormValidator validator;
+	public void setValidator(PaymentFormValidator validator) {
+		this.validator = validator;
+	}
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String showForm() {
@@ -78,6 +82,11 @@ public class PaymentController {
 	public String onSubmit(HttpServletRequest request, HttpSession session,
 			@ModelAttribute("paymentForm") PaymentForm payForm, BindingResult result) throws Exception {
 
+		validator.validate(payForm, result);
+
+
+		if (result.hasErrors())
+			return resultForm;
 		try {
 			if (payForm.isNewPayment()) {
 				alonealong.createCard(payForm.getPayment());

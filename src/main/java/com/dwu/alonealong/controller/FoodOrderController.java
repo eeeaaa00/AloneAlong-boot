@@ -1,10 +1,13 @@
 package com.dwu.alonealong.controller;
 
 
+import java.util.Base64;
+import java.util.Base64.Encoder;
 import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -36,26 +39,32 @@ public class FoodOrderController {
 	public String initNewOrder(HttpServletRequest request,
 		@RequestParam(value="resId", required=false) String resId, 
 		@ModelAttribute("sessionFoodCart") FoodCart cart,
-//		@ModelAttribute("productOrderForm") ProductOrderForm productOrderForm,
 		ModelMap model) throws Exception {
 		
 		model.addAttribute("foodOrderForm", new FoodOrder());
 
 		//유저 정보 및 결제 정보 받아오기
 		UserSession userSession = (UserSession)request.getSession().getAttribute("userSession");
+		if(userSession == null) {
+			//response로 forwardAction전달하면좋을것같음.
+			return "login";
+		}
 		User user = aloneAlong.getUserByUserId(userSession.getUser().getId());
 		Payment paymentMethod = aloneAlong.getCard(userSession.getUser().getId());
 
 		System.out.print(user);
-		//LineItem 설정 
-//		List<ProductLineItem> orderList = new ArrayList<ProductLineItem>();
+		Encoder encoder = Base64.getEncoder();
+		for(FoodCartItem item : cart.getFoodItemList()) {
+			item.getFood().setImg64(encoder.encodeToString(item.getFood().getImgFile()));
+		}
 		
 		//만약 sessionFoodCart.size가 0이면 order창으로 넘어가지 못하도록.
 		model.put("foodCart", cart.getAllFoodCartItems());
 		model.put("totalPrice", cart.getSubTotal());
 		model.put("resId", resId);
-//		//받아온 유저정보 & 결제정보 & LineItem으로 orderForm 세팅 
-//		productOrderForm.getProductOrder().initProductOrder(user, paymentMethod, orderList);
+		model.put("user", user);
+		model.put("payment", paymentMethod);
+
 		return "foodOrderForm";
 	}
 	
@@ -64,7 +73,7 @@ public class FoodOrderController {
 			@RequestParam(value="resId", required=false) String resId, 
 			@SessionAttribute("sessionFoodCart") FoodCart cart,
 			@ModelAttribute("foodOrderForm") FoodOrderForm form, //jsp에서 modelattribute 등록해라
-			HttpServletRequest request,
+			HttpServletRequest request, ModelMap model,
 			SessionStatus status
 			) {
 		
@@ -79,12 +88,17 @@ public class FoodOrderController {
 		String userId = user.getId();
 		
 		FoodOrder order = new FoodOrder(resId, userId, foodList, reserveType, visitDate, payment);
-		System.out.println("form 잘 들어 왔는지: " + order.toString());
+		order.setTotalPrice(order.calcTotalPrice());
+		System.out.println("totalprice 무슨일이야 잘 들어 왔는지: " + order.getTotalPrice());
+		if(order.getTotalPrice() == 0)
+			return "";
 		aloneAlong.insertFoodOrder(order);
 
-
+		String resName = aloneAlong.getRestaurantByResId(resId).getResName();
 		status.setComplete();  // remove sessionCart and orderForm from session
-		return "restaurant";
+		
+		model.put("resName", resName);
+		return "resOrderResult";
 	}
 
 }

@@ -102,20 +102,20 @@
     select
     	PRODUCT_ID as productId, 
     	PC_ID as pcId,
-    	PRODUCT_NAME,
-    	PRODUCT_PRICE as PRICE,
-    	PRODUCT_INFO as info,
-    	PRODUCT_IMG as img,
-    	PRODUCT_SALES as sales,
-    	PRODUCT_STOCK as stock,
-    	PRODUCT_DATE,
-    	PRODUCT_CONTENTS,
+    	PRODUCT_NAME as productName,
+    	PRODUCT_PRICE as productPrice,
+    	PRODUCT_INFO as productInfo,
+    	PRODUCT_IMG as productImg,
+        PRODUCT_SALES as productSales,
+    	PRODUCT_STOCK as productStock,
+    	PRODUCT_DATE as productDate,
+    	PRODUCT_CONTENTS as productContents,
     	SHIPPINGFEE as shippingFee
     from PRODUCT
-    WHERE lower(name) like %#{keyword}%
+    WHERE lower(PRODUCT_NAME) like lower('%${keyword}%')
   </select>
   
-  <update id="updateProduct" parameterType="ProductLineItem">
+  <update id="updateProductStock" parameterType="ProductLineItem">
 	  <foreach collection="lineItems" item="item" separator=";" open="DECLARE BEGIN" close="; END;">
 	    UPDATE PRODUCT
 	        SET
@@ -124,5 +124,14 @@
 	        WHERE
 	        	PRODUCT_ID = #{item.productId}
 	   </foreach>
+   </update>
+   
+   
+  <update id="updateProduct" >
+	  UPDATE PRODUCT
+	  SET 
+    	PRODUCT_IMG = #{productImg}
+     WHERE
+    	PRODUCT_ID = #{productId}
    </update>
 </mapper>

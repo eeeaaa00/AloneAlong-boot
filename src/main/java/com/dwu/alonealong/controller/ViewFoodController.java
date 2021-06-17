@@ -4,6 +4,7 @@ import java.util.Base64;
 import java.util.Base64.*;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,17 +40,24 @@ public class ViewFoodController {
 	public String resFood(
 			@PathVariable("resId") String resId,
 			@SessionAttribute("sessionFoodCart") FoodCart foodCart,
-			HttpServletResponse response,
+			HttpServletRequest request,
 //			@RequestParam(value = "foodId", defaultValue="") String foodId,
 			ModelMap model) throws Exception {
 
+		UserSession userSession = (UserSession)request.getSession().getAttribute("userSession");
+		if(userSession != null) {
+			User user = alonealong.getUserByUserId(userSession.getUser().getId());
+			String userId = user.getId();
+			model.put("userId", userId);
+		}
+	
 		List<Food> foodList = this.alonealong.getFoodListByRestaurant(resId); 
 		model.put("foodList", foodList);
 		model.put("foodCart", foodCart.getFoodItemList());
 		Restaurant res = alonealong.getRestaurantByResId(resId);
 		
 		model.put("totalPrice", foodCart.getSubTotal());
-		System.out.println(foodCart.getFoodItemList().size());
+		//System.out.println(foodCart.getFoodItemList().size());
 		
 		Encoder encoder = Base64.getEncoder();
 		byte[] imagefile;
@@ -64,6 +72,7 @@ public class ViewFoodController {
         encodedString = encoder.encodeToString(imagefile);
         res.setImg64(encodedString);
         model.put("restaurant", res);
+
         
 		return "restaurant";
 
@@ -75,9 +84,28 @@ public class ViewFoodController {
 	public String handleRequest2(
 			@PathVariable("resId") String resId,
 			@SessionAttribute("sessionFoodCart") FoodCart foodCart,
+			HttpServletRequest request,
 			ModelMap model) throws Exception {
 		
-		List<FoodReview> reviewList = this.alonealong.getFoodReviewListByResId(resId);
+		String sortType = request.getParameter("sortType");
+		if(sortType == null)
+			sortType = "REVIEW_DATE DESC";
+	
+		String sortTypeName = "";
+		switch(sortType) {
+			case "REVIEW_DATE DESC":
+				sortTypeName = "최신 등록순";
+				break;
+			case "REVIEW_RATING DESC":
+				sortTypeName = "높은 평점순";
+				break;
+			case "REVIEW_RATING":
+				sortTypeName = "낮은 평점순";
+				break;
+		}
+		
+		model.put("sortTypeName", sortTypeName);
+		List<FoodReview> reviewList = this.alonealong.getFoodReviewListByResId(resId, sortType);
 		for(FoodReview review : reviewList) {
 			User user = alonealong.getUserByUserId(review.getUserId());
 			review.setUserNickName(user.getNickname());

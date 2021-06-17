@@ -22,10 +22,16 @@ import org.apache.ibatis.annotations.Mapper;
 import org.springframework.dao.DataAccessException;
 
 import com.dwu.alonealong.domain.Product;
+import com.dwu.alonealong.domain.ProductLineItem;
 import com.dwu.alonealong.domain.ProductOrder;
 
 
 @Mapper
 public interface ProductOrderMapper {
+	List<ProductOrder> getOrdersByUserId(String userId) throws DataAccessException;
+	List<ProductLineItem> getLineItemsByOrderId(String orderId) throws DataAccessException;
+	ProductOrder getProductOrder(String orderId) throws DataAccessException;
+	
 	void insertProductOrder(ProductOrder order) throws DataAccessException;
+	int checkUsersOrder(String userId, String productId) throws DataAccessException;
 }

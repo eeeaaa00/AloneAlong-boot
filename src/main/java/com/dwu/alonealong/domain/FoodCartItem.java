@@ -15,14 +15,14 @@ public class FoodCartItem {
 	public void setQuantity(int quantity) { this.quantity = quantity; }	
 	
 	//
-	public int getTotalPrice() {
-		if (food != null) {
-			return food.getPrice() * quantity;
-		}
-		else {
-			return 0;
-		}
-	}
+//	public int getTotalPrice() {
+//		if (food != null) {
+//			return food.getPrice() * quantity;
+//		}
+//		else {
+//			return 0;
+//		}
+//	}
 	public void incrementQuantity() {
 		quantity++;
 	}	

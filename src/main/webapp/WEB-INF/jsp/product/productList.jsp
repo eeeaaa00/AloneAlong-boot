@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <style>
 b {color:#29A65F;}
 .card:hover, .card:focus {  filter: brightness(90%); }
@@ -13,7 +14,7 @@ b {color:#29A65F;}
 
 <!-- 물품 목록 -->
 <div class="row px-5 mb-lg-5 justify-content-between">
-<c:forEach items="${productList}" var="product" varStatus="idx">
+<c:forEach items="${productList.pageList}" var="product" varStatus="idx">
 <c:if test="${idx.index % 3 == 0}">
 </div>
 <div class="row px-5 mb-lg-5 justify-content-between">
@@ -21,11 +22,10 @@ b {color:#29A65F;}
 	<input type="hidden" name="pcId" value="${param.pcId}"/>
 	<input type="hidden" name="sortType" value="${param.sortType}"/>
 	<input name="productId" type="hidden" value="${product.productId}"/>
-	<div class="card shadow-sm">
+	<div class="card shadow-sm rounded">
 		<div class="contents">
-			<svg class="img"
-				style="background-image: url('https://img-cf.kurly.com/shop/data/goods/1575003713758y0.jpg'); background-size: cover; background-position: center"
-				width="100%" height="150px"></svg>
+		<svg class="img" style="background-image: url('data:image/jpeg;base64,${product.img64}'); background-size: cover; background-position: center"
+										width="100%" height="150px"></svg>
 			<div class="card-body">
 				<div class="d-flex justify-content-between align-items-start">
 					<h6 class="card-text text-left"><c:out value="${product.productName}"/></h6>
@@ -42,75 +42,36 @@ b {color:#29A65F;}
 			onClick="location.href='<c:url value='/shop/${product.productId}' />'"></div>
 	</div>
 </c:forEach>
+<c:set var="pageListSize" value="${productList.pageList.size()}" />
+<c:if test="${(pageListSize % 3) != 0}"><div style="width:268px;"></div></c:if>
 </div>
-<div class="row px-5 mb-lg-5 justify-content-between">
-	
-	
-	
-</div>
-<!-- (임시) view 구성용 반복  -->
-<c:forEach begin="2" end="5">
-	<div class="row px-5 my-5 justify-content-between">
-		<!-- (임시) view 구성용 반복 -->
-		<div class="card shadow-sm">
-			<svg class="img"
-				style="background-image: url('https://img-cf.kurly.com/shop/data/goods/1575003713758y0.jpg'); background-size: cover; background-position: center"
-				width="100%" height="150px"></svg>
-			<div class="card-body">
-				<div class="d-flex justify-content-between align-items-start">
-					<h6 class="card-text text-left">유기농 사과 3개입</h6>
-					<a href="/" class="btn btn-outline-success btn-sm rounded-circle"><i
-						class="fas fa-shopping-cart"></i></a>
-				</div>
-				<p>1,500원</p>
-			</div>
-			<div class="overlay" type="button"
-				onClick="location.href='<c:url value='/shopping/apple' />'"></div>
-		</div>
-		<div class="card shadow-sm">
-			<svg class="img"
-				style="background-image: url('https://img-cf.kurly.com/shop/data/goods/161544350511y0.jpg'); background-size: cover; background-position: center"
-				width="100%" height="150px"></svg>
-			<div class="card-body">
-				<div class="d-flex justify-content-between align-items-start">
-					<h6 class="card-text text-left">유기농 귤 5개입</h6>
-					<a href="/" class="btn btn-outline-success btn-sm rounded-circle"><i
-						class="fas fa-shopping-cart"></i></a>
-				</div>
-				<p>3,000원</p>
-				<small class="sold-out text-center rounded-pill">품절</small>
-			</div>
-			<div class="overlay" type="button"
-				onClick="location.href='<c:url value='/shopping/apple' />'"></div>
-		</div>
-		<div class="card shadow-sm">
-			<svg class="img"
-				style="background-image: url('https://img-cf.kurly.com/shop/data/goods/1617175056507y0.jpg'); background-size: cover; background-position: center"
-				width="100%" height="150px"></svg>
-			<div class="card-body">
-				<div
-					class="d-flex justify-content-between align-items-start rounded-circle">
-					<h6 class="card-text text-left">컷팅 수박 500g</h6>
-					<a href="/" class="btn btn-outline-success btn-sm rounded-circle"><i
-						class="fas fa-shopping-cart"></i></a>
-				</div>
-				<p>1,500원</p>
-			</div>
-			<div class="overlay" type="button"
-				onClick="location.href='<c:url value='/shopping/apple' />'"></div>
-		</div>
-	</div>
-</c:forEach>
 <!-- /.물품목록 -->
 
 <div class="row my-xl-5 justify-content-center">
 	<div class="paginate mb-xl-5 btn-toolbar" role="toolbar">
-		 <button type="button" class="btn"><i class="fas fa-chevron-left"></i></button>
-		 <div class="btn-group"><button type="button" class="btn active rounded-circle" >1</button></div>
-		 <div class="btn-group"><button type="button" class="btn rounded-circle">2</button></div>
-		 <div class="btn-group"><button type="button" class="btn rounded-circle">3</button></div>
-		 <div class="btn-group"><button type="button" class="btn rounded-circle">4</button></div>
-		 <div class="btn-group"><button type="button" class="btn rounded-circle">5</button></div>
-		 <button type="button" class="btn"><i class="fas fa-chevron-right"></i></button>
+		 <c:if test="${page == 1}">
+		 	 <button type="button" class="btn" disabled><i class="fas fa-chevron-left"></i></button>
+		 </c:if>
+		 <c:if test="${page != 1}">
+		 	 <button type="button" class="btn" onClick="location.href='<c:url value='/shop?pcId=${pcId}&page=${page - 1}' />'">
+		 	 	<i class="fas fa-chevron-left"></i></button>
+		 </c:if>
+		 <c:forEach var="pageNum" begin="${startPage}" end="${startPage + 5}" varStatus="status">
+			 <c:if test="${pageNum == page}">
+		 		<div class="btn-group"><button type="button" class="btn active rounded-circle" 
+		 			onClick="location.href='<c:url value='/shop?pcId=${pcId}&page=${pageNum}' />'">${pageNum}</button></div>
+			 </c:if>
+			 <c:if test="${pageNum != page && pageNum <= lastPage}">
+		 		<div class="btn-group"><button type="button" class="btn rounded-circle"
+		 			onClick="location.href='<c:url value='/shop?pcId=${pcId}&page=${pageNum}' />'">${pageNum}</button></div>
+			 </c:if>
+		 </c:forEach>
+		 <c:if test="${page == lastPage}">
+		 	 <button type="button" class="btn" disabled><i class="fas fa-chevron-right"></i></button>
+		 </c:if>
+		 <c:if test="${page != lastPage}">
+		 	 <button type="button" class="btn" onClick="location.href='<c:url value='/shop?pcId=${pcId}&page=${page + 1}' />'">
+		 	 	<i class="fas fa-chevron-right"></i></button>
+		 </c:if>
 	</div>
 </div>

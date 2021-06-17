@@ -42,13 +42,18 @@ public class MybatisRestaurantDAO implements RestaurantDAO{
 	public void updateRestaurant(Restaurant res) throws DataAccessException{
 		resMapper.updateRestaurant(res);
 	}
-	
-	public void deleteRestaurant(Restaurant res) throws DataAccessException{
-		resMapper.deleteRestaurant(res);
+	@Override
+	public void deleteRestaurant(String ownerId) throws DataAccessException {
+		resMapper.deleteRestaurant(ownerId);
 	}
 	@Override
 	public void updateAvgRating(int rating, String resId) throws DataAccessException {
 		resMapper.updateAvgRating(rating, resId);
 	}
+	@Override
+	public Restaurant getRestaurantByOwnerId(String ownerId) throws DataAccessException {
+		return resMapper.getRestaurantByOwnerId(ownerId);
+	}
+	
 	 
 }

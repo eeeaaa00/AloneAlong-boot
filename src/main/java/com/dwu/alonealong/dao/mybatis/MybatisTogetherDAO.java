@@ -62,6 +62,17 @@ public class MybatisTogetherDAO implements TogetherDAO {
 	}
 
 	@Override
+	public List<Together> searchTogetherList(String keyword) throws DataAccessException{
+		List<Together> togetherList = togetherMapper.searchTogetherList(keyword);
+		for(int i = 0; i < togetherList.size(); i++) {
+			String togId = togetherList.get(i).getTogetherId();
+			togetherList.get(i).setTogetherFoodList(togetherFoodMapper.getTogetherFoodListByTogId(togId));
+			togetherList.get(i).setTogetherMemberList(togetherMemberMapper.getTogetherMemberListByTogId(togId));
+		}
+		return togetherList;
+	}
+
+	@Override
 	public List<Together> getTogetherListByCategory(String area, String date, String kind, int price, String sex, String age)
 			throws DataAccessException {
 		switch(area) {

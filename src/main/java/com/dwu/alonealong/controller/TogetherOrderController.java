@@ -89,7 +89,9 @@ public class TogetherOrderController {
 			}
 		}
 		
-		return "redirect:/together";
+		String togName = aloneAlong.getTogetherByTogId(together.getTogetherId()).getTogetherName();
+		model.put("togName", togName);
+		return "togOrderResult";
 	}
 
 }

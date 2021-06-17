@@ -47,4 +47,7 @@ public class MybatisProductDAO implements ProductDAO{
 			return false;
 		}
 	}
+	public void updateProduct(Product product) throws DataAccessException{
+		productMapper.updateProduct(product);
+	}
 }

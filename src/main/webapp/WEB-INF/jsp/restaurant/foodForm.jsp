@@ -4,8 +4,8 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 
-<div class=" mb-3 pb-3 text-center">
-	<h1>Menu Info</h1><hr></div>   
+<div class="card m-3 p-3 text-center">
+	<h1>Menu Info</h1><hr>
    <div align="center">
      <form:form modelAttribute="food" ENCTYPE="multipart/form-data" method="post">
 		<p>
@@ -29,8 +29,8 @@
 			<form:input path="maxPeopleNum" value="${food.maxPeopleNum}"/>
 		</p>
 		<p>
-			<input type="submit" value="메뉴 등록">
+			<input class="btn btn-sm btn-outline-success" type="submit" value="메뉴 등록">
 		</p>
 	</form:form>
 	</div>
-	
+</div>   

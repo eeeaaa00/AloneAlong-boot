@@ -33,7 +33,7 @@ b {color:#29A65F;}
 		<input type="hidden" name="category1" value="${category1}">
 		<input type="hidden" name="category2" value="${category2}">
 	</form>
-		<button onClick="location.href='<c:url value='/eating/adminRes' />'">임시 식당등록버튼(마이페이지)</button>
+		<!-- <button onClick="location.href='<c:url value='/eating/adminRes' />'">임시 식당등록버튼(마이페이지)</button> -->
 	</div>
 	
 	
@@ -42,7 +42,7 @@ b {color:#29A65F;}
 		<c:forEach var="res" items="${restaurantList}">
 			<div class="card shadow-sm mb-4" type="button" onClick="location.href='<c:url value='/eating/' />${res.resId}'"> 
 				<img class="img ml-1 mt-1" src="data:image/jpeg;base64,${res.img64}"
-					style="width:260px; height:150px; object-fit:cover;"></svg>
+					style="width:260px; height:150px; object-fit:cover;">
 				<div class="card-body">
 					<div class="d-flex justify-content-between align-items-start">
 						<h6 class="card-text text-left mb-3">${res.resName}</h6>

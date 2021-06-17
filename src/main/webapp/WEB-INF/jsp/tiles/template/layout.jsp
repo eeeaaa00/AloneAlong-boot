@@ -38,6 +38,7 @@
 			<tiles:insertAttribute name="body" />
 		</div>
 	</div>
+	<div class="py-xl-5"></div>
 	<tiles:insertAttribute name="footer" />
 </body>
 </html>

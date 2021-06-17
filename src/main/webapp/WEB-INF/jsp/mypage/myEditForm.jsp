@@ -1,57 +1,80 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <div class="col-md-12">
 	<form:form modelAttribute="userForm" method="post">
+		<B style="color: #FF0000;"><form:errors cssClass="error" /></B>
+
 		<div class="form-group row">
 			<label for="userId" class="col-4 col-form-label">아이디</label>
 			<div class="col-8">
-				<form:input class="form-control here" placeholder="아이디"
-					path="user.id" required="required" />
+				<c:choose>
+					<c:when test="${!empty userSession.user}">
+						<form:input class="form-control here" placeholder="아이디"
+							path="user.id" htmlEscape="false" readonly="true" />
+					</c:when>
+					<c:otherwise>
+						<form:input class="form-control here" placeholder="아이디"
+							path="user.id" htmlEscape="false" />
+					</c:otherwise>
+				</c:choose>
+				<B style="color: #FF0000;"><form:errors path="user.id"
+						cssClass="error" /></B>
 			</div>
 		</div>
 		<div class="form-group row">
 			<label for="password" class="col-4 col-form-label">비밀번호</label>
 			<div class="col-8">
 				<form:input type="password" class="form-control here"
-					placeholder="비밀번호" path="user.pw" required="required" />
+					placeholder="비밀번호" path="user.pw" />
 			</div>
 		</div>
 		<div class="form-group row">
 			<label for="password2" class="col-4 col-form-label">비밀번호 확인</label>
 			<div class="col-8">
 				<form:input type="password" class="form-control here"
-					placeholder="비밀번호 확인" path="repeatedPassword" required="required" />
+					placeholder="비밀번호 확인" path="repeatedPassword" />
+				<B style="color: #FF0000;"><form:errors path="repeatedPassword"
+						cssClass="error" /></B>
 			</div>
 		</div>
 		<div class="form-group row">
 			<label for="username" class="col-4 col-form-label">이름</label>
 			<div class="col-8">
 				<form:input class="form-control here" placeholder="이름"
-					path="user.name" required="required" />
+					path="user.name" />
+				<B style="color: #FF0000;"><form:errors path="user.name"
+						cssClass="error" /></B>
 			</div>
 		</div>
 		<div class="form-group row">
 			<label for="username" class="col-4 col-form-label">닉네임</label>
 			<div class="col-8">
 				<form:input class="form-control here" placeholder="닉네임"
-					path="user.nickname" required="required" />
+					path="user.nickname" />
+				<B style="color: #FF0000;"><form:errors path="user.nickname"
+						cssClass="error" /></B>
 			</div>
 		</div>
 		<div class="form-group row">
 			<label for="email" class="col-4 col-form-label">이메일</label>
 			<div class="col-8">
 				<form:input class="form-control here" placeholder="이메일"
-					path="user.email" required="required" />
+					path="user.email" />
+				<B style="color: #FF0000;"><form:errors path="user.email"
+						cssClass="error" /></B>
 			</div>
 		</div>
 		<div class="form-group row">
 			<label for="website" class="col-4 col-form-label">전화번호</label>
 			<div class="col-8">
-				<form:input class="form-control here" placeholder="-를 제외하고 입력해주세요."
-					path="user.phone" required="required" />
+				<form:input class="form-control here" placeholder="-를 포함해 입력해주세요."
+					path="user.phone" />
+				<B style="color: #FF0000;"><form:errors path="user.phone"
+						cssClass="error" /></B>
 			</div>
 		</div>
 		<div class="form-group row">
@@ -59,42 +82,48 @@
 			<div class="col-8">
 				<form:select class="custom-select" path="user.sex" items="${sex}"
 					required="required" />
+
 			</div>
 		</div>
 		<div class="form-group row">
 			<label for="birthday" class="col-4 col-form-label">생년월일</label>
 			<div class="col-8">
 				<form:input type="date" class="form-control here"
-					placeholder="6자리로 입력해주세요.(001122)" path="user.birthday"
-					required="required" />
+					path="user.birthday"/>
 			</div>
 		</div>
 		<div class="form-group row">
 			<label for="address" class="col-4 col-form-label">주소</label>
 			<div class="col-8">
 				<form:input class="form-control here"
-					placeholder="주소 및 상세정보를 입력해주세요." path="user.address"
-					required="required" />
+					placeholder="주소 및 상세정보를 입력해주세요." path="user.address" />
+				<B style="color: #FF0000;"><form:errors path="user.address"
+						cssClass="error" /></B>
 			</div>
 		</div>
 		<div class="form-group row">
 			<label for="zip" class="col-4 col-form-label">우편번호</label>
 			<div class="col-8">
-				<form:input class="form-control here" placeholder="우편번호"
-					path="user.zip" required="required" />
+				<form:input class="form-control here" placeholder="우편번호를 입력해주세요."
+					path="user.zip" />
+				<B style="color: #FF0000;"><form:errors path="user.zip"
+						cssClass="error" /></B>
 			</div>
 		</div>
 		<div class="form-group row">
 			<label for="publicinfo" class="col-4 col-form-label">사업자등록</label>
 			<div class="col-8">
-				<form:input class="form-control here" placeholder="사업자번호"
-					path="user.buisness_num" />
+				<form:input class="form-control here"
+					placeholder="000-00-00000(사업자번호는 선택사항입니다.)"
+					path="user.business_num" />
+				<B style="color: #FF0000;"><form:errors path="user.business_num"
+						cssClass="error" /></B>
 			</div>
 		</div>
 		<div class="form-group row">
-				<button name="submit" type="submit"
-					class="btn btn-outline-success rounded-pill my-1 btn-block">완료</button>
-					
+			<button name="submit" type="submit"
+				class="btn btn-outline-success rounded-pill my-1 btn-block">완료</button>
+
 			<c:if test="${!empty userSession.user}">
 				<a href="<c:url value='/signOut' />">회원 탈퇴</a>
 			</c:if>

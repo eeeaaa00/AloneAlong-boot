@@ -4,7 +4,61 @@
 <mapper namespace="com.dwu.alonealong.dao.mybatis.mapper.ProductOrderMapper">
 
   <cache />
-
+  <select id="getOrdersByUserId" resultType="ProductOrder">
+    SELECT
+		O.ORDER_ID as orderId,
+		O.ORDER_DATE as orderDate,
+		O.TOTAL_PRICE as totalPrice,
+		O.ORDER_STATUS as status,
+		O.USER_ID as uerId,
+		O.CARD_NUM as cardNum,
+		SUBSTR(O.CARD_DATE, 0, INSTR(O.CARD_DATE, '/') - 1) as cardMonth,
+		SUBSTR(O.CARD_DATE, INSTR(O.CARD_DATE, '/')+ 1) as cardYear,
+		O.CARD_NAME as cardName,
+		PO.SHIP_NAME as shipName,
+		SUBSTR(PO.SHIP_PHONE, 0, INSTR(PO.SHIP_PHONE, '-') - 1) as shipPhone1,
+		SUBSTR(PO.SHIP_PHONE, INSTR(PO.SHIP_PHONE, '-') + 1, INSTR(PO.SHIP_PHONE, '-') - 1) as shipPhone2,
+		SUBSTR(PO.SHIP_PHONE, INSTR(PO.SHIP_PHONE, '-',1,2) + 1) as shipPhone3,
+		PO.SHIP_EMAIL as shipEmail,
+		PO.SHIP_ZIP as shipZip,
+		PO.SHIP_ADDRESS as shipAddress
+	FROM ORDERINFO O, PRODUCT_ORDER PO
+	WHERE O.ORDER_ID = PO.ORDER_ID AND O.USER_ID = #{userId}
+  </select>
+  
+  <select id="getLineItemsByOrderId" resultType="ProductLineItem">
+   SELECT
+		PL.PRODUCT_ID as productId,
+		PL.QUANTITY as quantity,
+		PL.UNIT_PRICE as unitPrice,
+		P.PRODUCT_IMG as productImg
+	FROM PRODUCT P, PRODUCT_ORDER PO, PRODUCT_LINEITEM PL
+	WHERE PO.ORDER_ID = PL.ORDER_ID AND PL.PRODUCT_ID = P.PRODUCT_ID
+		AND PO.ORDER_ID = #{orderId}
+  </select>
+  
+  <select id="getProductOrder" resultType="ProductOrder">
+    SELECT
+		O.ORDER_ID as orderId,
+		O.ORDER_DATE as orderDate,
+		O.TOTAL_PRICE as totalPrice,
+		O.ORDER_STATUS as status,
+		O.USER_ID as uerId,
+		O.CARD_NUM as cardNum,
+		SUBSTR(O.CARD_DATE, 0, INSTR(O.CARD_DATE, '/') - 1) as cardMonth,
+		SUBSTR(O.CARD_DATE, INSTR(O.CARD_DATE, '/')+ 1) as cardYear,
+		O.CARD_NAME as cardName,
+		PO.SHIP_NAME as shipName,
+		SUBSTR(PO.SHIP_PHONE, 0, INSTR(PO.SHIP_PHONE, '-') - 1) as shipPhone1,
+		SUBSTR(PO.SHIP_PHONE, INSTR(PO.SHIP_PHONE, '-') + 1, INSTR(PO.SHIP_PHONE, '-') - 1) as shipPhone2,
+		SUBSTR(PO.SHIP_PHONE, INSTR(PO.SHIP_PHONE, '-',1,2) + 1) as shipPhone3,
+		PO.SHIP_EMAIL as shipEmail,
+		PO.SHIP_ZIP as shipZip,
+		PO.SHIP_ADDRESS as shipAddress
+	FROM ORDERINFO O, PRODUCT_ORDER PO
+	WHERE O.ORDER_ID = PO.ORDER_ID AND O.ORDER_ID = #{orderId}
+  </select>
+  
   <update id="insertProductOrder">
   	INSERT ALL
 	 INTO ORDERINFO
@@ -21,4 +75,10 @@
 	SELECT *
 	FROM DUAL
   </update>
+  
+  <select id="checkUsersOrder" resultType="int">
+     SELECT COUNT(*)
+    FROM PRODUCT_LINEITEM PL, ORDERINFO O
+    WHERE PL.ORDER_ID = O.ORDER_ID AND O.USER_ID = #{userId} AND PL.PRODUCT_ID = #{productId}
+  </select>
 </mapper>

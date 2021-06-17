@@ -20,10 +20,102 @@ b {
 }
 </style>
 <h3>
-	당신의 <b>홀로서기</b>를 위한 <b>Alone&Along</b>의 맞춤 서비스 추천
+	<c:choose>
+		<c:when test="${!empty userSession.user}">
+	${userSession.user.name}님</c:when>
+		<c:otherwise>당신</c:otherwise>
+	</c:choose>의 <b>홀로서기</b>를 위한 <b>Alone&Along</b>의 맞춤 서비스 추천
 </h3>
 <br>
 <!-- 추천 기능 -->
+<hr>
+<div class="swiper-container">
+	<div class="swiper-wrapper">
+		<c:forEach items="${productList}" var="product" varStatus="idx"
+			begin="1" end="6">
+			<div class="swiper-slide">
+				<div class="row px-5 mb-lg-5 justify-content-between">
+					<form action='<c:url value="/shop"/>' method="post">
+						<input type="hidden" name="pcId" value="${param.pcId}" /> <input
+							type="hidden" name="sortType" value="${param.sortType}" /> <input
+							name="productId" type="hidden" value="${product.productId}" />
+						<div class="card shadow-sm">
+							<div class="contents">
+								<svg class="img"
+									style="background-image: url('https://img-cf.kurly.com/shop/data/goods/1575003713758y0.jpg'); background-size: cover; background-position: center"
+									width="100%" height="150px"></svg>
+								<div class="card-body">
+									<div class="d-flex justify-content-between align-items-start">
+										<h6 class="card-text text-left">
+											<c:out value="${product.productName}" />
+										</h6>
+										<button type="submit"
+											class="btn btn-green btn-sm rounded-circle">
+											<i class="fas fa-shopping-cart"></i>
+										</button>
+									</div>
+									<p>
+										<fmt:formatNumber value="${product.productPrice}"
+											pattern="#,###,###" />
+										원
+									</p>
+									<c:if test="${product.productStock == 0}">
+										<small class="sold-out text-center rounded-pill">품절</small>
+									</c:if>
+								</div>
+							</div>
+							<div class="overlay" type="button"
+								onClick="location.href='<c:url value='/shop/${product.productId}' />'">
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</c:forEach>
+	</div>
+	<div class="swiper-button-next"></div>
+	<!-- 네비게이션 -->
+	<div class="swiper-pagination"></div>
+	<!-- 페이징 -->
+</div>
+<hr>
+<div class="swiper-container">
+	<div class="swiper-wrapper">
+		<c:forEach var="res" items="${restaurantList}" begin="1" end="6">
+			<div class="swiper-slide">
+				<div class="row px-5 mb-lg-5 justify-content-between">
+					<div class="card shadow-sm" type="button"
+						onClick="location.href='<c:url value='/eating/' />${res.resId}'">
+						<div class="contents">
+							<img class="img ml-1 mt-1"
+								src="data:image/jpeg;base64,${res.img64}"
+								style="width: 260px; height: 150px; object-fit: cover;">
+
+							<div class="card-body">
+								<div class="d-flex justify-content-between align-items-start">
+									<h5 class="card-text text-left">
+										<c:out value="${res.resName}" />
+										<br>
+									</h5>
+								</div>
+								<p class="text-left">
+									별점 : ${res.avgRating}<br> 주소 : ${res.resAddress}
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- <li><a href="<c:url value='/eating/' />${res.resId}">${res.resName}</a></li> -->
+		</c:forEach>
+	</div>
+	<div class="swiper-button-next"></div>
+	<!-- 네비게이션 -->
+	<div class="swiper-pagination"></div>
+	<!-- 페이징 -->
+</div>
+<hr>
+
 <c:if test="${!empty userSession.user}">
 	<div class="swiper-container">
 		<div class="swiper-wrapper">
@@ -92,7 +184,7 @@ b {
 <c:if test="${empty userSession.user}">
 	<div class="swiper-container">
 		<div class="swiper-wrapper">
-			<c:forEach var="together" items="${togetherList}" begin= "1" end="6">
+			<c:forEach var="together" items="${togetherList}" begin="1" end="6">
 				<div class="swiper-slide">
 					<div
 						class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative"
@@ -154,90 +246,12 @@ b {
 		<!-- 페이징 -->
 	</div>
 </c:if>
-<hr>
-<div class="swiper-container">
-	<div class="swiper-wrapper">
-		<c:forEach var="res" items="${restaurantList}" begin="1" end="6">
-			<div class="swiper-slide">
-				<div class="card shadow-sm mb-4" type="button"
-					onClick="location.href='<c:url value='/eating/' />${res.resId}'">
-					<img class="img ml-1 mt-1"
-						src="data:image/jpeg;base64,${res.img64}"
-						style="width: 260px; height: 150px; object-fit: cover;">
-					</svg>
-					<div class="card-body">
-						<div class="d-flex justify-content-between align-items-start">
-							<h6 class="card-text text-left mb-3">${res.resName}</h6>
-						</div>
-						<p>별점 : ${res.avgRating}</p>
-						<p>주소 : ${res.resAddress}</p>
-					</div>
-				</div>
-			</div>
-			<!-- <li><a href="<c:url value='/eating/' />${res.resId}">${res.resName}</a></li> -->
-		</c:forEach>
-	</div>
-	<div class="swiper-button-next"></div>
-	<!-- 네비게이션 -->
-	<div class="swiper-pagination"></div>
-	<!-- 페이징 -->
-</div>
-<hr>
-<div class="swiper-container">
-	<div class="swiper-wrapper">
-		<c:forEach items="${productList}" var="product" varStatus="idx"
-			begin="1" end="6">
-			<div class="swiper-slide">
-				<div class="row px-5 mb-lg-5 justify-content-between">
-					<form action='<c:url value="/shop"/>' method="post">
-						<input type="hidden" name="pcId" value="${param.pcId}" /> <input
-							type="hidden" name="sortType" value="${param.sortType}" /> <input
-							name="productId" type="hidden" value="${product.productId}" />
-						<div class="card shadow-sm">
-							<div class="contents">
-								<svg class="img"
-									style="background-image: url('https://img-cf.kurly.com/shop/data/goods/1575003713758y0.jpg'); background-size: cover; background-position: center"
-									width="100%" height="150px"></svg>
-								<div class="card-body">
-									<div class="d-flex justify-content-between align-items-start">
-										<h6 class="card-text text-left">
-											<c:out value="${product.productName}" />
-										</h6>
-										<button type="submit"
-											class="btn btn-green btn-sm rounded-circle">
-											<i class="fas fa-shopping-cart"></i>
-										</button>
-									</div>
-									<p>
-										<fmt:formatNumber value="${product.productPrice}"
-											pattern="#,###,###" />
-										원
-									</p>
-									<c:if test="${product.productStock == 0}">
-										<small class="sold-out text-center rounded-pill">품절</small>
-									</c:if>
-								</div>
-							</div>
-							<div class="overlay" type="button"
-								onClick="location.href='<c:url value='/shop/${product.productId}' />'">
-							</div>
-						</div>
-					</form>
-				</div>
-			</div>
-		</c:forEach>
-	</div>
-	<div class="swiper-button-next"></div>
-	<!-- 네비게이션 -->
-	<div class="swiper-pagination"></div>
-	<!-- 페이징 -->
-</div>
-<hr>
+
 <!-- script -->
 <script>
 new Swiper('.swiper-container', {
 	slidesPerView : 3, // 동시에 보여줄 슬라이드 갯수
-	spaceBetween : 38, // 슬라이드간 간격
+	spaceBetween : 20, // 슬라이드간 간격
 	slidesPerGroup : 3, // 그룹으로 묶을 수, slidesPerView 와 같은 값을 지정하는게 좋음
 	loopFillGroupWithBlank : true,
 	loop : true, // 무한 반복

@@ -1,5 +1,7 @@
 package com.dwu.alonealong.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -25,25 +27,28 @@ public class UpdateProductReviewController {
 	}
 	
 	@RequestMapping("/shop/{productId}/review/update/{reviewId}")
-	public RedirectView handleRequest(
+	public RedirectView handleRequest(HttpServletRequest request,
 //			@ModelAttribute("userSession") UserSession userSession,
 			@PathVariable("productId") String productId,
 			@PathVariable("reviewId") String reviewId,
 			@RequestParam(value="rating") int rating,
 			@RequestParam(value="contents") String contents, 
 			ModelMap model) throws Exception {
-		//임시
-		String userId = "1";
+		UserSession userSession = (UserSession)request.getSession().getAttribute("userSession");
+		if(userSession == null) {
+			return new RedirectView("error");
+		}
+		String userId = userSession.getUser().getId();
 		
-		//product를 구매한 user인지 검사하는 과정 추가 필요
-		ProductReview productReview = this.aloneAlong.getProductReview(reviewId, userId);
+		//product를 구매한 user인지 검사
+		ProductReview productReview = aloneAlong.getProductReview(reviewId, userId);
+		if(!productReview.getUserId().equals(userId)) {
+			return new RedirectView("error");
+		}
 		productReview.setRating(rating);
 		productReview.setReviewContents(contents);
+		aloneAlong.updateProductReview(productReview);
 		
-		//결과값 검사 추가 필요
-		if(productReview.getUserId() == userId) {
-			this.aloneAlong.updateProductReview(productReview);
-		}
 		return new RedirectView("/shop/{productId}/review");
 	}
 

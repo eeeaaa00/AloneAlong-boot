@@ -39,7 +39,8 @@ public class ViewTestController {
 			model.put("recommandList", recommandList);
 		}
 		else {
-			List<Together> togetherList = this.alonealong.getTogetherListByCategory("all", "", "all", 99999, "all", "all");
+			
+			List<Together> togetherList = this.alonealong.getTogetherList();
 			model.put("togetherList", togetherList);
 		}
 
@@ -76,12 +77,24 @@ public class ViewTestController {
 		
 
 		return "index";
-
 	}
 
 	@RequestMapping("/product")
 	public String product() {
 		return "product";
+	}
+	
+	@RequestMapping("/productOrderResult")
+	public String orderSuccess(HttpServletRequest request, ModelMap model) {
+		
+		return "productOrderResult";
+	}
+	
+
+	@RequestMapping("/resOrderResult")
+	public String orderSuccess1(HttpServletRequest request, ModelMap model) {
+		
+		return "resOrderResult";
 	}
 
 //	@RequestMapping(value = "/shopping")

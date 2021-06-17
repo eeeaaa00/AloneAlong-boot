@@ -1,5 +1,7 @@
 package com.dwu.alonealong.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -25,20 +27,25 @@ public class DeleteProductReviewController {
 	}
 	
 	@RequestMapping("/shop/{productId}/review/delete/{reviewId}")
-	public RedirectView handleRequest(
+	public String handleRequest(HttpServletRequest request,
 //			@ModelAttribute("userSession") UserSession userSession,
 			@PathVariable("productId") String productId,
 			@PathVariable("reviewId") String reviewId,
 			ModelMap model) throws Exception {
-		//임시
-		String userId = "1";
-		
-		ProductReview productReview = this.aloneAlong.getProductReview(reviewId, userId);
-		//결과값 검사 추가 필요
-		if(productReview.getUserId() == userId) {
-			this.aloneAlong.deleteProductReview(reviewId);
+		UserSession userSession = (UserSession)request.getSession().getAttribute("userSession");
+		if(userSession == null) {
+			return "redirect:/login";
 		}
-		return new RedirectView("/shop/{productId}/review");
+		String userId = userSession.getUser().getId();
+		
+		//product를 구매한 user인지 검사
+		ProductReview productReview = aloneAlong.getProductReview(reviewId, userId);
+		if(!productReview.getUserId().equals(userId)) {
+			return "redirect:/error";
+		}
+		this.aloneAlong.deleteProductReview(reviewId);
+
+		return "redirect:/shop/{productId}/review";
 	}
 
 }//.
