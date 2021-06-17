@@ -34,11 +34,17 @@
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/tiles/search.jsp" />
 	</definition>
-
-	<definition name="loginTest" extends="base_layout">
+	
+	<definition name="productOrderResult" extends="base_layout">
 		<put-attribute name="body"
-			value="/WEB-INF/jsp/loginTest.jsp" />
+			value="/WEB-INF/jsp/product/productOrderResult.jsp" />
 	</definition>
+	
+		<definition name="resOrderResult" extends="base_layout">
+		<put-attribute name="body"
+			value="/WEB-INF/jsp/restaurant/resOrderResult.jsp" />
+	</definition>
+	
 
 
 	<!-- mypage -->

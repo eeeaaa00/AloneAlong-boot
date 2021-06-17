@@ -83,6 +83,19 @@ public class ViewTestController {
 	public String product() {
 		return "product";
 	}
+	
+	@RequestMapping("/productOrderResult")
+	public String orderSuccess(HttpServletRequest request, ModelMap model) {
+		
+		return "productOrderResult";
+	}
+	
+
+	@RequestMapping("/resOrderResult")
+	public String orderSuccess1(HttpServletRequest request, ModelMap model) {
+		
+		return "resOrderResult";
+	}
 
 //	@RequestMapping(value = "/shopping")
 //	public ModelAndView productList() {
