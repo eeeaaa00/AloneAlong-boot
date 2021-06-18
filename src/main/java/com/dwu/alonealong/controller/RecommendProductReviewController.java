@@ -31,6 +31,9 @@ public class RecommendProductReviewController {
 //			@ModelAttribute("userSession") UserSession userSession,
 			@PathVariable("productId") String productId,
 			@PathVariable("reviewId") String reviewId,
+			@RequestParam(value="page", defaultValue="1") int page,
+			@RequestParam(value="sortType", defaultValue="new") String sortType,
+			@RequestParam(value="quantity", defaultValue="1") int quantity,
 			ModelMap model) throws Exception {
 		UserSession userSession = (UserSession)request.getSession().getAttribute("userSession");
 		if(userSession == null) {
@@ -38,18 +41,21 @@ public class RecommendProductReviewController {
 		}
 		String userId = userSession.getUser().getId();
 		
-		//product를 구매한 user인지 검사
+		//자신의 리뷰 추천 여부 검사
 		ProductReview productReview = aloneAlong.getProductReview(reviewId, userId);
-		if (!productReview.getUserId().equals(userId)) {
+		if (productReview.getUserId().equals(userId)) {
+			return "redirect:/shop/{productId}/review?quantity=" + quantity + "&page=" + page + "&sortType=" + sortType + "&recommendError=true";
+		}
+		else {
 			if(productReview.getCheckRecommend() == false) {
 				productReview.increaseRecommend();
-				this.aloneAlong.updateProductReview(productReview);
-				this.aloneAlong.insertProductReviewRecommend(productReview.getReviewId(), userId);
+				aloneAlong.updateProductReview(productReview);
+				aloneAlong.insertProductReviewRecommend(productReview.getReviewId(), userId);
 			}
 			else {
 				productReview.decreaseRecommend();
-				this.aloneAlong.updateProductReview(productReview);
-				this.aloneAlong.deleteProductReviewRecommend(productReview.getReviewId(), userId);
+				aloneAlong.updateProductReview(productReview);
+				aloneAlong.deleteProductReviewRecommend(productReview.getReviewId(), userId);
 			}
 		}
 		return "redirect:/shop/{productId}/review";
