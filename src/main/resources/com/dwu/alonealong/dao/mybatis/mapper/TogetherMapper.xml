@@ -36,6 +36,7 @@
     		T.RES_ID AS resId,
     		T.TOG_STATUS AS status,
     		T.PRICE AS price,
+    		R.RES_ID AS "restaurant.resId",
     		R.RES_NAME AS "restaurant.resName",
     		R.RES_ADDRESS AS "restaurant.resAddress",
     		R.RES_CATEGORY AS "restaurant.categoryId"
@@ -65,6 +66,7 @@
 			AND R.AREA LIKE '%${area}%' AND T.TOG_DATE LIKE '%${date}%' AND R.RES_CATEGORY LIKE '%${kind}%' AND T.PRICE <![CDATA[ < ]]> #{price}
 			AND T.TOG_SEX LIKE '%${sex}%' AND T.TOG_AGE LIKE '%${age}%'
 			AND T.TOG_STATUS = 0
+		ORDER BY TOG_ID DESC
 	</select>
 	
 	<select id="recommandTogetherList" resultType="Together">

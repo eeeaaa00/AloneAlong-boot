@@ -14,6 +14,7 @@
 		FROM TOGETHER_FOOD TF, FOOD F
 		WHERE TF.FOOD_ID = F.FOOD_ID
 			AND TOG_ID = #{togId}
+		ORDER BY TOGFOOD_ID ASC
 	</select>
 
 	<insert id="insertTogetherFood">

@@ -161,16 +161,6 @@
 							</div>
 						</div>
   		        	</li>
-  					<li class="list-group-item d-flex justify-content-between bg-light">
-						<div class="col-md-4 text-success"><strong><span>1인(어떻게 처리할지 고민중)</span></strong></div>
-						<div class="d-none d-md-block col">
-							<div class="row">
-								<div class="col-md-4"></div>
-								<div class="col-md-4"></div>
-								<div class="col-md-4 text-success"><strong>ㅇㅇㅇㅇ원</strong></div>
-							</div>
-						</div>
-  					</li>
   				</ul>
       		</div>
 		</div>

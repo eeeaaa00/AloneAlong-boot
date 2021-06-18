@@ -39,6 +39,12 @@ public class TogetherOrderController {
 	public String joinTogether(HttpServletRequest request,
 			@ModelAttribute("together") Together together) {
 		
+		UserSession userSession = (UserSession)request.getSession().getAttribute("userSession");
+		
+		if(userSession == null) {
+			return "redirect:/login";
+		}
+		
 		return "together/togetherOrder";
 //		return "togetherOrder";
 	}

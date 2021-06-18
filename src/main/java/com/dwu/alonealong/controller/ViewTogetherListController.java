@@ -17,13 +17,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
+import com.dwu.alonealong.domain.FoodCart;
 import com.dwu.alonealong.domain.Together;
 import com.dwu.alonealong.domain.User;
 import com.dwu.alonealong.service.AloneAlongFacade;
 
 @Controller
-@SessionAttributes("userSession")
+@SessionAttributes({"userSession", "sessionFoodCart", "together"})
 public class ViewTogetherListController {
 	
 	private AloneAlongFacade alonealong;
@@ -56,6 +58,9 @@ public class ViewTogetherListController {
 			@RequestParam(value="sex",  defaultValue="all") String sex,
 			@RequestParam(value="age",  defaultValue="all") String age,
 			ModelMap model) throws Exception {
+		
+		model.addAttribute("sessionFoodCart", new FoodCart()); //카트 초기화
+		model.addAttribute("together", new Together()); //together 초기화
 		
 		//유저 맞춤 추천기능
 		UserSession userSession = (UserSession)request.getSession().getAttribute("userSession");
