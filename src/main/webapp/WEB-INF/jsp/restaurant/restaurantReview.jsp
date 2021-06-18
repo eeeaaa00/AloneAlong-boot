@@ -27,7 +27,7 @@ $(document).ready(function() {
 	          		<div class="col-md-3 text-center">
 	          			<h4><i class="green fas fa-comment-dots"></i></h4>
 	          			<h4 class="green pb-1">리뷰 수</h4>
-	          			<h4><b class="orange">${foodReviewList.size()}</b><small> 개</small></h4>
+	          			<h4><b class="orange">${foodReviewCount}</b><small> 개</small></h4>
 	          		</div>
 	          		<div class="col-md-4 text-center align-items-center">
 	          			<h4><i class="far green fa-star"></i></h4>
@@ -61,7 +61,9 @@ $(document).ready(function() {
 			</div>
 			
 			<!-- 리뷰 목록 -->
+			<c:if test="${empty foodReviewList}"> <div class="text-center my-5 py-5">등록된 리뷰가 없습니다.</div></c:if>
 			<c:forEach var = "rev" items = "${foodReviewList}">
+			
 				<div class="product-review mx-4 pb-4 mb-4 border-bottom">
 					<div class="d-flex align-middle me-4 pe-2">
 						<h6 class="green-roboto px-2">${rev.rating}</h6>
@@ -86,18 +88,37 @@ $(document).ready(function() {
 					</div>
 				</div>
 			</c:forEach>
+				<c:set var="pageListSize" value="${foodReviewList.size()}" />
+				<c:set var="sortType" value="REVIEW_RATING" />
 			<!-- 페이지네이션 -->
 			<div class="row my-xl-5 justify-content-center">
-				<div class="paginate mb-xl-2 btn-toolbar" role="toolbar">
-					<button type="button" class="btn"> <i class="fas fa-chevron-left"></i></button>
-					<div class="btn-group"><button type="button" class="btn active rounded-circle">1</button></div>
-					<div class="btn-group"><button type="button" class="btn rounded-circle">2</button></div>
-					<div class="btn-group"><button type="button" class="btn rounded-circle">3</button></div>
-					<div class="btn-group"><button type="button" class="btn rounded-circle">4</button></div>
-					<div class="btn-group"><button type="button" class="btn rounded-circle">5</button></div>
-					<button type="button" class="btn"><i class="fas fa-chevron-right"></i></button>
-				</div>
-			</div>
+	<div class="paginate mb-xl-5 btn-toolbar" role="toolbar">
+		 <c:if test="${page == 1}">
+		 	 <button type="button" class="btn" disabled><i class="fas fa-chevron-left"></i></button>
+		 </c:if>
+		 <c:if test="${page != 1}">
+		 	 <button type="button" class="btn" onClick="location.href='<c:url value='/eating/${resId}/RestaurantReview?page=${page - 1}' />'">
+		 	 	<i class="fas fa-chevron-left"></i></button>
+		 </c:if>
+		 <c:forEach var="pageNum" begin="${startPage}" end="${startPage + 5}" varStatus="status">
+			 <c:if test="${pageNum == page}">
+		 		<div class="btn-group"><button type="button" class="btn active rounded-circle" 
+		 			onClick="location.href='<c:url value='/eating/${resId}/RestaurantReview?page=${pageNum}' />'">${pageNum}</button></div>
+			 </c:if>
+			 <c:if test="${pageNum != page && pageNum <= lastPage}">
+		 		<div class="btn-group"><button type="button" class="btn rounded-circle"
+		 			onClick="location.href='<c:url value='/eating/${resId}/RestaurantReview?page=${pageNum}' />'">${pageNum}</button></div>
+			 </c:if>
+		 </c:forEach>
+		 <c:if test="${page == lastPage}">
+		 	 <button type="button" class="btn" disabled><i class="fas fa-chevron-right"></i></button>
+		 </c:if>
+		 <c:if test="${page != lastPage}">
+		 	 <button type="button" class="btn" onClick="location.href='<c:url value='/eating/${resId}/RestaurantReview?page=${page + 1}' />'">
+		 	 	<i class="fas fa-chevron-right"></i></button>
+		 </c:if>
+	</div>
+</div>
 		</div>
 		</div>
 	</div>

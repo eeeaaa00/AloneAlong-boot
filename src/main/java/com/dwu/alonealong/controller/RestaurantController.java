@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.dwu.alonealong.domain.Restaurant;
 import com.dwu.alonealong.domain.User;
 import com.dwu.alonealong.service.AloneAlongFacade;
+import com.dwu.alonealong.service.RestaurantFormValidator;
 
 @Controller
 @RequestMapping("/eating/adminRes")
@@ -53,9 +55,16 @@ public class RestaurantController {
 	@RequestMapping(method = RequestMethod.POST)
 	public String insert(
 			@ModelAttribute("restaurant") RestaurantForm resForm,
-//			BindingResult bindingResult,
+			BindingResult result,
 			HttpServletRequest request,
 			Model model) throws MalformedURLException {
+		
+		new RestaurantFormValidator().validate(resForm, result); // 검증 실행
+		if (result.hasErrors()) { 
+			// 검증 오류 발생 시
+			return RES_INSERT_FORM; 
+		} 
+		
 		//user id
 		UserSession userSession = (UserSession)request.getSession().getAttribute("userSession");
 		User user = alonealong.getUserByUserId(userSession.getUser().getId());
@@ -63,7 +72,6 @@ public class RestaurantController {
 		
 		Restaurant res;
 		
-		//절대 imgfile null이면 안돼 validate 필요
 		MultipartFile mf = resForm.getImgFile();
 		byte[] img = null;
 		try {
@@ -89,6 +97,7 @@ public class RestaurantController {
 					resForm.getResDescription(), resForm.getCategoryId(), img, resForm.getIsTogetherOk(), resForm.getResArea());
 			
 			alonealong.updateRestaurant(res);
+			
 		}
 			
 		

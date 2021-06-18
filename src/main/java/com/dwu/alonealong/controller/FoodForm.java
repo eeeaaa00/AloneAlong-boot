@@ -13,8 +13,9 @@ public class FoodForm {
 	private String name;
 	private String description;
 	private MultipartFile imgFile;
-	private URL img;
 	private int maxPeopleNum;
+	
+	private String img64;
 	
 	FoodForm(){
 		
@@ -22,6 +23,12 @@ public class FoodForm {
 	
 
 
+	public String getImg64() {
+		return img64;
+	}
+	public void setImg64(String img64) {
+		this.img64 = img64;
+	}
 	public String getFoodId() {
 		return foodId;
 	}

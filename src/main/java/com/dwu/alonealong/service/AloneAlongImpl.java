@@ -282,6 +282,7 @@ public class AloneAlongImpl implements AloneAlongFacade{
 
 	//Food Order
 	@Override
+	@Transactional
 	public void insertFoodOrder(FoodOrder order) {
 		String newOrderId;
 		//주문 하나의 주문자정보
@@ -321,6 +322,7 @@ public class AloneAlongImpl implements AloneAlongFacade{
 	public List<FoodReview> getFoodReviewListByResId(String resId, String sortType) {
 		return foodReviewDao.getFoodReviewListByResId(resId, sortType);
 	}
+	
 	public void insertFoodReview(FoodReview foodReview) {
 		foodReviewDao.insertFoodReview(foodReview);
 	}

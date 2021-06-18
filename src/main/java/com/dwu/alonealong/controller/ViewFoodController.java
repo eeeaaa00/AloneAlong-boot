@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.support.PagedListHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -26,7 +27,7 @@ import com.dwu.alonealong.domain.User;
 import com.dwu.alonealong.service.AloneAlongFacade;
 
 @Controller
-@SessionAttributes({"sessionFoodCart"})
+@SessionAttributes({"sessionFoodCart", "pagedReviewList"})
 public class ViewFoodController {
 	private AloneAlongFacade alonealong;
 		
@@ -39,7 +40,7 @@ public class ViewFoodController {
 	@RequestMapping("/eating/{resId}")
 	public String resFood(
 			@PathVariable("resId") String resId,
-			@SessionAttribute("sessionFoodCart") FoodCart foodCart,
+			@SessionAttribute(value="sessionFoodCart") FoodCart foodCart,
 			HttpServletRequest request,
 //			@RequestParam(value = "foodId", defaultValue="") String foodId,
 			ModelMap model) throws Exception {
@@ -82,6 +83,7 @@ public class ViewFoodController {
 	//리뷰탭
 	@RequestMapping("/eating/{resId}/RestaurantReview")
 	public String handleRequest2(
+			@RequestParam(value="page", defaultValue="1") int page, 
 			@PathVariable("resId") String resId,
 			@SessionAttribute("sessionFoodCart") FoodCart foodCart,
 			HttpServletRequest request,
@@ -110,7 +112,7 @@ public class ViewFoodController {
 			User user = alonealong.getUserByUserId(review.getUserId());
 			review.setUserNickName(user.getNickname());
 		}
-		model.put("foodReviewList", reviewList);
+		//model.put("foodReviewList", reviewList);
 				
 		model.put("foodCart", foodCart.getFoodItemList());
 		Restaurant res = alonealong.getRestaurantByResId(resId);
@@ -125,6 +127,17 @@ public class ViewFoodController {
         encodedString = encoder.encodeToString(imagefile);
         res.setImg64(encodedString);
         model.put("restaurant", res);
+        
+        
+        PagedListHolder<FoodReview> pagedReviewList = new PagedListHolder<FoodReview>(reviewList);
+        pagedReviewList.setPageSize(3);
+        pagedReviewList.setPage(page - 1);
+        model.put("foodReviewList", pagedReviewList.getPageList());
+		model.put("foodReviewCount", reviewList.size());
+		
+		model.put("page", pagedReviewList.getPage() + 1);
+		model.put("startPage", (pagedReviewList.getPage() / 5) * 5 + 1);
+		model.put("lastPage", pagedReviewList.getPageCount());
         
 		return "restaurantReview";
 	}

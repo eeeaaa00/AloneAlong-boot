@@ -23,6 +23,7 @@ public class Restaurant implements Serializable{
 	private Food[] menuList;
 	private Together[] togetherList;
 	
+	//조회용
 	public Restaurant(String resId, String resName, String resAddress, String resPhone, String ownerId,
 			String resDescription, Double avgRating, String categoryId, byte[] imgFile, boolean isTogetherOk, String area) {
 		super();
@@ -39,6 +40,7 @@ public class Restaurant implements Serializable{
 		this.area = area;
 	}
 	
+	//생성용
 	public Restaurant(String resId, String resName, String resAddress, String resPhone,
 			String resDescription, String categoryId, byte[] imgFile, boolean isTogetherOk, String area) {
 		super();

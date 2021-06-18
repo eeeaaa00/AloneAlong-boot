@@ -13,6 +13,16 @@ $(document).ready(function() {
 	$("#ccDateYY").val(date[0]);
 	$("#ccDateMM").val(date[1]);
 	$("#ccCVC").val("${payment.card_cvc}");
+	
+	var date = new Date();
+    var day = date.getDate() + 1;
+    var month = date.getMonth() + 1;
+    var year = date.getFullYear();
+    if (month < 10) month = "0" + month;
+    if (day < 10) day = "0" + day;
+    var today = year + "-" + month + "-" + day;     
+    $("#visitDate").attr("min", today);
+
 });
 function getData() {
 	$("#ccName").val("${payment.card_name}").prop("selected", true);
@@ -24,9 +34,10 @@ function getData() {
 	$("#ccCVC").val("${payment.card_cvc}");
 }
 
+
+
+
 </script>
-
-
 	  <form:form modelAttribute="foodOrderForm" action="/eating/order/confirm" class="needs-validation" novalidate="">
     	<div class="mb-5 pb-5 border-bottom">
 	      <h4 class="mb-4">주문 정보</h4>

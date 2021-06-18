@@ -17,6 +17,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.util.WebUtils;
 
@@ -26,6 +27,7 @@ import com.dwu.alonealong.service.AloneAlongFacade;
 
 
 import com.dwu.alonealong.domain.Food;
+import com.dwu.alonealong.domain.FoodCart;
 import com.dwu.alonealong.domain.FoodLineItem;
 import com.dwu.alonealong.domain.FoodOrder;
 import com.dwu.alonealong.domain.ProductLineItem;
@@ -36,6 +38,7 @@ import com.dwu.alonealong.domain.User;
 import com.dwu.alonealong.service.AloneAlongFacade;
 
 @Controller
+@SessionAttributes("sessionFoodCart") 
 public class ViewMypageController {
 
   private AloneAlongFacade aloneAlong;
@@ -91,7 +94,7 @@ public class ViewMypageController {
 				item.setFoodName(food.getName());
 			}
 		}
-		
+		model.addAttribute("sessionFoodCart", new FoodCart());
 		model.addAttribute("foodOrderList", foodOrderList);
 
 		return "myResOrder"; 

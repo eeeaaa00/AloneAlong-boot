@@ -16,7 +16,15 @@ public class RestaurantForm {
 	private MultipartFile imgFile;
 	private boolean isTogetherOk;
 	
+	private String img64;
 	
+	
+	public String getImg64() {
+		return img64;
+	}
+	public void setImg64(String img64) {
+		this.img64 = img64;
+	}
 	public String getResName() {
 		return resName;
 	}

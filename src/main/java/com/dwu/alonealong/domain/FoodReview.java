@@ -33,6 +33,18 @@ public class FoodReview implements Serializable{
 		this.contents = contents;
 		this.recommend = recommend;
 	}
+	public FoodReview(String reviewId, String foodId, String resId, String userId, String reviewDate, int rating,
+			String contents, int recommend) {
+		super();
+		this.reviewId = reviewId;
+		this.foodId = foodId;
+		this.resId = resId;
+		this.userId = userId;
+		this.reviewDate = reviewDate;
+		this.rating = rating;
+		this.contents = contents;
+		this.recommend = recommend;
+	}
 	public String getReviewId() {
 		return reviewId;
 	}

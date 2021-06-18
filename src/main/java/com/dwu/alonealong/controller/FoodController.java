@@ -9,6 +9,7 @@ import java.util.Base64.Encoder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,12 +21,15 @@ import org.springframework.web.multipart.MultipartFile;
 import com.dwu.alonealong.domain.Food;
 import com.dwu.alonealong.domain.Restaurant;
 import com.dwu.alonealong.service.AloneAlongFacade;
+import com.dwu.alonealong.service.FoodFormValidator;
+import com.dwu.alonealong.service.RestaurantFormValidator;
 
 @Controller
 @RequestMapping("/eating/{resId}/adminFood")
 //@RequestMapping("/eating/adminFood")
 public class FoodController {
 	
+	//사용x
 	private static final String FOOD_INSERT_FORM = "eating/FoodForm";
 	
 	private AloneAlongFacade alonealong;
@@ -47,9 +51,16 @@ public class FoodController {
 	@RequestMapping(method = RequestMethod.POST)
 	public String insert(
 			@ModelAttribute("food") FoodForm foodForm,
+			BindingResult result,
 			@PathVariable("resId") String resId,
-//			BindingResult bindingResult,
 			Model model) {
+		
+		new FoodFormValidator().validate(foodForm, result); // 검증 실행
+		if (result.hasErrors()) { 
+			// 검증 오류 발생 시
+			return "foodForm"; 
+		}
+		
 		
 		MultipartFile mf = foodForm.getImgFile();
 		byte[] img = null;

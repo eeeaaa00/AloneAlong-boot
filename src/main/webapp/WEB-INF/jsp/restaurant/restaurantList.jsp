@@ -14,7 +14,7 @@ b {color:#29A65F;}
 	<div class="row mx-3">
 		<div class="col-md-5">
 			<h2 style="text-color: #29A65F;">식당</h2>
-			총 <b>${restaurantList.size()}</b>개의 식당이 있습니다.
+			총 <b>${restaurantCount}</b>개의 식당이 있습니다.
 		</div>
 		<div class="col-md-5"></div>
 		<div class="col-md-2"></div>
@@ -38,8 +38,12 @@ b {color:#29A65F;}
 	
 	
 	<!-- 물품 목록 -->
-	<div class="row px-5 mb-lg-5 pr-5 justify-content-md-between">
-		<c:forEach var="res" items="${restaurantList}">
+	<div class="row px-5 mb-lg-3 pr-5 justify-content-md-between">
+		<c:forEach var="res" items="${restaurantList}" varStatus="idx">
+			<c:if test="${idx.index % 3 == 0}">
+				</div>
+				<div class="row px-5 mb-lg-3 justify-content-between">
+			</c:if>
 			<div class="card shadow-sm mb-4" type="button" onClick="location.href='<c:url value='/eating/' />${res.resId}'"> 
 				<img class="img ml-1 mt-1" src="data:image/jpeg;base64,${res.img64}"
 					style="width:260px; height:150px; object-fit:cover;">
@@ -54,16 +58,34 @@ b {color:#29A65F;}
 			<!-- <li><a href="<c:url value='/eating/' />${res.resId}">${res.resName}</a></li> -->
 		</c:forEach>
 	<!-- /.물품목록 -->
-					
+		<c:set var="pageListSize" value="${restaurantList.size()}" />
+		<c:if test="${(pageListSize % 3) != 0}"><div style="width:268px;"></div></c:if>			
 	</div>
 	<div class="row my-xl-5 justify-content-center">
-			<div class="paginate mb-xl-5 btn-toolbar" role="toolbar">
-			  <button type="button" class="btn"><i class="fas fa-chevron-left"></i></button>
-			  <div class="btn-group"><button type="button" class="btn active rounded-circle" >1</button></div>
-			  <div class="btn-group"><button type="button" class="btn rounded-circle">2</button></div>
-			  <div class="btn-group"><button type="button" class="btn rounded-circle">3</button></div>
-			  <div class="btn-group"><button type="button" class="btn rounded-circle">4</button></div>
-			  <div class="btn-group"><button type="button" class="btn rounded-circle">5</button></div>
-			  <button type="button" class="btn"><i class="fas fa-chevron-right"></i></button>
-			</div>
-		</div>
+	<div class="paginate mb-xl-5 btn-toolbar" role="toolbar">
+		 <c:if test="${page == 1}">
+		 	 <button type="button" class="btn" disabled><i class="fas fa-chevron-left"></i></button>
+		 </c:if>
+		 <c:if test="${page != 1}">
+		 	 <button type="button" class="btn" onClick="location.href='<c:url value='/eating?page=${page - 1}' />'">
+		 	 	<i class="fas fa-chevron-left"></i></button>
+		 </c:if>
+		 <c:forEach var="pageNum" begin="${startPage}" end="${startPage + 5}" varStatus="status">
+			 <c:if test="${pageNum == page}">
+		 		<div class="btn-group"><button type="button" class="btn active rounded-circle" 
+		 			onClick="location.href='<c:url value='/eating?page=${pageNum}' />'">${pageNum}</button></div>
+			 </c:if>
+			 <c:if test="${pageNum != page && pageNum <= lastPage}">
+		 		<div class="btn-group"><button type="button" class="btn rounded-circle"
+		 			onClick="location.href='<c:url value='/eating?page=${pageNum}' />'">${pageNum}</button></div>
+			 </c:if>
+		 </c:forEach>
+		 <c:if test="${page == lastPage}">
+		 	 <button type="button" class="btn" disabled><i class="fas fa-chevron-right"></i></button>
+		 </c:if>
+		 <c:if test="${page != lastPage}">
+		 	 <button type="button" class="btn" onClick="location.href='<c:url value='/eating?page=${page + 1}' />'">
+		 	 	<i class="fas fa-chevron-right"></i></button>
+		 </c:if>
+	</div>
+</div>
