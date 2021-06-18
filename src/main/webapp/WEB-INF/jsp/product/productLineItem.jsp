@@ -20,11 +20,11 @@
 				<div class="cart-item mb-3">
 					<div
 						class=" d-flex align-items-center text-center text-md-center row">
-						<div class="col-12 col-md-7">
-							<div class="d-flex align-items-center">
-								<a href="/detail-1"> <svg class="img rounded-lg"
-										style="background-image: url('https://img-cf.kurly.com/shop/data/goods/1575003713758y0.jpg'); background-size: cover; background-position: center; width: 100px; height: 100px;"></svg>
-								</a>
+						<div class="col-md-7">
+							<div class="d-flex align-items-center ml-5">						
+								<a href=<c:url value="/shop/${item.productId}"/>>
+								<svg class="img rounded" style="background-image: url('data:image/jpeg;base64,${product.img64}'); background-size: cover; background-position: center; width: 100px; height: 100px;"></svg>
+	 							</a>
 								<div class="cart-title text-left ml-3">
 									<a class="text-uppercase text-dark" href="<c:url value='/shop/${orderItem.getProductId()}'/>">
 										<strong>${orderItem.getProductName()}</strong></a>
