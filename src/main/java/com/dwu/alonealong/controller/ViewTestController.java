@@ -7,6 +7,7 @@ import java.util.Base64.Encoder;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.support.PagedListHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,11 +36,15 @@ public class ViewTestController {
 			User user = this.alonealong.getUserByUserId(userSession.getUser().getId());
 			List<Together> recommandList = this.alonealong.recommandTogetherList(user.getSex(), user.getAddress());
 
-			model.put("user", user);
-			model.put("recommandList", recommandList);
-		}
-		else {
-			
+			if (recommandList.isEmpty()) {
+				List<Together> togetherList = this.alonealong.getTogetherList();
+				model.put("togetherList", togetherList);
+
+			} else {
+				model.put("user", user);
+				model.put("recommandList", recommandList);
+			}
+		} else {
 			List<Together> togetherList = this.alonealong.getTogetherList();
 			model.put("togetherList", togetherList);
 		}
@@ -68,13 +73,23 @@ public class ViewTestController {
 
 		int pcId = 1;
 		String sortType = "new";
+
 		List<Product> productList = alonealong.getProductList(pcId, sortType);
+
+		PagedListHolder<Product> productPagedList = new PagedListHolder<Product>(productList);
+
+		encoder = Base64.getEncoder();
+		for (Product product : productPagedList.getPageList()) {
+			byte[] imagefile = product.getProductImg();
+			if (imagefile == null)
+				continue;
+			String encodedString = encoder.encodeToString(imagefile);
+			product.setImg64(encodedString);
+		}
 		model.put("pcId", pcId);
 		model.put("productList", productList);
 		model.put("sortTypeName", sortTypeName);
 		model.put("productList", productList);
-
-		
 
 		return "index";
 	}
@@ -83,17 +98,16 @@ public class ViewTestController {
 	public String product() {
 		return "product";
 	}
-	
+
 	@RequestMapping("/productOrderResult")
 	public String orderSuccess(HttpServletRequest request, ModelMap model) {
-		
+
 		return "productOrderResult";
 	}
-	
 
 	@RequestMapping("/resOrderResult")
 	public String orderSuccess1(HttpServletRequest request, ModelMap model) {
-		
+
 		return "resOrderResult";
 	}
 

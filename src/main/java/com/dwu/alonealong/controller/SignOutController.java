@@ -22,13 +22,14 @@ public class SignOutController {
 	}
 	
 	@RequestMapping("/signOut")
-	public RedirectView handleRequest(HttpServletRequest request, HttpSession session) throws Exception {
+	public String handleRequest(HttpServletRequest request, HttpSession session) throws Exception {
 		UserSession userSession = (UserSession) WebUtils.getSessionAttribute(request, "userSession");
+		
 		alonealong.removeUser(userSession.getUser().getId());
 		System.out.print("탈퇴 완료");
 		session.removeAttribute("userSession");
 		session.invalidate();
 
-		return new RedirectView("/");
+		return "redirect:/";
 	}
 }

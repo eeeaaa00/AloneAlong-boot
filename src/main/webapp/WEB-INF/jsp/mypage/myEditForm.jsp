@@ -3,7 +3,15 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-
+<script>
+	function signOut() {
+		if (confirm("탈퇴하시겠습니까?")) {
+			window.location.href = "/signOut";
+		} else {
+			alert("탈퇴 취소");
+		}
+	}
+</script>
 <div class="col-md-12">
 	<form:form modelAttribute="userForm" method="post">
 		<B style="color: #FF0000;"><form:errors cssClass="error" /></B>
@@ -89,7 +97,7 @@
 			<label for="birthday" class="col-4 col-form-label">생년월일</label>
 			<div class="col-8">
 				<form:input type="date" class="form-control here"
-					path="user.birthday"/>
+					path="user.birthday" />
 			</div>
 		</div>
 		<div class="form-group row">
@@ -123,12 +131,13 @@
 		<div class="form-group row">
 			<button name="submit" type="submit"
 				class="btn btn-outline-success rounded-pill my-1 btn-block">완료</button>
-
-			<c:if test="${!empty userSession.user}">
-				<a href="<c:url value='/signOut' />">회원 탈퇴</a>
-			</c:if>
 		</div>
 	</form:form>
+	<div class="form-group row">
+		<c:if test="${!empty userSession.user}">
+			<button name="submit" type="submit"
+				class="btn btn-outline-danger rounded-pill my-1 btn-block"
+				onClick="signOut()">회원 탈퇴</button>
+		</c:if>
+	</div>
 </div>
-
-
