@@ -21,15 +21,17 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.dwu.alonealong.domain.Food;
 import com.dwu.alonealong.domain.FoodCart;
+import com.dwu.alonealong.domain.Order;
 import com.dwu.alonealong.domain.Restaurant;
 import com.dwu.alonealong.domain.Together;
 import com.dwu.alonealong.domain.TogetherFood;
 import com.dwu.alonealong.domain.TogetherMember;
+import com.dwu.alonealong.domain.TogetherOrder;
 import com.dwu.alonealong.domain.User;
 import com.dwu.alonealong.service.AloneAlongFacade;
 
-@SessionAttributes({"retaurantList", "sessionFoodCart"})
 @Controller
+@SessionAttributes({"retaurantList", "sessionFoodCart"})
 public class TogetherRegisterController {
 	private AloneAlongFacade aloneAlong;
 	
@@ -87,7 +89,7 @@ public class TogetherRegisterController {
 	}
 	
 	//together 등록
-	@GetMapping("/togetherRegister/complete")
+	@RequestMapping("/togetherRegister/complete")
 	public String insertTogether(
 			HttpServletRequest request,
 			SessionStatus status,
@@ -122,10 +124,23 @@ public class TogetherRegisterController {
 		TogetherMember togetherMember = new TogetherMember("TOGMEM_ID.NEXTVAL", user.getId(), together.getTogetherId(), 1);
 		aloneAlong.insertTogetherMember(togetherMember);
 		
+		//결제 정보에는 들어가기(결제상태는x)
+		Order order = new Order("ORDER_ID.NEXTVAL", together.getPrice(), "결제 대기중", user.getId(), "결제 대기중", "결제 대기중", "결제 대기중");
+		aloneAlong.insertTogetherOrderInfo(order);
+		
+		TogetherOrder togetherOrder = new TogetherOrder(order.getOrderId(), together.getTogetherId());
+		aloneAlong.insertTogetherOrder(togetherOrder);
+		
 		status.setComplete(); //카트 제거
 		
 		List<Together> togetherList = aloneAlong.getTogetherList();
 		model.addAttribute("togetherList", togetherList);
+		
+//		Together together2 = this.aloneAlong.getTogetherByTogId(together.getTogetherId());
+//		
+//		System.out.println("Tog_id : " + together2.getTogetherId());
+//		
+//		model.put("together", together2);
 		
 		return "redirect:/together";
 	}

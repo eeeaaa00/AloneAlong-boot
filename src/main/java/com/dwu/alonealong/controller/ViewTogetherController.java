@@ -2,6 +2,7 @@ package com.dwu.alonealong.controller;
 
 import java.util.Base64;
 import java.util.Base64.Encoder;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.dwu.alonealong.domain.Together;
+import com.dwu.alonealong.domain.TogetherOrder;
 import com.dwu.alonealong.domain.User;
 import com.dwu.alonealong.service.AloneAlongFacade;
 
@@ -48,17 +50,23 @@ public class ViewTogetherController {
 		boolean isHost = false; //호스트 여부
 		boolean ifEditPossible = false; //수정 삭제 가능 여부
 		boolean alreadyApply = false; //이미 신청했는지 여부
+		boolean isPaid = false; //결제 여부
 		
 		if(userSession != null) {
 			isUserNull = true;
 			User user = aloneAlong.getUserByUserId(userSession.getUser().getId());
 			
-			if(together.getTogetherMemberList().get(0).getUserId().equals(user.getId())) {
+			if(together.getTogetherMemberList().get(0).getUserId().equals(user.getId())) { //호스트 여부
 				isHost = true;
-				if(together.getTogetherMemberList().size() == 1)
+				
+				TogetherOrder togetherOrder = aloneAlong.getTogetherOrderByTogId(togId).get(0);
+				if(togetherOrder.getOrder().getStatus().equals("결제완료")) //결제 여부
+					isPaid = true;
+				
+				if(together.getTogetherMemberList().size() == 1) //수정 삭제 가능 여부
 					ifEditPossible = true;
 			} else {
-				for(int i= 0; i < together.getTogetherMemberList().size(); i++) {
+				for(int i= 0; i < together.getTogetherMemberList().size(); i++) { //이미 신청했는지 여부
 					if(together.getTogetherMemberList().get(i).getUserId().equals(user.getId()))
 						alreadyApply = true;
 				}
@@ -67,6 +75,7 @@ public class ViewTogetherController {
 		
 		model.put("isUserNull", isUserNull);
 		model.put("isHost", isHost);
+		model.put("isPaid", isPaid);
 		model.put("ifEditPossible", ifEditPossible);
 		model.put("alreadyApply", alreadyApply);
 		

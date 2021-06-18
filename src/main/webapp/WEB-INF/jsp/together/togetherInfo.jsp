@@ -2,6 +2,37 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
    
 <div class="py-5 text-center">
+	
+	<!-- 설명문 -->
+	<c:if test="${isUserNull eq true}"> 
+		<c:if test="${isHost eq true}"> <!-- 호스트 여부 -->
+			<c:if test="${isPaid eq false}"> <!-- 결제 안됨 -->
+				<div class="row align-items-center">
+      				<div class="col-2"></div>
+      				<div class="col-8">
+        				<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  							<strong>아직 결제되지 않았습니다!</strong> 결제를 해주세요.
+    						<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    					</div>
+      				</div>
+      				<div class="col-2"></div>
+    			</div>
+			</c:if>
+			<c:if test="${isPaid eq true}"> <!-- 결제됨 -->
+				<div class="row align-items-center">
+      				<div class="col-2"></div>
+      				<div class="col-8">
+        				<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  							<strong>수정 및 삭제 불가!</strong> 이미 결제 되었습니다.
+    						<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    					</div>
+      				</div>
+      				<div class="col-2"></div>
+    			</div>
+			</c:if>
+		</c:if>
+	</c:if>
+
 	<h4><strong><c:out value="${together.togetherName}"/></strong><strong class="text-success">(<c:out value="${together.togetherMemberList.size()}"/>/<c:out value="${together.headCount}"/>)</strong></h4>
     <!-- 태그 -->
     <div class="row-md-6">
@@ -82,13 +113,21 @@
 	</c:if>
 	<c:if test="${isUserNull eq true}"> 
 		<c:if test="${isHost eq true}"> <!-- 호스트 여부 -->
-			<c:if test="${ifEditPossible eq true}"> <!-- 수정 가능 여부 -->
-				<a type="button" class="w-40 btn btn-lg btn-success" href="<c:url value='/togetherUpdate/${together.togetherId}' />">수정하기</a>
-				<a type="button" class="w-40 btn btn-lg btn-success" href="<c:url value='/togetherRegister/delete/${together.togetherId}' />">삭제하기</a>
+			<c:if test="${isPaid eq false}"> <!-- 결제 여부 -->
+				<a type="button" class="w-40 btn btn-lg btn-success" href="<c:url value='/togetherOrder' />">결제하기</a>
+				
+				<c:if test="${ifEditPossible eq true}"> <!-- 수정 가능 여부 -->
+					<a type="button" class="w-40 btn btn-lg btn-success" href="<c:url value='/togetherUpdate/${together.togetherId}' />">수정하기</a>
+					<a type="button" class="w-40 btn btn-lg btn-success" href="<c:url value='/togetherRegister/delete/${together.togetherId}' />">삭제하기</a>
+				</c:if>
+				<c:if test="${ifEditPossible eq false}">
+					<button class="w-40 btn btn-lg btn-success" onclick="javascript:btn('모집 중인 인원이 1명일 때만 가능합니다.' )">수정하기</button>
+        			<button class="w-40 btn btn-lg btn-success" onclick="javascript:btn('모집 중인 인원이 1명일 때만 가능합니다.' )">삭제하기</button>
+				</c:if>
+				
 			</c:if>
-			<c:if test="${ifEditPossible eq false}">
-				<button class="w-40 btn btn-lg btn-success" onclick="javascript:btn('모집 중인 인원이 1명일 때만 가능합니다.' )">수정하기</button>
-        		<button class="w-40 btn btn-lg btn-success" onclick="javascript:btn('모집 중인 인원이 1명일 때만 가능합니다.' )">삭제하기</button>
+			<c:if test="${isPaid eq true}">
+				
 			</c:if>
 		</c:if>
 		<c:if test="${isHost eq false}">

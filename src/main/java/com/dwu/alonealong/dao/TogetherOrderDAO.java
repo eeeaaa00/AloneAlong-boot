@@ -10,8 +10,10 @@ public interface TogetherOrderDAO {
 	
 	void insertTogetherOrder(TogetherOrder togetherOrder) throws DataAccessException;
 	
-	void removeTogetherOrder(TogetherOrder togetherOrder) throws DataAccessException;
+	void deleteTogetherOrder(String togId) throws DataAccessException;
 	
 	List<TogetherOrder> getTogetherOrderByUserId(String userId) throws DataAccessException;
+	
+	List<TogetherOrder> getTogetherOrderByTogId(String togId) throws DataAccessException;
 	
 }

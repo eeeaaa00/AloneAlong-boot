@@ -63,5 +63,12 @@ public class Order implements Serializable{
 	
 	public String getCardDate() {return cardDate;}
 	public void setCardDate(String cardDate) {this.cardDate = cardDate;}
+
+	@Override
+	public String toString() {
+		return "Order [orderId=" + orderId + ", orderDate=" + orderDate + ", totalPrice=" + totalPrice + ", status="
+				+ status + ", userId=" + userId + ", cardNum=" + cardNum + ", cardDate=" + cardDate + ", cardName="
+				+ cardName + "]";
+	}
 	
 }

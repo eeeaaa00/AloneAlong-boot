@@ -69,7 +69,7 @@
             			<div class="text-success">
                 			<h6 class="my-0">1인</h6>
                 		</div>
-                		<span class="text-success"><strong><c:out value="${together.getPricePerPerson()}"/>원</strong></span>
+                		<span class="text-success"><strong><c:out value="${together.price}"/>원</strong></span>
             		</li>
 				</ul>
 			</div>
@@ -124,7 +124,7 @@
 			<div class="row mx-5 mb-5 pb-5 justify-content-end">
 			<div class="col-md-3 text-right align-self-end">
 				합계 <span class="text-orange-roboto text-roboto pl-1"> <fmt:formatNumber
-					value="${together.getPricePerPerson()}" pattern="#,###,###" /></span>원
+					value="${together.price}" pattern="#,###,###" /></span>원
 			</div>
 			<div class="col-md-6">
 				<button type="submit" class="btn btn-orange btn-block rounded-pill py-3 my-1 mt-3 mx-3" >

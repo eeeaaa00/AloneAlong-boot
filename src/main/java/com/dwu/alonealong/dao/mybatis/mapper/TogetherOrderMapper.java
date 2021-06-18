@@ -12,4 +12,8 @@ public interface TogetherOrderMapper {
 	void insertTogetherOrder(TogetherOrder togetherOrder) throws DataAccessException;
 	
 	List<TogetherOrder> getTogetherOrderByUserId(String userId) throws DataAccessException;
+	
+	List<TogetherOrder> getTogetherOrderByTogId(String togId) throws DataAccessException;
+	
+	void deleteTogetherOrder(String togId) throws DataAccessException;
 }
