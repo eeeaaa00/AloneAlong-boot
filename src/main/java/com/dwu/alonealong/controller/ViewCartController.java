@@ -7,7 +7,6 @@ import java.util.Base64.Encoder;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.support.PagedListHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.dwu.alonealong.domain.CartItem;
-import com.dwu.alonealong.domain.Product;
 import com.dwu.alonealong.service.AloneAlongFacade;
 
 @Controller
@@ -30,6 +28,8 @@ public class ViewCartController {
 	
 	@RequestMapping("/cart")
 	public String handleRequest(HttpServletRequest request,
+			@RequestParam(value="cartItemId", required=false) String cartItemId,  
+			@RequestParam(value="stockError", required=false) boolean stockError,  
 			ModelMap model) throws Exception {
 		UserSession userSession = (UserSession)request.getSession().getAttribute("userSession");
 		if(userSession == null) {
@@ -58,6 +58,11 @@ public class ViewCartController {
 		model.put("shippingFee", shippingFee);
 		model.put("totalPrice", totalPrice);
 		model.put("cart", cart);
+
+        if(stockError == true) {
+    		model.put("cartItemName", aloneAlong.getCartItem(cartItemId).getProductName());
+    		System.out.println("?" + aloneAlong.getCartItem(cartItemId).getProductName());
+        }
 		return "thyme/Cart";
 //		return "productCart";
 	}

@@ -67,13 +67,27 @@ public class Product implements Serializable {
 	  return false;
   }
 
-public int getUnitPrice() {
+  public int getUnitPrice() {
 	  int unitPrice = 0;
 	  unitPrice += quantity * productPrice;
 	  if (unitPrice < 30000) {
 		  unitPrice += shippingFee;
 	  }
 	  return unitPrice;
+  }
+  
+  public int getTotalPrice(String quantity) {
+	  try {
+		  System.out.println(Integer.parseInt(quantity) +"/" + productPrice +"/" + shippingFee);
+		  int totalPrice = 0;
+		  totalPrice += Integer.parseInt(quantity) * productPrice;
+		  if (totalPrice < 30000) {
+			  totalPrice += shippingFee;
+		  }
+		  return totalPrice; 
+	  } catch(NumberFormatException e) {
+		  return 0;
+	  }
   }
   
   /* Public Methods*/

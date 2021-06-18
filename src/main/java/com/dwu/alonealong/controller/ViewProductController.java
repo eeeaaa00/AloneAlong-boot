@@ -31,6 +31,10 @@ public class ViewProductController {
 			@RequestParam(value="quantity",  defaultValue="1") int quantity, 
 			ModelMap model) throws Exception {
 		Product product = this.aloneAlong.getProduct(productId);
+		if(!aloneAlong.checkStock(productId, quantity)) {
+			return "redirect:/shop/" + productId + "?stockError=true&product=" + product.getProductName() + "&stock=" + product.getProductStock();
+		}
+		
 		Encoder encoder = Base64.getEncoder();
         byte[] imagefile = product.getProductImg();
         if(imagefile != null){

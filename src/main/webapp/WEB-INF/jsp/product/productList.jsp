@@ -29,7 +29,7 @@ b {color:#29A65F;}
 			<div class="card-body">
 				<div class="d-flex justify-content-between align-items-start">
 					<h6 class="card-text text-left"><c:out value="${product.productName}"/></h6>
-					<a type="button" href=<c:url value="/cart/insert/${product.productId}/1/list"/> class="btn btn-green btn-sm rounded-circle">
+					<a type="button" href=<c:url value="/cart/insert/${product.productId}/list"/> class="btn btn-green btn-sm rounded-circle">
 						<i class="fas fa-shopping-cart"></i></a>
 				</div>
 				<p><fmt:formatNumber value="${product.productPrice}" pattern="#,###,###"/>원</p>
