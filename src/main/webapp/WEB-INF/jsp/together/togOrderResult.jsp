@@ -16,7 +16,7 @@
 		${userSession.user.name}님, <b style="color:green">${togName}</b> 예약이 완료되었습니다.
 		</h5>
 		<br>
-		<div class="row justify-content-around">
+		<div class="row justify-content-around px-5 py-3">
 			<h5>
 				<button type="submit" class="btn btn-lg btn-green rounded-pill"onClick="location.href='<c:url value='/' />'">
 					<i class="fa fa-home" aria-hidden="true"></i> 홈
