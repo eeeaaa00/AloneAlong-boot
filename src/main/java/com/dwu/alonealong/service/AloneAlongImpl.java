@@ -113,6 +113,11 @@ public class AloneAlongImpl implements AloneAlongFacade{
 		return userDao.getUserIdList();
 	}
 	
+	//Contact
+	public void insertContact(String contents) {
+		userDao.insertContact(contents);
+	}
+	
 	//Product
 	public List<Product> getProductList(int pcId, String sortType){
 		return productDao.getProductList(pcId, sortType);

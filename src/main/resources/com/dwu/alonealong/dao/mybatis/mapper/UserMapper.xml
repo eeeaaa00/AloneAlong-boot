@@ -81,5 +81,11 @@
 		parameterType="Account"> INSERT INTO PROFILE (LANGPREF, FAVCATEGORY, MYLISTOPT, 
 		BANNEROPT, USERID) VALUES (#{languagePreference}, #{favouriteCategoryId}, 
 		#{listOption}, #{bannerOption}, #{username}) </insert> -->
+	
 
+	<insert id="insertContact">
+		INSERT INTO CONTACT
+		VALUES
+		(#{contents})
+	</insert>
 </mapper>

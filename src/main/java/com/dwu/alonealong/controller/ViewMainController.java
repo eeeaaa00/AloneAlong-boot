@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.dwu.alonealong.domain.Product;
@@ -19,7 +20,7 @@ import com.dwu.alonealong.domain.User;
 import com.dwu.alonealong.service.AloneAlongFacade;
 
 @Controller
-public class ViewTestController {
+public class ViewMainController {
 
 	private AloneAlongFacade alonealong;
 
@@ -83,98 +84,17 @@ public class ViewTestController {
 		return "index";
 	}
 
-	@RequestMapping("/product")
-	public String product() {
-		return "product";
-	}
-	
-	@RequestMapping("/productOrderResult")
-	public String orderSuccess(HttpServletRequest request, ModelMap model) {
-		
-		return "productOrderResult";
-	}
-	
-
-	@RequestMapping("/resOrderResult")
-	public String orderSuccess1(HttpServletRequest request, ModelMap model) {
-		
-		return "resOrderResult";
-	}
-
-//	@RequestMapping(value = "/shopping")
-//	public ModelAndView productList() {
-//		ModelAndView mav = new ModelAndView();
-//		mav.setViewName("/shopping/productList");
-//		return mav;
-//	}
-
-//	@RequestMapping(value = "/shopping/{id}")
-//	public ModelAndView productInfo() {
-//		ModelAndView mav = new ModelAndView();
-//		mav.setViewName("/shopping/product");
-//		mav.setViewName("/product");
-//		return mav;
-//	}
-//	
-//	@RequestMapping(value = "/shopping/{id}/review")
-//	public ModelAndView productReview() {
-//		ModelAndView mav = new ModelAndView();
-//		mav.setViewName("/shopping/productReview");
-//		mav.setViewName("/productReview");
-//		return mav;
-//	}
-//	
-//	@RequestMapping(value = "/shopping/cart")
-//	public ModelAndView productCart() {
-//		ModelAndView mav = new ModelAndView();
-//		mav.setViewName("/shopping/productCart");
-//		return mav;
-//	}
-
-	@RequestMapping(value = "/shopping")
-	public String productList() {
-		return "productList";
-	}
-
-	@RequestMapping(value = "/shopping/{id}")
-	public String productInfo() {
-		return "product";
-	}
-
-	@RequestMapping(value = "/shopping/{id}/review")
-	public String productReview() {
-		return "productReview";
-	}
-
-	@RequestMapping(value = "/shopping/cart")
-	public String productCart() {
-		return "productCart";
-	}
-
-	@RequestMapping(value = "/order")
-	public ModelAndView order() {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("/order");
-		return mav;
-	}
-
-	@RequestMapping(value = "/orderTest")
-	public String orderTest() {
-		return "order_layout";
-	}
-
-	@RequestMapping(value = "/productOrderTest")
-	public String productOrderTest() {
-		return "productOrder";
-	}
-
-//	@RequestMapping(value = "/togetherOrderTest")
-//	public String togetherOrderTest() {
-//		return "togetherOrder";
-//	}
-
-	@RequestMapping(value = "/foodOrderTest")
-	public String foodOrderTest() {
-		return "foodOrder";
+	@RequestMapping(value = "/contact")
+	public String handleRequest(HttpServletRequest request,
+			@RequestParam(value="contents") String contents,
+			ModelMap model) throws Exception {
+		alonealong.insertContact(contents);
+		String refererURL = request.getHeader("referer");
+		if(refererURL != null) {
+			return "redirect:" + refererURL;
+		}
+		else {
+			return "redirect:/";
+		}
 	}
 }
