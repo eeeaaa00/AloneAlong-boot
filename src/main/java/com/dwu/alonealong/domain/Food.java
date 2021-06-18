@@ -13,7 +13,6 @@ public class Food implements Serializable{
 	private String description;
 	private byte[] imgFile;
 	private String img64;
-	private URL img;
 	private int maxPeopleNum;
 	
 	public Food() {
@@ -33,7 +32,7 @@ public class Food implements Serializable{
 	@Override
 	public String toString() {
 		return "Food [foodId=" + foodId + ", resId=" + resId + ", ownerId=" + ownerId + ", price=" + price + ", name="
-				+ name + ", description=" + description + ", img=" + img + ", maxPeopleNum=" + maxPeopleNum + "]";
+				+ name + ", description=" + description + ", maxPeopleNum=" + maxPeopleNum + "]";
 	}
 	public String getFoodId() {
 		return foodId;
@@ -70,12 +69,6 @@ public class Food implements Serializable{
 	}
 	public void setDescription(String description) {
 		this.description = description;
-	}
-	public URL getImg() {
-		return img;
-	}
-	public void setImg(URL img) {
-		this.img = img;
 	}
 	public int getMaxPeopleNum() {
 		return maxPeopleNum;

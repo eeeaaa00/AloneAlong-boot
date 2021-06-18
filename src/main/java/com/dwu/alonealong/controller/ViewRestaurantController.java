@@ -35,6 +35,7 @@ public class ViewRestaurantController {
 
 	@RequestMapping("/eating")
 	public String handleRequest(
+			@RequestParam(value="page", defaultValue="1") int page, 
 			@RequestParam(value="category1",  defaultValue="지역") String category1,
 			@RequestParam(value="category2",  defaultValue="분류") String category2,
 			@RequestParam(value="sortType",  defaultValue="new") String sortType,
@@ -42,11 +43,7 @@ public class ViewRestaurantController {
 			) throws Exception {
 		
 		model.addAttribute("sessionFoodCart", new FoodCart()); //식당에서 나올 때마다 카트 초기화.
-//		createCart();
-		//Category category = this.petStore.getCategory(categoryId);
-//		PagedListHolder<Restaurant> restaurantList = new PagedListHolder<Restaurant>(this.resService.getRestaurantList());
-		
-		//List<Restaurant> restaurantList = alonealong.getRestaurantList();
+
 		String sortTypeQuery = "";	
 		String sortTypeName = "";
 		if(sortType.equals("new")) {
@@ -68,7 +65,7 @@ public class ViewRestaurantController {
 		model.put("sortTypeName", sortTypeName);
 		model.put("category1", category1);
 		model.put("category2", category2);
-		model.put("restaurantList", restaurantList);
+//		model.put("restaurantList", restaurantList);
 
 		Encoder encoder = Base64.getEncoder();
         for(Restaurant res : restaurantList) {     	
@@ -79,52 +76,16 @@ public class ViewRestaurantController {
             System.out.println("여기64: " + encodedString);
             res.setImg64(encodedString);
         }
-//        PagedListHolder<Restaurant> pagedRestaurantList = new PagedListHolder<Restaurant>(alonealong.getRestaurantListByCategory(category1, category2, sortTypeQuery));
-//        pagedRestaurantList.setPageSize(6);
-//        pagedRestaurantList.setPage(3);
-//        model.put("restaurantList", pagedRestaurantList.getPageList());
+        PagedListHolder<Restaurant> pagedRestaurantList = new PagedListHolder<Restaurant>(restaurantList);
+        pagedRestaurantList.setPageSize(6);
+        pagedRestaurantList.setPage(page - 1);
+        model.put("restaurantList", pagedRestaurantList.getPageList());
+		model.put("restaurantCount", restaurantList.size());
+		
+		model.put("page", pagedRestaurantList.getPage() + 1);
+		model.put("startPage", (pagedRestaurantList.getPage() / 5) * 5 + 1);
+		model.put("lastPage", pagedRestaurantList.getPageCount());
 		return "restaurantList";
 	}
 	
-	//음식 검색분류별로 선별해서 나열
-//	@RequestMapping("/eating")
-//	public String handleRequest(
-////			@RequestParam("categoryId") String categoryId,
-////			ModelMap model
-//			) throws Exception {
-//		//Category category = this.petStore.getCategory(categoryId);
-////		PagedListHolder<Restaurant> restaurantList = new PagedListHolder<Restaurant>(this.alonealong.getRestaurantList());
-////		restaurantList.setPageSize(4);
-//		//model.put("category", category);
-////		model.put("restaurantList", restaurantList);
-//		return "/eating/Restaurant";
-	
-	
-//	@RequestMapping("/eating/adminRes")
-//	public String handleRequest2(
-////			@RequestParam("categoryId") String categoryId,
-////			ModelMap model
-//			) throws Exception {
-//		//Category category = this.petStore.getCategory(categoryId);
-////		PagedListHolder<Restaurant> restaurantList = new PagedListHolder<Restaurant>(this.alonealong.getRestaurantList());
-////		restaurantList.setPageSize(4);
-//		//model.put("category", category);
-////		model.put("restaurantList", restaurantList);
-//		return "/eating/RestaurantForm";
-//	}
-	
-//	@RequestMapping("/shop/viewRestaurant2.do")
-//	public String handleRequest2(
-//			@RequestParam("page") String page,
-//			//@ModelAttribute("category") Category category,
-//			@ModelAttribute("restaurantList") PagedListHolder<Restaurant> restaurantList,
-//			BindingResult result) throws Exception {
-//		if (/*category == null || */restaurantList == null) {
-//			throw new IllegalStateException("Cannot find pre-loaded category and product list");
-//		}
-//		if ("next".equals(page)) { restaurantList.nextPage(); }
-//		else if ("previous".equals(page)) { restaurantList.previousPage(); }
-//		return "RestaurantList";
-//	}
-
 }

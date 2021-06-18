@@ -11,11 +11,11 @@ import com.dwu.alonealong.domain.FoodReview;
 @Mapper
 public interface FoodReviewMapper {
 	
-	List<FoodReview> getFoodReviewListByUserId(String userId);
+	List<FoodReview> getFoodReviewListByUserId(String userId) throws DataAccessException;
 	List<FoodReview> getFoodReviewListByResId(String resId, String sortType) throws DataAccessException;
 	
-	void insertFoodReview(FoodReview foodReview);
-	void deleteFoodReview(FoodReview foodReview);
+	void insertFoodReview(FoodReview foodReview) throws DataAccessException;
+	void deleteFoodReview(FoodReview foodReview) throws DataAccessException;
 	
 	
 }

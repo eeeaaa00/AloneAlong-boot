@@ -40,7 +40,10 @@ public class MybatisRestaurantDAO implements RestaurantDAO{
 	}
 	
 	public void updateRestaurant(Restaurant res) throws DataAccessException{
-		resMapper.updateRestaurant(res);
+		if(res.getImgFile().length == 0)
+			resMapper.updateRestaurantWithoutImg(res);
+		else
+			resMapper.updateRestaurant(res);
 	}
 	@Override
 	public void deleteRestaurant(String ownerId) throws DataAccessException {

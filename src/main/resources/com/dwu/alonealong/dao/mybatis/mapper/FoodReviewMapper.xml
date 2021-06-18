@@ -8,8 +8,8 @@
   <select id="getFoodReviewListByResId" resultType="FoodReview">
      SELECT
      	REVIEW_ID as reviewId,
-    	RES_ID as resId, 
     	FOOD_ID as foodId,
+    	RES_ID as resId, 
     	USER_ID as userId,
     	REVIEW_DATE as reviewDate,
     	REVIEW_RATING as rating,

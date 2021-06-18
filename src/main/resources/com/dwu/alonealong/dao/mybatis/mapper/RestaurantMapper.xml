@@ -96,7 +96,7 @@
   </insert>
   <update id="updateRestaurant">
     UPDATE RESTAURANT 
-    SET RES_ADDRESS = #{resName}, RES_PHONE = #{resPhone}, RES_IMG = #{imgFile},
+    SET RES_NAME = #{resName}, RES_ADDRESS = #{resAddress}, RES_PHONE = #{resPhone}, RES_IMG = #{imgFile},
     RES_DES = #{resDescription}, RES_CATEGORY = #{categoryId}, IS_TOGETHER_OK = #{isTogetherOk}, AREA = #{area}
     WHERE RES_ID = #{resId}
   </update>
@@ -108,6 +108,12 @@
   	UPDATE RESTAURANT
 	SET AVG_RATING = ((AVG_RATING * REV_COUNT + #{rating}) / (REV_COUNT + 1)), REV_COUNT = REV_COUNT + 1
 	WHERE RES_ID = #{resId}
+  </update>
+  <update id="updateRestaurantWithoutImg">
+  	UPDATE RESTAURANT 
+    SET RES_NAME = #{resName}, RES_ADDRESS = #{resAddress}, RES_PHONE = #{resPhone},
+    RES_DES = #{resDescription}, RES_CATEGORY = #{categoryId}, IS_TOGETHER_OK = #{isTogetherOk}, AREA = #{area}
+    WHERE RES_ID = #{resId}
   </update>
  
   

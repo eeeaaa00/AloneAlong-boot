@@ -2,7 +2,13 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
- 
+
+<style>
+span{
+	color: #FF0000;
+	font-size: smaller;
+}
+</style> 
 <script>
 $(document).ready(function() {
     $('select[id="resArea"] option:contains("${res.area}")').attr("selected",true);
@@ -28,18 +34,22 @@ $(document).ready(function() {
 		<p>
 			<form:label path="resName">식당 이름</form:label>
 			<form:input path="resName" value="${res.resName}"/>
+			<form:errors class="errors1" path="resName"/>
 		</p>
 		<p>
 			<form:label path="resAddress">주소</form:label>
 			<form:input path="resAddress" value="${res.resAddress}"/>
+			<form:errors path="resAddress"/>
 		</p>
 		<p>
 			<form:label path="imgFile">이미지</form:label>
-			<form:input type="file" path="imgFile" value="${res.imgFile}"/>
+			<form:input type="file" path="imgFile"/>
+			<form:errors path="img64"/>
 		</p>
 		<p>
 			<form:label path="resPhone">번호</form:label>
 			<form:input path="resPhone" value="${res.resPhone}"/>
+			<form:errors path="resPhone"/>
 		</p>
 		<p>
 			<form:label path="resDescription">소개</form:label>
@@ -58,7 +68,9 @@ $(document).ready(function() {
 				<option value="울산광역시">울산광역시</option>
 				<option value="광주광역시">광주광역시</option>
 			</form:select>
+			<form:errors path="resArea"/>
 		</p>
+		
 		
 		<p>
 			<form:label path="categoryId">분류</form:label>
@@ -70,13 +82,15 @@ $(document).ready(function() {
 				<option value="양식">양식</option>
 				<option value="기타">기타</option>
 			</form:select>
+			<form:errors path="categoryId"/>
 		</p>
+		
 		<p>
 			<form:label path="isTogetherOk" >같밥모집 허용여부</form:label>
 			<form:checkbox path="isTogetherOk"/>
-
-
-			
+		</p>
+		<p>
+			<form:hidden path="img64" value="${res.imgFile}"/>
 		</p>
 		<p>
 			<c:if test="${empty res.resId}">

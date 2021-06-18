@@ -26,7 +26,7 @@
 	card_name as cardName
 	FROM ORDERINFO o JOIN FOOD_ORDER f ON o.order_id = f.order_id
 	WHERE o.user_id = #{userId}
-	ORDER BY orderDate DESC
+	ORDER BY orderDate DESC, visitDate DESC
   </select>
   
   <insert id="insertTogetherOrderInfo" useGeneratedKeys="true" keyColumn="ORDER_ID" keyProperty="orderId">
