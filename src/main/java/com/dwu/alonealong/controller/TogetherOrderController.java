@@ -87,6 +87,8 @@ public class TogetherOrderController {
 			Order newOrder = new Order("ORDER_ID.NEXTVAL", together.getPrice(), "결제완료", user.getId(), cardNum, orderDate, cardName);
 			aloneAlong.insertTogetherOrderInfo(newOrder);
 			
+			System.out.println("객체 생성?" + newOrder.toString());
+			
 			System.out.println("주문 목록 넣기 전--------------- ");
 			//주문목록에 넣기
 			System.out.println("Tog_id : " + together.getTogetherId());

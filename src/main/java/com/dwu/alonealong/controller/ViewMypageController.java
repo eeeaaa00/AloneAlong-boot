@@ -31,6 +31,7 @@ import com.dwu.alonealong.domain.FoodOrder;
 import com.dwu.alonealong.domain.ProductLineItem;
 import com.dwu.alonealong.domain.ProductOrder;
 import com.dwu.alonealong.domain.Restaurant;
+import com.dwu.alonealong.domain.Together;
 import com.dwu.alonealong.domain.User;
 import com.dwu.alonealong.service.AloneAlongFacade;
 
@@ -106,15 +107,14 @@ public class ViewMypageController {
 		List<TogetherOrder> orderList = aloneAlong.getTogetherOrderByUserId(user.getId());
 		
 		//이미지(에러남)
-//		Encoder encoder = Base64.getEncoder();
-//		for(TogetherOrder order : orderList) {
-//			byte[] imagefile = order.getTogether().getRestaurant().getImgFile();
-//			System.out.println("이미지 파일 : " + imagefile);
-//	        String encodedString = encoder.encodeToString(imagefile);
-//	        order.getTogether().getRestaurant().setImg64(encodedString);
-//		}
+		Encoder encoder = Base64.getEncoder();
+		for(TogetherOrder order : orderList) {
+			byte[] imagefile = order.getTogether().getRestaurant().getImgFile();
+	        String encodedString = encoder.encodeToString(imagefile);
+	        order.getTogether().getRestaurant().setImg64(encodedString);
+		}
 		
-		model.put("orderList", orderList);
+		model.addAttribute("orderList", orderList);
 		
 		return "myTogetherOrder";
 	}

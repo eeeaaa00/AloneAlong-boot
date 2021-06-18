@@ -7,6 +7,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
 import com.dwu.alonealong.dao.TogetherOrderDAO;
+import com.dwu.alonealong.dao.mybatis.mapper.RestaurantMapper;
 import com.dwu.alonealong.dao.mybatis.mapper.TogetherOrderMapper;
 import com.dwu.alonealong.domain.TogetherOrder;
 
@@ -14,6 +15,8 @@ import com.dwu.alonealong.domain.TogetherOrder;
 public class MyBatisTogetherOrderDAO implements TogetherOrderDAO{
 	@Autowired
 	private TogetherOrderMapper togetherOrderMapper;
+	@Autowired
+	private RestaurantMapper restaurantMapper;
 
 	@Override
 	public void insertTogetherOrder(TogetherOrder togetherOrder) throws DataAccessException {
@@ -27,7 +30,14 @@ public class MyBatisTogetherOrderDAO implements TogetherOrderDAO{
 
 	@Override
 	public List<TogetherOrder> getTogetherOrderByUserId(String userId) throws DataAccessException {
-		return togetherOrderMapper.getTogetherOrderByUserId(userId);
+		List<TogetherOrder> togetherOrderList = togetherOrderMapper.getTogetherOrderByUserId(userId);
+		
+		for(int i = 0; i < togetherOrderList.size(); i++) {
+			String resId = togetherOrderList.get(i).getTogether().getResId();
+			togetherOrderList.get(i).getTogether().setRestaurant(restaurantMapper.getRestaurant(resId));
+		}
+		
+		return togetherOrderList;
 	}
 
 	@Override
