@@ -62,7 +62,6 @@ public class ViewTestController {
 			if (imagefile == null)
 				continue;
 			String encodedString = encoder.encodeToString(imagefile);
-			System.out.println("여기64: " + encodedString);
 			res.setImg64(encodedString);
 		}
 
@@ -78,7 +77,6 @@ public class ViewTestController {
 			if (imagefile == null)
 				continue;
 			String encodedString = encoder.encodeToString(imagefile);
-			System.out.println("여기64: " + encodedString);
 			product.setImg64(encodedString);
 		}
 

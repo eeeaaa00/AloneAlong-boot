@@ -5,6 +5,12 @@
     <title>Cart</title>
 </head>
 <body>
+<script type="text/javascript">
+$(document).on("click", ".open-deleteModal", function () {
+    var cartItemId = $(this).data('id');
+    $("#cartItemId").val(cartItemId);
+});
+</script>
 
 <div th:replace="thyme/Top :: header"></div>
 <div class="container my-5 pb-5">
@@ -33,7 +39,7 @@
 							class=" d-flex align-items-center text-left text-md-center row">
 							<div class="col-12 col-md-5">
 								<div class="d-flex align-items-center">
-									<a href="/detail-1"> <img th:src="*{'data:image/png;base64,'+ cartItem.img64}" class="img rounded-lg"
+									<a th:href="@{/shop/{productId}(productId=${cartItem.productId})}"> <img th:src="*{'data:image/png;base64,'+ cartItem.img64}" class="img rounded-lg"
 											style="object-fit: cover; background-position: center; width: 100px; height: 100px;"/>
 									</a>
 									<div class="cart-title text-left ml-3">
@@ -61,27 +67,12 @@
 									</div>
 									<div class="col-md-2">
 										<div class="row">
-											<div class="text-right text-md-center col-6 col-md-12"  th:text="${#numbers.formatInteger(cartItem.getUnitPrice(),3,'COMMA')}"></div>
+											<div class="text-right text-md-center col-6 col-md-12" th:text="${#numbers.formatInteger(cartItem.getUnitPrice(),3,'COMMA')}"></div>
 										</div>
 									</div>
-									<div class="d-none d-md-block text-center col-2">
-									<span th:with="cId=${cartItem.cartItemId}">									
-										<a class="btn cart-remove text-green" data-toggle="modal" data-target="#deleteModal"><i
+									<div class="d-none d-md-block text-center col-2">							
+										<a class="btn cart-remove text-green open-deleteModal" th:attr="data-id=${cartItem.cartItemId}" data-toggle="modal" data-target="#deleteModal"><i
 											class="delete fa fa-times"></i></a>
-											</span>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-hidden="true">
-							<div class="modal-dialog modal-dialog-centered" role="document">
-								<div class="modal-content py-5">
-									<div class="modal-body text-center pb-4">
-										<h6>정말 장바구니에서 삭제하시겠습니까?</h6>
-									</div>
-									<div class="row mx-5 mb-2 justify-content-center">
-										<a type="button" class="btn btn-green rounded-pill mx-2 py-2 px-3" data-dismiss="modal">취소</a>
-										<a type="button" class="btn btn-orange rounded-pill mx-2 py-2 px-3" th:href="@{/cart/delete/{cartItemId}(cartItemId=${cartItem.cartItemId})}">삭제</a>
 									</div>
 								</div>
 							</div>
@@ -122,19 +113,41 @@
 		</div>
 	</div>
 </div>
-<div th:if="${param.stockError}" class="modal fade" id="alertModal" tabindex="-1" role="dialog">
-	<div class="modal-dialog modal-dialog-centered" role="document">
-		<div class="modal-content pb-4">
-			<div class="modal-header">
-				<h5 class="modal-title">Error</h5>
-				<button type="button" class="close" data-dismiss="modal"
-					aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
+	<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog"
+		aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content py-5">
+			<form th:action="@{/cart/delete}">
+				<div class="modal-body text-center pb-4">
+					<h6>정말 장바구니에서 삭제하시겠습니까?</h6>
+					<input type="hidden" name="cartItemId" id="cartItemId">
+				</div>
+				<div class="row mx-5 mb-2 justify-content-center">
+					<a type="button"class="btn btn-green rounded-pill mx-2 py-2 px-3"
+						data-dismiss="modal">취소</a> <button type="submit"
+						class="btn btn-orange rounded-pill mx-2 py-2 px-3">삭제</button>
+				</div>
+			</form>
 			</div>
-			<div class="modal-body text-center">현재 <span class="text-green" th:text="${param.product}"></span>의 재고수량은
-				<span class="text-orange" th:text="${param.stock}"></span>개 입니다.</div>
 		</div>
 	</div>
-</div>
-<div th:replace="thyme/Bottom :: footer"></div>
+	<div th:if="${param.stockError}" class="modal fade" id="alertModal"
+		tabindex="-1" role="dialog">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content pb-4">
+				<div class="modal-header">
+					<h5 class="modal-title">Error</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body text-center">
+					현재 <span class="text-green" th:text="${cartItemName}"></span>의
+					재고수량은 <span class="text-orange" th:text="${param.stock}"></span>개
+					입니다.
+				</div>
+			</div>
+		</div>
+	</div>
+	<div th:replace="thyme/Bottom :: footer"></div>

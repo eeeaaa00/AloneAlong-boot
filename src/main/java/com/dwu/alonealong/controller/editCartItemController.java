@@ -1,6 +1,5 @@
 package com.dwu.alonealong.controller;
 
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,9 +24,9 @@ public class editCartItemController {
 		this.aloneAlong = aloneAlong;
 	}
 
-	@RequestMapping("/cart/delete/{cartItemId}")
+	@RequestMapping("/cart/delete")
 	public String deleteCartItem(HttpServletRequest request,
-			@PathVariable("cartItemId") String cartItemId,
+			@RequestParam(value="cartItemId") String cartItemId,
 			ModelMap model) throws Exception {
 		UserSession userSession = (UserSession)request.getSession().getAttribute("userSession");
 		if(userSession == null) {
@@ -52,7 +51,6 @@ public class editCartItemController {
 		if(userSession == null) {
 			return "redirect:/login";
 		}
-		
 		CartItem cartItem = aloneAlong.getCartItem(cartItemId);
 		if(!userSession.getUser().getId().equals(cartItem.getUserId())) {
 			return  "redirect:/error";
@@ -61,7 +59,7 @@ public class editCartItemController {
 		cartItem.setQuantity(quantity);
 		
 		if(!aloneAlong.checkStock(cartItem.getProductId(), quantity)) {
-			return "redirect:/cart?stockError=true&product=" + cartItem.getProductName() + "&stock=" + product.getProductStock();
+			return "redirect:/cart?stockError=true&cartItemId=" + cartItemId + "&stock=" + product.getProductStock();
 		}
 		aloneAlong.updateCartItem(cartItem);
 		return "redirect:/cart";
@@ -69,11 +67,11 @@ public class editCartItemController {
 	
 
 
-	@RequestMapping("/cart/insert/{productId}/{quantity}/{type}")
+	@RequestMapping("/cart/insert/{productId}/{type}")
 	public String insertCartItem(HttpServletRequest request,
 			@PathVariable("productId") String productId,
-			@PathVariable(value="quantity") int quantity, 
-			@PathVariable(value="type") String type, 
+			@PathVariable("type") String type, 
+			@RequestParam(value="quantity", defaultValue="1") int quantity, 
 			ModelMap model) throws Exception {
 		UserSession userSession = (UserSession)request.getSession().getAttribute("userSession");
 		if(userSession == null) {
