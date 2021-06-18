@@ -119,6 +119,9 @@ public class ProductOrderController {
 		for(ProductLineItem item : lineItems) {
 			totalPrice += item.getUnitPrice();
 		}
+		if(totalPrice < 30000) {
+			totalPrice += 3000;
+		}
 		order.setTotalPrice(totalPrice);
 		
 		//user
