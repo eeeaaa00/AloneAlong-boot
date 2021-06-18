@@ -29,13 +29,6 @@ public class ViewTogetherController {
 	public void setPetStore(AloneAlongFacade aloneAlong) {
 		this.aloneAlong = aloneAlong;
 	}
-	
-	@ModelAttribute("together")
-	public Together createTogether(HttpSession session) {
-		Together together = (Together)session.getAttribute("together");
-		together = new Together();
-		return together;
-	}
 
 	@RequestMapping("/together/{togetherId}")
 	public String viewTogether(HttpServletRequest request,
@@ -49,34 +42,34 @@ public class ViewTogetherController {
 			ModelMap model) throws Exception {
 		Together together = this.aloneAlong.getTogetherByTogId(togId);
 		
-		//글 수정, 삭제 접근 조건
+		//수정, 삭제, 신청 접근 조건
 		UserSession userSession = (UserSession)request.getSession().getAttribute("userSession");
+		boolean isUserNull = false; //로그인 여부
 		boolean isHost = false; //호스트 여부
-		boolean hostButCant = false; //글 수정 및 삭제 가능 여부
-		boolean canApply = false; //신청 가능 여부
+		boolean ifEditPossible = false; //수정 삭제 가능 여부
 		boolean alreadyApply = false; //이미 신청했는지 여부
 		
 		if(userSession != null) {
+			isUserNull = true;
 			User user = aloneAlong.getUserByUserId(userSession.getUser().getId());
 			
-			if(together.getTogetherMemberList().size() == 1 && together.getTogetherMemberList().get(0).getUserId().equals(user.getId()))
+			if(together.getTogetherMemberList().get(0).getUserId().equals(user.getId())) {
 				isHost = true;
-			if(together.getTogetherMemberList().size() != 1 && together.getTogetherMemberList().get(0).getUserId().equals(user.getId()))
-				hostButCant = true;
-			
-			for(int i= 0; i < together.getTogetherMemberList().size(); i++) {
-				if(together.getTogetherMemberList().get(i).getUserId().equals(user.getId()))
-					alreadyApply = true;
-			}
+				if(together.getTogetherMemberList().size() == 1)
+					ifEditPossible = true;
+			} else {
+				for(int i= 0; i < together.getTogetherMemberList().size(); i++) {
+					if(together.getTogetherMemberList().get(i).getUserId().equals(user.getId()))
+						alreadyApply = true;
+				}
+			}	
 		}
-		if(isHost == false && hostButCant != true)
-			canApply = true;
 		
-		model.put("userSession", userSession);
+		model.put("isUserNull", isUserNull);
 		model.put("isHost", isHost);
-		model.put("hostButCant", hostButCant);
-		model.put("canApply", canApply);
+		model.put("ifEditPossible", ifEditPossible);
 		model.put("alreadyApply", alreadyApply);
+		
 		
 		//이미지
 //		Encoder encoder = Base64.getEncoder();

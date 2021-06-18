@@ -20,7 +20,7 @@ import com.dwu.alonealong.service.AloneAlongFacade;
 
 @Controller
 @SessionAttributes({"sessionFoodCart"})
-public class TogetherFoodCartController {
+public class TogetherFoodCartForRegisterController {
 
 	private AloneAlongFacade alonealong;
 	
@@ -56,7 +56,7 @@ public class TogetherFoodCartController {
 		Restaurant res = alonealong.getRestaurantByResId(resId);
 		model.put("keywords", res.getResName()); //검색창에 레스토랑 이름 세팅하기
 		model.put("selectedRes", res); //선택된 레스토랑
-		return "together/togetherForm";
+		return "together/togetherRegisterForm";
 	}
 	
 	@RequestMapping("/togetherRegister/{resId}/updateFoodCartItem")
@@ -76,7 +76,7 @@ public class TogetherFoodCartController {
 		Restaurant res = alonealong.getRestaurantByResId(resId);
 		model.put("keywords", res.getResName()); //검색창에 레스토랑 이름 세팅하기
 		model.put("selectedRes", res); //선택된 레스토랑
-		return "together/togetherForm";
+		return "together/togetherRegisterForm";
 	}
 	
 	@RequestMapping("/togetherRegister/{resId}/deleteFoodCartItem")
@@ -96,7 +96,7 @@ public class TogetherFoodCartController {
 		Restaurant res = alonealong.getRestaurantByResId(resId);
 		model.put("keywords", res.getResName()); //검색창에 레스토랑 이름 세팅하기
 		model.put("selectedRes", res); //선택된 레스토랑
-		return "together/togetherForm";
+		return "together/togetherRegisterForm";
 	}
 	
 }

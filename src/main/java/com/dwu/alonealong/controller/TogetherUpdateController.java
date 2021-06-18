@@ -15,9 +15,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
 import com.dwu.alonealong.domain.Food;
 import com.dwu.alonealong.domain.FoodCart;
+import com.dwu.alonealong.domain.Restaurant;
 import com.dwu.alonealong.domain.Together;
 import com.dwu.alonealong.domain.TogetherFood;
 import com.dwu.alonealong.service.AloneAlongFacade;
@@ -32,16 +34,8 @@ public class TogetherUpdateController {
 		this.aloneAlong = aloneAlong;
 	}
 	
-	//FoodCart 세션
-	@ModelAttribute("sessionFoodCart")
-	public FoodCart createCart(HttpSession session) {
-		FoodCart cart = (FoodCart)session.getAttribute("sessionFoodCart");
-		if (cart == null) cart = new FoodCart();
-		return cart;
-	}
-	
-	//수정 페이지로 가기/////////////////////////////////////////////(구현중)
-	@RequestMapping("/togetherRegister/update/{togetherId}")
+	//수정 페이지로 가기(구현중)
+	@RequestMapping("/togetherUpdate/{togetherId}")
 	public String viewUpdate(
 			HttpSession session,
 			@PathVariable("togetherId") String togId,
@@ -51,6 +45,9 @@ public class TogetherUpdateController {
 		Together together = this.aloneAlong.getTogetherByTogId(togId);
 		
 		model.put("keywords", together.getRestaurant().getResName()); //검색어 세팅
+		model.put("selectedRes", together.getRestaurant()); //레스토랑 세팅
+		
+		System.out.println("selectedRes" + together.getRestaurant());
 		
 		//푸드 리스트 세팅
 		List<Food> foodList = aloneAlong.getFoodListByRestaurant(together.getResId());
@@ -75,13 +72,48 @@ public class TogetherUpdateController {
 		
 		model.put("together", together);
 		
-		return "together/togetherForm";
+		return "together/togetherUpdateForm";
+	}
+	
+	//키워드로 레스토랑 리스트 가져오기
+	@RequestMapping("/togetherUpdate/searchRestaurant")
+	public String searchRestaurant(
+			@RequestParam("keywords") String keywords,
+			ModelMap model) throws Exception {
+		model.addAttribute("sessionFoodCart", new FoodCart()); //카트 초기화
+		
+		List<Restaurant> restaurantList = this.aloneAlong.searchRestaurantList(keywords);
+		model.put("keywords", keywords);
+		model.put("restaurantList", restaurantList);
+		System.out.println("키워드 검색 완료");
+		return "together/togetherUpdateForm";
+	}
+	
+	//해당 식당의 메뉴 가져오기
+	@RequestMapping("/togetherUpdate/searchMenu")
+	public String selectRestaurant(
+			@RequestParam("resId") String resId,
+			@SessionAttribute("sessionFoodCart") FoodCart foodCart,
+			ModelMap model) throws Exception {
+		Restaurant restaurant = aloneAlong.getRestaurantByResId(resId);
+		List<Food> foodList = aloneAlong.getFoodListByRestaurant(resId);
+		
+		model.put("keywords", restaurant.getResName()); //검색창에 레스토랑 이름 세팅하기
+		model.put("selectedRes", restaurant);
+		
+		model.addAttribute("foodList", foodList);
+		System.out.println("메뉴 검색 완료");
+		
+		model.put("foodCart", foodCart.getAllFoodCartItems());
+		
+		return "together/togetherUpdateForm";
 	}
 	
 	//together 수정///////////////////////////////////////(구현중)
-	@GetMapping("/togetherRegister/update/{togetherId}/complete")
+	@GetMapping("/togetherUpdate/{togetherId}/complete")
 	public String updateTogether(
 			HttpServletRequest request,
+			SessionStatus status,
 			@PathVariable("togetherId") String togId,
 			@RequestParam("name") String name,
 			@RequestParam("headCount") int headCount,
@@ -104,6 +136,8 @@ public class TogetherUpdateController {
 			TogetherFood togetherFood = new TogetherFood("TOGFOOD_ID.NEXTVAL", newTogether.getTogetherId(), cart.getFoodItemList().get(i).getFood().getFoodId() , cart.getFoodItemList().get(i).getQuantity());
 			aloneAlong.insertTogetherFood(togetherFood);
 		}
+		
+		status.setComplete(); //카트 제거
 		
 		List<Together> togetherList = aloneAlong.getTogetherList();
 		model.addAttribute("togetherList", togetherList);

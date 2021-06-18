@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.dwu.alonealong.domain.Food;
@@ -37,21 +38,18 @@ public class TogetherRegisterController {
 		this.aloneAlong = aloneAlong;
 	}
 	
-	//FoodCart 세션
-	@ModelAttribute("sessionFoodCart")
-	public FoodCart createCart(HttpSession session) {
-		FoodCart cart = (FoodCart)session.getAttribute("sessionFoodCart");
-		if (cart == null) cart = new FoodCart();
-		return cart;
-	}
-	
 	@RequestMapping("/togetherRegister")
 	public String handleRequest(
 			HttpServletRequest request,
 			ModelMap model) throws Exception {
 		System.out.println("등록하기 페이지로 들어가기");
 		
-		return "together/togetherForm";
+		UserSession userSession = (UserSession)request.getSession().getAttribute("userSession");
+		
+		if(userSession == null) {
+			return "redirect:/login";
+		}
+		return "together/togetherRegisterForm";
 	}
 	
 	//키워드로 레스토랑 리스트 가져오기
@@ -59,11 +57,13 @@ public class TogetherRegisterController {
 	public String searchRestaurant(
 			@RequestParam("keywords") String keywords,
 			ModelMap model) throws Exception {
+		model.addAttribute("sessionFoodCart", new FoodCart()); //카트 초기화
+		
 		List<Restaurant> restaurantList = this.aloneAlong.searchRestaurantList(keywords);
 		model.put("keywords", keywords);
 		model.put("restaurantList", restaurantList);
 		System.out.println("키워드 검색 완료");
-		return "together/togetherForm";
+		return "together/togetherRegisterForm";
 	}
 	
 	//해당 식당의 메뉴 가져오기
@@ -77,21 +77,20 @@ public class TogetherRegisterController {
 		
 		model.put("keywords", restaurant.getResName()); //검색창에 레스토랑 이름 세팅하기
 		model.put("selectedRes", restaurant);
-		//model.put("selectedOk", true);
 		
 		model.addAttribute("foodList", foodList);
 		System.out.println("메뉴 검색 완료");
 		
-		foodCart = new FoodCart(); //카트 초기화(안먹힘)
 		model.put("foodCart", foodCart.getAllFoodCartItems());
 		
-		return "together/togetherForm";
+		return "together/togetherRegisterForm";
 	}
 	
 	//together 등록
 	@GetMapping("/togetherRegister/complete")
 	public String insertTogether(
 			HttpServletRequest request,
+			SessionStatus status,
 			@RequestParam("name") String name,
 			@RequestParam("headCount") int headCount,
 			@RequestParam("sex") String sex,
@@ -122,6 +121,8 @@ public class TogetherRegisterController {
 		
 		TogetherMember togetherMember = new TogetherMember("TOGMEM_ID.NEXTVAL", user.getId(), together.getTogetherId(), 1);
 		aloneAlong.insertTogetherMember(togetherMember);
+		
+		status.setComplete(); //카트 제거
 		
 		List<Together> togetherList = aloneAlong.getTogetherList();
 		model.addAttribute("togetherList", togetherList);

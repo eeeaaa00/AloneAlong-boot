@@ -14,6 +14,7 @@
 		FROM TOGETHER_MEMBER TM, USERINFO U
 		WHERE TM.USER_ID = U.USER_ID
 			AND TOG_ID = #{togId}
+		ORDER BY TOGMEM_ID ASC
 	</select>
 
 	<insert id="insertTogetherMember">
