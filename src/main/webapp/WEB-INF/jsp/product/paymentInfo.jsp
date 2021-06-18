@@ -48,21 +48,27 @@ function samePayment(s){
 		<label for="cardNum" class="col-4 col-form-label">카드 번호</label>
 		<div class="col-8">
 			<form:input path="order.cardNum" id="cardNum" name="cardNum" placeholder="카드 번호"
-				class="form-control here" required="required" type="text"/>
+				class="form-control here" type="text"/>
+				<B style="color: #FF0000;"><form:errors path="order.cardNum" cssClass="error" /></B>
 		</div>
 	</div>
 	<div class="row w-100 mx-2 mb-3 justify-content-between no-gutters">
 		<label class="col-4 col-form-label">카드 정보</label>
 		<div class="row col-8 no-gutters">
-			<div class="col-6 input-group">
+			<div class="col-6">
+				<div class="input-group">
 				<form:input path="order.cardMonth" id="cardYear" name="cardMonth" placeholder="MM"
-					class="form-control" maxlength="2" required="required" type="text"/>
+					class="form-control" maxlength="2" type="text"/>
 				<form:input path="order.cardYear" id="cardMonth" name="cardYear" placeholder="YY"
-					class="form-control " maxlength="2" required="required" type="text"/>
+					class="form-control " maxlength="2" type="text"/>
+				</div>
+				<B style="color: #FF0000;"><form:errors path="order.cardMonth" cssClass="error" /></B>
+				<B style="color: #FF0000;"><form:errors path="order.cardYear" cssClass="error" /></B>
 			</div>
 			<div class="col-1"></div>
 			<div class="col-5">
-				<input id="cardCVC" name="cardCVC" placeholder="CVC" class="form-control" required="required" type="text"/>
+				<form:input path="order.cardCVC" placeholder="CVC" class="form-control" type="text"/>
+				<B style="color: #FF0000;"><form:errors path="order.cardCVC" cssClass="error" /></B>
 			</div>
 		</div>
 	</div>

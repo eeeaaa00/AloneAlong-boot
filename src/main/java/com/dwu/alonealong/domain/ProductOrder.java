@@ -16,13 +16,14 @@ public class ProductOrder implements Serializable {
   private String cardNum;
   private String cardMonth;
   private String cardYear;
+  private String cardCVC;
   private String cardName;
   private String shipName;
   private String shipPhone1;
   private String shipPhone2;
   private String shipPhone3;
   private String shipEmail;
-  private int shipZip;
+  private String shipZip;
   private String shipAddress; 
   
   private List<ProductLineItem> lineItems = new ArrayList<ProductLineItem>();
@@ -54,6 +55,9 @@ public class ProductOrder implements Serializable {
   
   public String getCardName() { return cardName; }
   public void setcardName(String cardName) { this.cardName = cardName; }
+
+  public String getCardCVC() { return cardCVC; }
+  public void setCardCVC(String cardCVC) { this.cardCVC = cardCVC; }
   
   public List<ProductLineItem> getLineItems() { return lineItems; }
   public void setLineItems(List<ProductLineItem> lineItems) { this.lineItems = lineItems; }
@@ -61,8 +65,8 @@ public class ProductOrder implements Serializable {
   public String getShipName() { return shipName; }
   public void setShipName(String shipName) { this.shipName = shipName; }
   
-  public int getShipZip() { return shipZip; }
-  public void setShipZip(int shipZip) { this.shipZip = shipZip; }
+  public String getShipZip() { return shipZip; }
+  public void setShipZip(String shipZip) { this.shipZip = shipZip; }
   
   public String getShipAddress() { return shipAddress; }
   public void setShipAddress(String shipAddress) { this.shipAddress = shipAddress; }

@@ -16,7 +16,7 @@ function changeQuantity(){
 	$("#totalPrice").text(totalPrice);
 };
 </script>
-<form method="post">
+<form method="get">
 <div class="row mx-5 mb-5">
 	<!-- 사진 -->
 	<div class="col-md-6 my-3">
@@ -42,6 +42,7 @@ function changeQuantity(){
 		
 		<!-- 임시 -->
 		<input name="type" type="hidden" value="product">
+		<input name="productId" type="hidden" value="${productId}">
 		<div class="totalPriceInfo bg-light">
 			<p class="text-right">총 금액 <b class="pl-2 text-roboto">
 				<span id="totalPrice"><fmt:formatNumber value="${product.getUnitPrice()}" pattern="#,###,###"/></span></b>원</p>
