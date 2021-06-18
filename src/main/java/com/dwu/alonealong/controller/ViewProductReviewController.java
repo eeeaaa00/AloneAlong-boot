@@ -54,18 +54,18 @@ public class ViewProductReviewController {
 		List<ProductReview> reviewList = this.aloneAlong.getProductReviewList(productId, sortType, userId);
 		
 		if(reviewList.size() > 0) {
-			model.put("numOfReviews", this.aloneAlong.numOfReviews(productId));
-			model.put("averageOfReviews", this.aloneAlong.averageOfReviews(productId));
-			model.put("mostRatingOfReviews", this.aloneAlong.mostRatingOfReviews(productId));
+			model.put("numOfReviews", aloneAlong.numOfReviews(productId));
+			model.put("averageOfReviews", aloneAlong.averageOfReviews(productId));
+			model.put("mostRatingOfReviews", aloneAlong.mostRatingOfReviews(productId));
 		}
 		else {
 			model.put("numOfReviews", "0");
 			model.put("averageOfReviews", "0");
 			model.put("mostRatingOfReviews", "0");
 		}
-//		PagedListHolder<ProductReview> reviewList = new PagedListHolder<ProductReview>(this.aloneAlong.getReviewsByProductId(productId, sortType));
-//		reviewList.setPageSize(3);
-//		reviewList.setPage(page);
+		PagedListHolder<ProductReview> pagedReviewList = new PagedListHolder<ProductReview>(reviewList);
+		pagedReviewList.setPageSize(3);
+		pagedReviewList.setPage(page - 1);
 
 		Encoder encoder = Base64.getEncoder();
         byte[] imagefile = product.getProductImg();
@@ -76,10 +76,13 @@ public class ViewProductReviewController {
 		product.setQuantity(quantity);
 		model.put("product", product);
 		model.put("pcId", product.getPcId());
-		model.put("reviewList", reviewList);
+		model.put("reviewList", pagedReviewList.getPageList());
 		model.put("sortTypeName", sortTypeName);
 		
-		//로그인 완성 후 수정 필요
+		model.put("page", pagedReviewList.getPage() + 1);
+		model.put("startPage", (pagedReviewList.getPage() / 5) * 5 + 1);
+		model.put("lastPage", pagedReviewList.getPageCount());
+		
 		model.put("userId", userId);
 		return "productReview";
 	}

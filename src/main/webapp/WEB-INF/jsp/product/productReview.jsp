@@ -12,16 +12,10 @@ $(document).on("click", ".open-updateModal", function () {
      var reviewContents = $(this).data('contents');
      $(".modal-body #reviewId").val(reviewId);
      $(".modal-body #reviewContents").val(reviewContents);
-     // As pointed out in comments, 
-     // it is unnecessary to have to manually call the modal.
-     // $('#addBookDialog').modal('show');
 });
 $(document).on("click", ".open-deleteModal", function () {
     var reviewId = $(this).data('id');
     $(".modal-body #reviewId").val(reviewId);
-    // As pointed out in comments, 
-    // it is unnecessary to have to manually call the modal.
-    // $('#addBookDialog').modal('show');
 });
 </script>
 
@@ -132,17 +126,36 @@ $(document).on("click", ".open-deleteModal", function () {
 			</c:forEach>
 		  </div>
 		  <!-- 페이지네이션 -->
+		  <c:if test="${reviewList.size() > 0}">
 		  <div class="row my-xl-5 justify-content-center">
-			<div class="paginate mb-xl-2 btn-toolbar" role="toolbar">
-				<button type="button" class="btn"> <i class="fas fa-chevron-left"></i></button>
-				<div class="btn-group"><button type="button" class="btn active rounded-circle">1</button></div>
-				<div class="btn-group"><button type="button" class="btn rounded-circle">2</button></div>
-				<div class="btn-group"><button type="button" class="btn rounded-circle">3</button></div>
-				<div class="btn-group"><button type="button" class="btn rounded-circle">4</button></div>
-				<div class="btn-group"><button type="button" class="btn rounded-circle">5</button></div>
-				<button type="button" class="btn"><i class="fas fa-chevron-right"></i></button>
+			<div class="paginate mb-xl-5 btn-toolbar" role="toolbar">
+				 <c:if test="${page == 1}">
+				 	 <button type="button" class="btn" disabled><i class="fas fa-chevron-left"></i></button>
+				 </c:if>
+				 <c:if test="${page != 1}">
+				 	 <button type="button" class="btn" onClick="location.href='<c:url value='/shop/${pcId}/review?quantity=${quantity}&page=${page - 1}&sortType=${param.sortType}' />'">
+				 	 	<i class="fas fa-chevron-left"></i></button>
+				 </c:if>
+				 <c:forEach var="pageNum" begin="${startPage}" end="${startPage + 5}" varStatus="status">
+					 <c:if test="${pageNum == page}">
+				 		<div class="btn-group"><button type="button" class="btn active rounded-circle" 
+				 			onClick="location.href='<c:url value='/shop/${pcId}/review?quantity=${quantity}&page=${pageNum}&sortType=${param.sortType}' />'">${pageNum}</button></div>
+					 </c:if>
+					 <c:if test="${pageNum != page && pageNum <= lastPage}">
+				 		<div class="btn-group"><button type="button" class="btn rounded-circle"
+				 			onClick="location.href='<c:url value='/shop/${pcId}/review?quantity=${quantity}&page=${pageNum}&sortType=${param.sortType}' />'">${pageNum}</button></div>
+					 </c:if>
+				 </c:forEach>
+				 <c:if test="${page == lastPage}">
+				 	 <button type="button" class="btn" disabled><i class="fas fa-chevron-right"></i></button>
+				 </c:if>
+				 <c:if test="${page != lastPage}">
+				 	 <button type="button" class="btn" onClick="location.href='<c:url value='/shop/${pcId}/review?quantity=${quantity}&page=${page + 1}&sortType=${param.sortType}' />'">
+				 	 	<i class="fas fa-chevron-right"></i></button>
+				 </c:if>
 			</div>
 		  </div>
+		  </c:if>
         </div>
       </div>
 	</div>
