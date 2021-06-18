@@ -18,8 +18,7 @@
 
     <!-- 사진 -->
     <div class="row-md-6">
-		<svg class="img" style="background-image: url('https://post-phinf.pstatic.net/MjAyMDAzMDNfMTcg/MDAxNTgzMTkwNjA3ODQ5.kUXPHqGJ2xPDSu_3FiEoFC3kY9QyQ_g9CziCGrFSDuEg.LpCfOTbc5qth9d-GKzGv9jwj2VKhcqmPHp5cp1KJYEsg.JPEG/IM_food02.jpg?type=w1200');
-								background-size: cover; background-position:center; width:100%; height:200px;"></svg>
+		<img src="data:image/jpeg;base64,${together.restaurant.img64}" style="width:900px; height:300px; object-fit: cover;" />
 	</div>
 </div>
 

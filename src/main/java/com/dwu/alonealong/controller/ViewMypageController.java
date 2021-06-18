@@ -101,14 +101,20 @@ public class ViewMypageController {
 	public String Togorder(HttpServletRequest request,
 			ModelMap model) {
 		UserSession userSession = (UserSession)request.getSession().getAttribute("userSession");
+		User user = aloneAlong.getUserByUserId(userSession.getUser().getId());
 		
-		if(userSession != null) {
-			User user = aloneAlong.getUserByUserId(userSession.getUser().getId());
-			
-			List<TogetherOrder> orderList = aloneAlong.getTogetherOrderByUserId(user.getId()); //List import 안됨
-			
-			model.put("orderList", orderList);
-		}
+		List<TogetherOrder> orderList = aloneAlong.getTogetherOrderByUserId(user.getId());
+		
+		//이미지(에러남)
+//		Encoder encoder = Base64.getEncoder();
+//		for(TogetherOrder order : orderList) {
+//			byte[] imagefile = order.getTogether().getRestaurant().getImgFile();
+//			System.out.println("이미지 파일 : " + imagefile);
+//	        String encodedString = encoder.encodeToString(imagefile);
+//	        order.getTogether().getRestaurant().setImg64(encodedString);
+//		}
+		
+		model.put("orderList", orderList);
 		
 		return "myTogetherOrder";
 	}

@@ -10,6 +10,8 @@ public class TogetherOrder implements Serializable {
 	private Order order;
 	private Together together;
 	
+	public TogetherOrder() {}
+
 	public TogetherOrder(String orderId, String togetherId) {
 		this.orderId = orderId;
 		this.togetherId = togetherId;

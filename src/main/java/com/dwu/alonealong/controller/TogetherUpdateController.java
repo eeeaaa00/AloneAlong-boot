@@ -34,7 +34,7 @@ public class TogetherUpdateController {
 		this.aloneAlong = aloneAlong;
 	}
 	
-	//수정 페이지로 가기(구현중)
+	//수정 페이지로 가기
 	@RequestMapping("/togetherUpdate/{togetherId}")
 	public String viewUpdate(
 			HttpSession session,
@@ -53,7 +53,7 @@ public class TogetherUpdateController {
 		List<Food> foodList = aloneAlong.getFoodListByRestaurant(together.getResId());
 		model.addAttribute("foodList", foodList);
 		
-		//카트 세팅(구현중) --> 세션 생성해야함(여기서 가끔 오류남)
+		//카트 세팅(구현중)
 		for(int i = 0; i < together.getTogetherFoodList().size(); i++) {
 			System.out.println("현재 음식 사이즈" + foodCart.getFoodItemList().size());
 			if (foodCart.containsFoodId(together.getTogetherFoodList().get(i).getFoodId())) {
@@ -109,7 +109,7 @@ public class TogetherUpdateController {
 		return "together/togetherUpdateForm";
 	}
 	
-	//together 수정///////////////////////////////////////(구현중)
+	//together 수정
 	@GetMapping("/togetherUpdate/{togetherId}/complete")
 	public String updateTogether(
 			HttpServletRequest request,
