@@ -51,15 +51,21 @@ $(document).on("click", ".open-reviewModal", function () {
 							<div class="col-md-2">
 								<a href=<c:url value="/shop/${item.productId}"/>>
 								<small style="color: black;	text-decoration: none;">${item.productName}</small></a></div>
-							<div class="col-md-1"><small>x</small></div>
-							<div class="col-md-1"><small>${item.quantity}</small></div>
-							<div class="col-md-1"><small>=</small></div>
-							<div class="col-md-2"><small><fmt:formatNumber value="${item.unitPrice}" pattern="#,###,###"/>원</small></div>
+							<div class="col-md-1 text-right"><small>x</small></div>
+							<div class="col-md-1 text-right"><small>${item.quantity}</small></div>
+							<div class="col-md-1 text-right"><small>=</small></div>
+							<div class="col-md-2 text-right"><small><fmt:formatNumber value="${item.unitPrice}" pattern="#,###,###"/>원</small></div>
 							<div class="col-md-4 text-right">
 								<button class="open-reviewModal btn btn-sm btn-green" data-toggle="modal" data-id="${item.productId}" data-target="#reviewModal">리뷰 작성</button></div>				
 						</div>
 						<hr>
 						</c:forEach>
+						<div class="row d-flex align-items-center">
+						<div class="col-md-4"></div>
+						<div class="col-md-2 text-right"><small>배송비</small></div>
+						<div class="col-md-2 text-right"><small><fmt:formatNumber value="${productOrder.getShippingFee()}" pattern="#,###,###"/>원</small></div>
+						</div>
+						<hr>
 					</div>
 					</div>
 				</div>
