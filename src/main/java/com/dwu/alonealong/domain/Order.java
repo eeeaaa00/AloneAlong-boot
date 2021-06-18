@@ -1,6 +1,9 @@
 package com.dwu.alonealong.domain;
 
-public class Order {
+import java.io.Serializable;
+
+@SuppressWarnings("serial")
+public class Order implements Serializable{
 	private String orderId;
 	private String orderDate;
 	private int totalPrice;
@@ -10,6 +13,8 @@ public class Order {
 	private String cardDate;
 	private String cardName;
 	
+	public Order() {}
+
 	public Order(String orderId, String orderDate, int totalPrice, String status, String userId, String cardNum,
 			String cardDate, String cardName) {
 		super();

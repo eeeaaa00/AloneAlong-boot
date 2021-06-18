@@ -39,7 +39,8 @@
     		R.RES_ID AS "restaurant.resId",
     		R.RES_NAME AS "restaurant.resName",
     		R.RES_ADDRESS AS "restaurant.resAddress",
-    		R.RES_CATEGORY AS "restaurant.categoryId"
+    		R.RES_CATEGORY AS "restaurant.categoryId",
+    		R.RES_IMG AS "restaurant.imgFile"
 		FROM TOGETHER T, RESTAURANT R
 		WHERE T.RES_ID = R.RES_ID
 			AND T.TOG_ID = #{togId}

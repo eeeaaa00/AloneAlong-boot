@@ -72,12 +72,11 @@ public class ViewTogetherController {
 		
 		
 		//이미지
-//		Encoder encoder = Base64.getEncoder();
-//		byte[] imagefile = together.getRestaurant().getImgFile();
-//    	
-//        String encodedString = encoder.encodeToString(imagefile);
-//        System.out.println("여기64: " + encodedString);
-//        together.getRestaurant().setImg64(encodedString);
+		Encoder encoder = Base64.getEncoder();
+		byte[] imagefile = together.getRestaurant().getImgFile();
+    	
+        String encodedString = encoder.encodeToString(imagefile);
+        together.getRestaurant().setImg64(encodedString);
 		
 		//카테고리
 		String areaName = "모든 지역";
