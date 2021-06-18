@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.dwu.alonealong.dao.ProductReviewDAO;
 import com.dwu.alonealong.domain.Product;
@@ -44,7 +45,10 @@ public class MybatisProductReviewDAO implements ProductReviewDAO{
 		productReviewMapper.updateProductReview(productReview);
 		return;
 	}
+	
+	@Transactional
 	public void deleteProductReview(String reviewId) throws DataAccessException{
+		productReviewMapper.deleteProductReviewRecommendByReviewId(reviewId);
 		productReviewMapper.deleteProductReview(reviewId);
 		return;
 	}

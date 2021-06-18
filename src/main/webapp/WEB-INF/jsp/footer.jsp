@@ -31,8 +31,8 @@ p>a>i:hover, p>a>i:focus { color:#29A65F; }
       <div>
          <p class="contect text-dark text-center">
          	Contect &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;
-         	<a class="mx-1" href="/"><i class="far fa-envelope"></i></a>
-         	<a class="mx-1" href="/"><i class="fab fa-github"></i></a>
+         	<a class="mx-1" href="mailto:kongjisu52@gmail.com"><i class="far fa-envelope"></i></a>
+         	<a class="mx-1" href="https://github.com/eeeaaa00/AloneAlong-boot"><i class="fab fa-github"></i></a>
          	<a class="mx-1" href="/"><i class="far fa-comment-dots"></i></a>
          </p>
          <p class="text-dark m-0 text-center">2021 &copy; Alone & Along</p>

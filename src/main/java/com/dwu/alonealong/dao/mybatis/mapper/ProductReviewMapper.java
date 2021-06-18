@@ -45,4 +45,5 @@ public interface ProductReviewMapper {
 	
 	void insertProductReviewRecommend(String reviewId, String userId) throws DataAccessException;
 	void deleteProductReviewRecommend(String reviewId, String userId) throws DataAccessException;
+	void deleteProductReviewRecommendByReviewId(String reviewId) throws DataAccessException;
 }
