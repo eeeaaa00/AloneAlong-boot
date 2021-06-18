@@ -52,6 +52,7 @@ public class UserFormController {
 
 	@Autowired
 	private UserFormValidator validator;
+
 	public void setValidator(UserFormValidator validator) {
 		this.validator = validator;
 	}
@@ -63,8 +64,6 @@ public class UserFormController {
 		if (userSession != null) { // edit an existing account
 			return new UserForm(alonealong.getUserByUserId(userSession.getUser().getId()));
 		} else {
-			/// create a new account
-			System.out.print("회원가입");
 			return new UserForm();
 		}
 	}
@@ -90,16 +89,22 @@ public class UserFormController {
 				alonealong.updateUser(userForm.getUser());
 			}
 		} catch (DataIntegrityViolationException ex) {
-			result.rejectValue("user.id","이미 존재하는 ID입니다. 다른 ID를 설정해주세요.");
+			result.rejectValue("user.id", "이미 존재하는 ID입니다. 다른 ID를 설정해주세요.");
 			return formViewName;
 		}
 
 		UserSession userSession = (UserSession) WebUtils.getSessionAttribute(request, "userSession");
 
 		if (userSession != null) {
+			if (alonealong.getUserByUserId(userSession.getUser().getId()).getBusiness_num() != null) {
+				String businum = alonealong.getUserByUserId(userSession.getUser().getId()).getBusiness_num();
+				session.setAttribute("businum", businum);
+			} else {
+				session.removeAttribute("businum");
+			}		
 			return "redirect:/";
 		} else {
-			session.setAttribute("userSession", userSession);
+			// session.setAttribute("userSession", userSession);
 			return successCreateName;
 		}
 	}

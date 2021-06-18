@@ -12,9 +12,8 @@
 		예약</a> <a href="<c:url value='/myTogetherOrder' />"
 		class="btn btn-outline-success rounded-pill my-1 btn-block">함께먹기 예약</a>
 	
-	
-	<c:if test="${!empty userSession.user.business_num}">
+	<%if(session.getAttribute("businum") != null) {%>
 		<hr>	
 		<a href="<c:url value='/eating/adminRes' />" class="btn btn-outline-info rounded-pill my-1 btn-block">식당 관리</a>
-	</c:if>	
+	<% } %>
 </div>
