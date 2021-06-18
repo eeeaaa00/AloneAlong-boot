@@ -40,5 +40,6 @@ public interface UserMapper {
 	void removeUser(String Id);
 
 	List<String> getUserIdList();
-
+	
+	void insertContact(String contents);
 }

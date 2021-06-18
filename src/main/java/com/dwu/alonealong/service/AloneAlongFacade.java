@@ -31,6 +31,9 @@ public interface AloneAlongFacade {
 	void updateUser(User user);
 	void removeUser(String Id);
 	List<String> getUserIdList();
+	
+	//CONTACT
+	void insertContact(String contents);
 	  
 	//PRODUCT
 	List<Product> getProductList(int pcId, String sortType);	

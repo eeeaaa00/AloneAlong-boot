@@ -54,4 +54,8 @@ public class MybatisUserDAO implements UserDAO {
 		// TODO Auto-generated method stub
 		userMapper.removeUser(Id);
 	}
+	
+	public void insertContact(String contents) {
+		userMapper.insertContact(contents);
+	}
 }

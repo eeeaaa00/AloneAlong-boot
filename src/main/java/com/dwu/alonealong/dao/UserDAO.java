@@ -22,7 +22,7 @@ public interface UserDAO {
   List<String> getUserIdList();
 
 
-  
+  void insertContact(String contents);
   //void createBuissnessNum(User user);
 
 }
