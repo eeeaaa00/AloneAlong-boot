@@ -1,13 +1,17 @@
 package com.dwu.alonealong.controller;
 
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
+import java.util.Base64.Encoder;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,6 +31,7 @@ import com.dwu.alonealong.domain.Product;
 import com.dwu.alonealong.domain.ProductLineItem;
 import com.dwu.alonealong.domain.ProductOrder;
 import com.dwu.alonealong.service.AloneAlongFacade;
+import com.dwu.alonealong.service.ProductOrderFormValidator;
 
 @Controller
 @SessionAttributes({"productOrderSession"})
@@ -36,6 +41,13 @@ public class ProductOrderController {
 	@Autowired
 	public void setAloneAlong(AloneAlongFacade aloneAlong) {
 		this.aloneAlong = aloneAlong;
+	}
+	
+	@Autowired
+	private ProductOrderFormValidator validator;
+
+	public void setValidator(ProductOrderFormValidator validator) {
+		this.validator = validator;
 	}
 	
 	@RequestMapping("/shop/order")
@@ -58,6 +70,8 @@ public class ProductOrderController {
 		//LineItem 설정 
 		List<ProductLineItem> orderList = new ArrayList<ProductLineItem>();
 		int totalPrice = 0;
+
+		Encoder encoder = Base64.getEncoder();
 		
 		//1. Cart
 		if(type.equals("cart")){
@@ -69,6 +83,11 @@ public class ProductOrderController {
 				}
 				ProductLineItem orderItem = new ProductLineItem(cartItem);
 				totalPrice += orderItem.getUnitPrice();
+		        byte[] imagefile = cartItem.getImg();
+		        if(imagefile != null) {
+		            String encodedString = encoder.encodeToString(imagefile);
+		            orderItem.setImg64(encodedString);
+		        }
 				orderList.add(orderItem);
 			}
 			if(totalPrice < 30000) {
@@ -87,6 +106,11 @@ public class ProductOrderController {
 			}
 			totalPrice = product.getUnitPrice();
 			ProductLineItem orderItem = new ProductLineItem(product);
+	        byte[] imagefile = product.getProductImg();
+	        if(imagefile != null) {
+	            String encodedString = encoder.encodeToString(imagefile);
+	            orderItem.setImg64(encodedString);
+	        }
 			orderList.add(orderItem);
 		}
 		else {
@@ -105,34 +129,51 @@ public class ProductOrderController {
 	
 	@RequestMapping("/shop/order/confirm")
 	protected String confirmOrder(HttpServletRequest request,
-			@ModelAttribute("productOrderForm") ProductOrderForm form, 
+			@ModelAttribute("productOrderForm") ProductOrderForm productOrderForm, 
 			@SessionAttribute("productOrderSession") List<ProductLineItem> lineItems,
+			BindingResult result, ModelMap model, 
 			SessionStatus status) {
+		validator.validate(productOrderForm, result);
+		ProductOrder order = productOrderForm.getOrder();
 
-		ProductOrder order = form.getOrder();
+		//유저 정보 및 결제 정보 받아오기
+		UserSession userSession = (UserSession)request.getSession().getAttribute("userSession");
+		if(userSession == null) {
+			return "redirect:/login";
+		}
+		String userId = userSession.getUser().getId();
+		User user = aloneAlong.getUserByUserId(userId);
+		
+		//totalPrice
+		int totalPrice = 0;
+		for (ProductLineItem item : lineItems) {
+			totalPrice += item.getUnitPrice();
+		}
+		if (totalPrice < 30000) {
+			totalPrice += 3000;
+		}
+				
+		if (result.hasErrors()) {
+			Payment paymentMethod = aloneAlong.getCard(userId);
+			productOrderForm.setOrderUser(user);
+			productOrderForm.setPayment(paymentMethod);
+			model.put("orderForm", productOrderForm);
+			model.put("totalPrice", totalPrice);
+			model.put("type", productOrderForm.getType());
+			return "productOrder";
+		}
 		
 		//lineItem
 		order.setLineItems(lineItems);
 		
-		//totalPrice
-		int totalPrice = 0;
-		for(ProductLineItem item : lineItems) {
-			totalPrice += item.getUnitPrice();
-		}
-		if(totalPrice < 30000) {
-			totalPrice += 3000;
-		}
+		
 		order.setTotalPrice(totalPrice);
 		
 		//user
-		UserSession userSession = (UserSession)request.getSession().getAttribute("userSession");
-		String userId = userSession.getUser().getId();
-		order.setUserId(userId);
-		
-		System.out.println("form 잘 들어 왔는지: " + order.toString());
+		order.setUserId(userId);		
 		aloneAlong.insertProductOrder(order);
 
-		if(form.getType().equals("cart")) {
+		if(productOrderForm.getType().equals("cart")) {
 			aloneAlong.deleteAllCartItem(userId);
 		}
 		status.setComplete();  // remove sessionCart and orderForm from session

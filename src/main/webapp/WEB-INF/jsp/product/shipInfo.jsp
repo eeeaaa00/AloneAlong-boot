@@ -29,12 +29,14 @@ function sameAddress(s){
 		<input type="checkbox" class="custom-control-input" id="same-address" onClick="sameAddress(this)">
 	<label class="custom-control-label" for="same-address">주문 정보와 동일</label>
 	</div>
-	<div class="row w-50 mx-2 mb-3">
-		<label>이름</label> <form:input path="order.shipName" id="shipName" class="form-control" type="text" required="required" />
+	<div class="row w-50 mx-2">
+		<label>이름 <strong class="text-green">*</strong></label> <form:input path="order.shipName" id="shipName" class="form-control" type="text"/>
+		<B style="color: #FF0000;"><form:errors path="order.shipName" cssClass="error" /></B>
 	</div>
 
-	<label class="mx-2">전화번호</label>
-	<div class="row w-50 mx-2 mb-3 input-group">
+	<label class="mx-2  mt-3">전화번호 <strong class="text-green">*</strong></label>
+	<div class="w-50">
+	<div class="row mx-2 input-group">
 		<div class="input-group-prepend">
 			<form:select path="order.shipPhone1" id="shipPhone1" class="custom-select">
 				<form:option value="010">010</form:option>
@@ -43,21 +45,27 @@ function sameAddress(s){
 				<form:option value="017">017</form:option>
 			</form:select>
 		</div>
-		<form:input path="order.shipPhone2" id="shipPhone2" type="text" class="form-control" maxlength="4" required="required" />
-		<form:input path="order.shipPhone3" id="shipPhone3" type="text" class="form-control" maxlength="4" required="required" />
+		<form:input path="order.shipPhone2" id="shipPhone2" type="text" class="form-control" maxlength="4"/>
+		<form:input path="order.shipPhone3" id="shipPhone3" type="text" class="form-control" maxlength="4"/>
+	</div>
+	<b class="mx-2" style="color: #FF0000;"><form:errors path="order.shipPhone2" cssClass="error" /></b>
+	<b class="mx-2" style="color: #FF0000;"><form:errors path="order.shipPhone3" cssClass="error" /></b>
 	</div>
 
-	<div class="row w-100 mx-2 mb-3">
+	<div class="row w-100 mx-2 mt-3">
 		<label for="shipEmail">이메일</label>
-		<form:input path="order.shipEmail" id="shipEmail" type="email" class="form-control" placeholder="you@example.com" required="required" />
+		<form:input path="order.shipEmail" id="shipEmail" type="email" class="form-control" placeholder="you@example.com"/>
 	</div>
+	<b class="mx-2" style="color: #FF0000;"><form:errors path="order.shipEmail" cssClass="error" /></b>
 
-	<div class="row px-2 mb-1">
-		<label for="shipZip" class="col-md-3">우편번호</label>
-		<label for="shipAddress" class="col-md-9">주소</label>
+	<div class="row px-2 mb-1  mt-3">
+		<label for="shipZip" class="col-md-3">우편번호 <strong class="text-green">*</strong></label>
+		<label for="shipAddress" class="col-md-9">주소 <strong class="text-green">*</strong></label>
 	</div>
-	<div class="row mx-2 mb-3 input-group">
-		<form:input path="order.shipZip" id="shipZip" type="number" class="col-md-3 form-control" required="required" />
-		<form:input path="order.shipAddress" id="shipAddress" type="text" class="col-md-9 form-control" required="required" />
+	<div class="row mx-2 input-group">
+		<form:input path="order.shipZip" id="shipZip" type="text" class="col-md-3 form-control"/>
+		<form:input path="order.shipAddress" id="shipAddress" type="text" class="col-md-9 form-control"/>
 	</div>
+	<b class="mx-2" style="color: #FF0000;"><form:errors path="order.shipZip" cssClass="error" /></b>
+	<b class="mx-2" style="color: #FF0000;"><form:errors path="order.shipAddress" cssClass="error" /></b>
 </div>
