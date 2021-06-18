@@ -13,6 +13,8 @@ public interface OrderInfoDAO {
 	String getRecentOrderId();
 
 	List<FoodOrder> getOrdersByUserId(String userId) throws DataAccessException;
-  void insertTogetherOrderInfo(Order order) throws DataAccessException;
 	
+    void insertTogetherOrderInfo(Order order) throws DataAccessException;
+    void deleteTogetherOrderInfo(String orderId) throws DataAccessException;
+    void updateTogetherOrderInfo(Order order) throws DataAccessException;
 }

@@ -32,6 +32,23 @@
   <insert id="insertTogetherOrderInfo" useGeneratedKeys="true" keyColumn="ORDER_ID" keyProperty="orderId">
     	INSERT INTO ORDERINFO (ORDER_ID, ORDER_DATE, TOTAL_PRICE, ORDER_STATUS, USER_ID, CARD_NUM, CARD_DATE, CARD_NAME)
     	VALUES('t' || TOGORDER_ID_SEQ.NEXTVAL, TO_DATE(SYSDATE, 'YYYY-MM-DD'), #{totalPrice}, #{status}, #{userId}, #{cardNum}, #{cardDate}, #{cardName})
-	</insert>
+  </insert>
+  
+  <delete id="deleteTogetherOrderInfo"> 
+  		DELETE FROM ORDERINFO WHERE ORDER_ID = #{orderId}
+  </delete>
+  
+  <update id="updateTogetherOrderInfo">
+ 		UPDATE ORDERINFO 
+ 		SET ORDER_ID = #{orderId},
+    		ORDER_DATE = TO_DATE(SYSDATE, 'YYYY-MM-DD'),
+    		TOTAL_PRICE = #{totalPrice},
+    		ORDER_STATUS = #{status},
+    		USER_ID = #{userId},
+    		CARD_NUM = #{cardNum},
+    		CARD_DATE = #{cardDate},
+    		CARD_NAME = #{cardName}
+ 		WHERE ORDER_ID = #{orderId}
+  	</update>
 
 </mapper>

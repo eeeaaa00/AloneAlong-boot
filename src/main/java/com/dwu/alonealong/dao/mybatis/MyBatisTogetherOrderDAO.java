@@ -21,14 +21,18 @@ public class MyBatisTogetherOrderDAO implements TogetherOrderDAO{
 	}
 
 	@Override
-	public void removeTogetherOrder(TogetherOrder togetherOrder) throws DataAccessException {
-		// TODO Auto-generated method stub
-		
+	public void deleteTogetherOrder(String togId) throws DataAccessException {
+		togetherOrderMapper.deleteTogetherOrder(togId);
 	}
 
 	@Override
 	public List<TogetherOrder> getTogetherOrderByUserId(String userId) throws DataAccessException {
 		return togetherOrderMapper.getTogetherOrderByUserId(userId);
+	}
+
+	@Override
+	public List<TogetherOrder> getTogetherOrderByTogId(String togId) throws DataAccessException {
+		return togetherOrderMapper.getTogetherOrderByTogId(togId);
 	}
 	
 }

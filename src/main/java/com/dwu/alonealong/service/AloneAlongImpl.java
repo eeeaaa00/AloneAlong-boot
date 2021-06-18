@@ -433,4 +433,25 @@ public class AloneAlongImpl implements AloneAlongFacade{
 		return togetherOrderDao.getTogetherOrderByUserId(userId);
 	}
 
+	@Override
+	public List<TogetherOrder> getTogetherOrderByTogId(String togId) {
+		// TODO Auto-generated method stub
+		return togetherOrderDao.getTogetherOrderByTogId(togId);
+	}
+
+	@Override
+	public void deleteTogetherOrder(String togId) {
+		togetherOrderDao.deleteTogetherOrder(togId);
+	}
+
+	@Override
+	public void deleteTogetherOrderInfo(String orderId) {
+		orderInfoDao.deleteTogetherOrderInfo(orderId);
+	}
+
+	@Override
+	public void updateTogetherOrderInfo(Order order) {
+		orderInfoDao.updateTogetherOrderInfo(order);
+	}
+
 }

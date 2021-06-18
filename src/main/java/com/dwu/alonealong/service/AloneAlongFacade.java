@@ -123,6 +123,13 @@ public interface AloneAlongFacade {
 	//TogetherOrder 관련
 	void insertTogetherOrderInfo(Order order);
 	void insertTogetherOrder(TogetherOrder togetherOrder);
-	void insertFoodOrderForTogetherOrder(FoodOrder foodOrder);
+	List<TogetherOrder> getTogetherOrderByTogId(String togId);
+	void deleteTogetherOrder(String togId);
+	
 	List<TogetherOrder> getTogetherOrderByUserId(String userId);
+	void deleteTogetherOrderInfo(String orderId);
+	void updateTogetherOrderInfo(Order order);
+	
+	void insertFoodOrderForTogetherOrder(FoodOrder foodOrder);
+	
 }

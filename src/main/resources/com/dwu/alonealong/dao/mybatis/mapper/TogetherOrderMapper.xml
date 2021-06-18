@@ -30,4 +30,29 @@
 			AND O.USER_ID = #{userId}
 	</select>
 	
+	<select id="getTogetherOrderByTogId" resultType="TogetherOrder">
+		SELECT
+    		A.ORDER_ID AS orderId,
+    		A.TOG_ID AS togetherId,
+    		T.TOG_ID AS "together.togetherId",
+    		T.TOG_NAME AS "together.togetherName",
+    		T.TOG_DATE AS "together.togetherDate",
+    		T.TOG_TIME AS "together.togetherTime",
+    		T.RES_ID AS "together.resId",
+    		T.TOG_STATUS AS "together.status",
+    		T.PRICE AS "together.price",
+    		O.ORDER_ID AS "order.orderId",
+    		O.USER_ID AS "order.userId",
+			O.TOTAL_PRICE AS "order.totalPrice",
+			O.ORDER_STATUS AS "order.status",
+			O.CARD_NUM AS "order.cardNum",
+			O.CARD_NAME AS "order.cardName"
+		FROM TOGETHER T, TOGETHER_ORDER A, ORDERINFO O
+		WHERE A.TOG_ID = T.TOG_ID AND A.ORDER_ID = O.ORDER_ID AND A.TOG_ID = #{togId} ORDER BY A.ORDER_ID ASC
+	</select>
+	
+	<delete id="deleteTogetherOrder"> 
+  		DELETE FROM TOGETHER_ORDER WHERE TOG_ID = #{togetherId}
+  	</delete>
+	
 </mapper>
