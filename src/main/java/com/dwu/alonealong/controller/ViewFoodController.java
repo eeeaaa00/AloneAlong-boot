@@ -51,6 +51,7 @@ public class ViewFoodController {
 			User user = alonealong.getUserByUserId(userSession.getUser().getId());
 			String userId = user.getId();
 			model.put("userId", userId);
+			
 		}
 	
 		List<Food> foodList = this.alonealong.getFoodListByRestaurant(resId); 
@@ -59,6 +60,7 @@ public class ViewFoodController {
 			model.put("category1", "지역");
 			model.put("category2", "분류");
 			foodCart = new FoodCart();
+			model.addAttribute("sessionFoodCart", foodCart);
 		}
 		model.put("foodCart", foodCart.getFoodItemList());
 		Restaurant res = alonealong.getRestaurantByResId(resId);
@@ -96,6 +98,7 @@ public class ViewFoodController {
 			HttpServletRequest request,
 			ModelMap model) throws Exception {
 		
+		
 		//String sortType = request.getParameter("sortType");
 		if(sortType == null)
 			sortType = "REVIEW_DATE DESC";
@@ -112,6 +115,8 @@ public class ViewFoodController {
 				sortTypeName = "낮은 평점순";
 				break;
 		}
+		
+
 		
 		model.put("sortTypeName", sortTypeName);
 		List<FoodReview> reviewList = this.alonealong.getFoodReviewListByResId(resId, sortType);

@@ -38,6 +38,7 @@ import com.dwu.alonealong.domain.User;
 import com.dwu.alonealong.service.AloneAlongFacade;
 
 @Controller
+@SessionAttributes("sessionFoodCart") 
 public class ViewMypageController {
 
   private AloneAlongFacade aloneAlong;
@@ -93,6 +94,7 @@ public class ViewMypageController {
 				item.setFoodName(food.getName());
 			}
 		}
+		model.addAttribute("sessionFoodCart", new FoodCart());
 		model.addAttribute("foodOrderList", foodOrderList);
 
 		return "myResOrder"; 
