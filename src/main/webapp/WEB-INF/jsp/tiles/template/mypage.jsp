@@ -78,18 +78,11 @@
 			</div>
 			<div class="card">
 				<div class="card-body">
-
 					<tiles:insertAttribute name="body" />
 				</div>
 			</div>
 		</div>
 	</c:if>
-
-
-
-	<!-- /.container -->
-	<!-- Modal -->
-	<!-- 장바구니 -->
 	<div class="py-xl-5"></div>
 	<tiles:insertAttribute name="footer" />
 </body>

@@ -17,7 +17,7 @@ import com.dwu.alonealong.domain.User;
 @Component
 public class PaymentFormValidator implements Validator {
 	public boolean supports(Class<?> clazz) {
-		return User.class.isAssignableFrom(clazz);
+		return PaymentForm.class.isAssignableFrom(clazz);
 	}
 
 	public void validate(Object obj, Errors errors) {
@@ -37,17 +37,10 @@ public class PaymentFormValidator implements Validator {
 		}
 
 		String date = payment.getCard_date();
-		int length = date.length();
-		if (length != 0) {
-			if (length != 5) {
-				errors.rejectValue("payment.card_date", "DATE_CHECK", "유효기간 형식은 MM/YY입니다.");
-			} else {
-				String ds = "^\\d{2}/\\d{2}$";
-				boolean regex = Pattern.matches(ds, date);
-				if (!regex)
-					errors.rejectValue("payment.card_date", "DATE_CHECK", "유효기간 형식은 MM/YY입니다.");
-			}
-		}
+		String ds = "^\\d{2}/\\d{2}$";
+		boolean regex = Pattern.matches(ds, date);
+		if (!regex)
+			errors.rejectValue("payment.card_date", "DATE_CHECK", "유효기간 형식은 MM/YY입니다.");
 
 	}
 }
