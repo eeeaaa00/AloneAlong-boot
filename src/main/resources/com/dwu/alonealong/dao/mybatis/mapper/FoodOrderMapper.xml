@@ -15,5 +15,7 @@
     	INSERT INTO FOOD_ORDER (ORDER_ID, RESERVE_TYPE, VISIT_DATE, FOOD_ID, RES_ID)
     	VALUES (#{orderId}, #{reserveType}, #{visitDate}, #{foodId}, #{resId})
   	</insert>
+  	
+  	
 	
 </mapper>

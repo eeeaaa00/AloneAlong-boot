@@ -6,6 +6,13 @@
 
 <c:forEach var="foodOrder" items="${foodOrderList}">
 <script>
+$(function(){
+	$("#cancel${foodOrder.orderId}").click(function() {
+		$("#cancelModal").modal("show");
+	});
+
+});
+
 $(document).ready(function() {
 	
 	var visitDate = "${foodOrder.visitDate}";
@@ -27,6 +34,23 @@ $(document).ready(function() {
 	}
 });
 </script>
+<!-- modal -->
+<div class="modal fade" id="cancelModal" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content py-5">
+			<div class="modal-body text-center pb-4">
+				<h6>정말로 예약을 취소하시겠습니까?</h6>
+				<a style="color:red;">※당일 예약 및 당일 취소는 불가능합니다.</a>
+			</div>
+			<div class="row mx-5 mb-2 justify-content-center">
+			<a type="button" class="btn btn-green rounded-pill mx-2 py-2 px-3" data-dismiss="modal">돌아가기</a>
+				<a type="button" class="btn btn-orange rounded-pill mx-2 py-2 px-3" 
+				href="<c:url value='/eating/order/delete'><c:param name="orderId" value='${foodOrder.orderId}'/></c:url>" >취소하기</a>
+				
+			</div>
+		</div>
+	</div>
+</div>
 	<div class="col-md-12">
 		<div class="form-col float-right">
 			<a href="<c:url value='/eating/${foodOrder.resId}/RestaurantReview' />">
@@ -34,7 +58,7 @@ $(document).ready(function() {
 					id="advanced-set-submit">리뷰 작성</button>
 			</a>
 			<br>
-			<a id="cancel${foodOrder.orderId}" href="<c:url value='/eating/${foodOrder.resId}/RestaurantReview' />">
+			<a id="cancel${foodOrder.orderId}" >
 				<button class="btn btn-sm btn-outline-warning"
 					id="advanced-set-submit">예약 취소</button>
 			</a>
@@ -43,10 +67,10 @@ $(document).ready(function() {
 			
 		</div>
 		<div class="d-flex align-items-center">
-			<a href="/detail-1"> <img src="data:image/jpeg;base64,${foodOrder.img64}" style="width: 100px; height: 100px; object-fit: cover;">
+			<a href="/eating/${foodOrder.resId}"> <img src="data:image/jpeg;base64,${foodOrder.img64}" style="width: 100px; height: 100px; object-fit: cover;">
 			</a>
 			<div class="cart-title text-left ml-3">
-				<a class="text-uppercase text-dark" href="/detail-1"> <strong>${foodOrder.resName}</strong></a> <br> 
+				<a class="text-uppercase text-dark" href="/eating/${foodOrder.resId}"> <strong>${foodOrder.resName}</strong></a> <br> 
 				<small style="color: #f2864b;">예약종류 </small> &nbsp; <small style="color: #696969;"> ${foodOrder.reserveType}</small> <Br> 
 				<small style="color: #f2864b;">예약시간 </small> &nbsp; <small style="color: #696969;"> ${foodOrder.visitDate}</small><br> 
 				<small style="color: #f2864b;">결제금액 </small> &nbsp;<small style="color: #696969;"> ${foodOrder.totalPrice}원</small> <br> 
@@ -76,3 +100,4 @@ $(document).ready(function() {
 		<hr>
 </div>
 </c:forEach>
+

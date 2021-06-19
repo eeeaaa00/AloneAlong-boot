@@ -13,6 +13,7 @@ import com.dwu.alonealong.domain.Order;
 public interface OrderInfoMapper {
 	
 	void insertFoodOrderInfo(FoodOrder order) throws DataAccessException;
+	void deleteFoodOrderInfo(String orderId) throws DataAccessException;
 	String getRecentOrderId();
 	List<FoodOrder> getOrdersByUserId(String userId) throws DataAccessException;
 	

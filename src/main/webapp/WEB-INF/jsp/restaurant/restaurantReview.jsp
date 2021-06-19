@@ -97,24 +97,24 @@ $(document).ready(function() {
 		 	 <button type="button" class="btn" disabled><i class="fas fa-chevron-left"></i></button>
 		 </c:if>
 		 <c:if test="${page != 1}">
-		 	 <button type="button" class="btn" onClick="location.href='<c:url value='/eating/${resId}/RestaurantReview?page=${page - 1}' />'">
+		 	 <button type="button" class="btn" onClick="location.href='<c:url value='/eating/${resId}/RestaurantReview?page=${page - 1}&sortType=${param.sortType}' />'">
 		 	 	<i class="fas fa-chevron-left"></i></button>
 		 </c:if>
 		 <c:forEach var="pageNum" begin="${startPage}" end="${startPage + 5}" varStatus="status">
 			 <c:if test="${pageNum == page}">
 		 		<div class="btn-group"><button type="button" class="btn active rounded-circle" 
-		 			onClick="location.href='<c:url value='/eating/${resId}/RestaurantReview?page=${pageNum}' />'">${pageNum}</button></div>
+		 			onClick="location.href='<c:url value='/eating/${resId}/RestaurantReview?page=${pageNum}&sortType=${param.sortType}' />'">${pageNum}</button></div>
 			 </c:if>
 			 <c:if test="${pageNum != page && pageNum <= lastPage}">
 		 		<div class="btn-group"><button type="button" class="btn rounded-circle"
-		 			onClick="location.href='<c:url value='/eating/${resId}/RestaurantReview?page=${pageNum}' />'">${pageNum}</button></div>
+		 			onClick="location.href='<c:url value='/eating/${resId}/RestaurantReview?page=${pageNum}&sortType=${param.sortType}' />'">${pageNum}</button></div>
 			 </c:if>
 		 </c:forEach>
 		 <c:if test="${page == lastPage}">
 		 	 <button type="button" class="btn" disabled><i class="fas fa-chevron-right"></i></button>
 		 </c:if>
 		 <c:if test="${page != lastPage}">
-		 	 <button type="button" class="btn" onClick="location.href='<c:url value='/eating/${resId}/RestaurantReview?page=${page + 1}' />'">
+		 	 <button type="button" class="btn" onClick="location.href='<c:url value='/eating/${resId}/RestaurantReview?page=${page + 1}&sortType=${param.sortType}' />'">
 		 	 	<i class="fas fa-chevron-right"></i></button>
 		 </c:if>
 	</div>

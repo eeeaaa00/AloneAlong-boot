@@ -304,6 +304,10 @@ public class AloneAlongImpl implements AloneAlongFacade{
 		}
 		
 	}
+	public void deleteFoodOrder(String orderId) {
+		//orderinfo - foodorder - foodlineitme 종속삭제
+		orderInfoDao.deleteFoodOrderInfo(orderId);
+	}
 	@Override
 	public FoodOrder getFoodOrder(int orderId) {
 		// TODO Auto-generated method stub

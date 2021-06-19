@@ -28,7 +28,7 @@
     	FOOD_IMG as imgFile,
     	MAX_PEOPLE_NUM as maxPeopleNum
     FROM FOOD
-    WHERE RES_ID = #{resId}
+    WHERE RES_ID = #{resId} AND FOOD_SELL IS NULL
   </select>
   
   <insert id="insertFood">
@@ -54,10 +54,17 @@
  	WHERE FOOD_ID = #{foodId}
   </update>
   
+  <update id="deleteFood">
+  UPDATE FOOD
+  SET FOOD_SELL = 'X'
+  WHERE FOOD_ID = #{foodId}
+  </update>
+  <!--  
   <delete id="deleteFood">
   	DELETE FROM FOOD
     WHERE FOOD_ID = #{foodId}
   </delete>
+  -->
   
   
   
