@@ -10,6 +10,7 @@
     		TM.USER_ID AS userId,
     		TM.IS_HOST AS isHost,
     		U.NAME AS "user.name",
+    		U.NICKNAME AS "user.nickname",
     		U.SEX AS "user.sex"
 		FROM TOGETHER_MEMBER TM, USERINFO U
 		WHERE TM.USER_ID = U.USER_ID
