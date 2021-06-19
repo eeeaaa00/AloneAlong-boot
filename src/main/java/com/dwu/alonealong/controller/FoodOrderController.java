@@ -46,8 +46,8 @@ public class FoodOrderController {
 		//유저 정보 및 결제 정보 받아오기
 		UserSession userSession = (UserSession)request.getSession().getAttribute("userSession");
 		if(userSession == null) {
-			//response로 forwardAction전달하면좋을것같음.
-			return "login";
+			//forward로 login의 get 가서 login후 post한 다음 refererURL통해서 order폼으로.
+			return "forward:/login";
 		}
 		User user = aloneAlong.getUserByUserId(userSession.getUser().getId());
 		Payment paymentMethod = aloneAlong.getCard(userSession.getUser().getId());
