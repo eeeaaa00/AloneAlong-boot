@@ -36,11 +36,15 @@ public class ViewMainController {
 			User user = this.alonealong.getUserByUserId(userSession.getUser().getId());
 			List<Together> recommandList = this.alonealong.recommandTogetherList(user.getSex(), user.getAddress());
 
+			if(recommandList.isEmpty()) {
+				List<Together> togetherList = this.alonealong.getTogetherList();
+				model.put("togetherList", togetherList);
+			}
+			
 			model.put("user", user);
 			model.put("recommandList", recommandList);
 		}
 		else {
-			
 			List<Together> togetherList = this.alonealong.getTogetherList();
 			model.put("togetherList", togetherList);
 		}

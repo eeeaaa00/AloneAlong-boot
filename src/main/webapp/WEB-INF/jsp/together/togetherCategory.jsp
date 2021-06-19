@@ -14,6 +14,7 @@
 			<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 				<button class="dropdown-item" name="area" value="all" type="submit">모든 지역</button>
 				<button class="dropdown-item" name="area" value="seoul" type="submit">서울특별시</button>
+				<button class="dropdown-item" name="area" value="gyenggi" type="submit">경기도</button>
 				<button class="dropdown-item" name="area" value="busan" type="submit">부산광역시</button>
 				<button class="dropdown-item" name="area" value="incheon" type="submit">인천광역시</button>
 				<button class="dropdown-item" name="area" value="deagu" type="submit">대구광역시</button>
