@@ -33,9 +33,14 @@
 			<h3>함께 먹기 등록</h3>
 			<p>주최자가 되어 같이 밥을 먹어보세요!</p>
 		</div>
+		<br>
+		<br>
+		<br>
 		
 		<!-- 식당 선택 -->
+		<br>
     	<h4 class="mb-3"><span class="text-success">STEP 1. 식당 선택</span></h4>
+    	<br>
     	<!-- 검색창 -->
     	<div class="row g-5">
     		<div class="col-md-6">
@@ -77,7 +82,9 @@
     	<hr>
 
     	<!-- 메뉴 선택 시작 -->
+    	<br>
     	<h4 class="mb-3"><span class="text-success">STEP 2. 메뉴 선택</span></h4>
+    	<br>
     	<!-- 메뉴 리스트 -->
     	<div class="row mb-2">
       		<c:forEach var="food" items="${foodList}">
@@ -168,7 +175,9 @@
 		<hr>
 		
 		<!-- 글 작성하기 -->
+		<br>
     	<h4 class="mb-3"><span class="text-success">STEP 3. 상세 정보 작성</span></h4>
+    	<br>
 		<form>
 			<input type="hidden" name="resId" value="${selectedRes.resId}">
 			<div class="row g-3">
@@ -212,15 +221,34 @@
   					<input type="text" class="form-control" name="description" value="${together.togetherDes}" placeholder="" required>
 				</div>
 			</div>
-
+			<br>
+			<br>
+			<br>
+			<hr>
 			<!--버튼 -->
 			<div class="py-5 text-right">
-				<button class="w-40 btn btn-lg btn-success" type="submit" formaction="/togetherRegister/complete">등록하기</button>
+				<c:if test="${resId eq null}"> <!-- 식당 선택 여부 -->
+					<button class="w-40 btn btn-lg btn-success" onclick="javascript:btn('식당 또는 메뉴를 선택해주세요!' )">등록하기</button>
+				</c:if>
+				<c:if test="${resId != null}">
+					<c:if test="${totalPrice == 0}"> <!-- 카트에 음식 있는지 여부 -->
+						<button class="w-40 btn btn-lg btn-success" onclick="javascript:btn('카트에 음식을 담아주세요!' )">등록하기</button>
+					</c:if>
+					<c:if test="${totalPrice != 0}">
+						<button class="w-40 btn btn-lg btn-success" type="submit" formaction="/togetherRegister/complete">등록하기</button>
+					</c:if>
+				</c:if>
 			</div>
 		</form>
 
 	</div>
 </div>
+
+<script> 
+function btn(message){ 
+	alert(message); 
+} 
+</script>
 
 <!-- Footer -->
 <%@include file="../tiles/footer.jsp" %>
