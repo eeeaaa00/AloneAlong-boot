@@ -3,6 +3,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
 	function signOut() {
 		if (confirm("탈퇴하시겠습니까?")) {
@@ -11,6 +12,42 @@
 			alert("탈퇴 취소");
 		}
 	}
+</script>
+<script>
+function sample6_execDaumPostcode() {
+    new daum.Postcode({
+        oncomplete: function(data) {
+            var addr = '';
+            var extraAddr = '';
+
+            if (data.userSelectedType === 'R') {
+                addr = data.roadAddress;
+            } else { 
+                addr = data.jibunAddress;
+            }
+
+            if(data.userSelectedType === 'R'){
+                if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                    extraAddr += data.bname;
+                }
+                if(data.buildingName !== '' && data.apartment === 'Y'){
+                    extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                }
+                if(extraAddr !== ''){
+                    extraAddr = ' (' + extraAddr + ')';
+                }
+                document.getElementById("address").value = extraAddr;
+            
+            } else {
+                document.getElementById("address").value = '';
+            }
+
+            document.getElementById("zip").value = data.zonecode;
+            document.getElementById("address").value = addr + " ";
+            document.getElementById("address").focus();
+        }
+    }).open();
+}
 </script>
 <div class="col-md-12">
 	<form:form modelAttribute="userForm" method="post">
@@ -101,23 +138,27 @@
 			</div>
 		</div>
 		<div class="form-group row">
+			<label for="zip" class="col-4 col-form-label">우편번호</label>
+			<div class="col-3">
+				<form:input class="form-control here" placeholder="우편번호를 입력해주세요."
+					path="user.zip" id="zip" />
+				<B style="color: #FF0000;"><form:errors path="user.zip"
+						cssClass="error" /></B>
+			</div>
+			<div class="col-3">
+				<button type="button" class="btn btn-orange" onClick="sample6_execDaumPostcode()">우편번호 찾기</button>
+			</div>
+		</div>
+		<div class="form-group row">
 			<label for="address" class="col-4 col-form-label">주소</label>
 			<div class="col-8">
-				<form:input class="form-control here"
+				<form:input class="form-control here" id="address"
 					placeholder="주소 및 상세정보를 입력해주세요." path="user.address" />
 				<B style="color: #FF0000;"><form:errors path="user.address"
 						cssClass="error" /></B>
 			</div>
 		</div>
-		<div class="form-group row">
-			<label for="zip" class="col-4 col-form-label">우편번호</label>
-			<div class="col-8">
-				<form:input class="form-control here" placeholder="우편번호를 입력해주세요."
-					path="user.zip" />
-				<B style="color: #FF0000;"><form:errors path="user.zip"
-						cssClass="error" /></B>
-			</div>
-		</div>
+		
 		<div class="form-group row">
 			<label for="publicinfo" class="col-4 col-form-label">사업자등록</label>
 			<div class="col-8">
