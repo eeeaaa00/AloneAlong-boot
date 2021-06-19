@@ -40,7 +40,7 @@ $(document).on("click", ".open-reviewModal", function () {
 						<small><strong class="text-green">배송 정보</strong></small><br>
 						<small><strong>수령인</strong> &nbsp; ${productOrder.shipName}</small><br>
 						<small><strong>연락처</strong> &nbsp; ${productOrder.shipPhone1}-${productOrder.shipPhone2}-${productOrder.shipPhone3}</small><br>
-						<small><strong>배송지</strong> &nbsp; (${productOrder.shipZip}) ${productOrder.shipAddress}</small><br>
+						<small><strong>배송지</strong> &nbsp; (${productOrder.shipZip}) ${productOrder.shipAddress} ${productOrder.shipAddress2}</small><br>
 					</div>
 					<div class="p-3 mb-3 rounded bg-gradient-light">
 						<c:forEach var="item" items="${productOrder.lineItems}">

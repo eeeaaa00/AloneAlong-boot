@@ -25,6 +25,7 @@ public class ProductOrder implements Serializable {
   private String shipEmail;
   private String shipZip;
   private String shipAddress; 
+  private String shipAddress2;
   
   private List<ProductLineItem> lineItems = new ArrayList<ProductLineItem>();
 
@@ -70,6 +71,8 @@ public class ProductOrder implements Serializable {
   
   public String getShipAddress() { return shipAddress; }
   public void setShipAddress(String shipAddress) { this.shipAddress = shipAddress; }
+  public String getShipAddress2() { return shipAddress2; }
+  public void setShipAddress2(String shipAddress2) { this.shipAddress2 = shipAddress2; }
   
   public String getShipPhone1() { return shipPhone1; }
   public void setShipPhone1(String shipPhone1) { this.shipPhone1 = shipPhone1; }
