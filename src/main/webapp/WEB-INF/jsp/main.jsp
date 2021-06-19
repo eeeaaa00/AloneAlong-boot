@@ -300,6 +300,7 @@ h4 {
 		</div>
 	</c:otherwise>
 </c:choose>
+
 <Br>
 <!-- script -->
 <script>
