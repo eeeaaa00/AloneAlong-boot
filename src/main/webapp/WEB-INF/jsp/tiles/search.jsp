@@ -38,8 +38,8 @@
 						<c:forEach items="${productList}" var="product" varStatus="idx">
 							<div class="card shadow-sm mb-lg-5">
 							<div class="contents">
-						<svg class="img" style="background-image: url('data:image/jpeg;base64,${product.img64}'); background-size: cover; background-position: center"
-														width="100%" height="150px"></svg>
+						<svg class="img" style="background-image: url('../images/${product.pcId}-${product.productId}.png'); background-size: cover; background-position: center"
+										width="100%" height="150px"></svg>
 							<div class="card-body">
 								<div class="d-flex justify-content-between align-items-start pb-1">
 									<h6 class="card-text text-left"><c:out value="${product.productName}"/></h6>
