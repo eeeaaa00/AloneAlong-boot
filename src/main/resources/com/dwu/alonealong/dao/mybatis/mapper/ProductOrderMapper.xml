@@ -21,7 +21,8 @@
 		SUBSTR(PO.SHIP_PHONE, INSTR(PO.SHIP_PHONE, '-',1,2) + 1) as shipPhone3,
 		PO.SHIP_EMAIL as shipEmail,
 		PO.SHIP_ZIP as shipZip,
-		PO.SHIP_ADDRESS as shipAddress
+		PO.SHIP_ADDRESS as shipAddress,
+		PO.SHIP_ADDRESS2 as shipAddress2
 	FROM ORDERINFO O, PRODUCT_ORDER PO
 	WHERE O.ORDER_ID = PO.ORDER_ID AND O.USER_ID = #{userId}
     ORDER BY ORDER_DATE DESC
@@ -56,7 +57,8 @@
 		SUBSTR(PO.SHIP_PHONE, INSTR(PO.SHIP_PHONE, '-',1,2) + 1) as shipPhone3,
 		PO.SHIP_EMAIL as shipEmail,
 		PO.SHIP_ZIP as shipZip,
-		PO.SHIP_ADDRESS as shipAddress
+		PO.SHIP_ADDRESS as shipAddress,
+		PO.SHIP_ADDRESS2 as shipAddress2
 	FROM ORDERINFO O, PRODUCT_ORDER PO
 	WHERE O.ORDER_ID = PO.ORDER_ID AND O.ORDER_ID = #{orderId}
   </select>
@@ -68,7 +70,7 @@
 			#{userId}, #{cardNum}, #{cardMonth} || '/' || #{cardYear}, #{cardName})
 	 INTO PRODUCT_ORDER
     	VALUES('p' || PRODUCTORDERID_SEQ.CURRVAL,
-			#{shipName}, #{shipPhone1} || '-' || #{shipPhone2} || '-' || #{shipPhone3}, #{shipEmail}, #{shipZip}, #{shipAddress})
+			#{shipName}, #{shipPhone1} || '-' || #{shipPhone2} || '-' || #{shipPhone3}, #{shipEmail}, #{shipZip}, #{shipAddress}, #{shipAddress2})
     <foreach collection="lineItems" item="item" separator=" ">
      INTO PRODUCT_LINEITEM
     	VALUES

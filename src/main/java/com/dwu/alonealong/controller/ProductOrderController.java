@@ -131,6 +131,7 @@ public class ProductOrderController {
 	protected String confirmOrder(HttpServletRequest request,
 			@ModelAttribute("productOrderForm") ProductOrderForm productOrderForm, 
 			@SessionAttribute("productOrderSession") List<ProductLineItem> lineItems,
+			@RequestParam(value="shipZip", required=false) String shipZip,
 			BindingResult result, ModelMap model, 
 			SessionStatus status) {
 		validator.validate(productOrderForm, result);
