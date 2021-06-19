@@ -96,6 +96,7 @@ public class ViewTogetherController {
 		String areaName = "모든 지역";
 		switch(area) {
 			case "seoul" : areaName = "서울특별시"; break;
+			case "gyenggi" : areaName = "경기도"; break;
 			case "busan" : areaName = "부산광역시"; break;
 			case "incheon" : areaName = "인천광역시"; break;
 			case "deagu" : areaName = "대구광역시"; break;
