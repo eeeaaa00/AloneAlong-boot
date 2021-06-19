@@ -171,7 +171,7 @@ public class ViewFoodController {
 		System.out.println(foodCart.getFoodItemList().size());
 		
 		Encoder encoder = Base64.getEncoder();
-		byte[] imagefile;
+		byte[] imagefile;  
 		String encodedString;
         imagefile = res.getImgFile();
         encodedString = encoder.encodeToString(imagefile);

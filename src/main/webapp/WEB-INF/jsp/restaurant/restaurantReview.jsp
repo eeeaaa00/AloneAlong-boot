@@ -1,13 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<script>
-$(document).ready(function() {
-		<c:if test="${userSession == null}">
-			$("#writeBtn").css("visibility", "hidden");
-		</c:if>
-});
-</script>
 
 	<div class="row my-5 mx-5">
 		<div class="col-md-12" style="width:100%;">
@@ -55,9 +48,7 @@ $(document).ready(function() {
 				
 					</div>
 				</form>
-				<!-- 리뷰 작성 -->
-				<button id="writeBtn" type="button" class="btn btn-sm btn-orange rounded-pill px-3"
-					data-toggle="modal" data-target="#exampleModal"><i class="far fa-edit"></i> 작성하기</button>
+				
 			</div>
 			
 			<!-- 리뷰 목록 -->

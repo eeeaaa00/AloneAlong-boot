@@ -9,6 +9,20 @@ span{
 	font-size: smaller;
 }
 </style> 
+<script>
+$(function () {
+	   var $inputEle = $("#imgFile");
+	   $inputEle.change(function() {
+		   var f = this.files[0];
+        var size = f.size || f.fileSize;
+		   if(size > 500000)
+		    {
+		       alert("최대 파일 사이즈는 500kb입니다.");
+		       $("#imgFile").val('');
+		    }
+	   })
+	});
+</script>
 <div class="card m-3 p-3 text-center">
 	<h1>Menu Info</h1><hr>
    <div align="center">
@@ -28,7 +42,7 @@ span{
 		</p>
 		<p>
 			<form:label path="imgFile">이미지</form:label>
-			<form:input id="imgFile" type="file" path="imgFile" value="${food.imgFile}"/>
+			<form:input id="imgFile" type="file" path="imgFile"/>
 			<form:errors path="img64"/>
 		</p>
 		<p>

@@ -5,14 +5,7 @@
 
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
-/*var uploadField = document.getElementById("imgFile");
 
-uploadField.onchange = function() {
-    if(this.files[0].size > 106){
-       alert("File is too big!");
-       this.value = "";
-    };
-};*/
 function sample6_execDaumPostcode() {
     new daum.Postcode({
         oncomplete: function(data) {
@@ -97,6 +90,19 @@ $(document).ready(function() {
     console.log('check', check);
 });
 
+$(function () {
+	   var $inputEle = $("#imgFile");
+	   $inputEle.change(function() {
+		   var f = this.files[0];
+           var size = f.size || f.fileSize;
+		   if(size > 500000)
+		    {
+		       alert("최대 파일 사이즈는 500kb입니다.");
+		       $("#imgFile").val('');
+		    }
+	   })
+	});
+
 </script> 
 <div class="col-md-12 mb-3 text-center">
    
@@ -157,14 +163,14 @@ $(document).ready(function() {
 		<div class="form-group d-flex align-items-center row">
 			<div class="col-4"> <form:label path="imgFile">이미지</form:label></div>
 			<div class="col-8">
-			<form:input id="imgFile" class="form-control-file w-100" type="file" path="imgFile"/>
+			<form:input id="imgFile" class="form-control-file w-100" type="file" path="imgFile" accept=".jpg, .jpeg, .png"/>
 			<form:errors path="img64"/>
 			</div>
 		</div>
 		<div class="form-group d-flex align-items-center row">
 			<div class="col-4"> <form:label path="resPhone">번호</form:label></div>
 			<div class="col-8">
-			<form:input class="form-control w-100" path="resPhone" value="${res.resPhone}"/>
+			<form:input class="form-control w-100" path="resPhone" value="${res.resPhone}" placeholder="00(0)-000(0)-0000"/>
 			<form:errors path="resPhone"/>
 			</div>
 		</div>

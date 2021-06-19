@@ -11,6 +11,10 @@ $(function(){
 		$("#cancelModal").modal("show");
 		$("#cancelOrder").attr("href","<c:url value='/eating/order/delete'><c:param name="orderId" value='${foodOrder.orderId}'/></c:url>");
 	});
+	$("#review${foodOrder.resId}").click(function() {
+		$("#reviewModal").modal("show");
+		$("#reviewOrder").attr("action","<c:url value="/eating/${foodOrder.resId}/writeReview"/>");
+	});
 
 });
 
@@ -51,10 +55,51 @@ $(document).ready(function() {
 		</div>
 	</div>
 </div>
+<!-- 리뷰 작성 -->
+<div class="modal fade" id="reviewModal" tabindex="-1" role="dialog" aria-hidden="true">
+	<form id="reviewOrder" class="form" >
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content pb-4">
+				<div class="modal-header">
+					<h5 class="modal-title">리뷰 작성</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+				
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="form-group">
+								<select name="rating" id="rating"
+									class="custom-select focus-shadow-0">
+									<option value="5">★★★★★</option>
+									<option value="4">★★★★☆</option>
+									<option value="3">★★★☆☆</option>
+									<option value="2">★★☆☆☆</option>
+									<option value="1">★☆☆☆☆</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<textarea rows="4" name="review" id="review" maxlength=80
+							placeholder="수정이 불가하오니 신중히 리뷰를 작성하세요.(80자)" required="" class="form-control"></textarea>
+					</div>
+				
+			</div>
+			<div class="text-center">
+				<button type="submit" class="btn btn-orange rounded-pill w-25 pb-2" >작성하기</button>
+			</div>
+		</div>
+	</div>
+	</form>
+</div>
 	<div class="col-md-12">
 		<div class="form-col float-right">
-			<a href="<c:url value='/eating/${foodOrder.resId}/RestaurantReview' />">
-				<button class="btn btn-sm btn-outline-success mb-1"
+			<a id="review${foodOrder.resId}">
+				<button class="btn btn-sm btn-outline-success mb-1" data-toggle="modal" data-target="#exampleModal"
 					id="advanced-set-submit">리뷰 작성</button>
 			</a>
 			<br>
