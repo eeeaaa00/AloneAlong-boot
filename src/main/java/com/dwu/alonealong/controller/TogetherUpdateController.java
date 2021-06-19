@@ -1,6 +1,8 @@
 package com.dwu.alonealong.controller;
 
+import java.util.Base64;
 import java.util.List;
+import java.util.Base64.Encoder;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -51,9 +53,19 @@ public class TogetherUpdateController {
 		
 		//푸드 리스트 세팅
 		List<Food> foodList = aloneAlong.getFoodListByRestaurant(together.getResId());
+		
+		Encoder encoder = Base64.getEncoder(); //음식 이미지
+		byte[] imagefile;
+		String encodedString;
+        for(Food food : foodList) {
+        	imagefile = food.getImgFile();
+            encodedString = encoder.encodeToString(imagefile);
+            food.setImg64(encodedString);
+        }
+		
 		model.addAttribute("foodList", foodList);
 		
-		//카트 세팅(구현중)
+		//카트 세팅
 		for(int i = 0; i < together.getTogetherFoodList().size(); i++) {
 			System.out.println("현재 음식 사이즈" + foodCart.getFoodItemList().size());
 			if (foodCart.containsFoodId(together.getTogetherFoodList().get(i).getFoodId())) {
@@ -84,6 +96,14 @@ public class TogetherUpdateController {
 		
 		List<Restaurant> restaurantList = this.aloneAlong.searchRestaurantList(keywords);
 		model.put("keywords", keywords);
+		
+		Encoder encoder = Base64.getEncoder(); //이미지
+        for(Restaurant res : restaurantList) {     	
+        	byte[] imagefile = res.getImgFile();
+            String encodedString = encoder.encodeToString(imagefile);
+            res.setImg64(encodedString);
+        }
+		
 		model.put("restaurantList", restaurantList);
 		System.out.println("키워드 검색 완료");
 		return "together/togetherUpdateForm";
@@ -100,6 +120,15 @@ public class TogetherUpdateController {
 		
 		model.put("keywords", restaurant.getResName()); //검색창에 레스토랑 이름 세팅하기
 		model.put("selectedRes", restaurant);
+		
+		Encoder encoder = Base64.getEncoder(); //음식 이미지
+		byte[] imagefile;
+		String encodedString;
+        for(Food food : foodList) {
+        	imagefile = food.getImgFile();
+            encodedString = encoder.encodeToString(imagefile);
+            food.setImg64(encodedString);
+        }
 		
 		model.addAttribute("foodList", foodList);
 		System.out.println("메뉴 검색 완료");

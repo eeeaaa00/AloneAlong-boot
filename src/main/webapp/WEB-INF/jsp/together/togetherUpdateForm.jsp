@@ -60,8 +60,7 @@
 					<div class="card mb-3">
           				<div class="row g-0">
             				<div class="col-md-4 align-self-center">
-              					<svg class="img" style="background-image: url('https://post-phinf.pstatic.net/MjAyMDAzMDNfMTcg/MDAxNTgzMTkwNjA3ODQ5.kUXPHqGJ2xPDSu_3FiEoFC3kY9QyQ_g9CziCGrFSDuEg.LpCfOTbc5qth9d-GKzGv9jwj2VKhcqmPHp5cp1KJYEsg.JPEG/IM_food02.jpg?type=w1200');
-  									background-size: cover; background-position:center; width:120px; height:90px;"></svg>
+              					<img src="data:image/jpeg;base64,${restaurant.img64}" style="width: 120px; height: 90px;">
             				</div>
             				<div class="col-md-5 align-self-center">
               					<h6 class="card-title"><a href="<c:url value='/eating/' />${restaurant.resId}"><c:out value="${restaurant.resName}"/></a></h6>
@@ -92,8 +91,7 @@
       				<div class="card mb-3">
           				<div class="row g-0">
             				<div class="col-md-4 align-self-center">
-              					<svg class="img" style="background-image: url('https://post-phinf.pstatic.net/MjAyMDAzMDNfMTcg/MDAxNTgzMTkwNjA3ODQ5.kUXPHqGJ2xPDSu_3FiEoFC3kY9QyQ_g9CziCGrFSDuEg.LpCfOTbc5qth9d-GKzGv9jwj2VKhcqmPHp5cp1KJYEsg.JPEG/IM_food02.jpg?type=w1200');
-  									background-size: cover; background-position:center; width:120px; height:90px;"></svg>
+              					<img src="data:image/jpeg;base64,${food.img64}" style="width: 120px; height: 90px;">
             				</div>
             				<div class="col-md-5 align-self-center">
               					<h6 class="card-title"><c:out value="${food.name}"/></h6>

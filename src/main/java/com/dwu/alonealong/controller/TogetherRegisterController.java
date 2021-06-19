@@ -1,6 +1,8 @@
 package com.dwu.alonealong.controller;
 
+import java.util.Base64;
 import java.util.List;
+import java.util.Base64.Encoder;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -63,6 +65,14 @@ public class TogetherRegisterController {
 		
 		List<Restaurant> restaurantList = this.aloneAlong.searchRestaurantList(keywords);
 		model.put("keywords", keywords);
+		
+		Encoder encoder = Base64.getEncoder(); //이미지
+        for(Restaurant res : restaurantList) {     	
+        	byte[] imagefile = res.getImgFile();
+            String encodedString = encoder.encodeToString(imagefile);
+            res.setImg64(encodedString);
+        }
+		
 		model.put("restaurantList", restaurantList);
 		System.out.println("키워드 검색 완료");
 		return "together/togetherRegisterForm";
@@ -78,7 +88,17 @@ public class TogetherRegisterController {
 		List<Food> foodList = aloneAlong.getFoodListByRestaurant(resId);
 		
 		model.put("keywords", restaurant.getResName()); //검색창에 레스토랑 이름 세팅하기
+		
 		model.put("selectedRes", restaurant);
+		
+		Encoder encoder = Base64.getEncoder(); //음식 이미지
+		byte[] imagefile;
+		String encodedString;
+        for(Food food : foodList) {
+        	imagefile = food.getImgFile();
+            encodedString = encoder.encodeToString(imagefile);
+            food.setImg64(encodedString);
+        }
 		
 		model.addAttribute("foodList", foodList);
 		System.out.println("메뉴 검색 완료");
