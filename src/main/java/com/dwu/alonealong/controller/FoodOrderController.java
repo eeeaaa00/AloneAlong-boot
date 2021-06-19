@@ -96,7 +96,8 @@ public class FoodOrderController {
 		aloneAlong.insertFoodOrder(order);
 
 		String resName = aloneAlong.getRestaurantByResId(resId).getResName();
-		status.setComplete();  // remove sessionCart and orderForm from session
+		//status.setComplete();  // remove sessionCart and orderForm from session
+		cart = new FoodCart();
 		
 		model.put("resName", resName);
 		return "resOrderResult";
