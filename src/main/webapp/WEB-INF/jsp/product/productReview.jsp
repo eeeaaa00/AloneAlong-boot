@@ -129,14 +129,14 @@ $(document).on("click", ".open-deleteModal", function () {
 		  <c:if test="${reviewList.size() > 0}">
 		  <div class="row my-xl-5 justify-content-center">
 			<div class="paginate mb-xl-5 btn-toolbar" role="toolbar">
-				 <c:if test="${page == 1}">
+				 <c:if test="${page <= 5}">
 				 	 <button type="button" class="btn" disabled><i class="fas fa-chevron-left"></i></button>
 				 </c:if>
-				 <c:if test="${page != 1}">
-				 	 <button type="button" class="btn" onClick="location.href='<c:url value='/shop/${pcId}/review?quantity=${quantity}&page=${page - 1}&sortType=${param.sortType}' />'">
+				 <c:if test="${page > 5}">
+				 	 <button type="button" class="btn" onClick="location.href='<c:url value='/shop/${pcId}/review?quantity=${quantity}&page=${startPage - 5}&sortType=${param.sortType}' />'">
 				 	 	<i class="fas fa-chevron-left"></i></button>
 				 </c:if>
-				 <c:forEach var="pageNum" begin="${startPage}" end="${startPage + 5}" varStatus="status">
+				 <c:forEach var="pageNum" begin="${startPage}" end="${startPage + 4}" varStatus="status">
 					 <c:if test="${pageNum == page}">
 				 		<div class="btn-group"><button type="button" class="btn active rounded-circle" 
 				 			onClick="location.href='<c:url value='/shop/${pcId}/review?quantity=${quantity}&page=${pageNum}&sortType=${param.sortType}' />'">${pageNum}</button></div>
@@ -146,11 +146,11 @@ $(document).on("click", ".open-deleteModal", function () {
 				 			onClick="location.href='<c:url value='/shop/${pcId}/review?quantity=${quantity}&page=${pageNum}&sortType=${param.sortType}' />'">${pageNum}</button></div>
 					 </c:if>
 				 </c:forEach>
-				 <c:if test="${page == lastPage}">
+				 <c:if test="${startPage == (lastPage - lastPage % 5 + 1)}">
 				 	 <button type="button" class="btn" disabled><i class="fas fa-chevron-right"></i></button>
 				 </c:if>
-				 <c:if test="${page != lastPage}">
-				 	 <button type="button" class="btn" onClick="location.href='<c:url value='/shop/${pcId}/review?quantity=${quantity}&page=${page + 1}&sortType=${param.sortType}' />'">
+				 <c:if test="${startPage != (lastPage - lastPage % 5 + 1)}">
+				 	 <button type="button" class="btn" onClick="location.href='<c:url value='/shop/${pcId}/review?quantity=${quantity}&page=${startpage + 6}&sortType=${param.sortType}' />'">
 				 	 	<i class="fas fa-chevron-right"></i></button>
 				 </c:if>
 			</div>
@@ -209,7 +209,7 @@ $(document).on("click", ".open-deleteModal", function () {
 					</div>
 					<div class="form-group">
 						<textarea rows="4" name="contents" id="reviewContents" required=""
-							class="form-control">${review.reviewContents}</textarea>
+							class="form-control" maxlength="300">${review.reviewContents}</textarea>
 					</div>
 					<input type="hidden" name="productId" id="productId" value="${productId}"/>
 					<input type="hidden" name="reviewId" id="reviewId" value=""/>
@@ -248,7 +248,7 @@ $(document).on("click", ".open-deleteModal", function () {
 						</div>
 						<div class="form-group">
 							<textarea rows="4" name="contents" id="review"
-								placeholder="리뷰를 작성하세요" required="" class="form-control"></textarea>
+								placeholder="리뷰를 작성하세요" required="" class="form-control"  maxlength="300"></textarea>
 						</div>
 					<input type="hidden" name="productId" id="productId" value="${productId}"/>
 				</div>

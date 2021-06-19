@@ -38,7 +38,7 @@ public class InsertProductReviewController {
 			return "redirect:/login";
 		}
 		String userId = userSession.getUser().getId();
-		if(!aloneAlong.checkUsersOrder(userId, productId)) {
+		if(!aloneAlong.checkUsersOrder(userId, productId) || contents.length() > 300) {
 			return "redirect:/error";
 		}
 		
