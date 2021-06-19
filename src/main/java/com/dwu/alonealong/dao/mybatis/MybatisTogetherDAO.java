@@ -78,6 +78,7 @@ public class MybatisTogetherDAO implements TogetherDAO {
 		switch(area) {
 			case "all" : area = ""; break;
 			case "seoul" : area = "서울특별시"; break;
+			case "gyenggi" : area = "경기도"; break;
 			case "busan" : area = "부산광역시"; break;
 			case "incheon" : area = "인천광역시"; break;
 			case "deagu" : area = "대구광역시"; break;
