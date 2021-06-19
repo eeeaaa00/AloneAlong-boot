@@ -27,19 +27,31 @@ public class UserFormValidator implements Validator {
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "user.nickname", "NICKNAME_REQUIRED", "닉네임을 입력해주세요.");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "user.email", "EMAIL_REQUIRED", "이메일을 입력해주세요");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "user.phone", "PHONE_REQUIRED", "전화번호를 입력해주세요.");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "user.birthday", "BIRTH_REQUIRED", "생년월일을 입력해주세요.");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "user.address", "ADDRESS_REQUIRED", "주소를 입력해주세요.");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "user.zip", "ZIP_REQUIRED", "우편번호를 입력해주세요.");
 
-		
+		if (user.getM().length() == 0 || user.getY().length() == 0 || user.getD().length() == 0) {
+			errors.rejectValue("user.m", "BIRTHDAY_REQUIRED", "생년월일을 입력해주세요.");
+		}
+		else {
+			int y = Integer.parseInt(user.getY());
+			int m = Integer.parseInt(user.getM());
+			int d = Integer.parseInt(user.getD());
+
+			System.out.print(y+"!!!!!!!");
+			if (y > 2020 || y < 1920 || m < 1 || m > 12 || d < 1 || d > 31) {
+				errors.rejectValue("user.m", "BIRTHDAY_CHECK", "올바른 생년월일을 입력해주세요.");
+			}
+		}
+	
+
 		if (user.getBusiness_num().length() != 0) {
 			String bs = "^\\d{3}-\\d{2}-\\d{5}$";
 			boolean regex = Pattern.matches(bs, user.getBusiness_num());
 			if (!regex)
 				errors.rejectValue("user.business_num", "BUSINESSNUM_CHECK", "사업자번호 형식은 000-00-00000입니다.");
 		}
-		
-		
+
 		if (user.getPhone().length() != 0) {
 			String ps = "^01(?:0|1|[6-9])-(?:\\d{4})-\\d{4}$";
 			boolean regex1 = Pattern.matches(ps, user.getPhone());
