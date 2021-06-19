@@ -4,12 +4,6 @@
 
 <c:forEach var="foodOrder" items="${foodOrderList}">
 	<div class="col-md-12">
-		<div class="form-row float-right">
-			<a href="<c:url value='/eating/${foodOrder.resId}/RestaurantReview' />">
-				<button class="btn btn-sm btn-outline-success"
-					id="advanced-set-submit">리뷰 작성</button>
-			</a>
-		</div>
 		<div class="d-flex align-items-center">
 			<a href="/detail-1"> <img src="data:image/jpeg;base64,${foodOrder.img64}" style="width: 100px; height: 100px; object-fit: cover;">
 			</a>
@@ -21,23 +15,26 @@
 				<small style="color: #f2864b;">결제일시 </small> &nbsp;<small style="color: #696969;"> ${foodOrder.orderDate}</small>
 			</div>
 		</div>
+		<div class="text-right">
+		<a href="<c:url value='/eating/${foodOrder.resId}/RestaurantReview' />">
+				<button class="btn btn-sm btn-outline-success"
+					id="advanced-set-submit">리뷰 작성</button></a>
+			<a type="button" class="btn btn-sm btn-orange" data-toggle="collapse" data-parent="#accordion"
+				href="#collapse${foodOrder.orderId}" aria-expanded="false"> >>주문상세내역 </a></div>
 		<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="false">
 			<div class="panel panel-default">
-				<div class="panel-heading" role="tab">
-					<a role="button btn-lg" data-toggle="collapse" data-parent="#accordion"
-						href="#collapse${foodOrder.orderId}" aria-expanded="false"> >>주문상세내역 </a>
-				</div>
 				<div id="collapse${foodOrder.orderId}" class="panel-collapse collapse" role="tabpanel">
 					<div class="panel-body m-1 p-2">
+					<div class="p-3 mb-3 rounded bg-light">
 					<c:forEach var="item" items="${foodOrder.orderedList}">
 					${item.foodName} x ${item.quantity} = ${item.unitPrice}원<hr>
 					</c:forEach>
 					총합 : ${foodOrder.totalPrice}원
 					</div>
+					</div>
 				</div>
 			</div>
 		</div>
-		<br>
 		<hr>
 </div>
 </c:forEach>
