@@ -105,7 +105,6 @@ public class UserFormController {
 			}		
 			return "redirect:/";
 		} else {
-			// session.setAttribute("userSession", userSession);
 			return successCreateName;
 		}
 	}
