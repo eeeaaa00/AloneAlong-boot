@@ -50,14 +50,10 @@
 			value="/WEB-INF/jsp/together/togOrderResult.jsp" />
 	</definition>
 
-
-
 	<!-- mypage -->
 	<definition name="mypage_layout"
 		template="/WEB-INF/jsp/tiles/template/mypage.jsp">
 		<put-attribute name="title" value="MyPage" type="string" />
-		<put-attribute name="menu"
-			value="/WEB-INF/jsp/mypage/menu.jsp" />
 		<put-attribute name="header"
 			value="/WEB-INF/jsp/tiles/header.jsp" />
 		<put-attribute name="footer"
@@ -66,41 +62,55 @@
 
 	<definition name="myEditForm" extends="mypage_layout">
 		<put-attribute name="func" value="정보 변경" type="string" />
+		<put-attribute name="menu"
+			value="/WEB-INF/jsp/mypage/menu/menu1.jsp" />
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/mypage/myEditForm.jsp" />
 	</definition>
 
 	<definition name="myPayForm" extends="mypage_layout">
 		<put-attribute name="func" value="결제정보 관리" type="string" />
+		<put-attribute name="menu"
+			value="/WEB-INF/jsp/mypage/menu/menu2.jsp" />
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/mypage/myPayForm.jsp" />
 	</definition>
 
 	<definition name="myCredit" extends="mypage_layout">
 		<put-attribute name="func" value="결제 관리" type="string" />
+		<put-attribute name="menu"
+			value="/WEB-INF/jsp/mypage/menu/menu2.jsp" />
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/mypage/myPayForm.jsp" />
 	</definition>
 
 	<definition name="myOrder" extends="mypage_layout">
 		<put-attribute name="func" value="구매내역" type="string" />
+		<put-attribute name="menu"
+			value="/WEB-INF/jsp/mypage/menu/menu3.jsp" />
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/mypage/myOrder.jsp" />
 	</definition>
 
 	<definition name="myResOrder" extends="mypage_layout">
 		<put-attribute name="func" value="식당예약" type="string" />
+		<put-attribute name="menu"
+			value="/WEB-INF/jsp/mypage/menu/menu4.jsp" />
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/mypage/myResOrder.jsp" />
 	</definition>
 
 	<definition name="myTogetherOrder" extends="mypage_layout">
-		<put-attribute name="func" value="같밥예약" type="string" />
+		<put-attribute name="func" value="함께먹기 예약" type="string" />
+		<put-attribute name="menu"
+			value="/WEB-INF/jsp/mypage/menu/menu5.jsp" />
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/mypage/myTogetherOrder.jsp" />
 	</definition>
 	<definition name="restaurantForm" extends="mypage_layout">
 		<put-attribute name="func" value="내 식당 관리" type="string" />
+		<put-attribute name="menu"
+			value="/WEB-INF/jsp/mypage/menu/menu6.jsp" />
 		<put-attribute name="body"
 			value="/WEB-INF/jsp/restaurant/restaurantForm.jsp" />
 	</definition>

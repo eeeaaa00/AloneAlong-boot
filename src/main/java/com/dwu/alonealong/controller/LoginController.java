@@ -1,6 +1,7 @@
 package com.dwu.alonealong.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -40,7 +41,7 @@ public class LoginController {
 	}
 
 	@PostMapping(value = "/login")
-	public String handleRequest(HttpServletRequest request, 
+	public String handleRequest(HttpServletRequest request, HttpSession session,
 			@RequestParam("id") String userId,
 			@RequestParam("pw") String password,
 			@RequestParam(value = "forwardAction", required = false) String forwardAction,
@@ -57,6 +58,9 @@ public class LoginController {
 			String refererURL = (String)request.getSession().getAttribute("refererURL");
 			String requestURL = request.getRequestURL().toString();
 			System.out.println(request.getHeader("referer"));
+			String businum = alonealong.getUserByUserId(userSession.getUser().getId()).getBusiness_num();
+			session.setAttribute("businum", businum);
+			
 			
 			if (!request.getHeader("referer").equals(requestURL)){
 				return "redirect:" + request.getHeader("referer");

@@ -23,10 +23,13 @@ public class UserForm implements Serializable {
 	}
 
 	public UserForm() {
-		this.user = new User();
 		this.newUser = true;
 	}
-
+	
+	public void setUser(User user) {
+		this.user = user;
+	}
+	
 	public User getUser() {
 		return user;
 	}

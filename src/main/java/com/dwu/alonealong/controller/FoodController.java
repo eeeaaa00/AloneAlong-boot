@@ -105,8 +105,14 @@ public class FoodController {
 			@RequestParam("foodId") String foodId,
 			@ModelAttribute("food") FoodForm foodForm,
 			@PathVariable("resId") String resId,
-//			BindingResult bindingResult,
+			BindingResult result,
 			Model model) {
+		
+		new FoodFormValidator().validate(foodForm, result); // 검증 실행
+		if (result.hasErrors()) { 
+			// 검증 오류 발생 시
+			return "foodForm"; 
+		}
 		
 		Food food;
 		if(foodForm.getImgFile() == null)

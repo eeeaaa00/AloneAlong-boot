@@ -3,7 +3,8 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script
+	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
 	function signOut() {
 		if (confirm("탈퇴하시겠습니까?")) {
@@ -14,40 +15,41 @@
 	}
 </script>
 <script>
-function sample6_execDaumPostcode() {
-    new daum.Postcode({
-        oncomplete: function(data) {
-            var addr = '';
-            var extraAddr = '';
+	function sample6_execDaumPostcode() {
+		new daum.Postcode({
+			oncomplete : function(data) {
+				var addr = '';
+				var extraAddr = '';
 
-            if (data.userSelectedType === 'R') {
-                addr = data.roadAddress;
-            } else { 
-                addr = data.jibunAddress;
-            }
+				if (data.userSelectedType === 'R') {
+					addr = data.roadAddress;
+				} else {
+					addr = data.jibunAddress;
+				}
 
-            if(data.userSelectedType === 'R'){
-                if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
-                    extraAddr += data.bname;
-                }
-                if(data.buildingName !== '' && data.apartment === 'Y'){
-                    extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
-                }
-                if(extraAddr !== ''){
-                    extraAddr = ' (' + extraAddr + ')';
-                }
-                document.getElementById("address").value = extraAddr;
-            
-            } else {
-                document.getElementById("address").value = '';
-            }
+				if (data.userSelectedType === 'R') {
+					if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
+						extraAddr += data.bname;
+					}
+					if (data.buildingName !== '' && data.apartment === 'Y') {
+						extraAddr += (extraAddr !== '' ? ', '
+								+ data.buildingName : data.buildingName);
+					}
+					if (extraAddr !== '') {
+						extraAddr = ' (' + extraAddr + ')';
+					}
+					document.getElementById("address").value = extraAddr;
 
-            document.getElementById("zip").value = data.zonecode;
-            document.getElementById("address").value = addr + " ";
-            document.getElementById("address").focus();
-        }
-    }).open();
-}
+				} else {
+					document.getElementById("address").value = '';
+				}
+
+				document.getElementById("zip").value = data.zonecode;
+				document.getElementById("address").value = addr + " ";
+				document.getElementById("address").focus();
+			}
+		}).open();
+	}
 </script>
 <div class="col-md-12">
 	<form:form modelAttribute="userForm" method="post">
@@ -125,17 +127,27 @@ function sample6_execDaumPostcode() {
 		<div class="form-group row">
 			<label for="select" class="col-4 col-form-label">성별</label>
 			<div class="col-8">
-				<form:select class="custom-select" path="user.sex" items="${sex}"
-					required="required" />
-
+				<form:select class="custom-select" path="user.sex" items="${sex}" />
 			</div>
 		</div>
 		<div class="form-group row">
 			<label for="birthday" class="col-4 col-form-label">생년월일</label>
-			<div class="col-8">
-				<form:input type="date" class="form-control here"
-					path="user.birthday" />
+			<div class="col-2">
+				<form:input type="text" class="form-control here" placeholder="YYYY"
+					path="user.y"/>
 			</div>
+			<div class="col-2">
+				<form:input type="text" class="form-control here" placeholder="MM"
+					path="user.m" />
+			</div>
+			<div class="col-2">
+				<form:input type="text" class="form-control here" placeholder="DD"
+					path="user.d" />
+			</div>
+			<div class="col-2">
+			<B style="color: #FF0000;"><form:errors path="user.m"
+					cssClass="error" /></B>
+					</div>
 		</div>
 		<div class="form-group row">
 			<label for="zip" class="col-4 col-form-label">우편번호</label>
@@ -146,7 +158,8 @@ function sample6_execDaumPostcode() {
 						cssClass="error" /></B>
 			</div>
 			<div class="col-3">
-				<button type="button" class="btn btn-orange" onClick="sample6_execDaumPostcode()">우편번호 찾기</button>
+				<button type="button" class="btn btn-orange"
+					onClick="sample6_execDaumPostcode()">우편번호 찾기</button>
 			</div>
 		</div>
 		<div class="form-group row">
@@ -158,9 +171,9 @@ function sample6_execDaumPostcode() {
 						cssClass="error" /></B>
 			</div>
 		</div>
-		
+
 		<div class="form-group row">
-			<label for="publicinfo" class="col-4 col-form-label">사업자등록</label>
+			<label for="businuessinfo" class="col-4 col-form-label">사업자등록 (식당주 전용)</label>
 			<div class="col-8">
 				<form:input class="form-control here"
 					placeholder="000-00-00000(사업자번호는 선택사항입니다.)"

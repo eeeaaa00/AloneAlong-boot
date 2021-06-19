@@ -35,7 +35,7 @@ public class UserFormController {
 	@Value("login")
 	private String successCreateName;
 
-	private static final String[] SEX = { "여", "남" };
+	private static final String[] SEX = { "남", "여" };
 
 	@Autowired
 	private AloneAlongFacade alonealong;
@@ -46,9 +46,10 @@ public class UserFormController {
 	}
 
 	@ModelAttribute("sex")
-	public String[] getLanguages() {
+	public String[] getSex() {
 		return SEX;
 	}
+
 
 	@Autowired
 	private UserFormValidator validator;

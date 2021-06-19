@@ -58,17 +58,21 @@ public class RestaurantController {
 			BindingResult result,
 			HttpServletRequest request,
 			Model model) throws MalformedURLException {
-		
-		new RestaurantFormValidator().validate(resForm, result); // 검증 실행
-		if (result.hasErrors()) { 
-			// 검증 오류 발생 시
-			return RES_INSERT_FORM; 
-		} 
-		
+	
 		//user id
 		UserSession userSession = (UserSession)request.getSession().getAttribute("userSession");
 		User user = alonealong.getUserByUserId(userSession.getUser().getId());
 		String userId = user.getId();
+		
+		new RestaurantFormValidator().validate(resForm, result); // 검증 실행
+		if (result.hasErrors()) { 
+			// 검증 오류 발생 시
+			Restaurant resData = alonealong.getRestaurantByUserId(user.getId());
+			if(resData != null) {
+				model.addAttribute("res", resData);
+			} 
+			return RES_INSERT_FORM; 
+		}
 		
 		Restaurant res;
 		

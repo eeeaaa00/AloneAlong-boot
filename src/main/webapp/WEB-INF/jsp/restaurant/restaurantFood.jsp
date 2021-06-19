@@ -32,8 +32,8 @@
 									<p>${food.description}</p>
 									<p>${food.price}원 </p>  
 									<c:if test="${restaurant.ownerId eq userId}">
-					              	<button id="btnEdit" type="button" class="btn btn-sm btn-warning" onClick="location.href='<c:url value='/eating/${restaurant.resId}/adminFood/update'><c:param name="foodId" value="${food.foodId}"/></c:url>'">수정</button>
-					              	<button id="btnDel" type="button" class="btn btn-sm btn-outline-warning" onClick="location.href='<c:url value='/eating/${restaurant.resId}/adminFood/delete'><c:param name="foodId" value="${food.foodId}"/></c:url>'">삭제</button>
+					              	<button id="btnEdit" type="button" class="btn btn-sm btn-warning" onClick="location.href='<c:url value='/eating/${restaurant.resId}/adminFood/update'><c:param name="foodId" value="${food.foodId}"/></c:url>'">정보수정</button>
+					              	<button id="btnDel" type="button" class="btn btn-sm btn-outline-warning" onClick="location.href='<c:url value='/eating/${restaurant.resId}/adminFood/delete'><c:param name="foodId" value="${food.foodId}"/></c:url>'">판매중지</button>
 				             	  	</c:if>
 				              </div>
 				              <div class="card-footer" style="width:120px; text-align: center;">

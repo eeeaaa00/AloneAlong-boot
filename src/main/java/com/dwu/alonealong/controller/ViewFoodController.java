@@ -86,10 +86,11 @@ public class ViewFoodController {
 			@RequestParam(value="page", defaultValue="1") int page, 
 			@PathVariable("resId") String resId,
 			@SessionAttribute("sessionFoodCart") FoodCart foodCart,
+			@RequestParam(value="sortType", defaultValue="REVIEW_DATE DESC") String sortType, 
 			HttpServletRequest request,
 			ModelMap model) throws Exception {
 		
-		String sortType = request.getParameter("sortType");
+		//String sortType = request.getParameter("sortType");
 		if(sortType == null)
 			sortType = "REVIEW_DATE DESC";
 	
