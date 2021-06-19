@@ -51,6 +51,7 @@ public class ViewTogetherController {
 		boolean ifEditPossible = false; //수정 삭제 가능 여부
 		boolean alreadyApply = false; //이미 신청했는지 여부
 		boolean isPaid = false; //결제 여부
+		boolean ifCanApply = false; //신청 조건 맞는지 여부
 		
 		if(userSession != null) {
 			isUserNull = true;
@@ -70,6 +71,10 @@ public class ViewTogetherController {
 					if(together.getTogetherMemberList().get(i).getUserId().equals(user.getId()))
 						alreadyApply = true;
 				}
+				if(alreadyApply == false) { //신청 조건 맞는지 여부(성별 조건만)
+					if(user.getSex().equals(together.getSex()) || together.getSex().equals("상관없음"))
+						ifCanApply = true;
+				}
 			}	
 		}
 		
@@ -78,7 +83,7 @@ public class ViewTogetherController {
 		model.put("isPaid", isPaid);
 		model.put("ifEditPossible", ifEditPossible);
 		model.put("alreadyApply", alreadyApply);
-		
+		model.put("ifCanApply", ifCanApply);
 		
 		//이미지
 		Encoder encoder = Base64.getEncoder();

@@ -2,12 +2,13 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <style>
 b {color:#29A65F;}
+.card:hover, .card:focus {  filter: brightness(90%); }
 
 .swiper-container {
 }
 .swiper-slide {
 	text-align:left;
- 	margin: 5px;
+ 	margin: 0px;
 	align-items:center;
 	justify-content:center;
 }
@@ -24,7 +25,7 @@ b {color:#29A65F;}
 	<div class="swiper-wrapper">
 		<c:forEach var="recommand" items="${recommandList}">
 			<div class="swiper-slide">
-				<div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative" type="button" onClick="location.href='<c:url value='/together/${recommand.togetherId}' />'">
+				<div class="card shadow-sm rounded" type="button" onClick="location.href='<c:url value='/together/${recommand.togetherId}' />'">
             		<div class="col p-4 d-flex flex-column position-static">
             			<!-- 태그 -->
                 		<div class="row-md-6">
@@ -60,7 +61,7 @@ b {color:#29A65F;}
 	
 	<c:forEach var="together" items="${togetherList}">
 		<div class="col-md-6">
-        	<div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative" type="button" onClick="location.href='<c:url value='/together/${together.togetherId}' />'">
+        	<div class="card shadow-sm rounded" type="button" onClick="location.href='<c:url value='/together/${together.togetherId}' />'">
             	<div class="col p-4 d-flex flex-column position-static">
             		<!-- 태그 -->
                 	<div class="row-md-6">
@@ -83,76 +84,6 @@ b {color:#29A65F;}
         	</div>
     	</div>
 	</c:forEach>
-
-    <!-- 예시용 시작 지점 ///////////////////////////////////////////////추후 삭제 예정 -->
-    <div class="col-md-6">
-    	<div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-        	<div class="col p-4 d-flex flex-column position-static">
-            	<div class="row-md-6">
-                	<span class="badge rounded-pill bg-primary">#서울</span>
-                 	<span class="badge rounded-pill bg-primary">#한식</span>
-                	<span class="badge rounded-pill bg-primary">#여성</span>
-                	<span class="badge rounded-pill bg-primary">#20대</span>
-                </div>
-                <h3 class="mb-0">삼겹살 같이 먹어요<strong class="d-inline-block mb-2 text-primary">(1/2)</strong></h3>
-                <div class="mb-1 text-muted">2020년 4월 5 / 오후 7시</div>
-                <p class="card-text mb-auto">ㅇㅇ식당</p>
-                <p class="card-text mb-auto">메뉴 : 삼겹살, 물냉면, 공기밥</p>
-                <p class="card-text mb-auto">1인 16500원</p>
-        	</div>
-    	</div>
-	</div>
-
-    <div class="col-md-6">
-    	<div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-        	<div class="col p-4 d-flex flex-column position-static">
-            	<div class="row-md-6">
-                	<span class="badge rounded-pill bg-primary">#서울</span>
-                  	<span class="badge rounded-pill bg-primary">#한식</span>
-                  	<span class="badge rounded-pill bg-primary">#남성</span>
-                  	<span class="badge rounded-pill bg-primary">#30대</span>
-                </div>
-                <h3 class="mb-0">소주에 곱창 드실 분<strong class="d-inline-block mb-2 text-primary">(1/2)</strong></h3>
-                <div class="mb-1 text-muted">2020년 4월 5 / 오후 7시</div>
-                <p class="card-text mb-auto">ㅇㅇ곱창</p>
-                <p class="card-text mb-auto">메뉴 : 곱창, 볶음밥, 소주</p>
-                <p class="card-text mb-auto">1인 22200원</p>
-            </div>
-		</div>
-	</div>
-
-    <div class="col-md-6">
-    	<div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-        	<div class="col p-4 d-flex flex-column position-static">
-            	<div class="row-md-6">
-                	<span class="badge rounded-pill bg-primary">#경기</span>
-                  	<span class="badge rounded-pill bg-primary">#양식</span>
-                </div>
-                <h3 class="mb-0">치맥해요<strong class="d-inline-block mb-2 text-primary">(1/4)</strong></h3>
-                <div class="mb-1 text-muted">2020년 4월 5 / 오후 7시</div>
-                <p class="card-text mb-auto">ㅇㅇ치킨</p>
-                <p class="card-text mb-auto">메뉴 : 후라이드치킨, 마늘치킨, 생맥주</p>
-                <p class="card-text mb-auto">1인 15000원</p>
-			</div>
-		</div>
-	</div>
-
-    <div class="col-md-6">
-    	<div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-        	<div class="col p-4 d-flex flex-column position-static">
-            	<div class="row-md-6">
-                	<span class="badge rounded-pill bg-primary">#부산</span>
-                  	<span class="badge rounded-pill bg-primary">#한식</span>
-                </div>
-                <h3 class="mb-0">비오는 날엔 파전에 막걸리<strong class="d-inline-block mb-2 text-primary">(1/3)</strong></h3>
-                <div class="mb-1 text-muted">2020년 4월 5 / 오후 7시</div>
-                <p class="card-text mb-auto">ㅇㅇ주막</p>
-                <p class="card-text mb-auto">메뉴 : 해물파전, 모둠전, 막걸리</p>
-                <p class="card-text mb-auto">1인 15000원</p>
-			</div>
-		</div>
-	</div>
-	<!-- 예시용 끝 -->
 
 <!-- script -->	
 <script>

@@ -109,7 +109,6 @@ public class ViewMypageController {
 		
 		List<TogetherOrder> orderList = aloneAlong.getTogetherOrderByUserId(user.getId());
 		
-		//이미지(에러남)
 		Encoder encoder = Base64.getEncoder();
 		for(TogetherOrder order : orderList) {
 			byte[] imagefile = order.getTogether().getRestaurant().getImgFile();

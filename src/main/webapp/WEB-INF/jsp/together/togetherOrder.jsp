@@ -138,6 +138,6 @@
 </div>
    
 <!-- Footer -->
-<%@include file="../footer.jsp" %>
+<%@include file="../tiles/footer.jsp" %>
 </body>
 </html>
