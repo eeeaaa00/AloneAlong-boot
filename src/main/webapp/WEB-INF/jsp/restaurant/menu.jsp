@@ -9,6 +9,7 @@
 			<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 				<button class="dropdown-item" name="category1" value="지역" type="submit"><small>전체</small></button>
 				<button class="dropdown-item" name="category1" value="서울특별시" type="submit"><small>서울특별시</small></button>
+				<button class="dropdown-item" name="category1" value="경기도" type="submit"><small>경기도</small></button>
 				<button class="dropdown-item" name="category1" value="인천광역시" type="submit"><small>인천광역시</small></button>
 				<button class="dropdown-item" name="category1" value="대구광역시" type="submit"><small>대구광역시</small></button>
 				<button class="dropdown-item" name="category1" value="대전광역시" type="submit"><small>대전광역시</small></button>

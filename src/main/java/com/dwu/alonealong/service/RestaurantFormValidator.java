@@ -38,7 +38,7 @@ public class RestaurantFormValidator implements Validator{
 			String ds = "^\\d{2,3}-\\d{3,4}-\\d{4}$";
 			boolean regex = Pattern.matches(ds, phone);
 			if (!regex)
-				errors.rejectValue("resPhone", "regex", "00(0)-000(0)-0000");
+				errors.rejectValue("resPhone", "regex", "00(0)-000(0)-0000"); 
 		}	
 	}
 

@@ -5,6 +5,14 @@
 
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
+/*var uploadField = document.getElementById("imgFile");
+
+uploadField.onchange = function() {
+    if(this.files[0].size > 106){
+       alert("File is too big!");
+       this.value = "";
+    };
+};*/
 function sample6_execDaumPostcode() {
     new daum.Postcode({
         oncomplete: function(data) {
@@ -37,24 +45,28 @@ function sample6_execDaumPostcode() {
             case '서울':
             	document.getElementById("resArea").options[1].selected = true;
             	break;
-            case '인천':
+            case '경기':
             	document.getElementById("resArea").options[2].selected = true;
             	break;
-            case '대구':
+            case '인천':
             	document.getElementById("resArea").options[3].selected = true;
             	break;
-            case '대전':
+            case '대구':
             	document.getElementById("resArea").options[4].selected = true;
             	break;
-            case '부산':
+            case '대전':
             	document.getElementById("resArea").options[5].selected = true;
             	break;
-            case '울산':
+            case '부산':
             	document.getElementById("resArea").options[6].selected = true;
             	break;
-            case '광주':
+            case '울산':
             	document.getElementById("resArea").options[7].selected = true;
             	break;
+            case '광주':
+            	document.getElementById("resArea").options[8].selected = true;
+            	break;
+            
             }
             document.getElementById("resAddress").value = addr + " ";
             document.getElementById("resAddress").focus();
@@ -121,6 +133,7 @@ $(document).ready(function() {
 			<form:select class="form-control" path="resArea">
 				<form:option value="">--- 선택하세요 ---</form:option>
 				<form:option value="서울특별시">서울특별시</form:option>
+				<form:option value="경기도">경기도</form:option>
 				<form:option value="인천광역시">인천광역시</form:option>
 				<form:option value="대구광역시">대구광역시</form:option>
 				<form:option value="대전광역시">대전광역시</form:option>
@@ -144,7 +157,7 @@ $(document).ready(function() {
 		<div class="form-group d-flex align-items-center row">
 			<div class="col-4"> <form:label path="imgFile">이미지</form:label></div>
 			<div class="col-8">
-			<form:input class="form-control-file w-100" type="file" path="imgFile"/>
+			<form:input id="imgFile" class="form-control-file w-100" type="file" path="imgFile"/>
 			<form:errors path="img64"/>
 			</div>
 		</div>

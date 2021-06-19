@@ -36,11 +36,12 @@ public class ViewFoodController {
 		this.alonealong = alonealong;
 	}
 	
+	
 	//가게 선택 resId로
 	@RequestMapping("/eating/{resId}")
 	public String resFood(
 			@PathVariable("resId") String resId,
-			@SessionAttribute(value="sessionFoodCart") FoodCart foodCart,
+			@SessionAttribute(value="sessionFoodCart", required=false) FoodCart foodCart,
 			HttpServletRequest request,
 //			@RequestParam(value = "foodId", defaultValue="") String foodId,
 			ModelMap model) throws Exception {
@@ -54,6 +55,11 @@ public class ViewFoodController {
 	
 		List<Food> foodList = this.alonealong.getFoodListByRestaurant(resId); 
 		model.put("foodList", foodList);
+		if(foodCart == null) {
+			model.put("category1", "지역");
+			model.put("category2", "분류");
+			foodCart = new FoodCart();
+		}
 		model.put("foodCart", foodCart.getFoodItemList());
 		Restaurant res = alonealong.getRestaurantByResId(resId);
 		
