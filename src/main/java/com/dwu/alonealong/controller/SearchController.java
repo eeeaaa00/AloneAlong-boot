@@ -37,18 +37,25 @@ public class SearchController {
 			// 상품 검색
 			List<Product> productList = this.alonealong.searchProductList(keyword);
 			model.put("productList", productList);
+			Encoder encoder = Base64.getEncoder();
+			for (Product product : productList) {
+				byte[] imagefile = product.getProductImg();
+				if (imagefile == null)
+					continue;
+				String encodedString = encoder.encodeToString(imagefile);
+				product.setImg64(encodedString);
+			}
+
 
 			// 식당 검색
 			List<Restaurant> restaurantList = alonealong.searchRestaurantList(keyword);
 			model.put("restaurantList", restaurantList);
 
-			Encoder encoder = Base64.getEncoder();
 			for (Restaurant res : restaurantList) {
 				byte[] imagefile = res.getImgFile();
 				if (imagefile == null)
 					continue;
 				String encodedString = encoder.encodeToString(imagefile);
-				System.out.println("여기64: " + encodedString);
 				res.setImg64(encodedString);
 			}
 
