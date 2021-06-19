@@ -2,13 +2,45 @@
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+
+
 <c:forEach var="foodOrder" items="${foodOrderList}">
+<script>
+$(document).ready(function() {
+	
+	var visitDate = "${foodOrder.visitDate}";
+	visitDate = visitDate.split(",");
+	console.log("date", visitDate[0]);
+	var date = new Date();
+	var day = date.getDate();
+	var month = date.getMonth() + 1;
+	var year = date.getFullYear();
+	
+	if (month < 10) month = "0" + month;
+	if (day < 10) day = "0" + day;
+	
+	var today = year + "-" + month + "-" + day;  
+	console.log("today", today);
+	
+	if(visitDate <= today){
+		$("#cancel${foodOrder.orderId}").css("visibility", "hidden");
+	}
+});
+</script>
 	<div class="col-md-12">
-		<div class="form-row float-right">
+		<div class="form-col float-right">
 			<a href="<c:url value='/eating/${foodOrder.resId}/RestaurantReview' />">
-				<button class="btn btn-sm btn-outline-success"
+				<button class="btn btn-sm btn-outline-success mb-1"
 					id="advanced-set-submit">리뷰 작성</button>
 			</a>
+			<br>
+			<a id="cancel${foodOrder.orderId}" href="<c:url value='/eating/${foodOrder.resId}/RestaurantReview' />">
+				<button class="btn btn-sm btn-outline-warning"
+					id="advanced-set-submit">예약 취소</button>
+			</a>
+		</div>
+		<div class="form-row float-right">
+			
 		</div>
 		<div class="d-flex align-items-center">
 			<a href="/detail-1"> <img src="data:image/jpeg;base64,${foodOrder.img64}" style="width: 100px; height: 100px; object-fit: cover;">
@@ -25,14 +57,17 @@
 			<div class="panel panel-default">
 				<div class="panel-heading" role="tab">
 					<a role="button btn-lg" data-toggle="collapse" data-parent="#accordion"
-						href="#collapse${foodOrder.orderId}" aria-expanded="false"> >>주문상세내역 </a>
+						href="#collapse${foodOrder.orderId}" aria-expanded="false"><small style="color: #f2864b;">>>주문상세내역</small></a>
 				</div>
 				<div id="collapse${foodOrder.orderId}" class="panel-collapse collapse" role="tabpanel">
-					<div class="panel-body m-1 p-2">
+					<div class="panel-body m-1 round-pill" style="font-size:smaller;">
+					<hr>
 					<c:forEach var="item" items="${foodOrder.orderedList}">
-					${item.foodName} x ${item.quantity} = ${item.unitPrice}원<hr>
+					${item.foodName} x ${item.quantity} = ${item.unitPrice}원<br>
 					</c:forEach>
+					<hr>
 					총합 : ${foodOrder.totalPrice}원
+					<hr>
 					</div>
 				</div>
 			</div>
