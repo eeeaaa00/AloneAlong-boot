@@ -35,7 +35,7 @@ public class UserFormController {
 	@Value("login")
 	private String successCreateName;
 
-	private static final String[] SEX = { "남", "여" };
+	private static final String[] SEX = { "여성", "남성" };
 
 	@Autowired
 	private AloneAlongFacade alonealong;
