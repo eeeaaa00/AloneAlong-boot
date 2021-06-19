@@ -2,10 +2,11 @@ package com.dwu.alonealong.domain;
 
 import java.io.Serializable;
 import java.util.StringTokenizer;
+import java.util.regex.Pattern;
 
 @SuppressWarnings("serial")
-public class Payment implements Serializable{
-	
+public class Payment implements Serializable {
+
 	private String user_id;
 	private String card_num;
 	private String card_name;
@@ -13,12 +14,12 @@ public class Payment implements Serializable{
 	private String card_month;
 	private String card_year;
 	private String card_cvc;
-	
+
 	public Payment() {
-		
+
 	}
-	
-	public Payment(String cardName, String cardNumber, String cardDate,String cardCVC) {
+
+	public Payment(String cardName, String cardNumber, String cardDate, String cardCVC) {
 		super();
 		this.card_num = cardNumber;
 		this.card_name = cardName;
@@ -29,10 +30,10 @@ public class Payment implements Serializable{
 	public String getId() {
 		return user_id;
 	}
+
 	public void setId(String id) {
 		this.user_id = id;
 	}
-
 
 	public String getCard_num() {
 		return card_num;
@@ -56,10 +57,14 @@ public class Payment implements Serializable{
 
 	public void setCard_date(String card_date) {
 		this.card_date = card_date;
-		
-		StringTokenizer itr = new StringTokenizer(card_date, "/");
-		card_month =  itr.nextToken();
-		card_year =  itr.nextToken();
+
+		String ds = "^\\d{2}/\\d{2}$";
+		boolean regex = Pattern.matches(ds, card_date);
+		if (regex) {
+			StringTokenizer itr = new StringTokenizer(card_date, "/");
+			card_month = itr.nextToken();
+			card_year = itr.nextToken();
+		}
 	}
 
 	public String getCard_cvc() {
@@ -80,7 +85,8 @@ public class Payment implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Payment [user_id ="+user_id+" cardNUm"+card_num+" cardName"+ card_name+" cardCVC"+card_cvc+"]";
+		return "Payment [user_id =" + user_id + " cardNUm" + card_num + " cardName" + card_name + " cardCVC" + card_cvc
+				+ "]";
 	}
 
 }
