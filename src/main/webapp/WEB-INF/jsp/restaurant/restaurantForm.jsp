@@ -50,10 +50,10 @@ function sample6_execDaumPostcode() {
             	document.getElementById("resArea").options[5].selected = true;
             	break;
             case '울산':
-            	document.getElementById("resArea").options[5].selected = true;
+            	document.getElementById("resArea").options[6].selected = true;
             	break;
             case '광주':
-            	document.getElementById("resArea").options[5].selected = true;
+            	document.getElementById("resArea").options[7].selected = true;
             	break;
             }
             document.getElementById("resAddress").value = addr + " ";
@@ -118,7 +118,7 @@ $(document).ready(function() {
 			<div class="col-4"> 
 			<form:label path="resArea">지역</form:label></div>
 			<div class="col-4">
-			<form:select class="form-control" path="resArea" disabled="true">
+			<form:select class="form-control" path="resArea">
 				<form:option value="">--- 선택하세요 ---</form:option>
 				<form:option value="서울특별시">서울특별시</form:option>
 				<form:option value="인천광역시">인천광역시</form:option>
