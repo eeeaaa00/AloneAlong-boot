@@ -33,9 +33,14 @@
 			<h3>함께 먹기 수정</h3>
 			<p>주최자가 되어 같이 밥을 먹어보세요!</p>
 		</div>
+		<br>
+		<br>
+		<br>
 		
 		<!-- 식당 선택 -->
+		<br>
     	<h4 class="mb-3"><span class="text-success">STEP 1. 식당 선택</span></h4>
+    	<br>
     	<!-- 검색창 -->
     	<div class="row g-5">
     		<div class="col-md-6">
@@ -77,7 +82,9 @@
     	<hr>
 
     	<!-- 메뉴 선택 시작 -->
+    	<br>
     	<h4 class="mb-3"><span class="text-success">STEP 2. 메뉴 선택</span></h4>
+    	<br>
     	<!-- 메뉴 리스트 -->
     	<div class="row mb-2">
       		<c:forEach var="food" items="${foodList}">
@@ -168,7 +175,9 @@
 		<hr>
 		
 		<!-- 글 작성하기 -->
+		<br>
     	<h4 class="mb-3"><span class="text-success">STEP 3. 상세 정보 작성</span></h4>
+    	<br>
 		<form>
 			<input type="hidden" name="resId" value="${selectedRes.resId}">
 			<div class="row g-3">
@@ -182,22 +191,90 @@
 				</div>
 				<div class="col-md-5">
   					<label for="sex">성별</label>
-  					<select class="custom-select" name="sex">
-    					<option value="상관없음">상관없음</option>
-      					<option value="여성">여성</option>
-      					<option value="남성">남성</option>
-  					</select>
+  					<c:if test="${together.sex eq '상관없음'}">
+  						<select class="custom-select" name="sex">
+    						<option value="상관없음" selected>상관없음</option>
+      						<option value="여성">여성</option>
+      						<option value="남성">남성</option>
+  						</select>
+  					</c:if>
+  					<c:if test="${together.sex eq '여성'}">
+  						<select class="custom-select" name="sex">
+    						<option value="상관없음">상관없음</option>
+      						<option value="여성" selected>여성</option>
+      						<option value="남성">남성</option>
+  						</select>
+  					</c:if>
+  					<c:if test="${together.sex eq '남성'}">
+  						<select class="custom-select" name="sex">
+    						<option value="상관없음">상관없음</option>
+      						<option value="여성">여성</option>
+      						<option value="남성" selected>남성</option>
+  						</select>
+  					</c:if>
 				</div>
 				<div class="col-md-5">
   					<label for="age">나이대</label>
-  					<select class="custom-select" name="age">
-    					<option value="상관없음">상관없음</option>
-      					<option value="10대">10대</option>
-      					<option value="20대">20대</option>
-      					<option value="30대">30대 </option>
-      					<option value="40대">40대</option>
-      					<option value="50대">50대이상</option>
-  					</select>
+  					<c:if test="${together.age eq '상관없음'}">
+  						<select class="custom-select" name="age">
+    						<option value="상관없음" selected>상관없음</option>
+      						<option value="10대">10대</option>
+      						<option value="20대">20대</option>
+      						<option value="30대">30대 </option>
+      						<option value="40대">40대</option>
+      						<option value="50대">50대이상</option>
+  						</select>
+  					</c:if>
+  					<c:if test="${together.age eq '10대'}">
+  						<select class="custom-select" name="age">
+    						<option value="상관없음">상관없음</option>
+      						<option value="10대" selected>10대</option>
+      						<option value="20대">20대</option>
+      						<option value="30대">30대 </option>
+      						<option value="40대">40대</option>
+      						<option value="50대">50대이상</option>
+  						</select>
+  					</c:if>
+  					<c:if test="${together.age eq '20대'}">
+  						<select class="custom-select" name="age">
+    						<option value="상관없음">상관없음</option>
+      						<option value="10대">10대</option>
+      						<option value="20대" selected>20대</option>
+      						<option value="30대">30대 </option>
+      						<option value="40대">40대</option>
+      						<option value="50대">50대이상</option>
+  						</select>
+  					</c:if>
+  					<c:if test="${together.age eq '30대'}">
+  						<select class="custom-select" name="age">
+    						<option value="상관없음">상관없음</option>
+      						<option value="10대">10대</option>
+      						<option value="20대">20대</option>
+      						<option value="30대" selected>30대 </option>
+      						<option value="40대">40대</option>
+      						<option value="50대">50대이상</option>
+  						</select>
+  					</c:if>
+  					<c:if test="${together.age eq '40대'}">
+  						<select class="custom-select" name="age">
+    						<option value="상관없음">상관없음</option>
+      						<option value="10대">10대</option>
+      						<option value="20대">20대</option>
+      						<option value="30대">30대 </option>
+      						<option value="40대" selected>40대</option>
+      						<option value="50대">50대이상</option>
+  						</select>
+  					</c:if>
+  					<c:if test="${together.age eq '50대'}">
+  						<select class="custom-select" name="age">
+    						<option value="상관없음">상관없음</option>
+      						<option value="10대">10대</option>
+      						<option value="20대">20대</option>
+      						<option value="30대">30대 </option>
+      						<option value="40대">40대</option>
+      						<option value="50대" selected>50대이상</option>
+  						</select>
+  					</c:if>
 				</div>
 				<div class="col-sm-5">
   					<label for="date">날짜</label>
@@ -212,15 +289,34 @@
   					<input type="text" class="form-control" name="description" value="${together.togetherDes}" placeholder="" required>
 				</div>
 			</div>
-
+			<br>
+			<br>
+			<br>
+			<hr>
 			<!--버튼 -->
 			<div class="py-5 text-right">
-				<button class="w-40 btn btn-lg btn-success" type="submit" formaction="/togetherUpdate/${together.togetherId}/complete">수정하기</button>
+				<c:if test="${resId eq null}"> <!-- 식당 선택 여부 -->
+					<button class="w-40 btn btn-lg btn-success" onclick="javascript:btn('식당 또는 메뉴를 선택해주세요!' )">수정하기</button>
+				</c:if>
+				<c:if test="${resId != null}">
+					<c:if test="${totalPrice == 0}"> <!-- 카트에 음식 있는지 여부 -->
+						<button class="w-40 btn btn-lg btn-success" onclick="javascript:btn('카트에 음식을 담아주세요!' )">수정하기</button>
+					</c:if>
+					<c:if test="${totalPrice != 0}">
+						<button class="w-40 btn btn-lg btn-success" type="submit" formaction="/togetherUpdate/${together.togetherId}/complete">수정하기</button>
+					</c:if>
+				</c:if>
 			</div>
 		</form>
 
 	</div>
 </div>
+
+<script> 
+function btn(message){ 
+	alert(message); 
+} 
+</script>
 
 <!-- Footer -->
 <%@include file="../tiles/footer.jsp" %>

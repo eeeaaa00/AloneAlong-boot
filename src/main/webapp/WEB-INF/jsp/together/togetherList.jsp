@@ -17,11 +17,14 @@ b {color:#29A65F;}
 <div class="py-3 text-center">
 	<p>함께 먹기 제안하기 <a type="button" class="btn btn-sm btn-outline-success" href="<c:url value='/togetherRegister' />"><small> <i class="fas fa-utensils"></i></small> 등록</a></p>
 </div>
-
+<br>
+<br>
 <!-- 추천 기능 -->
 <c:if test="${userSession != null}">
-<div class="swiper-container">
-	<p><b><c:out value="${user.name}"/></b>님을 위한 함께 먹기 추천</p>
+<c:if test="${recommandList.size() != 0}">
+	<div class="swiper-container">
+	<p><b><c:out value="${user.nickname}"/></b>님을 위한 함께 먹기 추천</p>
+	<br>
 	<div class="swiper-wrapper">
 		<c:forEach var="recommand" items="${recommandList}">
 			<div class="swiper-slide">
@@ -51,11 +54,16 @@ b {color:#29A65F;}
 	</div>
 	<div class="swiper-button-next"></div> <!-- 네비게이션 -->
 	<div class="swiper-pagination"></div> <!-- 페이징 -->
-</div>
+</div>	
 </c:if>
+</c:if>
+<br>
+<br>
+<br>
+<br>
 
-총 <b>${togetherList.size()}</b>개의 함께 먹기가 있습니다.
-
+<p>총 <b>${togetherList.size()}</b>개의 함께 먹기가 있습니다.</p>
+<br>
 <!-- 같이밥 목록 -->
 <div class="row mb-2">
 	

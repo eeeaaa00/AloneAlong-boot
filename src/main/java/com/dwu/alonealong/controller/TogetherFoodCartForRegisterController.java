@@ -88,7 +88,7 @@ public class TogetherFoodCartForRegisterController {
 			) throws Exception {
 		
 		cart.removeFoodById((request.getParameter("foodId")));
-				
+		
 		List<Food> foodList = this.alonealong.getFoodListByRestaurant(resId); 
 		model.put("foodList", foodList);
 		model.put("foodCart", cart.getAllFoodCartItems());
