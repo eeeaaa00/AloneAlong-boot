@@ -26,8 +26,8 @@ h4 {
 }
 
 #tog {
-	width: 900px;
-	height: 250px;
+	width: 950px;
+	height: 300px;
 	margin-bottom: 50px;
 }
 
@@ -58,6 +58,7 @@ h4 {
 	margin-bottom: 50px;
 	align-items: center;
 	justify-content: center;
+	align-items: center;
 }
 
 .sold-out {
@@ -300,6 +301,7 @@ h4 {
 		</div>
 	</c:otherwise>
 </c:choose>
+
 <Br>
 <!-- script -->
 <script>
