@@ -89,7 +89,7 @@ $(document).ready(function() {
 <div class="col-md-12 mb-3 text-center">
    
    <div style="text-align: left;">
-     <form:form modelAttribute="restaurant" ENCTYPE="multipart/form-data" method="post">
+     <form:form modelAttribute="restaurant" ENCTYPE="multipart/form-data">
 		<div class="form-group d-flex align-items-center row">
 			<form:label class="col-4" path="resName">식당 이름</form:label> 
 			<div class="col-4">
@@ -118,15 +118,15 @@ $(document).ready(function() {
 			<div class="col-4"> 
 			<form:label path="resArea">지역</form:label></div>
 			<div class="col-4">
-			<form:select class="form-control" path="resArea" >
-				<option value="">--- 선택하세요 ---</option>
-				<option value="서울특별시">서울특별시</option>
-				<option value="인천광역시">인천광역시</option>
-				<option value="대구광역시">대구광역시</option>
-				<option value="대전광역시">대전광역시</option>
-				<option value="부산광역시">부산광역시</option>
-				<option value="울산광역시">울산광역시</option>
-				<option value="광주광역시">광주광역시</option>
+			<form:select class="form-control" path="resArea" disabled="true">
+				<form:option value="">--- 선택하세요 ---</form:option>
+				<form:option value="서울특별시">서울특별시</form:option>
+				<form:option value="인천광역시">인천광역시</form:option>
+				<form:option value="대구광역시">대구광역시</form:option>
+				<form:option value="대전광역시">대전광역시</form:option>
+				<form:option value="부산광역시">부산광역시</form:option>
+				<form:option value="울산광역시">울산광역시</form:option>
+				<form:option value="광주광역시">광주광역시</form:option>
 			</form:select>
 			<form:errors path="resArea"/>
 			</div>
@@ -177,7 +177,7 @@ $(document).ready(function() {
 		<div class="text-center">
 			<c:if test="${empty res.resId}">
 				<input type="hidden" id="status" name="status" value="insert">
-				<input class="btn btn-sm btn-outline-success" type="submit" value="식당 등록" style="align:left;">
+				<input class="btn px-5 btn-lg btn-outline-success" type="submit" value="식당 등록" style="align:left;">
 			</c:if>
 			<c:if test="${!empty res.resId}">
 				<input type="hidden" id="status" name="status" value="update">
