@@ -30,14 +30,13 @@ function changeQuantity(){
 			<h3 class="text-right"><b class="text-orange-roboto">
 				<fmt:formatNumber value="${product.productPrice}" pattern="#,###,###"/></b> 원</h3>
 		</div>
-		<div class="my-4 priceInfo" style="height: 110px;">
+		<div class="mt-4 priceInfo" style="height: 110px;">
 			<p class="row px-3 mb-3 d-flex align-items-center">
 				<span class=" border-right pr-4 mr-4">수량　</span>
 				<input class="form-control text-center w-25" onchange="changeQuantity()" name="quantity" id="quantity" type="number" value="${product.quantity}" min="1">
 			</p>
 			<p class="row px-3 mb-2"><span class="border-right pr-4 mr-4">배송비</span>
 				<fmt:formatNumber value="${product.shippingFee}" pattern="#,###,###"/>원</p>
-			<small class="text-muted">30,000원 이상 구매시 무료 / 제주 · 도서 지역 추가 5,000원</small>
 		</div>
 		
 		<!-- 임시 -->

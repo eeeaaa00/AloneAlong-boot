@@ -107,7 +107,7 @@ function sameAddress(s){
 		<label for="shipZip" class="col-md-3">우편번호 <strong class="text-green">*</strong></label>
 	</div>
 	<div class="row mx-2 input-group">
-		<input name="order.shipZip" id="shipZip" type="text" class="col-md-3 form-control"/>
+		<form:input path="order.shipZip" id="shipZip" type="text" class="col-md-3 form-control" readonly="true"/>
 		<button type="button" class="btn btn-orange" onClick="sample6_execDaumPostcode()">우편번호 찾기</button>
 	</div>
 	<b class="mx-2" style="color: #FF0000;"><form:errors path="order.shipZip" cssClass="error" /></b>
@@ -116,7 +116,7 @@ function sameAddress(s){
 		<label for="shipAddress2" class="col-md-6">상세주소</label>
 	</div>
 	<div class="row mx-2 input-group">
-		<form:input path="order.shipAddress" id="shipAddress" type="text" class="col-md-6 form-control"/>
+		<form:input path="order.shipAddress" id="shipAddress" type="text" class="col-md-6 form-control" readonly="true"/>
 		<form:input path="order.shipAddress2" id="shipAddress2" type="text" class="col-md-6 form-control"/>
 	</div>
 	<b class="mx-2" style="color: #FF0000;"><form:errors path="order.shipAddress" cssClass="error" /></b>
