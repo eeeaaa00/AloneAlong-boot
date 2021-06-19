@@ -9,6 +9,7 @@
 $(function(){
 	$("#cancel${foodOrder.orderId}").click(function() {
 		$("#cancelModal").modal("show");
+		$("#cancelOrder").attr("href","<c:url value='/eating/order/delete'><c:param name="orderId" value='${foodOrder.orderId}'/></c:url>");
 	});
 
 });
@@ -44,8 +45,7 @@ $(document).ready(function() {
 			</div>
 			<div class="row mx-5 mb-2 justify-content-center">
 			<a type="button" class="btn btn-green rounded-pill mx-2 py-2 px-3" data-dismiss="modal">돌아가기</a>
-				<a type="button" class="btn btn-orange rounded-pill mx-2 py-2 px-3" 
-				href="<c:url value='/eating/order/delete'><c:param name="orderId" value='${foodOrder.orderId}'/></c:url>" >취소하기</a>
+				<a id="cancelOrder" type="button" class="btn btn-orange rounded-pill mx-2 py-2 px-3">취소하기</a>
 				
 			</div>
 		</div>
