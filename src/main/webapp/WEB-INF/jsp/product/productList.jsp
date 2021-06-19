@@ -24,7 +24,7 @@ b {color:#29A65F;}
 	<input name="productId" type="hidden" value="${product.productId}"/>
 	<div class="card shadow-sm rounded">
 		<div class="contents">
-		<svg class="img" style="background-image: url('data:image/jpeg;base64,${product.img64}'); background-size: cover; background-position: center"
+		<svg class="img" style="background-image: url('../images/${pcId}-${product.productId}.png'); background-size: cover; background-position: center"
 										width="100%" height="150px"></svg>
 			<div class="card-body">
 				<div class="d-flex justify-content-between align-items-start">

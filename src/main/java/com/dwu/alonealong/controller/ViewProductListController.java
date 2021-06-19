@@ -46,16 +46,7 @@ public class ViewProductListController {
 			case "sales" : sortTypeName = "인기순"; break;
 			case "lowPrice" : sortTypeName = "낮은 가격순"; break;
 		}
-
-		Encoder encoder = Base64.getEncoder();
-        for(Product product : productPagedList.getPageList()) {     	
-        	byte[] imagefile = product.getProductImg();
-        	if(imagefile == null)
-        		continue;
-            String encodedString = encoder.encodeToString(imagefile);
-            product.setImg64(encodedString);
-        }
-        
+		
 		model.put("pcId", pcId);
 		model.put("pcList", productCategory);
 		model.put("sortTypeName", sortTypeName);

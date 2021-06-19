@@ -21,7 +21,7 @@ function changeQuantity(){
 	<!-- 사진 -->
 	<div class="col-md-6 my-3">
 		<svg class="img"
-			style="background-image: url('data:image/jpeg;base64,${product.img64}'); background-size: cover; background-position: center; width: 100%; height: 400px;"></svg>
+			style="background-image: url('../images/${pcId}-${product.productId}.png'); background-size: cover; background-position: center; width: 100%; height: 400px;"></svg>
 	</div>
 	<!-- 가격 정보 -->
 	<div class="col-md-6 my-3" style="height: 400px">
