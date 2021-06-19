@@ -131,6 +131,8 @@
 							</div>
 
 						</c:forEach>
+						<c:set var="togetherListSize" value="${togetherList.size()}" />
+						<c:if test="${(togetherListSize % 3) != 0}"><div style="width:300px;"></div></c:if>
 					</div>
 
 				</c:if>
