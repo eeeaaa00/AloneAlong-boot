@@ -25,7 +25,9 @@ public class Together implements Serializable {
 	private List<TogetherFood> togetherFoodList = new ArrayList<TogetherFood>();
 	private List<TogetherMember> togetherMemberList = new ArrayList<TogetherMember>();
 	
-	public Together() {}
+	public Together() {
+		this.headCount = 2;
+	}
 	
 	public Together(String togetherId, String togetherName, int headCount, String togetherDate, String togetherTime,
 			String sex, String age, String togetherDes, String resId, int status, int price) {

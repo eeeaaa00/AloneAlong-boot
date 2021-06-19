@@ -61,8 +61,8 @@
 		<h5 class="mb-3"><span class="text-success">멤버</span></h5>
 		<c:forEach var="togetherMember" items="${together.togetherMemberList}">
 			<c:choose>
-				<c:when test="${togetherMember.isHost eq 1}"><p><c:out value="${togetherMember.user.name}"/> <span class="badge bg-warning text-dark">주최자</span></p></c:when>
-				<c:when test="${togetherMember.isHost eq 0}"><p><c:out value="${togetherMember.user.name}"/></p></c:when>
+				<c:when test="${togetherMember.isHost eq 1}"><p><c:out value="${togetherMember.user.nickname}"/> <span class="badge bg-warning text-dark">주최자</span></p></c:when>
+				<c:when test="${togetherMember.isHost eq 0}"><p><c:out value="${togetherMember.user.nickname}"/></p></c:when>
 			</c:choose>
 		</c:forEach>
 		<h5 class="mb-3"><span class="text-success">조건</span></h5>
@@ -135,7 +135,12 @@
 				<button class="w-40 btn btn-lg btn-success" onclick="javascript:btn('이미 신청한 함께 먹기 입니다.' )">신청하기</button>
 			</c:if>
 			<c:if test="${alreadyApply eq false}">
-				<a type="button" class="w-40 btn btn-lg btn-success" href="<c:url value='/togetherOrder' />">신청하기</a>
+				<c:if test="${ifCanApply eq true}"> <!-- 신청 조건 맞는지 여부 -->
+					<a type="button" class="w-40 btn btn-lg btn-success" href="<c:url value='/togetherOrder' />">신청하기</a>
+				</c:if>
+				<c:if test="${ifCanApply eq false}">
+					<button class="w-40 btn btn-lg btn-success" onclick="javascript:btn('성별 조건이 맞지 않습니다.' )">신청하기</button>
+				</c:if>
 			</c:if>
 		</c:if>
 	</c:if>
