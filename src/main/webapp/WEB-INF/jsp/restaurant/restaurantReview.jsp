@@ -158,8 +158,8 @@ $(document).ready(function() {
 							</div>
 						</div>
 						<div class="form-group">
-							<textarea rows="4" name="review" id="review"
-								placeholder="수정이 불가하오니 신중히 리뷰를 작성하세요." required="" class="form-control"></textarea>
+							<textarea rows="4" name="review" id="review" maxlength=80
+								placeholder="수정이 불가하오니 신중히 리뷰를 작성하세요.(80자)" required="" class="form-control"></textarea>
 						</div>
 					
 				</div>
