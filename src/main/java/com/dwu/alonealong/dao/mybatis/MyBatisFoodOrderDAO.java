@@ -38,5 +38,6 @@ public class MyBatisFoodOrderDAO implements FoodOrderDAO{
 	public void insertFoodOrderForTogetherOrder(FoodOrder foodOrder) {
 		foodOrderMapper.insertFoodOrderForTogetherOrder(foodOrder);
 	}
+
 	
 }

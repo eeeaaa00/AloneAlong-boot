@@ -25,7 +25,10 @@ public class MyBatisOrderInfoDAO implements OrderInfoDAO{
 	@Override
 	public void insertFoodOrderInfo(FoodOrder order) throws DataAccessException {
 		orderInfoMapper.insertFoodOrderInfo(order);
-		
+	}
+	@Override
+	public void deleteFoodOrderInfo(String orderId) throws DataAccessException {
+		orderInfoMapper.deleteFoodOrderInfo(orderId);
 	}
 
 	@Override
@@ -53,5 +56,7 @@ public class MyBatisOrderInfoDAO implements OrderInfoDAO{
 	public void updateTogetherOrderInfo(Order order) throws DataAccessException {
 		orderInfoMapper.updateTogetherOrderInfo(order);
 	}
+
+
 	
 }

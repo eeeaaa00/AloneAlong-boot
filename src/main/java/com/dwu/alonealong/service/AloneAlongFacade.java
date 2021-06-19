@@ -96,6 +96,7 @@ public interface AloneAlongFacade {
 	void insertFoodOrder(FoodOrder order);
 	FoodOrder getFoodOrder(int orderId); //사용x
 	List<FoodOrder> getFoodOrdersByUserId(String userId);
+	void deleteFoodOrder(String orderId);
 	
 	public List<FoodReview> getFoodReviewListByResId(String resId, String sortType);
 	public void insertFoodReview(FoodReview foodReview);

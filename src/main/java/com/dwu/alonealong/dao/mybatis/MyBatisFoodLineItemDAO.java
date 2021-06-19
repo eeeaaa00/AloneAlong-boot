@@ -30,8 +30,5 @@ public class MyBatisFoodLineItemDAO implements FoodLineItemDAO{
 	public void insertFoodLineItem(FoodLineItem foodLineItem) {
 		foodLineItemMapper.insertFoodLineItem(foodLineItem);		
 	}
-	
 
-
-	
 }
