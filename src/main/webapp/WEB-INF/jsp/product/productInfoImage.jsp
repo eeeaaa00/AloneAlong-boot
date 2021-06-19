@@ -14,7 +14,7 @@
 				<div class="tab-content px-lg-3 py-5">
 					<!-- General info tab-->
 					<img style="width: 100%;" alt="productInfo"
-						src="http://chungjuc.com/web/upload/NNEditor/20201105/121_shop1_143841.jpg">
+					src="../images/${product.pcId}-${product.productId}-contents.jpg"/>
 				</div>
 			</div>
 		</div>

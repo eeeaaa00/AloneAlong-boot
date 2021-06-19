@@ -34,14 +34,6 @@ public class ViewProductController {
 		if(!aloneAlong.checkStock(productId, quantity)) {
 			return "redirect:/shop/" + productId + "?stockError=true&product=" + product.getProductName() + "&stock=" + product.getProductStock();
 		}
-		
-		Encoder encoder = Base64.getEncoder();
-        byte[] imagefile = product.getProductImg();
-        if(imagefile != null){
-        	String encodedString = encoder.encodeToString(imagefile);
-            product.setImg64(encodedString);
-        }
-        
 		product.setQuantity(quantity);
 		model.put("product", product);
 		model.put("pcId", product.getPcId());
