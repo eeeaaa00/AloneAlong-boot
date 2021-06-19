@@ -40,9 +40,9 @@ public class UpdateProductReviewController {
 		}
 		String userId = userSession.getUser().getId();
 		
-		//product를 구매한 user인지 검사
+		//product를 구매한 user인지 검사, 리뷰 내용 검사
 		ProductReview productReview = aloneAlong.getProductReview(reviewId, userId);
-		if(!productReview.getUserId().equals(userId)) {
+		if(!productReview.getUserId().equals(userId) || contents.length() > 300) {
 			return new RedirectView("error");
 		}
 		productReview.setRating(rating);
