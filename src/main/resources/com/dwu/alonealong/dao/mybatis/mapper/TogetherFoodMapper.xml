@@ -10,7 +10,8 @@
     		TF.FOOD_ID AS foodId,
     		TF.QUANTITY AS quantity,
     		F.FOOD_NAME AS "food.name",
-    		F.FOOD_PRICE AS "food.price"
+    		F.FOOD_PRICE AS "food.price",
+    		F.FOOD_IMG as "food.imgFile"
 		FROM TOGETHER_FOOD TF, FOOD F
 		WHERE TF.FOOD_ID = F.FOOD_ID
 			AND TOG_ID = #{togId}

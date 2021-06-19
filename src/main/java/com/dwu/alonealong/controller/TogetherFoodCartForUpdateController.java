@@ -1,6 +1,8 @@
 package com.dwu.alonealong.controller;
 
+import java.util.Base64;
 import java.util.List;
+import java.util.Base64.Encoder;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -49,7 +51,17 @@ public class TogetherFoodCartForUpdateController {
 			cart.addFood(item);
 			System.out.println("카트에 추가됨");
 		}		
-		List<Food> foodList = this.alonealong.getFoodListByRestaurant(resId); 
+		List<Food> foodList = this.alonealong.getFoodListByRestaurant(resId);
+		
+		Encoder encoder = Base64.getEncoder(); //음식이미지
+		byte[] imagefile;
+		String encodedString;
+        for(Food food : foodList) {
+        	imagefile = food.getImgFile();
+            encodedString = encoder.encodeToString(imagefile);
+            food.setImg64(encodedString);
+        }
+		
 		model.put("foodList", foodList);
 		model.put("foodCart", cart.getAllFoodCartItems());
 		model.put("totalPrice", cart.getSubTotal());
@@ -70,6 +82,16 @@ public class TogetherFoodCartForUpdateController {
 		cart.setQuantityByFoodId(request.getParameter("foodId"), Integer.parseInt(request.getParameter("quantity")));
 				
 		List<Food> foodList = this.alonealong.getFoodListByRestaurant(resId); 
+		
+		Encoder encoder = Base64.getEncoder(); //음식이미지
+		byte[] imagefile;
+		String encodedString;
+        for(Food food : foodList) {
+        	imagefile = food.getImgFile();
+            encodedString = encoder.encodeToString(imagefile);
+            food.setImg64(encodedString);
+        }
+		
 		model.put("foodList", foodList);
 		model.put("foodCart", cart.getAllFoodCartItems());
 		model.put("totalPrice", cart.getSubTotal());
@@ -89,7 +111,17 @@ public class TogetherFoodCartForUpdateController {
 		
 		cart.removeFoodById((request.getParameter("foodId")));
 				
-		List<Food> foodList = this.alonealong.getFoodListByRestaurant(resId); 
+		List<Food> foodList = this.alonealong.getFoodListByRestaurant(resId);
+		
+		Encoder encoder = Base64.getEncoder(); //음식이미지
+		byte[] imagefile;
+		String encodedString;
+        for(Food food : foodList) {
+        	imagefile = food.getImgFile();
+            encodedString = encoder.encodeToString(imagefile);
+            food.setImg64(encodedString);
+        }
+		
 		model.put("foodList", foodList);
 		model.put("foodCart", cart.getAllFoodCartItems());
 		model.put("totalPrice", cart.getSubTotal());

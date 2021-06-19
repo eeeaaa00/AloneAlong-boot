@@ -61,7 +61,6 @@ public class TogetherOrderController {
 			@RequestParam("cardDate2") String cardDate2,
 			ModelMap model) {
 		
-		
 		UserSession userSession = (UserSession)request.getSession().getAttribute("userSession");
 		User user = aloneAlong.getUserByUserId(userSession.getUser().getId());
 		
@@ -89,14 +88,12 @@ public class TogetherOrderController {
 			
 			System.out.println("객체 생성?" + newOrder.toString());
 			
-			System.out.println("주문 목록 넣기 전--------------- ");
+			System.out.println("주문 목록 넣기 전");
 			//주문목록에 넣기
-			System.out.println("Tog_id : " + together.getTogetherId());
-			
 			TogetherOrder togetherOrder = new TogetherOrder(newOrder.getOrderId(), together.getTogetherId());
 			aloneAlong.insertTogetherOrder(togetherOrder);
 			
-			System.out.println("멤버 추가 전--------------- ");
+			System.out.println("멤버 추가 전");
 			//TogetherMember에 추가
 			TogetherMember togetherMember = new TogetherMember("TOGMEM_ID.NEXTVAL", user.getId(), together.getTogetherId(), 0);
 			aloneAlong.insertTogetherMember(togetherMember);
@@ -108,7 +105,7 @@ public class TogetherOrderController {
 						together.getSex(), together.getAge(), together.getTogetherDes(), together.getResId(), 1, together.getPrice());
 				aloneAlong.updateTogether(newTogether);
 				
-				System.out.println("음식 주문 추가 전--------------- ");
+				System.out.println("음식 주문 추가 전");
 				//foodOrder에 넣기
 				for(int i = 0; i < together.getTogetherFoodList().size(); i++) {
 					FoodOrder foodOrder = new FoodOrder(newOrder.getOrderId(), "visit", together.getTogetherDate() + "," + together.getTogetherTime(), 
