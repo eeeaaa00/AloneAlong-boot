@@ -36,9 +36,6 @@ public class UserFormController {
 	private String successCreateName;
 
 	private static final String[] SEX = { "남", "여" };
-	private static final String[] YEAR = new String[70];
-	private static final String[] MONTH = new String[12];
-	
 
 	@Autowired
 	private AloneAlongFacade alonealong;
