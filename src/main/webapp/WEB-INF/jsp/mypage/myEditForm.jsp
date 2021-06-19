@@ -65,7 +65,7 @@
 					</c:when>
 					<c:otherwise>
 						<form:input class="form-control here" placeholder="아이디"
-							path="user.id" htmlEscape="false" />
+							path="user.id" htmlEscape="false"  maxlength='15' />
 					</c:otherwise>
 				</c:choose>
 				<B style="color: #FF0000;"><form:errors path="user.id"
@@ -76,14 +76,14 @@
 			<label for="password" class="col-4 col-form-label">비밀번호</label>
 			<div class="col-8">
 				<form:input type="password" class="form-control here"
-					placeholder="비밀번호" path="user.pw" />
+					placeholder="비밀번호" path="user.pw"  maxlength='30' />
 			</div>
 		</div>
 		<div class="form-group row">
 			<label for="password2" class="col-4 col-form-label">비밀번호 확인</label>
 			<div class="col-8">
 				<form:input type="password" class="form-control here"
-					placeholder="비밀번호 확인" path="repeatedPassword" />
+					placeholder="비밀번호 확인" path="repeatedPassword"  maxlength='30'/>
 				<B style="color: #FF0000;"><form:errors path="repeatedPassword"
 						cssClass="error" /></B>
 			</div>
@@ -92,7 +92,7 @@
 			<label for="username" class="col-4 col-form-label">이름</label>
 			<div class="col-8">
 				<form:input class="form-control here" placeholder="이름"
-					path="user.name" />
+					path="user.name"  maxlength='5'/>
 				<B style="color: #FF0000;"><form:errors path="user.name"
 						cssClass="error" /></B>
 			</div>
@@ -101,7 +101,7 @@
 			<label for="username" class="col-4 col-form-label">닉네임</label>
 			<div class="col-8">
 				<form:input class="form-control here" placeholder="닉네임"
-					path="user.nickname" />
+					path="user.nickname"  maxlength='10' />
 				<B style="color: #FF0000;"><form:errors path="user.nickname"
 						cssClass="error" /></B>
 			</div>
@@ -110,7 +110,7 @@
 			<label for="email" class="col-4 col-form-label">이메일</label>
 			<div class="col-8">
 				<form:input class="form-control here" placeholder="이메일"
-					path="user.email" />
+					path="user.email"  maxlength='30' />
 				<B style="color: #FF0000;"><form:errors path="user.email"
 						cssClass="error" /></B>
 			</div>
@@ -119,7 +119,7 @@
 			<label for="website" class="col-4 col-form-label">전화번호</label>
 			<div class="col-8">
 				<form:input class="form-control here" placeholder="-를 포함해 입력해주세요."
-					path="user.phone" />
+					path="user.phone"  maxlength='13'/>
 				<B style="color: #FF0000;"><form:errors path="user.phone"
 						cssClass="error" /></B>
 			</div>
@@ -138,22 +138,22 @@
 			</div>
 			<div class="col-2">
 				<form:input type="text" class="form-control here" placeholder="MM"
-					path="user.m" />
+					path="user.m"  maxlength='4' />
 			</div>
 			<div class="col-2">
 				<form:input type="text" class="form-control here" placeholder="DD"
-					path="user.d" />
+					path="user.d"   maxlength='2'/>
 			</div>
 			<div class="col-2">
 			<B style="color: #FF0000;"><form:errors path="user.m"
-					cssClass="error" /></B>
+					cssClass="error"  maxlength='2'/></B>
 					</div>
 		</div>
 		<div class="form-group row">
 			<label for="zip" class="col-4 col-form-label">우편번호</label>
 			<div class="col-3">
 				<form:input class="form-control here" placeholder="우편번호를 입력해주세요."
-					path="user.zip" id="zip" />
+					path="user.zip" id="zip"  maxlength='5' />
 				<B style="color: #FF0000;"><form:errors path="user.zip"
 						cssClass="error" /></B>
 			</div>
@@ -166,7 +166,7 @@
 			<label for="address" class="col-4 col-form-label">주소</label>
 			<div class="col-8">
 				<form:input class="form-control here" id="address"
-					placeholder="주소 및 상세정보를 입력해주세요." path="user.address" />
+					placeholder="주소 및 상세정보를 입력해주세요." path="user.address"  maxlength='80' />
 				<B style="color: #FF0000;"><form:errors path="user.address"
 						cssClass="error" /></B>
 			</div>
@@ -177,7 +177,7 @@
 			<div class="col-8">
 				<form:input class="form-control here"
 					placeholder="000-00-00000(사업자번호는 선택사항입니다.)"
-					path="user.business_num" />
+					path="user.business_num"  maxlength='12' />
 				<B style="color: #FF0000;"><form:errors path="user.business_num"
 						cssClass="error" /></B>
 			</div>

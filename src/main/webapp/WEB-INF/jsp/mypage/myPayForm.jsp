@@ -17,7 +17,7 @@
 			<label for="cardNum" class="col-4 col-form-label">카드 번호</label>
 			<div class="col-8">
 				<form:input type="text" class="form-control here"
-					placeholder="카드 번호" path="payment.card_num"/>
+					placeholder="카드 번호" path="payment.card_num" maxlength="20"/>
 				<B style="color: #FF0000;"><form:errors path="payment.card_num"
 						cssClass="error" /></B>
 			</div>
@@ -27,13 +27,13 @@
 			<div class="row col-8 no-gutters">
 				<div class="col-6 input-group">
 					<form:input type="text" class="form-control here"
-						placeholder="유효기간 (MM/YY)" path="payment.card_date"
+						placeholder="유효기간 (MM/YY)" path="payment.card_date" maxlength="5"
 						/>
 				</div>
 				<div class="col-1"></div>
 				<div class="col-5">
 					<form:input type="text" class="form-control here" placeholder="CVC"
-						path="payment.card_cvc"/>
+						path="payment.card_cvc" maxlength="3"/>
 				</div>
 				<form:input type="hidden" class="form-control here"
 					placeholder="CVC" path="payment.id" value="${userSession.user.id}" />
