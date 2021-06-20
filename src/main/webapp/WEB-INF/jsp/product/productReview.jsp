@@ -133,24 +133,24 @@ $(document).on("click", ".open-deleteModal", function () {
 				 	 <button type="button" class="btn" disabled><i class="fas fa-chevron-left"></i></button>
 				 </c:if>
 				 <c:if test="${page > 5}">
-				 	 <button type="button" class="btn" onClick="location.href='<c:url value='/shop/${pcId}/review?quantity=${quantity}&page=${startPage - 5}&sortType=${param.sortType}' />'">
+				 	 <button type="button" class="btn" onClick="location.href='<c:url value='/shop/${productId}/review?quantity=${quantity}&page=${startPage - 5}&sortType=${param.sortType}' />'">
 				 	 	<i class="fas fa-chevron-left"></i></button>
 				 </c:if>
 				 <c:forEach var="pageNum" begin="${startPage}" end="${startPage + 4}" varStatus="status">
 					 <c:if test="${pageNum == page}">
 				 		<div class="btn-group"><button type="button" class="btn active rounded-circle" 
-				 			onClick="location.href='<c:url value='/shop/${pcId}/review?quantity=${quantity}&page=${pageNum}&sortType=${param.sortType}' />'">${pageNum}</button></div>
+				 			onClick="location.href='<c:url value='/shop/${productId}}/review?quantity=${quantity}&page=${pageNum}&sortType=${param.sortType}' />'">${pageNum}</button></div>
 					 </c:if>
 					 <c:if test="${pageNum != page && pageNum <= lastPage}">
 				 		<div class="btn-group"><button type="button" class="btn rounded-circle"
-				 			onClick="location.href='<c:url value='/shop/${pcId}/review?quantity=${quantity}&page=${pageNum}&sortType=${param.sortType}' />'">${pageNum}</button></div>
+				 			onClick="location.href='<c:url value='/shop/${productId}/review?quantity=${quantity}&page=${pageNum}&sortType=${param.sortType}' />'">${pageNum}</button></div>
 					 </c:if>
 				 </c:forEach>
 				 <c:if test="${startPage == (lastPage - lastPage % 5 + 1)}">
 				 	 <button type="button" class="btn" disabled><i class="fas fa-chevron-right"></i></button>
 				 </c:if>
 				 <c:if test="${startPage != (lastPage - lastPage % 5 + 1)}">
-				 	 <button type="button" class="btn" onClick="location.href='<c:url value='/shop/${pcId}/review?quantity=${quantity}&page=${startpage + 6}&sortType=${param.sortType}' />'">
+				 	 <button type="button" class="btn" onClick="location.href='<c:url value='/shop/${productId}/review?quantity=${quantity}&page=${startpage + 6}&sortType=${param.sortType}' />'">
 				 	 	<i class="fas fa-chevron-right"></i></button>
 				 </c:if>
 			</div>

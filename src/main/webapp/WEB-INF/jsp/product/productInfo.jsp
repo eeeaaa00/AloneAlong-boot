@@ -29,6 +29,7 @@ function changeQuantity(){
 			<h1 class="text-right mb-3">${product.productName}</h1>
 			<h3 class="text-right"><b class="text-orange-roboto">
 				<fmt:formatNumber value="${product.productPrice}" pattern="#,###,###"/></b> 원</h3>
+			<p class="text-right text-muted">${product.productInfo}</p>
 		</div>
 		<div class="mt-4 priceInfo" style="height: 110px;">
 			<p class="row px-3 mb-3 d-flex align-items-center">
@@ -37,6 +38,7 @@ function changeQuantity(){
 			</p>
 			<p class="row px-3 mb-2"><span class="border-right pr-4 mr-4">배송비</span>
 				<fmt:formatNumber value="${product.shippingFee}" pattern="#,###,###"/>원</p>
+				<small class="text-muted">30,000원 이상 구매시 무료 배송</small>
 		</div>
 		
 		<!-- 임시 -->
