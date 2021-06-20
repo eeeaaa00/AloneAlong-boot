@@ -76,7 +76,7 @@
 			<label for="password" class="col-4 col-form-label">비밀번호</label>
 			<div class="col-8">
 				<form:input type="password" class="form-control here"
-					placeholder="비밀번호" path="user.pw"  maxlength='30' />
+					placeholder="비밀번호 (4자리 이상)" path="user.pw"  maxlength='30' />
 			</div>
 		</div>
 		<div class="form-group row">
@@ -126,7 +126,7 @@
 		</div>
 		<div class="form-group row">
 			<label for="select" class="col-4 col-form-label">성별</label>
-			<div class="col-8">
+			<div class="col-3">
 				<form:select class="custom-select" path="user.sex" items="${sex}" />
 			</div>
 		</div>

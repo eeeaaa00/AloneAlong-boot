@@ -26,7 +26,7 @@ h4 {
 }
 
 #tog {
-	width: 950px;
+	width: 930px;
 	height: 300px;
 	margin-bottom: 50px;
 }
@@ -45,11 +45,6 @@ h4 {
 	align-items: center;
 	justify-content: center;
 	align-items: center;
-}
-
-#tog2 {
-	margin-top: 25px;	
-	margin-bottom: 30px;
 }
 
 #swiper-slide-1 {
@@ -173,59 +168,30 @@ h4 {
 			</h4>
 			<div class="swiper-wrapper" id="tog2">
 				<c:forEach var="recommand" items="${recommandList}">
-					<div class="swiper-slide" id="swiper-slide-1">
-						<div class="card shadow-sm rounded" type="button"
-							onClick="location.href='<c:url value='/together/${recommand.togetherId}' />'">
-							<div class="col p-4 d-flex flex-column position-static"
-								id="cardT">
-								<!-- 태그 -->
-								<div class="row-md-6">
-									<span class="badge rounded-pill bg-warning text-dark">#<c:out
-											value="${recommand.getAddressTag()}" /></span> <span
-										class="badge rounded-pill bg-warning text-dark">#<c:out
-											value="${recommand.restaurant.categoryId}" /></span>
-									<c:if test="${recommand.sex != '상관없음'}">
-										<span class="badge rounded-pill bg-warning text-dark">#<c:out
-												value="${recommand.sex}" /></span>
-									</c:if>
-									<c:if test="${recommand.age != '상관없음'}">
-										<span class="badge rounded-pill bg-warning text-dark">#<c:out
-												value="${recommand.age}" /></span>
-									</c:if>
-								</div>
-								<!-- 같이밥 정보 -->
-								<h3 class="mb-0">
-									<c:out value="${recommand.togetherName}" />
-									<strong class="text-success">(<c:out
-											value="${recommand.togetherMemberList.size()}" />/<c:out
-											value="${recommand.headCount}" />)
-									</strong>
-								</h3>
-								<div class="mb-1 text-muted">
-									<c:out value="${recommand.togetherDate}" />
-									/
-									<c:out value="${recommand.togetherTime}" />
-								</div>
-								<p class="card-text mb-auto">
-									식당명 :
-									<c:out value="${recommand.restaurant.resName}" />
-								</p>
-								<p class="card-text mb-auto">
-									메뉴 :
-									<c:forEach var="togetherFood"
-										items="${recommand.togetherFoodList}">
-										<c:out value="${togetherFood.food.name}" />
-									</c:forEach>
-								</p>
-								<p class="card-text mb-auto">
-									1인
-									<c:out value="${recommand.price}" />
-									원
-								</p>
-							</div>
-						</div>
-					</div>
-				</c:forEach>
+			<div class="swiper-slide" id="swiper-slide-1">
+				<div class="card shadow-sm rounded" type="button" onClick="location.href='<c:url value='/together/${recommand.togetherId}' />'">
+            		<div class="col p-4 d-flex flex-column position-static">
+            			<!-- 태그 -->
+                		<div class="row-md-6">
+                			<span class="badge rounded-pill bg-warning text-dark">#<c:out value="${recommand.getAddressTag()}"/></span>
+                			<span class="badge rounded-pill bg-warning text-dark">#<c:out value="${recommand.restaurant.categoryId}"/></span>
+                			<c:if test="${recommand.sex != '상관없음'}">
+                			<span class="badge rounded-pill bg-warning text-dark">#<c:out value="${recommand.sex}"/></span>
+                			</c:if>
+                			<c:if test="${recommand.age != '상관없음'}">
+                			<span class="badge rounded-pill bg-warning text-dark">#<c:out value="${recommand.age}"/></span>
+                			</c:if>
+                		</div >
+                		<!-- 같이밥 정보 -->
+                		<h3 class="mb-0"><c:out value="${recommand.togetherName}"/><strong class="text-success">(<c:out value="${recommand.togetherMemberList.size()}"/>/<c:out value="${recommand.headCount}"/>)</strong></h3>
+                		<div class="mb-1 text-muted"><c:out value="${recommand.togetherDate}"/> / <c:out value="${recommand.togetherTime}"/></div>
+                		<p class="card-text mb-auto">식당명 : <c:out value="${recommand.restaurant.resName}"/></p>
+                		<p class="card-text mb-auto">메뉴 : <c:forEach var="togetherFood" items="${recommand.togetherFoodList}"><c:out value="${togetherFood.food.name}"/> </c:forEach></p>
+                		<p class="card-text mb-auto">1인 <c:out value="${recommand.price}"/>원</p>
+              		</div>
+        		</div>
+			</div>
+		</c:forEach>
 			</div>
 			<div class="swiper-button-next"></div>
 			<!-- 네비게이션 -->
@@ -242,7 +208,7 @@ h4 {
 				<c:forEach var="together" items="${togetherList}" begin="1" end="6">
 					<div class="swiper-slide" id="swiper-slide-1">
 						<div class="card shadow-sm rounded" type="button"
-							onClick="location.href='<c:url value='/together/${recommand.togetherId}' />'">
+							onClick="location.href='<c:url value='/together/${together.togetherId}' />'">
 							<div class="col p-4 d-flex flex-column position-static"
 								id="cardT">
 								<!-- 태그 -->
@@ -323,9 +289,8 @@ new Swiper('.swiper-container', {
 
 new Swiper('#tog', {
 	slidesPerView : 2, // 동시에 보여줄 슬라이드 갯수
-	spaceBetween : 40, // 슬라이드간 간격
+	spaceBetween : 38, // 슬라이드간 간격
 	slidesPerGroup : 2, // 그룹으로 묶을 수, slidesPerView 와 같은 값을 지정하는게 좋음
-	loopFillGroupWithBlank : true,
 	loop : true, // 무한 반복
 
 	pagination : { // 페이징
