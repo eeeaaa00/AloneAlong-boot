@@ -79,7 +79,7 @@ public class ProductOrderController {
 			for(CartItem cartItem : cart){ 
 				if(!aloneAlong.checkStock(cartItem.getProductId(), cartItem.getQuantity())){
 					Product product = this.aloneAlong.getProduct(cartItem.getProductId());
-					return "redirect:/cart?stockError=true&product=" + product.getProductName() + "&stock=" + product.getProductStock();
+					return "redirect:/cart?stockError=true&cartItemId=" + cartItem.getCartItemId() + "&stock=" + product.getProductStock();
 				}
 				ProductLineItem orderItem = new ProductLineItem(cartItem);
 				orderItem.setPcId(aloneAlong.getProduct(cartItem.getProductId()).getPcId());
