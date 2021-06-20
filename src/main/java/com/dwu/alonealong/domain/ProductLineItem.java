@@ -6,6 +6,7 @@ import java.util.List;
 
 @SuppressWarnings("serial")
 public class ProductLineItem implements Serializable {
+	private String pcId;
 	private String productId;
 	private String productName;
 	private int quantity;
@@ -19,6 +20,7 @@ public class ProductLineItem implements Serializable {
 	}
 	
 	public ProductLineItem(Product product) {
+		this.pcId = product.getPcId();
 		this.productId = product.getProductId();
 		this.productName = product.getProductName();
 		this.quantity = product.getQuantity();
@@ -27,12 +29,16 @@ public class ProductLineItem implements Serializable {
 	}
 	
 	public ProductLineItem(CartItem cartItem) {
+		this.pcId = cartItem.getPcId();
 		this.productId = cartItem.getProductId();
 		this.productName = cartItem.getProductName();
 		this.quantity = cartItem.getQuantity();
 		this.price = cartItem.getPrice();
 		this.unitPrice = cartItem.getUnitPrice();
 	}
+	
+	public String getPcId() { return pcId; }
+	public void setPcId(String pcId) { this.pcId = pcId; }
 	
 	public String getProductId() { return productId; }
 	public void setProductId(String productId) { this.productId = productId; }

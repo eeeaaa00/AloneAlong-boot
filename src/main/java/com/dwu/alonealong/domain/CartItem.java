@@ -8,6 +8,7 @@ public class CartItem implements Serializable {
   /* Private Fields */
   private String cartItemId;
   private String userId;
+  private String pcId;
   private String productId;
   private String productName;
   private int quantity;
@@ -24,6 +25,9 @@ public class CartItem implements Serializable {
   
   public String getUserId() { return userId; }
   public void setUserId(String userId) { this.userId = userId; }
+
+  public String getPcId() { return pcId; }
+  public void setPcId(String pcId) { this.pcId = pcId; }
 
   public String getProductId() { return productId; }
   public void setProductId(String productId) { this.productId = productId; }

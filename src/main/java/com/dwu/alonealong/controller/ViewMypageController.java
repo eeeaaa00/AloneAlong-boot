@@ -59,12 +59,9 @@ public class ViewMypageController {
 		User user = aloneAlong.getUserByUserId(userId);
 		List<ProductOrder> productOrderList = aloneAlong.getOrdersByUserId(userId);
 		
-		Encoder encoder = Base64.getEncoder();
 		for(ProductOrder order : productOrderList) {
 			for(ProductLineItem product : order.getLineItems()) {
-				byte[] img = product.getProductImg();
-				String encodedString = encoder.encodeToString(img);
-				product.setImg64(encodedString);
+				product.setPcId(aloneAlong.getProduct(product.getProductId()).getPcId());
 			}
 		}
 		model.addAttribute("productOrderList", productOrderList);

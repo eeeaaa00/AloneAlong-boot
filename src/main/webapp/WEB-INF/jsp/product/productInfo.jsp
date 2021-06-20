@@ -20,8 +20,8 @@ function changeQuantity(){
 <div class="row mx-5 mb-5">
 	<!-- 사진 -->
 	<div class="col-md-6 my-3">
-		<svg class="img"
-			style="background-image: url('../images/${pcId}-${product.productId}.png'); background-size: cover; background-position: center; width: 100%; height: 400px;"></svg>
+		<svg class="img rounded"
+			style="background-image: url(<c:url value='/images/${product.pcId}-${product.productId}.png'/>); background-size: cover; background-position: center; width: 100%; height: 400px;"></svg>
 	</div>
 	<!-- 가격 정보 -->
 	<div class="col-md-6 my-3" style="height: 400px">

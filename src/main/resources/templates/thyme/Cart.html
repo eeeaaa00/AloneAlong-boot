@@ -39,7 +39,7 @@ $(document).on("click", ".open-deleteModal", function () {
 							class=" d-flex align-items-center text-left text-md-center row">
 							<div class="col-12 col-md-5">
 								<div class="d-flex align-items-center">
-									<a th:href="@{/shop/{productId}(productId=${cartItem.productId})}"> <img th:src="*{'data:image/png;base64,'+ cartItem.img64}" class="img rounded-lg"
+									<a th:href="@{/shop/{productId}(productId=${cartItem.productId})}"> <img th:src="*{'/images/'+ cartItem.pcId + '-' + cartItem.productId + '.png'}" class="img rounded-lg"
 											style="object-fit: cover; background-position: center; width: 100px; height: 100px;"/>
 									</a>
 									<div class="cart-title text-left ml-3">

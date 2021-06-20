@@ -42,12 +42,7 @@ public class ViewCartController {
 		List<CartItem> cart = this.aloneAlong.getAllCartItem(userId);
 		Encoder encoder = Base64.getEncoder();
 		for(CartItem cartItem : cart) {
-			totalPrice += cartItem.getUnitPrice();
-        	byte[] imagefile = cartItem.getImg();
-        	if(imagefile == null)
-        		continue;
-            String encodedString = encoder.encodeToString(imagefile);
-            cartItem.setImg64(encodedString);
+			cartItem.setPcId(aloneAlong.getProduct(cartItem.getProductId()).getPcId());
 		}
 
 		model.put("productsPrice", totalPrice);

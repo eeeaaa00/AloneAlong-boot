@@ -82,12 +82,8 @@ public class ProductOrderController {
 					return "redirect:/cart?stockError=true&product=" + product.getProductName() + "&stock=" + product.getProductStock();
 				}
 				ProductLineItem orderItem = new ProductLineItem(cartItem);
+				orderItem.setPcId(aloneAlong.getProduct(cartItem.getProductId()).getPcId());
 				totalPrice += orderItem.getUnitPrice();
-		        byte[] imagefile = cartItem.getImg();
-		        if(imagefile != null) {
-		            String encodedString = encoder.encodeToString(imagefile);
-		            orderItem.setImg64(encodedString);
-		        }
 				orderList.add(orderItem);
 			}
 			if(totalPrice < 30000) {
@@ -106,11 +102,6 @@ public class ProductOrderController {
 			}
 			totalPrice = product.getUnitPrice();
 			ProductLineItem orderItem = new ProductLineItem(product);
-	        byte[] imagefile = product.getProductImg();
-	        if(imagefile != null) {
-	            String encodedString = encoder.encodeToString(imagefile);
-	            orderItem.setImg64(encodedString);
-	        }
 			orderList.add(orderItem);
 		}
 		else {

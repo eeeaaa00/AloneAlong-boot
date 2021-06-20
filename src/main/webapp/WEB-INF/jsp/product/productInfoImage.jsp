@@ -13,8 +13,8 @@
 			<div class="info-content px-4 pt-lg-3 pb-3 mb-5 border">
 				<div class="tab-content px-lg-3 py-5">
 					<!-- General info tab-->
-					<img style="width: 100%;" alt="productInfo"
-					src="../images/${product.pcId}-${product.productId}-contents.jpg"/>
+					<img class="rounded" style="width: 100%;" alt="productInfo"
+					src="<c:url value='/images/${product.pcId}-${product.productId}-contents.jpg'/>" />
 				</div>
 			</div>
 		</div>

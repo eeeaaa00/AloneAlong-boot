@@ -15,8 +15,9 @@ $(document).on("click", ".open-reviewModal", function () {
 		<div class="form-row float-right">
 		</div>
 		<div class="d-flex align-items-center">
-			<img class="rounded" src="data:image/jpeg;base64,${productOrder.lineItems.get(0).img64}" style="width: 100px; height: 100px;">
-			<div class="cart-title text-left ml-3">
+			<svg class="img rounded mr-3" style="background-image: url('../images/${product.pcId}-${product.productId}.png'); background-size: cover; background-position: center"
+										width="100px" height="100px"></svg>
+										<div class="cart-title text-left ml-3">
 				<p><strong>${productOrder.lineItems.get(0).productName}</strong>
 				<c:if test="${productOrder.lineItems.size() > 1}">외 ${productOrder.lineItems.size() - 1}건</c:if></p>
 				<small><strong class="text-orange">주문번호 </strong> &nbsp; ${productOrder.orderId}</small><br>
@@ -47,7 +48,8 @@ $(document).on("click", ".open-reviewModal", function () {
 						<div class="row d-flex align-items-center">
 							<div class="col-md-1">
 								<a href=<c:url value="/shop/${item.productId}"/>>
-								<img class="rounded" src="data:image/jpeg;base64,${item.img64}" style="width: 50px; height: 50px;"/></a></div>
+			<svg class="img rounded mr-3" style="background-image: url(<c:url value='/images/${item.pcId}-${item.productId}.png'/>); background-size: cover; background-position: center"
+										width="50px" height="50px"></svg></a></div>
 							<div class="col-md-2">
 								<a href=<c:url value="/shop/${item.productId}"/>>
 								<small style="color: black;	text-decoration: none;">${item.productName}</small></a></div>
