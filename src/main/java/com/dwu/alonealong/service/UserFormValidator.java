@@ -15,7 +15,7 @@ import com.dwu.alonealong.domain.User;
 @Component
 public class UserFormValidator implements Validator {
 	public boolean supports(Class<?> clazz) {
-		return User.class.isAssignableFrom(clazz);
+		return UserForm.class.isAssignableFrom(clazz);
 	}
 
 	public void validate(Object obj, Errors errors) {
@@ -38,7 +38,6 @@ public class UserFormValidator implements Validator {
 			int m = Integer.parseInt(user.getM());
 			int d = Integer.parseInt(user.getD());
 
-			System.out.print(y+"!!!!!!!");
 			if (y > 2020 || y < 1920 || m < 1 || m > 12 || d < 1 || d > 31) {
 				errors.rejectValue("user.m", "BIRTHDAY_CHECK", "올바른 생년월일을 입력해주세요.");
 			}
@@ -65,7 +64,7 @@ public class UserFormValidator implements Validator {
 				errors.rejectValue("user.email", "EMAIL_CHECK", "이메일 형식은 alonealong@alongalong.com입니다.(예시)");
 		}
 
-		if (user.getPw() == null || user.getPw().length() < 1 || !user.getPw().equals(userForm.getRepeatedPassword())) {
+		if (user.getPw() == null || user.getPw().length() < 4 || !user.getPw().equals(userForm.getRepeatedPassword())) {
 			errors.rejectValue("repeatedPassword", "PASSWORD_MISMATCH", "비밀번호를 다시 확인해주세요.");
 		} else {
 			if (user.getPw() != null && user.getPw().length() > 0) {

@@ -62,7 +62,7 @@ public class UserFormController {
 	public UserForm formBackingObject(HttpServletRequest request) throws Exception {
 		UserSession userSession = (UserSession) WebUtils.getSessionAttribute(request, "userSession");
 
-		if (userSession != null) { // edit an existing account
+		if (userSession != null) {
 			return new UserForm(alonealong.getUserByUserId(userSession.getUser().getId()));
 		} else {
 			return new UserForm();
@@ -90,7 +90,7 @@ public class UserFormController {
 				alonealong.updateUser(userForm.getUser());
 			}
 		} catch (DataIntegrityViolationException ex) {
-			result.rejectValue("user.id", "이미 존재하는 ID입니다. 다른 ID를 설정해주세요.");
+			result.rejectValue("user.id", "USER_ID_ALREADY_EXISTS", "이미 존재하는 ID입니다. 다른 ID를 설정해주세요.");
 			return formViewName;
 		}
 
@@ -107,5 +107,6 @@ public class UserFormController {
 		} else {
 			return successCreateName;
 		}
+		
 	}
 }
