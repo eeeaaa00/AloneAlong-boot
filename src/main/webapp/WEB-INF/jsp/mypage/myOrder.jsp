@@ -15,7 +15,7 @@ $(document).on("click", ".open-reviewModal", function () {
 		<div class="form-row float-right">
 		</div>
 		<div class="d-flex align-items-center">
-			<svg class="img rounded mr-3" style="background-image: url('../images/${product.pcId}-${product.productId}.png'); background-size: cover; background-position: center"
+			<svg class="img rounded mr-3" style="background-image: url('../images/${productOrder.lineItems.get(0).pcId}-${productOrder.lineItems.get(0).productId}.png'); background-size: cover; background-position: center"
 										width="100px" height="100px"></svg>
 										<div class="cart-title text-left ml-3">
 				<p><strong>${productOrder.lineItems.get(0).productName}</strong>

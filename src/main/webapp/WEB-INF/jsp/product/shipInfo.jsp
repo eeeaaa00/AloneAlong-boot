@@ -3,7 +3,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
-function sample6_execDaumPostcode() {
+function daumAddress() {
     new daum.Postcode({
         oncomplete: function(data) {
             var addr = '';
@@ -99,7 +99,7 @@ function sameAddress(s){
 	</div>
 	<div class="row mx-2 input-group">
 		<form:input path="order.shipZip" id="shipZip" type="text" class="col-md-3 form-control" readonly="true"/>
-		<button type="button" class="btn btn-orange" onClick="sample6_execDaumPostcode()">우편번호 찾기</button>
+		<button type="button" class="btn btn-orange" onClick="daumAddress()">우편번호 찾기</button>
 	</div>
 	<b class="mx-2" style="color: #FF0000;"><form:errors path="order.shipZip" cssClass="error" /></b>
 	<div class="row px-2 mb-1 mt-3">

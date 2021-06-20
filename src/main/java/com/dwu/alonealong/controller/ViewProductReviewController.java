@@ -67,12 +67,6 @@ public class ViewProductReviewController {
 		pagedReviewList.setPageSize(3);
 		pagedReviewList.setPage(page - 1);
 
-		Encoder encoder = Base64.getEncoder();
-        byte[] imagefile = product.getProductImg();
-        if(imagefile != null){
-        	String encodedString = encoder.encodeToString(imagefile);
-            product.setImg64(encodedString);
-        }
 		product.setQuantity(quantity);
 		model.put("product", product);
 		model.put("pcId", product.getPcId());
