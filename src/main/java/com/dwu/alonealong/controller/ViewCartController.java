@@ -40,9 +40,9 @@ public class ViewCartController {
 		int totalPrice = 0;
 		int shippingFee = 0;
 		List<CartItem> cart = this.aloneAlong.getAllCartItem(userId);
-		Encoder encoder = Base64.getEncoder();
 		for(CartItem cartItem : cart) {
 			cartItem.setPcId(aloneAlong.getProduct(cartItem.getProductId()).getPcId());
+			totalPrice += cartItem.getUnitPrice();
 		}
 
 		model.put("productsPrice", totalPrice);
