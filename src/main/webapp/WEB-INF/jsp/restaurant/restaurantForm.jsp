@@ -111,7 +111,7 @@ $(function () {
 		<div class="form-group d-flex align-items-center row">
 			<form:label class="col-4" path="resName">식당 이름</form:label> 
 			<div class="col-4">
-			<form:input class="form-control" path="resName" value="${res.resName}"/>
+			<form:input class="form-control" path="resName" value="${res.resName}" maxlength="15"/>
 			<form:errors class="errors1" path="resName"/>
 			</div>
 		</div>
@@ -155,7 +155,7 @@ $(function () {
 		<div class="form-group d-flex align-items-center row">
 			<div class="col-4"><form:label path="resAddress">주소</form:label></div>
 			<div class="col-8">
-			<form:input class="form-control w-100" path="resAddress" value="${res.resAddress}"/>
+			<form:input class="form-control w-100" path="resAddress" value="${res.resAddress}" maxlength="20"/>
 			<form:errors path="resAddress"/>
 			</div>
 		</div>
@@ -170,7 +170,7 @@ $(function () {
 		<div class="form-group d-flex align-items-center row">
 			<div class="col-4"> <form:label path="resPhone">번호</form:label></div>
 			<div class="col-8">
-			<form:input class="form-control w-100" path="resPhone" value="${res.resPhone}" placeholder="00(0)-000(0)-0000"/>
+			<form:input class="form-control w-100" path="resPhone" value="${res.resPhone}" placeholder="00(0)-000(0)-0000" maxlength="15"/>
 			<form:errors path="resPhone"/>
 			</div>
 		</div>
@@ -178,7 +178,7 @@ $(function () {
 			<div class="col-4"> 
 			<form:label path="resDescription">소개</form:label></div>
 			<div class="col-8">
-			<form:textarea class="form-control w-100" path="resDescription"></form:textarea>
+			<form:textarea class="form-control w-100" path="resDescription" maxlength="80"></form:textarea>
 			</div>
 		</div>
 		
