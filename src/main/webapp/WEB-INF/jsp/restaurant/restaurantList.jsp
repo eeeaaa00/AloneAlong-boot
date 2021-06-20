@@ -51,7 +51,7 @@ b {color:#29A65F;}
 					<div class="d-flex justify-content-between align-items-start">
 						<h6 class="card-text text-left mb-3">${res.resName}</h6>
 						</div>
-					<p>별점 : ${res.avgRating}</p>
+					<p class="mb-1">별점 : ${res.avgRating}</p>
 					<p>주소 : ${res.resAddress} </p>
 				</div>
 			</div>

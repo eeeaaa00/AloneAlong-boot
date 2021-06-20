@@ -29,16 +29,16 @@ $(function () {
      <form:form modelAttribute="food" ENCTYPE="multipart/form-data" method="post">
 		<p>
 			<form:label path="name">메뉴 이름</form:label>
-			<form:input path="name" value="${food.name}" />
+			<form:input path="name" value="${food.name}" maxlength="15"/>
 			<form:errors path="name"/>
 		</p>
 		<p>
 			<form:label path="price">가격</form:label>
-			<form:input path="price" value="${food.price}" />
+			<form:input path="price" value="${food.price}" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" maxlength="10"/>
 		</p>
 		<p>
 			<form:label path="description">설명</form:label>
-			<form:input path="description" value="${food.description}"/>
+			<form:input path="description" value="${food.description}" maxlength="25"/>
 		</p>
 		<p>
 			<form:label path="imgFile">이미지</form:label>
@@ -47,7 +47,7 @@ $(function () {
 		</p>
 		<p>
 			<form:label path="maxPeopleNum">최대 주문가능 인원 수</form:label>
-			<form:input path="maxPeopleNum" value="${food.maxPeopleNum}"/>
+			<form:input path="maxPeopleNum" value="${food.maxPeopleNum}" maxlength="2" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"/>
 		</p>
 		<p>
 			<form:hidden path="img64" value="${food.img64}"/>
