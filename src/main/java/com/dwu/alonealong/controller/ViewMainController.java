@@ -77,14 +77,6 @@ public class ViewMainController {
 		model.put("productList", productList);
 		model.put("sortTypeName", sortTypeName);
 		model.put("productList", productList);
-		for (Product product : productList) {
-			byte[] imagefile = product.getProductImg();
-			if (imagefile == null)
-				continue;
-			String encodedString = encoder.encodeToString(imagefile);
-			product.setImg64(encodedString);
-		}
-
 		return "index";
 	}
 

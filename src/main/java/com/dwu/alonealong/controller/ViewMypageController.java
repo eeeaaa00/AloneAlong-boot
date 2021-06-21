@@ -59,11 +59,6 @@ public class ViewMypageController {
 		User user = aloneAlong.getUserByUserId(userId);
 		List<ProductOrder> productOrderList = aloneAlong.getOrdersByUserId(userId);
 		
-		for(ProductOrder order : productOrderList) {
-			for(ProductLineItem product : order.getLineItems()) {
-				product.setPcId(aloneAlong.getProduct(product.getProductId()).getPcId());
-			}
-		}
 		model.addAttribute("productOrderList", productOrderList);
 		return "myOrder";
 	}

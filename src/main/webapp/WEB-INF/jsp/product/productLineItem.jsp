@@ -23,7 +23,7 @@
 						<div class="col-md-7">
 							<div class="d-flex align-items-center ml-5">						
 								<a href=<c:url value="/shop/${orderItem.productId}"/>>
-								<svg class="img rounded" style="background-image: url(<c:url value='/images/${orderItem.pcId}-${orderItem.productId}.png'/>); background-size: cover; background-position: center; width: 100px; height: 100px;"></svg>
+								<svg class="img rounded" style="background-image: url(<c:url value='/images/${orderItem.productId}.png'/>); background-size: cover; background-position: center; width: 100px; height: 100px;"></svg>
 	 							</a>
 								<div class="cart-title text-left ml-3">
 									<a class="text-uppercase text-dark" href="<c:url value='/shop/${orderItem.getProductId()}'/>">

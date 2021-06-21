@@ -15,7 +15,7 @@ $(document).on("click", ".open-reviewModal", function () {
 		<div class="form-row float-right">
 		</div>
 		<div class="d-flex align-items-center">
-			<svg class="img rounded mr-3" style="background-image: url('../images/${productOrder.lineItems.get(0).pcId}-${productOrder.lineItems.get(0).productId}.png'); background-size: cover; background-position: center"
+			<svg class="img rounded mr-3" style="background-image: url('../images/${productOrder.lineItems.get(0).productId}.png'); background-size: cover; background-position: center"
 										width="100px" height="100px"></svg>
 										<div class="cart-title text-left ml-3">
 				<p><strong>${productOrder.lineItems.get(0).productName}</strong>
@@ -48,7 +48,7 @@ $(document).on("click", ".open-reviewModal", function () {
 						<div class="row d-flex align-items-center">
 							<div class="col-md-1">
 								<a href=<c:url value="/shop/${item.productId}"/>>
-			<svg class="img rounded mr-3" style="background-image: url(<c:url value='/images/${item.pcId}-${item.productId}.png'/>); background-size: cover; background-position: center"
+			<svg class="img rounded mr-3" style="background-image: url(<c:url value='/images/${item.productId}.png'/>); background-size: cover; background-position: center"
 										width="50px" height="50px"></svg></a></div>
 							<div class="col-md-2">
 								<a href=<c:url value="/shop/${item.productId}"/>>

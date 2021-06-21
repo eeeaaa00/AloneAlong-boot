@@ -71,7 +71,7 @@
 								<div class="card shadow-sm mb-lg-5">
 									<div class="contents">
 										<svg class="img"
-											style="background-image: url('../images/${product.pcId}-${product.productId}.png'); background-size: cover; background-position: center"
+											style="background-image: url('../images/${product.productId}.png'); background-size: cover; background-position: center"
 											width="100%" height="150px"></svg>
 										<div class="card-body">
 											<div

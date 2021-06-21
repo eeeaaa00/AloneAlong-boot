@@ -72,6 +72,7 @@ public class editCartItemController {
 			@PathVariable("productId") String productId,
 			@PathVariable("type") String type, 
 			@RequestParam(value="quantity", defaultValue="1") int quantity, 
+			@RequestParam(value="page", defaultValue="1") String page, 
 			ModelMap model) throws Exception {
 		UserSession userSession = (UserSession)request.getSession().getAttribute("userSession");
 		if(userSession == null) {
@@ -79,6 +80,7 @@ public class editCartItemController {
 		}
 		String userId = userSession.getUser().getId();
 		Product product = aloneAlong.getProduct(productId);
+		System.out.println(product);
 		
 		product.setQuantity(quantity);
 		model.put("product", product);
@@ -86,14 +88,14 @@ public class editCartItemController {
 		
 		if(type.equals("list")) {
 			if(!aloneAlong.checkStock(productId, quantity)) {
-				return "redirect:/shop?stockError=true&product=" + product.getProductName() + "&stock=" + product.getProductStock();
+				return "redirect:/shop?stockError=true&insertProductId=" + productId + "&stock=" + product.getProductStock() + "&pcId=" + product.getPcId() + "&page=" + page;
 			}
 			aloneAlong.insertCartItem(productId, quantity, userId);
-			return "redirect:/shop?insertCart=true";
+			return "redirect:/shop?insertCart=true&pcId=" + product.getPcId() + "&page=" + page;
 		}
 		else if(type.equals("product")) {
 			if(!aloneAlong.checkStock(productId, quantity)) {
-				return "redirect:/shop/" + productId + "?stockError=true&product=" + product.getProductName() + "&stock=" + product.getProductStock();
+				return "redirect:/shop/" + productId + "?stockError=true&insertProductId=" + productId + "&stock=" + product.getProductStock();
 			}
 			aloneAlong.insertCartItem(productId, quantity, userId);
 			return "redirect:/shop/" + productId + "?insertCart=true";

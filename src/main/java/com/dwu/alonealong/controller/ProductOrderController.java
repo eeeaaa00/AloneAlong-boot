@@ -82,7 +82,6 @@ public class ProductOrderController {
 					return "redirect:/cart?stockError=true&cartItemId=" + cartItem.getCartItemId() + "&stock=" + product.getProductStock();
 				}
 				ProductLineItem orderItem = new ProductLineItem(cartItem);
-				orderItem.setPcId(aloneAlong.getProduct(cartItem.getProductId()).getPcId());
 				totalPrice += orderItem.getUnitPrice();
 				orderList.add(orderItem);
 			}
@@ -98,7 +97,7 @@ public class ProductOrderController {
 			Product product = this.aloneAlong.getProduct(productId);
 			product.setQuantity(quantity);
 			if(!aloneAlong.checkStock(product.getProductId(), quantity)){
-				return "redirect:/shop/" + product.getProductId() + "?stockError=true";
+				return "redirect:/shop/" + productId + "?stockError=true&insertProductId=" + productId + "&stock=" + product.getProductStock();
 			}
 			totalPrice = product.getUnitPrice();
 			ProductLineItem orderItem = new ProductLineItem(product);

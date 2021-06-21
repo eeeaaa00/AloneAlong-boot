@@ -89,7 +89,7 @@ h4 {
 					<div class="card shadow-sm" id="card">
 						<div class="contents">
 							<svg class="img"
-								style="background-image: url('../images/${pcId}-${product.productId}.png'); background-size: cover; background-position: center"
+								style="background-image: url('../images/${product.productId}.png'); background-size: cover; background-position: center"
 								width="100%" height="150px"></svg>
 							<div class="card-body">
 								<div class="d-flex justify-content-between align-items-start">

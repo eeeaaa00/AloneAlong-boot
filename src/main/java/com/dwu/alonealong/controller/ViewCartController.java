@@ -41,7 +41,6 @@ public class ViewCartController {
 		int shippingFee = 0;
 		List<CartItem> cart = this.aloneAlong.getAllCartItem(userId);
 		for(CartItem cartItem : cart) {
-			cartItem.setPcId(aloneAlong.getProduct(cartItem.getProductId()).getPcId());
 			totalPrice += cartItem.getUnitPrice();
 		}
 

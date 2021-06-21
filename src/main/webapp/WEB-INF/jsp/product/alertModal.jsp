@@ -18,8 +18,8 @@ $(document).ready(function() {
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
-			<div class="modal-body text-center">현재 <span class="text-green">${product.productName}</span>의 재고수량은
-				<span class="text-orange">${product.productStock}</span>개 입니다.</div>
+			<div class="modal-body text-center">현재 <span class="text-green">${insertProductName}</span>의 재고수량은
+				<span class="text-orange">${param.stock}</span>개 입니다.</div>
 		</div>
 	</div>
 </div>

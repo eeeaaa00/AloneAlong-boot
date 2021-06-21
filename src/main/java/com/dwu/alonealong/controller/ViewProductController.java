@@ -29,11 +29,16 @@ public class ViewProductController {
 	@RequestMapping("/shop/{productId}")
 	public String handleRequest(@PathVariable("productId") String productId,
 			@RequestParam(value="quantity",  defaultValue="1") int quantity, 
+			@RequestParam(value="insertProductId", required=false) String insertProductId,  
+			@RequestParam(value="stockError", required=false) boolean stockError,  
 			ModelMap model) throws Exception {
 		Product product = this.aloneAlong.getProduct(productId);
 		if(!aloneAlong.checkStock(productId, quantity) && product.getProductStock() != 0) {
-			return "redirect:/shop/" + productId + "?stockError=true&product=" + product.getProductName() + "&stock=" + product.getProductStock();
+			return "redirect:/shop/" + productId + "?stockError=true&insertProductId=" + productId + "&stock=" + product.getProductStock();
 		}
+        if(stockError == true) {
+    		model.put("insertProductName", aloneAlong.getProduct(insertProductId).getProductName());
+        }
 		product.setQuantity(quantity);
 		model.put("product", product);
 		model.put("pcId", product.getPcId());

@@ -14,7 +14,7 @@
 				<div class="tab-content px-lg-3 py-5">
 					<!-- General info tab-->
 					<img class="rounded" style="width: 100%;" alt="productInfo"
-					src="<c:url value='/images/${product.pcId}-${product.productId}-contents.jpg'/>" />
+					src="<c:url value='/images/${product.productId}-contents.jpg'/>" />
 				</div>
 			</div>
 		</div>

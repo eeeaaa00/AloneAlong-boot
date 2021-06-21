@@ -34,6 +34,8 @@ public class ViewProductListController {
 	public String handleRequest(@RequestParam(value="page", defaultValue="1") int page, 
 			@RequestParam(value="pcId",  defaultValue="1") int pcId, 
 			@RequestParam(value="sortType",  defaultValue="new") String sortType, //new, past, sales, lowPrice
+			@RequestParam(value="insertProductId", required=false) String insertProductId,  
+			@RequestParam(value="stockError", required=false) boolean stockError,  
 			ModelMap model) throws Exception {
 		List<Product> productList = this.aloneAlong.getProductList(pcId, sortType);
 		PagedListHolder<Product> productPagedList = new PagedListHolder<Product>(productList);
@@ -47,13 +49,8 @@ public class ViewProductListController {
 			case "lowPrice" : sortTypeName = "낮은 가격순"; break;
 		}
 
-		Encoder encoder = Base64.getEncoder();
-        for(Product product : productPagedList.getPageList()) {     	
-        	byte[] imagefile = product.getProductImg();
-        	if(imagefile == null)
-        		continue;
-            String encodedString = encoder.encodeToString(imagefile);
-            product.setImg64(encodedString);
+        if(stockError == true) {
+    		model.put("insertProductName", aloneAlong.getProduct(insertProductId).getProductName());
         }
         
 		model.put("pcId", pcId);
