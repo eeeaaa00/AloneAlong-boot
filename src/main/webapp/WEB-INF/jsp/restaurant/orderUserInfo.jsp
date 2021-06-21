@@ -96,19 +96,19 @@ function getData() {
 			<label for="cardNum" class="col-4 col-form-label">카드 번호</label>
 			<div class="col-8">
 				<input id="ccNum" name="ccNum" placeholder="카드 번호"
-					class="form-control here" required="required" type="text">
+					class="form-control here" required="required" type="text" maxlength="20" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');">
 			</div>
 		</div>
 		<div class="row w-100 mx-2 mb-3 justify-content-between no-gutters">
 			<label class="col-4 col-form-label">카드 정보</label>
 			<div class="row col-8 no-gutters">
 				<div class="col-6 input-group">
-					<input id="ccDateYY" name="ccDate" placeholder="YY" class="form-control" maxlength="2" required type="text">
-					<input id="ccDateMM" name="ccDate" placeholder="MM" class="form-control " maxlength="2" required type="text">
+					<input id="ccDateYY" name="ccDate" placeholder="YY" class="form-control" maxlength="2" required type="text" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');">
+					<input id="ccDateMM" name="ccDate" placeholder="MM" class="form-control " maxlength="2" required type="text" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');">
 				</div>
 				<div class="col-1"></div>
 				<div class="col-5">
-					<input id="ccCVC" name="ccCVC" placeholder="CVC" class="form-control" required type="text">
+					<input id="ccCVC" name="ccCVC" placeholder="CVC" class="form-control" required type="text" maxlength="3" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');">
 				</div>
 			</div>
 		</div>
