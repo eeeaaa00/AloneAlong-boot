@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <style>
 b {color:#29A65F;}
 .card:hover, .card:focus {  filter: brightness(90%); }
@@ -61,12 +62,15 @@ b {color:#29A65F;}
 <br>
 <br>
 
-<p>총 <b>${togetherList.size()}</b>개의 함께 먹기가 있습니다.</p>
+<p>총 <b>${togetherCount}</b>개의 함께 먹기가 있습니다.</p>
 <br>
 <!-- 같이밥 목록 -->
 <div class="row mb-2">
-	
-	<c:forEach var="together" items="${togetherList}">
+	<c:forEach items="${togetherList}" var="together" varStatus="idx">
+	<c:if test="${idx.index % 2 == 0}">
+</div>
+<div class="row mb-2">
+	</c:if>
 		<div class="col-md-6">
         	<div class="card shadow-sm rounded" type="button" onClick="location.href='<c:url value='/together/${together.togetherId}' />'">
             	<div class="col p-4 d-flex flex-column position-static">
@@ -91,6 +95,39 @@ b {color:#29A65F;}
         	</div>
     	</div>
 	</c:forEach>
+	<c:set var="pageListSize" value="${togetherList.size()}" />
+	<c:if test="${(pageListSize % 2) != 0}"><div style="width:268px;"></div></c:if>
+</div>
+
+<!-- 페이징 -->
+	<div class="row my-xl-5 justify-content-center">
+	<div class="paginate mb-xl-5 btn-toolbar" role="toolbar">
+		 <c:if test="${page == 1}">
+		 	 <button type="button" class="btn" disabled><i class="fas fa-chevron-left"></i></button>
+		 </c:if>
+		 <c:if test="${page != 1}">
+		 	 <button type="button" class="btn" onClick="location.href='<c:url value='/together?area=${area}&date=${date}&kind=${kind}&price=${price}&price=${price}&sex=${sex}&age=${age}&page=${page - 1}' />'">
+		 	 	<i class="fas fa-chevron-left"></i></button>
+		 </c:if>
+		 <c:forEach var="pageNum" begin="${startPage}" end="${startPage + 5}" varStatus="status">
+			 <c:if test="${pageNum == page}">
+		 		<div class="btn-group"><button type="button" class="btn active rounded-circle" 
+		 			onClick="location.href='<c:url value='/together?area=${area}&date=${date}&kind=${kind}&price=${price}&price=${price}&sex=${sex}&age=${age}&page=${pageNum}' />'">${pageNum}</button></div>
+			 </c:if>
+			 <c:if test="${pageNum != page && pageNum <= lastPage}">
+		 		<div class="btn-group"><button type="button" class="btn rounded-circle"
+		 			onClick="location.href='<c:url value='/together?area=${area}&date=${date}&kind=${kind}&price=${price}&price=${price}&sex=${sex}&age=${age}&page=${pageNum}' />'">${pageNum}</button></div>
+			 </c:if>
+		 </c:forEach>
+		 <c:if test="${page == lastPage}">
+		 	 <button type="button" class="btn" disabled><i class="fas fa-chevron-right"></i></button>
+		 </c:if>
+		 <c:if test="${page != lastPage}">
+		 	 <button type="button" class="btn" onClick="location.href='<c:url value='together?area=${area}&date=${date}&kind=${kind}&price=${price}&price=${price}&sex=${sex}&age=${age}&page=${page + 1}' />'">
+		 	 	<i class="fas fa-chevron-right"></i></button>
+		 </c:if>
+	</div>
+</div>
 
 <!-- script -->	
 <script>
@@ -109,5 +146,3 @@ new Swiper('.swiper-container', {
 	},
 });
 </script>
-
-</div>
