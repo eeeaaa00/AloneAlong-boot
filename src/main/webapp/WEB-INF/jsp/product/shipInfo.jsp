@@ -66,7 +66,7 @@ function sameAddress(s){
 	<label class="custom-control-label" for="same-address">주문 정보와 동일</label>
 	</div>
 	<div class="row w-50 mx-2">
-		<label>이름 <strong class="text-green">*</strong></label> <form:input path="order.shipName" id="shipName" class="form-control" type="text"/>
+		<label>이름 <strong class="text-green">*</strong></label> <form:input path="order.shipName" id="shipName" class="form-control" type="text" maxlength="20"/>
 		<B style="color: #FF0000;"><form:errors path="order.shipName" cssClass="error" /></B>
 	</div>
 
@@ -90,7 +90,7 @@ function sameAddress(s){
 
 	<div class="row w-100 mx-2 mt-3">
 		<label for="shipEmail">이메일</label>
-		<form:input path="order.shipEmail" id="shipEmail" type="email" class="form-control" placeholder="you@example.com"/>
+		<form:input path="order.shipEmail" id="shipEmail" type="email" class="form-control" placeholder="you@example.com"  maxlength="50"/>
 	</div>
 	<b class="mx-2" style="color: #FF0000;"><form:errors path="order.shipEmail" cssClass="error" /></b>
 
@@ -98,7 +98,7 @@ function sameAddress(s){
 		<label for="shipZip" class="col-md-3">우편번호 <strong class="text-green">*</strong></label>
 	</div>
 	<div class="row mx-2 input-group">
-		<form:input path="order.shipZip" id="shipZip" type="text" class="col-md-3 form-control" readonly="true"/>
+		<form:input path="order.shipZip" id="shipZip" type="text" class="col-md-3 form-control" readonly="true" maxlength="6"/>
 		<button type="button" class="btn btn-orange" onClick="daumAddress()">우편번호 찾기</button>
 	</div>
 	<b class="mx-2" style="color: #FF0000;"><form:errors path="order.shipZip" cssClass="error" /></b>
@@ -107,8 +107,8 @@ function sameAddress(s){
 		<label for="shipAddress2" class="col-md-6">상세주소</label>
 	</div>
 	<div class="row mx-2 input-group">
-		<form:input path="order.shipAddress" id="shipAddress" type="text" class="col-md-6 form-control" readonly="true"/>
-		<form:input path="order.shipAddress2" id="shipAddress2" type="text" class="col-md-6 form-control"/>
+		<form:input path="order.shipAddress" id="shipAddress" type="text" class="col-md-6 form-control" readonly="true"  maxlength="80"/>
+		<form:input path="order.shipAddress2" id="shipAddress2" type="text" class="col-md-6 form-control"  maxlength="80"/>
 	</div>
 	<b class="mx-2" style="color: #FF0000;"><form:errors path="order.shipAddress" cssClass="error" /></b>
 </div>

@@ -33,6 +33,10 @@ public class ViewProductController {
 			@RequestParam(value="stockError", required=false) boolean stockError,  
 			ModelMap model) throws Exception {
 		Product product = this.aloneAlong.getProduct(productId);
+		if(product == null) {
+			model.put("errorMessage", "존재하지 않는 상품입니다.");
+			return "error";
+		}
 		if(!aloneAlong.checkStock(productId, quantity) && product.getProductStock() != 0) {
 			return "redirect:/shop/" + productId + "?stockError=true&insertProductId=" + productId + "&stock=" + product.getProductStock();
 		}

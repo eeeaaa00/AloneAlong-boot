@@ -48,7 +48,7 @@ function samePayment(s){
 		<label for="cardNum" class="col-4 col-form-label">카드 번호</label>
 		<div class="col-8">
 			<form:input path="order.cardNum" id="cardNum" name="cardNum" placeholder="카드 번호"
-				class="form-control here" type="text"/>
+				class="form-control here" type="text"  maxlength="30"/>
 				<B style="color: #FF0000;"><form:errors path="order.cardNum" cssClass="error" /></B>
 		</div>
 	</div>

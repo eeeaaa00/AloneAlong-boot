@@ -37,6 +37,10 @@ public class ViewProductListController {
 			@RequestParam(value="insertProductId", required=false) String insertProductId,  
 			@RequestParam(value="stockError", required=false) boolean stockError,  
 			ModelMap model) throws Exception {
+		if(pcId < 1 || pcId > 5) {
+			model.put("errorMessage", "존재하지 않는 카테고리입니다.");
+			return "error";
+		}
 		List<Product> productList = this.aloneAlong.getProductList(pcId, sortType);
 		PagedListHolder<Product> productPagedList = new PagedListHolder<Product>(productList);
 		productPagedList.setPageSize(15);
