@@ -66,10 +66,9 @@ h4 {
 <h3>
 	<c:choose>
 		<c:when test="${!empty userSession.user}">
-	${userSession.user.name}님</c:when>
-		<c:otherwise>당신</c:otherwise>
-	</c:choose>
-	의 <b style="color: orange">홀로서기</b>를 위한 <b>Alone&Along</b>의 맞춤 서비스 추천
+	${userSession.user.name}님의</c:when>
+		<c:otherwise>당신의</c:otherwise>
+	</c:choose><b style="color: #FA7840">홀로서기</b>를 위한 <b>Alone&Along</b>의 맞춤 서비스 추천
 </h3>
 <br>
 <!-- 추천 기능 -->
