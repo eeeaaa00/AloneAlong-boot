@@ -36,23 +36,10 @@ public class ViewTogetherListController {
 		this.alonealong = alonealong;
 	}
 	
-	//같이먹기 리스트
-//	@RequestMapping("/together")
-//	public String listTogether(
-//			ModelMap model
-//			) throws Exception {
-//		List<Together> togetherList = this.alonealong.getTogetherList();
-////		PagedListHolder<Together> togetherList = new PagedListHolder<Together>(this.alonealong.getTogetherList());
-////		togetherList.setPageSize(4);
-//		model.put("togetherList", togetherList);
-//		return "togetherList";
-//	}
-	
 	//카테고리별 리스트
 	@GetMapping("/together")
 	public String listTogetherByCategory(
 			HttpServletRequest request,
-//			@RequestParam(value="page", defaultValue="1") int page,
 			@RequestParam(value="area",  defaultValue="all") String area,
 			@RequestParam(value="date",  defaultValue="") String date,
 			@RequestParam(value="kind",  defaultValue="all") String kind,
@@ -80,17 +67,6 @@ public class ViewTogetherListController {
 		List<Together> togetherList = this.alonealong.getTogetherListByCategory(area, date, kind, price, sex, age);
 		
 		model.put("togetherList", togetherList);
-		
-		//페이징 추가
-//		PagedListHolder<Together> togetherPagedList = new PagedListHolder<Together>(togetherList);
-		
-//		togetherPagedList.setPageSize(15);
-//		togetherPagedList.setPage(page - 1);
-//		
-//		model.put("togetherList", togetherPagedList);
-//		model.put("page", togetherPagedList.getPage() + 1);
-//		model.put("startPage", (togetherPagedList.getPage() / 5) * 5 + 1);
-//		model.put("lastPage", togetherPagedList.getPageCount());
 		
 		String areaName = "모든 지역";
 		switch(area) {

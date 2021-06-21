@@ -68,19 +68,24 @@ public class TogetherUpdateController {
 		//카트 세팅
 		for(int i = 0; i < together.getTogetherFoodList().size(); i++) {
 			System.out.println("현재 음식 사이즈" + foodCart.getFoodItemList().size());
-			if (foodCart.containsFoodId(together.getTogetherFoodList().get(i).getFoodId())) {
-				System.out.println("이미 있는 음식");
-				foodCart.incrementQuantityByFoodId(together.getTogetherFoodList().get(i).getFoodId());
+			
+			for(int j = 0; j < together.getTogetherFoodList().get(i).getQuantity(); j++) {
+				if (foodCart.containsFoodId(together.getTogetherFoodList().get(i).getFoodId())) {
+					System.out.println("이미 있는 음식");
+					foodCart.incrementQuantityByFoodId(together.getTogetherFoodList().get(i).getFoodId());
+				}
+				else {
+					Food item = this.aloneAlong.getFood(together.getTogetherFoodList().get(i).getFoodId());
+					if(item == null)
+						System.out.println("null들어왔다");
+					foodCart.addFood(item);
+					System.out.println("카트에 추가됨");
+				}	
 			}
-			else {
-				Food item = this.aloneAlong.getFood(together.getTogetherFoodList().get(i).getFoodId());
-				if(item == null)
-					System.out.println("null들어왔다");
-				foodCart.addFood(item);
-				System.out.println("카트에 추가됨");
-			}	
 		}
+		
 		model.put("foodCart", foodCart.getAllFoodCartItems());
+		model.put("totalPrice", foodCart.getSubTotal());
 		
 		model.put("together", together);
 		
@@ -93,9 +98,13 @@ public class TogetherUpdateController {
 			@RequestParam("keywords") String keywords,
 			ModelMap model) throws Exception {
 		model.addAttribute("sessionFoodCart", new FoodCart()); //카트 초기화
+		model.put("totalPrice", 0); //합계 초기화
 		
 		List<Restaurant> restaurantList = this.aloneAlong.searchRestaurantList(keywords);
 		model.put("keywords", keywords);
+		
+		boolean resSelected = false; //식당 선택했는지 구분
+		model.put("resSelected", resSelected);
 		
 		Encoder encoder = Base64.getEncoder(); //이미지
         for(Restaurant res : restaurantList) {     	
@@ -153,7 +162,10 @@ public class TogetherUpdateController {
 			@RequestParam("description") String description,
 			@RequestParam("resId") String resId,
 			@ModelAttribute("sessionFoodCart") FoodCart cart,
-			ModelMap model) {		
+			ModelMap model) {
+		if(resId == null)
+			return "redirect:/togetherUpdate/{togetherId}";
+		
 		//together 수정
 		Together newTogether = new Together(togId, name, headCount, date, time, sex, age, description, resId, 0, cart.getSubTotal() / headCount);
 		aloneAlong.updateTogether(newTogether);

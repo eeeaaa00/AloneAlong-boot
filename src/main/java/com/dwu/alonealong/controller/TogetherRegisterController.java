@@ -46,8 +46,6 @@ public class TogetherRegisterController {
 	public String handleRequest(
 			HttpServletRequest request,
 			ModelMap model) throws Exception {
-		System.out.println("등록하기 페이지로 들어가기");
-		
 		UserSession userSession = (UserSession)request.getSession().getAttribute("userSession");
 		
 		if(userSession == null) {
@@ -62,6 +60,9 @@ public class TogetherRegisterController {
 			@RequestParam("keywords") String keywords,
 			ModelMap model) throws Exception {
 		model.addAttribute("sessionFoodCart", new FoodCart()); //카트 초기화
+		String resId = null;
+		model.put("resId", resId);
+		
 		
 		List<Restaurant> restaurantList = this.aloneAlong.searchRestaurantList(keywords);
 		model.put("keywords", keywords);
@@ -74,7 +75,7 @@ public class TogetherRegisterController {
         }
 		
 		model.put("restaurantList", restaurantList);
-		System.out.println("키워드 검색 완료");
+
 		return "together/togetherRegisterForm";
 	}
 	
@@ -101,8 +102,6 @@ public class TogetherRegisterController {
         }
 		
 		model.addAttribute("foodList", foodList);
-		System.out.println("메뉴 검색 완료");
-		
 		model.put("foodCart", foodCart.getAllFoodCartItems());
 		
 		return "together/togetherRegisterForm";
@@ -123,6 +122,9 @@ public class TogetherRegisterController {
 			@RequestParam("resId") String resId,
 			@ModelAttribute("sessionFoodCart") FoodCart cart,
 			ModelMap model) {
+		if(resId == null)
+			return "redirect:/togetherRegister";
+		
 		//together 넣기
 		Together together = new Together("TOG_ID.NEXTVAL", name, headCount, date, time, sex, age, description, resId, 0, cart.getSubTotal() / headCount);
 		aloneAlong.insertTogether(together);
@@ -155,12 +157,6 @@ public class TogetherRegisterController {
 		
 		List<Together> togetherList = aloneAlong.getTogetherList();
 		model.addAttribute("togetherList", togetherList);
-		
-//		Together together2 = this.aloneAlong.getTogetherByTogId(together.getTogetherId());
-//		
-//		System.out.println("Tog_id : " + together2.getTogetherId());
-//		
-//		model.put("together", together2);
 		
 		return "redirect:/together";
 	}

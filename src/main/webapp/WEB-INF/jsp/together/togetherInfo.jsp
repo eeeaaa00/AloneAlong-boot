@@ -127,10 +127,10 @@
 	<c:if test="${isUserNull eq true}"> 
 		<c:if test="${isHost eq true}"> <!-- 호스트 여부 -->
 			<c:if test="${isPaid eq false}"> <!-- 결제 여부 -->
-				<a type="button" class="btn btn-orange rounded-pill" href="<c:url value='/togetherOrder' />"><small><i class="far fa-credit-card pr-1"></i></small> 결제하기</a>
+				<a type="button" class="w-40 btn btn-lg btn-warning" href="<c:url value='/togetherOrder' />"><small><i class="far fa-credit-card pr-1"></i></small> 결제하기</a>
 				<c:if test="${ifEditPossible eq true}"> <!-- 수정 가능 여부 -->
-					<a type="button" class="btn btn-green rounded-pill" href="<c:url value='/togetherUpdate/${together.togetherId}' />">수정하기</a>
-					<a type="button" class="btn btn-green rounded-pill" href="<c:url value='/togetherRegister/delete/${together.togetherId}' />">삭제하기</a>
+					<a type="button" class="w-40 btn btn-lg btn-success" href="<c:url value='/togetherUpdate/${together.togetherId}' />">수정하기</a>
+					<a type="button" class="w-40 btn btn-lg btn-success" href="<c:url value='/togetherRegister/delete/${together.togetherId}' />">삭제하기</a>
 				</c:if>
 				<c:if test="${ifEditPossible eq false}">
 					<button class="btn btn-green rounded-pill" onclick="javascript:btn('모집 중인 인원이 1명일 때만 가능합니다.' )">수정하기</button>
@@ -144,14 +144,14 @@
 		</c:if>
 		<c:if test="${isHost eq false}">
 			<c:if test="${alreadyApply eq true}"> <!-- 이미 신청 여부 -->
-				<button class="btn btn-green rounded-pill" onclick="javascript:btn('이미 신청한 함께 먹기 입니다.' )">신청하기</button>
+				<button class="w-40 btn btn-lg btn-success" onclick="javascript:btn('이미 신청한 함께 먹기 입니다.' )">신청하기</button>
 			</c:if>
 			<c:if test="${alreadyApply eq false}">
 				<c:if test="${ifCanApply eq true}"> <!-- 신청 조건 맞는지 여부 -->
-					<a type="button" class="btn btn-green rounded-pill" href="<c:url value='/togetherOrder' />">신청하기</a>
+					<a type="button" class="w-40 btn btn-lg btn-success" href="<c:url value='/togetherOrder' />">신청하기</a>
 				</c:if>
 				<c:if test="${ifCanApply eq false}">
-					<button class="btn btn-green rounded-pill" onclick="javascript:btn('성별 조건이 맞지 않습니다.' )">신청하기</button>
+					<button class="w-40 btn btn-lg btn-success" onclick="javascript:btn('성별 조건이 맞지 않습니다.' )">신청하기</button>
 				</c:if>
 			</c:if>
 		</c:if>
