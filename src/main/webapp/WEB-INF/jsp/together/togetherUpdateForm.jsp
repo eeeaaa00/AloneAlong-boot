@@ -293,10 +293,10 @@
 			<hr>
 			<!--버튼 -->
 			<div class="py-5 text-right">
-				<c:if test="${resId eq null}"> <!-- 식당 선택 여부 -->
+				<c:if test="${keywords eq null}"> <!-- 식당 선택 여부 -->
 					<button class="w-40 btn btn-lg btn-success" onclick="javascript:btn('식당 또는 메뉴를 선택해주세요!' )">수정하기</button>
 				</c:if>
-				<c:if test="${resId != null}">
+				<c:if test="${keywords != null}">
 					<c:if test="${totalPrice == 0}"> <!-- 카트에 음식 있는지 여부 -->
 						<button class="w-40 btn btn-lg btn-success" onclick="javascript:btn('카트에 음식을 담아주세요!' )">수정하기</button>
 					</c:if>

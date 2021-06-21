@@ -3,7 +3,6 @@
 <style>
 b {color:#29A65F;}
 .card:hover, .card:focus {  filter: brightness(90%); }
-
 .swiper-container {
 }
 .swiper-slide {
@@ -17,11 +16,14 @@ b {color:#29A65F;}
 <div class="py-3 text-center">
 	<p>함께 먹기 제안하기 <a type="button" class="btn btn-sm btn-outline-success" href="<c:url value='/togetherRegister' />"><small> <i class="fas fa-utensils"></i></small> 등록</a></p>
 </div>
-
+<br>
+<br>
 <!-- 추천 기능 -->
 <c:if test="${userSession != null}">
-<div class="swiper-container">
-	<p><b><c:out value="${user.name}"/></b>님을 위한 함께 먹기 추천</p>
+<c:if test="${recommandList.size() != 0}">
+	<div class="swiper-container">
+	<p><b><c:out value="${user.nickname}"/></b>님을 위한 함께 먹기 추천</p>
+	<br>
 	<div class="swiper-wrapper">
 		<c:forEach var="recommand" items="${recommandList}">
 			<div class="swiper-slide">
@@ -51,11 +53,16 @@ b {color:#29A65F;}
 	</div>
 	<div class="swiper-button-next"></div> <!-- 네비게이션 -->
 	<div class="swiper-pagination"></div> <!-- 페이징 -->
-</div>
+</div>	
 </c:if>
+</c:if>
+<br>
+<br>
+<br>
+<br>
 
-총 <b>${togetherList.size()}</b>개의 함께 먹기가 있습니다.
-
+<p>총 <b>${togetherList.size()}</b>개의 함께 먹기가 있습니다.</p>
+<br>
 <!-- 같이밥 목록 -->
 <div class="row mb-2">
 	
@@ -84,8 +91,6 @@ b {color:#29A65F;}
         	</div>
     	</div>
 	</c:forEach>
-	
-	
 
 <!-- script -->	
 <script>
@@ -95,7 +100,6 @@ new Swiper('.swiper-container', {
 	slidesPerGroup : 2, // 그룹으로 묶을 수, slidesPerView 와 같은 값을 지정하는게 좋음
 	loopFillGroupWithBlank : true,
 	loop : true, // 무한 반복
-
 	pagination : { // 페이징
  		el : '.swiper-pagination',
 		clickable : true, // 페이징을 클릭하면 해당 영역으로 이동, 필요시 지정해 줘야 기능 작동

@@ -16,13 +16,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.dwu.alonealong.domain.FoodCart;
 import com.dwu.alonealong.domain.Together;
 import com.dwu.alonealong.domain.TogetherOrder;
 import com.dwu.alonealong.domain.User;
 import com.dwu.alonealong.service.AloneAlongFacade;
 
 @Controller
-@SessionAttributes({"together"})
+@SessionAttributes({"together", "sessionFoodCart"})
 public class ViewTogetherController {
 
 	private AloneAlongFacade aloneAlong;
@@ -42,6 +43,8 @@ public class ViewTogetherController {
 			@RequestParam(value="sex",  defaultValue="all") String sex,
 			@RequestParam(value="age",  defaultValue="all") String age,
 			ModelMap model) throws Exception {
+		model.addAttribute("sessionFoodCart", new FoodCart()); //카트 초기화
+		
 		Together together = this.aloneAlong.getTogetherByTogId(togId);
 		
 		//수정, 삭제, 신청 접근 조건
@@ -63,6 +66,7 @@ public class ViewTogetherController {
 				TogetherOrder togetherOrder = aloneAlong.getTogetherOrderByTogId(togId).get(0);
 				if(togetherOrder.getOrder().getStatus().equals("결제완료")) //결제 여부
 					isPaid = true;
+					
 				
 				if(together.getTogetherMemberList().size() == 1) //수정 삭제 가능 여부
 					ifEditPossible = true;
