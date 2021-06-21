@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import com.dwu.alonealong.domain.FoodCart;
-import com.dwu.alonealong.domain.Product;
 import com.dwu.alonealong.domain.Together;
 import com.dwu.alonealong.domain.User;
 import com.dwu.alonealong.service.AloneAlongFacade;
@@ -40,6 +39,7 @@ public class ViewTogetherListController {
 	@GetMapping("/together")
 	public String listTogetherByCategory(
 			HttpServletRequest request,
+			@RequestParam(value="page", defaultValue="1") int page, 
 			@RequestParam(value="area",  defaultValue="all") String area,
 			@RequestParam(value="date",  defaultValue="") String date,
 			@RequestParam(value="kind",  defaultValue="all") String kind,
@@ -65,9 +65,18 @@ public class ViewTogetherListController {
 		
 		//공통 리스트
 		List<Together> togetherList = this.alonealong.getTogetherListByCategory(area, date, kind, price, sex, age);
+		PagedListHolder<Together> togetherPagedList = new PagedListHolder<Together>(togetherList);
+		togetherPagedList.setPageSize(10);
+		togetherPagedList.setPage(page - 1);
 		
-		model.put("togetherList", togetherList);
+		model.put("togetherList", togetherPagedList.getPageList());
+		model.put("togetherCount", togetherList.size());
 		
+		model.put("page", togetherPagedList.getPage() + 1);
+		model.put("startPage", (togetherPagedList.getPage() / 5) * 5 + 1);
+		model.put("lastPage", togetherPagedList.getPageCount());
+		
+		//카테고리
 		String areaName = "모든 지역";
 		switch(area) {
 			case "seoul" : areaName = "서울특별시"; break;
