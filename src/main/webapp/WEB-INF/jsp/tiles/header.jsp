@@ -20,7 +20,7 @@
 			<div class="col-md-2">
 			 <c:if test="${!empty userSession.user}">
 			     <a class="text-muted px-3" href="<c:url value='/mypage' />">
-				 <i class="far fa-user" style="color: #29A65F;"></i> <b style="color: #29A65F;">${userSession.user.name}</b> 님</a> <a
+				 <i class="far fa-user" style="color: #29A65F;"></i> <b style="color: #29A65F;">${userSession.user.name}</b>님</a> <a
 					class="text-muted" href="/logout"><i class="fas fa-sign-out-alt"
 					style="color: #29A65F;"></i> 로그아웃</a>
                 </c:if>&nbsp;
