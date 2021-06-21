@@ -50,3 +50,5 @@ body {
 .paginate>button { color:gray; }
 .paginate>div>button:hover, .paginate>button:hover { color:#29A65F; font-weight:bold; text-decoration: none;}
 .paginate>div>button:focus, .paginate>div>button.active { color:#FFFFFF; background-color:#29A65F; }
+
+.badge { padding:5px 10px 5px 10px; margin-bottom:5px; }
